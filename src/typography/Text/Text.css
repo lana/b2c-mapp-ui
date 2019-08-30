@@ -1,0 +1,26 @@
+.text {
+    font: var(--body);
+    color: var(--charcoal);
+}
+
+.callout {
+    font: var(--callout);
+    color: var(--charcoal);
+}
+
+.footnote {
+    font: var(--footnote);
+    color: var(--charcoal);
+}
+
+.concrete {
+	color: var(--concrete);
+}
+
+.ash {
+	color: var(--ash);
+}
+
+.dblue {
+	color: var(--dblue);
+}

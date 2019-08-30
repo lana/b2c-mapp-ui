@@ -1,0 +1,60 @@
+.wrapper {
+	background: #FFFFFF;
+	padding-bottom: 16px;
+	flex-grow: 1;
+}
+
+	.title {
+		padding: 24px 16px 8px;
+	}
+
+	.item {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+		touch-action: manipulation;
+	}
+		.radio {
+			position: relative;
+			margin: 16px 32px 16px 16px;
+			flex-shrink: 0;
+			appearance: none;
+			width: 18px;
+			height: 18px;
+			border: solid 2px var(--ash);
+			border-radius: 20px;
+			transition: all 0.15s ease-out;
+		}
+		.radio:before {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin: -5px 0 0 -5px;
+			content: "";
+			width: 10px;
+			height: 10px;
+			background: var(--ash);
+			border-radius: 8px;
+			transform: scale(0);
+			transition: all 0.15s ease-out;
+		}
+
+		.content {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: flex-start;
+			text-align: left;
+			padding-right: 16px;
+		}
+
+			.label {
+				font: var(--body);
+				color: var(--charcoal);
+			}
+
+/* Checked State */
+.item.checked .radio { border-color: var(--blue); background-color: white; }
+.item.checked .radio:before { background: var(--blue); transform: scale(1); }
+.item.checked .label { color: var(--blue); }

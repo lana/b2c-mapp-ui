@@ -1,0 +1,36 @@
+.navigation {
+	position: fixed;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: stretch;
+	width: 240px;
+	background: #FFFFFF;
+	border-right: solid 1px var(--silver);
+}
+
+.logo { display: block; text-align: center; border-bottom: solid 1px var(--silver); }
+.logo svg { width: 180px; height: 100px; display: inline-block }
+
+.heading {
+	font: var(--body);
+	font-weight: 500;
+	color: var(--dblue);
+	display: block;
+	padding: 16px 16px 8px;
+}
+
+.navigation li a {
+	display: block;
+	font: var(--body);
+	color: var(--concrete);
+	padding: 8px 16px;
+	border-bottom: solid 1px var(--silver);
+}
+
+.navigation li a:hover { color: var(--blue); }
+

@@ -1,0 +1,81 @@
+.button {
+	position: relative;
+	overflow: hidden;
+	display: block;
+	width: 100%;
+	padding: 0 16px;
+	box-sizing: border-box;
+	background: var(--blue);
+	font: 600 16px/20px Roboto, Sans-serif;
+	text-align: center;
+	text-decoration: none;
+	color: #FFFFFF;
+	border-radius: 28px;
+	border: solid 1px transparent;
+	cursor: pointer;
+	height: 56px;
+	transition: background 100ms ease-out;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
+	touch-action: manipulation;
+}
+.button:hover { text-decoration: none; }
+.button.pressed { opacity: 0.8; }
+
+.secondary {
+	background: var(--lblue);
+	color: var(--dblue);
+	box-shadow: none;
+}
+.secondary:active {  }
+
+.dismiss {
+	background: #fff;
+	color: var(--charcoal);
+	border: solid 1px var(--silver);
+}
+
+.disabled {
+	background: var(--silver);
+	color: var(--ash);
+	border-color: transparent;
+	pointer-events: none;
+}
+
+/* Loading state */
+.defaultWrapper { display: block; }
+.loadingWrapper {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 5;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	font-style: normal;
+	opacity: 0;
+	transform: translateY(100%);
+}
+
+.defaultWrapper, .loadingWrapper {
+	transition: all 100ms ease-out;
+}
+
+.loading .loadingWrapper { opacity: 1; transform: translateY(0); }
+.loading .defaultWrapper { opacity: 0; transform: translateY(-100%); }
+
+	.loadingIcon { margin-right: 8px; animation: loadingSpin 1.5s infinite linear; }
+	.button .loadingIcon path[fill] { fill: #FFFFFF; }
+	.button.secondary .loadingIcon path[fill] { fill: var(--dblue); }
+
+	@keyframes loadingSpin {
+		from {
+			transform: rotate(0deg);
+		}
+
+		to {
+			transform: rotate(360deg);
+		}
+	}

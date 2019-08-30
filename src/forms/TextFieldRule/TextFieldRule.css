@@ -1,0 +1,16 @@
+.wrapper {
+  position: relative;
+}
+
+.rule{
+  position: absolute;
+  top: 33px;
+	right: 16px;
+	z-index: 10;
+  font-size: 12px;
+  transition: transform 0.15s ease
+}
+
+.alignTop {
+  transform: translateY(-22px);
+}

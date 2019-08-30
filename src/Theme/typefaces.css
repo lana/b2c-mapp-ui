@@ -1,0 +1,12 @@
+:root {
+		/* Headings */
+		--title0: 48px/56px Roboto, Sans-serif;
+    --headline: 500 17px/24px Roboto, Sans-serif;
+		--title1: 34px/40px Roboto, Sans-serif;
+		--title2: 20px/28px Roboto, Sans-serif;
+
+		/* Text */
+		--body: 16px/24px Roboto, Sans-serif;
+		--callout: 14px/20px Roboto, Sans-serif;
+		--footnote: 12px/16px Roboto, Sans-serif;
+}
