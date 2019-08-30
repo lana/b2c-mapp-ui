@@ -1,0 +1,11 @@
+.prefix {
+	position: absolute;
+	left: 16px;
+	top: 31px;
+	z-index: 5;
+	opacity: 0;
+	transition: all 0.15s ease-out;
+}
+
+.filled .prefix { opacity: 1; }
+.filled input { text-indent: 36px; }

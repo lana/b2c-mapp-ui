@@ -1,0 +1,31 @@
+.stepper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	height: 56px;
+	padding: 0 16px;
+	text-align: center;
+}
+
+.steps { display: inline-block; height: 20px; }
+
+.step {
+	display: inline-block;
+	vertical-align: middle;
+	width: 24px;
+	height: 4px;
+	margin: 0 4px;
+	border-radius: 2px;
+	background-color: var(--blue);
+	font: 0/0 a;
+	transition: all 0.25s ease-out;
+}
+
+.active { background-color: var(--blue); }
+
+.inactive {
+	background-color: var(--dblue);
+	opacity: 0.2; 
+}

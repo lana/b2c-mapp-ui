@@ -1,0 +1,6 @@
+{
+  "name": "Screen",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Screen.jsx"
+}

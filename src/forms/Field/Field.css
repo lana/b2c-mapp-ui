@@ -1,0 +1,66 @@
+.field {
+	display: block;
+	position: relative;
+	padding: 32px 16px 12px;
+	background: #FFF;
+	cursor: text;
+	touch-action: manipulation;
+}
+
+.label {
+	position: absolute;
+	top: 32px;
+	left: 16px;
+	font: var(--body);
+	color: var(--ash);
+	transition: all 0.15s ease-out;
+}
+
+.input {
+	width: 100%;
+	height: 24px;
+	box-sizing: border-box;
+	padding: 0 0 2px;
+	border: none;
+	font: var(--body);
+	color: var(--charcoal);
+}
+
+.field:before {
+	content: "";
+	position: absolute;
+	bottom: 12px;
+	left: 16px;
+	right: 16px;
+	height: 1px;
+	background: var(--silver);
+	pointer-events: none;
+	transition: all 0.15s ease-out;
+}
+
+.labeled .label {
+	top: 12px;
+	font: var(--callout);
+	font-weight: 500;
+	color: var(--dblue);
+}
+
+.focus:before {
+	height: 2px;
+	background-color: var(--blue);
+}
+
+/* Error state */
+.error:before { background: var(--dpurple); }
+.error .label { color: var(--dpurple); }
+
+
+.readonly .label { color: var(--ash); }
+
+.readonly:before {
+	background-color: transparent !important;
+}
+
+.readonly input[readonly] {
+	color: var(--ash);
+}
