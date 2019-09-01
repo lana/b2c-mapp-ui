@@ -1,7 +1,7 @@
 import { Component } from 'preact'
 
 import Button from '../Button'
-import Icon from '../../icons/ic_forward'
+import { ForwardIcon } from '../../Icons'
 import CSS from './Forward.css'
 
 export default class Forward extends Component {
@@ -15,7 +15,7 @@ export default class Forward extends Component {
 					type={this.props.type}
 					loading={this.props.loading}
 				>
-					<Icon color="white" />
+					<ForwardIcon color="white" />
 					{this.props.children}
 				</Button>
 			</section>

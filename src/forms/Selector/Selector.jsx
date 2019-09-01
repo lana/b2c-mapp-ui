@@ -1,6 +1,6 @@
 import { Component } from 'preact'
 import CSS from './Selector.css'
-import Icon from '../../icons/ic_expand_small'
+import { ExpandSmallIcon } from '../../Icons'
 
 export default class Selector extends Component {
 	state = {
@@ -27,7 +27,7 @@ export default class Selector extends Component {
 		return (
 			<label className={`${CSS.selector} ${focusClass} ${this.props.className || ''}`}>
 				<strong className={CSS.label}>{this.props.label}</strong>
-				<Icon className={CSS.Icon} />
+				<ExpandSmallIcon className={CSS.Icon} />
 				<select
 					className={CSS.select}
 					onFocus={e => this.onFocus(e)}

@@ -1,7 +1,7 @@
 import { Component } from 'preact'
 
 import CSS from './Button.css'
-import MopIcon from '../../icons/ic_mop'
+import { MopIcon } from '../../Icons'
 
 export default class Button extends Component {
 	state = {
