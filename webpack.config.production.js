@@ -108,22 +108,14 @@ module.exports = {
 				test: /\.(js|jsx|ts|tsx|mjs)$/,
 				include: [
 					path.resolve(__dirname, 'src'),
-					path.resolve(__dirname, 'docs'),
-					path.resolve(__dirname, 'test')
+					path.resolve(__dirname, 'test'),
 				],
-				exclude: [
-					path.resolve(__dirname, 'src/static')
-				],
-				use: [
-					BabelLoaderConfig
-				]
+				exclude: [path.resolve(__dirname, 'src/static')],
+				use: [BabelLoaderConfig],
 			},
 			{
 				test: /\.css$/,
-				include: [
-					path.resolve(__dirname, 'src'),
-					path.resolve(__dirname, 'docs')
-				],
+				include: [path.resolve(__dirname, 'src')],
 				use: [
 					MiniCssExtractPlugin.loader,
 					{
@@ -131,53 +123,58 @@ module.exports = {
 						options: {
 							importLoaders: 1,
 							modules: true,
-							localIdentName: "[name]__[local]___[hash:base64:5]"
-						}
+							localIdentName: '[name]__[local]___[hash:base64:5]',
+						},
 					},
 					{
 						loader: 'postcss-loader',
 						options: {
 							plugins: [
 								require('autoprefixer'),
-								function () { /* omitted long function */ },
-								function () { /* omitted long function */ }
-							]
-						}
-					}
-				]
+								function() {
+									/* omitted long function */
+								},
+								function() {
+									/* omitted long function */
+								},
+							],
+						},
+					},
+				],
 			},
 			{
 				test: /\.css$/,
-				include: [
-					path.resolve(__dirname, 'node_modules')
-				],
+				include: [path.resolve(__dirname, 'node_modules')],
 				use: [
 					MiniCssExtractPlugin.loader,
 					{
 						loader: 'css-loader',
 						options: {
 							importLoaders: 1,
-							modules: false
-						}
+							modules: false,
+						},
 					},
 					{
 						loader: 'postcss-loader',
 						options: {
 							plugins: [
 								require('autoprefixer'),
-								function () { /* omitted long function */ },
-								function () { /* omitted long function */ }
-							]
-						}
-					}
-				]
-			}
+								function() {
+									/* omitted long function */
+								},
+								function() {
+									/* omitted long function */
+								},
+							],
+						},
+					},
+				],
+			},
 		],
 	},
 	resolve: {
 		alias: {
 			src: path.resolve(__dirname, 'src/'),
-			docs: path.resolve(__dirname, 'docs/'),
 			'mapp-data': path.resolve(__dirname, 'data/'),
 			react: 'preact-compat',
 			'react-dom': 'preact-compat',
@@ -185,7 +182,6 @@ module.exports = {
 		modules: [
 			path.join(__dirname, 'node_modules'),
 			path.join(__dirname, 'src'),
-			path.join(__dirname, 'docs'),
 		],
 		extensions: [' ', '.jsx', '.js', '.ts', '.tsx'],
 		symlinks: false,
