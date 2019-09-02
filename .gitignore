@@ -61,5 +61,5 @@ typings/
 .next
 
 # build and dist.
-
+dist/
 build/
