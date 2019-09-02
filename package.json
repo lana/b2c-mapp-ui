@@ -6,6 +6,11 @@
     "type": "git",
     "url": "git+https://github.com/lana/b2c-mapp-ui.git"
   },
+  "bugs": {
+    "url": "https://github.com/lana/b2c-mapp-ui/issues"
+  },
+  "homepage": "https://github.com/lana/b2c-mapp-ui#readme",
+  "license": "ISC",
   "scripts": {
     "libphonenumber-metadata": "libphonenumber-generate-metadata data/libphonenumber-metadata.min.json --countries MX,CL,BR,ES --types mobile",
     "build": "webpack --mode=production",
