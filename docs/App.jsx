@@ -93,7 +93,7 @@ import {
 	UpIcon,
 	WarningIcon,
 	LogoIcon,
-} from 'src/Icons'
+} from '@lana/b2c-mapp-ui-assets'
 
 import IndexDoc from '../README.md'
 import ButtonDoc from 'src/buttons/Button/Readme.md'
@@ -106,7 +106,6 @@ import PhoneFieldDoc from 'src/forms/PhoneField/Readme.md'
 import BankAccountFieldDoc from 'src/forms/BankAccountField/Readme.md'
 import SelectorDoc from 'src/forms/Selector/Readme.md'
 import SelectionListDoc from 'src/forms/SelectionList/Readme.md'
-import IconDoc from 'src/icons/Readme.md'
 import ActionItemDoc from 'src/lists/ActionItem/Readme.md'
 import ContentItemDoc from 'src/lists/ContentItem/Readme.md'
 import SpinnerDoc from 'src/loading/Spinner/Readme.md'
@@ -118,6 +117,7 @@ import TextDoc from 'src/typography/Text/Readme.md'
 import TextFieldDoc from 'src/forms/TextField/Readme.md'
 import TextFieldRuleDoc from 'src/forms/TextFieldRule/Readme.md'
 import TopBarDoc from 'src/navigation/TopBar/Readme.md'
+import IconDoc from 'icons/Readme.md'
 
 export default class App extends Component {
 	aliases = {

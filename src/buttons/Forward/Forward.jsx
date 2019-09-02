@@ -1,7 +1,7 @@
 import { Component } from 'preact'
 
 import Button from '../Button'
-import { ForwardIcon } from '../../Icons'
+import { ForwardIcon } from  '@lana/b2c-mapp-ui-assets'
 import CSS from './Forward.css'
 
 export default class Forward extends Component {

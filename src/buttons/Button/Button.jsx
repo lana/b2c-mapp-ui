@@ -1,7 +1,7 @@
 import { Component } from 'preact'
 
 import CSS from './Button.css'
-import { MopIcon } from '../../Icons'
+import { MopIcon } from '@lana/b2c-mapp-ui-assets'
 
 export default class Button extends Component {
 	state = {

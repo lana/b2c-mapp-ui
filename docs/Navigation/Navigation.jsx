@@ -31,7 +31,6 @@ export default class Navigation extends Component {
 						<li><Link href='/forms/SelectionList'>SelectionList</Link></li>
 						<li><Link href='/forms/TextField'>TextField</Link></li>
 						<li><Link href='/forms/TextFieldRule'>TextFieldRule</Link></li>
-						<li><Link href='/icons/Icon'>Icon</Link></li>
 						<li><Link href='/lists/ActionItem'>ActionItem</Link></li>
 						<li><Link href='/lists/ContentItem'>ContentItem</Link></li>
 						<li><Link href='/loading/Spinner'>Spinner</Link></li>
@@ -41,6 +40,7 @@ export default class Navigation extends Component {
 						<li><Link href='/structure/Scroll'>Scroll</Link></li>
 						<li><Link href='/typography/Heading'>Heading</Link></li>
 						<li><Link href='/typography/Text'>Text</Link></li>
+						<li><Link href='/icons/Icon'>Icons</Link></li>
 					</ul>
 				</Scroll>
 			</nav>

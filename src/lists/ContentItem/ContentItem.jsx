@@ -1,6 +1,6 @@
 import CSS from './ContentItem.css'
 import Text from '../../typography/Text'
-import { ForwardIcon } from '../../Icons'
+import { ForwardIcon } from '@lana/b2c-mapp-ui-assets'
 
 export default ({ mediaColor, media, meta, onClick, className, title }) => {
 	const mediaColorClass = mediaColor ? CSS[mediaColor] : ''

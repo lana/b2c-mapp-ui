@@ -1,6 +1,6 @@
 import { Component } from 'preact'
 import CSS from './Selector.css'
-import { ExpandSmallIcon } from '../../Icons'
+import { ExpandSmallIcon } from '@lana/b2c-mapp-ui-assets'
 
 export default class Selector extends Component {
 	state = {

@@ -11,18 +11,19 @@ import (
 )
 
 const (
-	name = "mapplibs"
-	port = "3000"
+	name        = "mapplibs"
+	port        = "3000"
+	nodeVerison = "11.7"
 )
 
 // Install makes sure we have all the modules we need are installed.
 func Install() error {
-	return frontDockerCmd("yarn", "install")
+	return frontDockerCmd("npm", "install")
 }
 
 // Build creates a static version of the site.
 func Build() error {
-	return frontDockerCmd("yarn", "build")
+	return frontDockerCmd("npm", "run", "build")
 }
 
 // Run starts listening for connections in the docker environment
@@ -34,7 +35,7 @@ func Run() error {
 			return err
 		}
 	}
-	return frontDockerCmd("yarn", "start")
+	return frontDockerCmd("npm", "run", "start")
 }
 
 func frontDockerCmd(cmd ...string) error {
@@ -47,7 +48,7 @@ func frontDockerCmd(cmd ...string) error {
 		"-v", fmt.Sprintf("%v:/front:cached", p),
 		"-w", "/front",
 		"-it", // Interactve!
-		"node:11.7",
+		"node:"+nodeVersion,
 	}
 	args = append(args, cmd...)
 	return sh.Run("docker", args...)
