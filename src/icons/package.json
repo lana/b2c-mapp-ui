@@ -2,5 +2,5 @@
   "name": "icons",
   "version": "0.0.0",
   "private": true,
-  "main": "./icons.jsx"
+  "main": "./Icons.jsx"
 }
