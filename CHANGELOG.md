@@ -1,5 +1,9 @@
 # Lana B2C MicroApp Libs Changelog
 
+## v1.1.0 - 2019-09-02
+
+ - Moving icons and images into the assets repository.
+
 ## v1.0.1
 
  - Moving to correct NPM distribution in a single file, along with all related changes.
