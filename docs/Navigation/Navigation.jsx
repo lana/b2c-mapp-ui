@@ -40,6 +40,7 @@ export default class Navigation extends Component {
 						<li><Link href='/structure/Scroll'>Scroll</Link></li>
 						<li><Link href='/typography/Heading'>Heading</Link></li>
 						<li><Link href='/typography/Text'>Text</Link></li>
+						<li><Link href='/icons/Icon'>Icons</Link></li>
 					</ul>
 				</Scroll>
 			</nav>

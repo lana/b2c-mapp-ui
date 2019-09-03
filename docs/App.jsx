@@ -54,6 +54,7 @@ import TextDoc from 'src/typography/Text/Readme.md'
 import TextFieldDoc from 'src/forms/TextField/Readme.md'
 import TextFieldRuleDoc from 'src/forms/TextFieldRule/Readme.md'
 import TopBarDoc from 'src/navigation/TopBar/Readme.md'
+import IconDoc from 'icons/Readme.md'
 
 export default class App extends Component {
 	aliases = {
