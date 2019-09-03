@@ -1,0 +1,24 @@
+{
+	"plugins": [
+		"@babel/plugin-proposal-export-default-from",
+		"@babel/plugin-proposal-export-namespace-from",
+		"transform-class-properties"
+	],
+	"env": {
+		"test": {
+			"plugins": [
+				["babel-plugin-transform-react-jsx", { "pragma": "h" }],
+				[
+					"babel-plugin-jsx-pragmatic",
+					{
+						"module": "preact",
+						"export": "h",
+						"import": "h"
+					}
+				],
+				"transform-es2015-modules-commonjs",
+				"transform-class-properties"
+			]
+		}
+	}
+}

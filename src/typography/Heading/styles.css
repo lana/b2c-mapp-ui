@@ -1,0 +1,31 @@
+.headline {
+    font: var(--headline);
+    color: var(--charcoal);
+}
+
+.title0 {
+    font: var(--title0);
+    color: var(--charcoal);
+}
+
+.title1 {
+		font: var(--title1);
+    color: var(--charcoal);
+}
+
+.title2 {
+		font: var(--title2);
+    color: var(--charcoal);
+}
+
+.body {
+	font: var(--body);
+	font-weight: 500;
+	color: var(--charcoal);
+}
+
+.callout {
+	font: var(--callout);
+	font-weight: 600;
+	color: var(--dblue);
+}
