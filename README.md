@@ -4,7 +4,7 @@ Lana B2C µApp UI library.
 ## Install
 You can install it as a standard yarn package.
 
-`yarn add https://github.com/lana/b2c-mapp-ui.git`
+`npm add https://github.com/lana/b2c-mapp-ui.git`
 
 ## Usage example
 
