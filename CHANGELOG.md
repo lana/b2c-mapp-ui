@@ -2,6 +2,10 @@
 
 ## v1.1.0 - 2019-09-02
 
+ - Updated peer dependencies, webpack and more.
+
+## v1.1.0 - 2019-09-02
+
  - Moving icons and images into the assets repository.
 
 ## v1.0.1
