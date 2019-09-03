@@ -32,69 +32,6 @@ import {
 	TopBar,
 } from 'src'
 
-import {
-	AddIcon,
-	AddBeneficiaryIcon,
-	ArrowBackIcon,
-	AttachmentIcon,
-	BackIcon,
-	BankAccountIcon,
-	BarcodeIcon,
-	CarIcon,
-	CashIcon,
-	CheckIcon,
-	ClearNotificationsIcon,
-	CloseIcon,
-	CollapseSmallIcon,
-	CopyIcon,
-	DescriptionIcon,
-	DescriptionAddedIcon,
-	DownIcon,
-	ExpandSmallIcon,
-	FaceidIcon,
-	FAQIcon,
-	FilterIcon,
-	FlashOffIcon,
-	FlashOnIcon,
-	ForwardIcon,
-	ForwardSmallIcon,
-	GovernmentIcon,
-	HelpIcon,
-	InfoIcon,
-	KeydeleteIcon,
-	LocationIcon,
-	MessageIcon,
-	MoneyIcon,
-	MopIcon,
-	MopErrorIcon,
-	MopSpinnerIcon,
-	MopSuccessIcon,
-	MoreIcon,
-	MoveMoneyIcon,
-	NotificationsIcon,
-	PersonIcon,
-	PhoneIcon,
-	QrcardIcon,
-	RequestIcon,
-	RotateIcon,
-	RotateLandscapeIcon,
-	RotatePortraitIcon,
-	ScanIcon,
-	SearchIcon,
-	SecurityIcon,
-	ServicesIcon,
-	ShareIcon,
-	ShareAndroidIcon,
-	SMSIcon,
-	SupportIcon,
-	TaxesIcon,
-	TouchidIcon,
-	TransferIcon,
-	UpIcon,
-	WarningIcon,
-	LogoIcon,
-} from 'src/Icons'
-
 import IndexDoc from '../README.md'
 import ButtonDoc from 'src/buttons/Button/Readme.md'
 import ButtonWrappedDoc from 'src/buttons/ButtonWrapped/Readme.md'
@@ -106,7 +43,6 @@ import PhoneFieldDoc from 'src/forms/PhoneField/Readme.md'
 import BankAccountFieldDoc from 'src/forms/BankAccountField/Readme.md'
 import SelectorDoc from 'src/forms/Selector/Readme.md'
 import SelectionListDoc from 'src/forms/SelectionList/Readme.md'
-import IconDoc from 'src/icons/Readme.md'
 import ActionItemDoc from 'src/lists/ActionItem/Readme.md'
 import ContentItemDoc from 'src/lists/ContentItem/Readme.md'
 import SpinnerDoc from 'src/loading/Spinner/Readme.md'
@@ -134,7 +70,6 @@ export default class App extends Component {
 		selectionList: '/forms/SelectionList',
 		textField: '/forms/TextField',
 		textFieldRule: '/forms/TextFieldRule',
-		icons: '/icons/Icon',
 		actionItem: '/lists/ActionItem',
 		contentItem: '/lists/ContentItem',
 		spinner: '/loading/Spinner',
@@ -183,67 +118,6 @@ export default class App extends Component {
 				BankAccountField,
 				TextField,
 				TextFieldRule,
-
-				AddIcon,
-				AddBeneficiaryIcon,
-				ArrowBackIcon,
-				AttachmentIcon,
-				BackIcon,
-				BankAccountIcon,
-				BarcodeIcon,
-				CarIcon,
-				CashIcon,
-				CheckIcon,
-				ClearNotificationsIcon,
-				CloseIcon,
-				CollapseSmallIcon,
-				CopyIcon,
-				DescriptionIcon,
-				DescriptionAddedIcon,
-				DownIcon,
-				ExpandSmallIcon,
-				FaceidIcon,
-				FAQIcon,
-				FilterIcon,
-				FlashOffIcon,
-				FlashOnIcon,
-				ForwardIcon,
-				ForwardSmallIcon,
-				GovernmentIcon,
-				HelpIcon,
-				InfoIcon,
-				KeydeleteIcon,
-				LocationIcon,
-				MessageIcon,
-				MoneyIcon,
-				MopIcon,
-				MopErrorIcon,
-				MopSpinnerIcon,
-				MopSuccessIcon,
-				MoreIcon,
-				MoveMoneyIcon,
-				NotificationsIcon,
-				PersonIcon,
-				PhoneIcon,
-				QrcardIcon,
-				RequestIcon,
-				RotateIcon,
-				RotateLandscapeIcon,
-				RotatePortraitIcon,
-				ScanIcon,
-				SearchIcon,
-				SecurityIcon,
-				ServicesIcon,
-				ShareIcon,
-				ShareAndroidIcon,
-				SMSIcon,
-				SupportIcon,
-				TaxesIcon,
-				TouchidIcon,
-				TransferIcon,
-				UpIcon,
-				WarningIcon,
-				LogoIcon,
 			}
 
 			if (props.metaString == null) {
@@ -345,11 +219,6 @@ export default class App extends Component {
 						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.textFieldRule}>
 							<Scroll>
 								<TextFieldRuleDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.icons}>
-							<Scroll>
-								<IconDoc />
 							</Scroll>
 						</Screen>
 						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.actionItem}>

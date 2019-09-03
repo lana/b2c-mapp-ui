@@ -1,6 +1,0 @@
-{
-  "name": "BankAccountField",
-  "version": "0.0.0",
-  "private": true,
-  "main": "./BankAccountField.jsx"
-}

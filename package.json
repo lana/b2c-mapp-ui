@@ -27,6 +27,7 @@
   },
   "main": "./dist/index.js",
   "dependencies": {
+    "@lana/b2c-mapp-ui-assets": "https://github.com/lana/b2c-mapp-ui-assets",
     "@mdx-js/tag": "^0.15.0",
     "identity-obj-proxy": "^3.0.0",
     "libphonenumber-js": "^1.4.6",
