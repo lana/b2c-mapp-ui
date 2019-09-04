@@ -1,5 +1,9 @@
 # Lana B2C MicroApp Libs Changelog
 
+## v1.1.3 - 2019-09-04
+
+ - Include dist in npm package, forced version bump.
+
 ## v1.1.2 - 2019-09-04
 
  - Updated README.md, removed yarn.lock.
