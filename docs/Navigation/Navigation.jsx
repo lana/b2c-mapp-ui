@@ -33,6 +33,7 @@ export default class Navigation extends Component {
 						<li><Link href='/forms/TextFieldRule'>TextFieldRule</Link></li>
 						<li><Link href='/lists/ActionItem'>ActionItem</Link></li>
 						<li><Link href='/lists/ContentItem'>ContentItem</Link></li>
+						<li><Link href='/lists/ListItem'>ListItem</Link></li>
 						<li><Link href='/loading/Spinner'>Spinner</Link></li>
 						<li><Link href='/navigation/Stepper'>Stepper</Link></li>
 						<li><Link href='/navigation/TopBar'>TopBar</Link></li>
