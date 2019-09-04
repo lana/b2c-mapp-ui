@@ -1,6 +1,10 @@
 # Lana B2C MicroApp Libs Changelog
 
-## v1.1.0 - 2019-09-02
+## v1.1.2 - 2019-09-04
+
+ - Updated README.md, removed yarn.lock.
+
+## v1.1.1 - 2019-09-02
 
  - Updated peer dependencies, webpack and more.
 
