@@ -8,7 +8,7 @@ You can install it as a standard yarn package.
 
 ## Usage example
 
-1. Import `import Button from 'b2c-mapp-ui/src/buttons/Button'`
+1. Import `import { Button } from '@lana/b2c-mapp-ui'`
 2. Consume `<Button>Action</Button>`
 
 ## Build
