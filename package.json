@@ -1,6 +1,6 @@
 {
   "name": "@lana/b2c-mapp-ui",
-  "version": "1.1.4",
+  "version": "1.1.7",
   "description": "Shared custom libraries for building µapps.",
   "repository": {
     "type": "git",
@@ -21,7 +21,6 @@
   "scripts": {
     "libphonenumber-metadata": "libphonenumber-generate-metadata data/libphonenumber-metadata.min.json --countries MX,CL,BR,ES --types mobile",
     "build": "webpack --mode=production",
-    "build:dist": "webpack --config ./webpack.config.production.js --mode=production",
     "build:cjs": "rollup --config rollup.config.prod.js",
     "build:esm": "rollup --config rollup.config.dev.js",
     "prepare": "npm run build:cjs && npm run build:esm",
@@ -31,7 +30,7 @@
   "main": "dist/index.js",
   "module": "dist/bundle-esm.js",
   "dependencies": {
-    "@lana/b2c-mapp-ui-assets": "^1.0.2",
+    "@lana/b2c-mapp-ui-assets": "^1.0.3",
     "@mdx-js/tag": "^0.15.0",
     "identity-obj-proxy": "^3.0.0",
     "libphonenumber-js": "^1.4.6",
@@ -42,7 +41,7 @@
     "react-live": "^1.12.0"
   },
   "peerDependencies": {
-    "@lana/b2c-mapp-ui-assets": "^1.0.2",
+    "@lana/b2c-mapp-ui-assets": "^1.0.3",
     "libphonenumber-js": "^1.4.6",
     "preact": "^8.3.1",
     "preact-compat": "^3.18.4"
@@ -76,7 +75,7 @@
     "babel-register": "^6.26.0",
     "babel-runtime": "^6.26.0",
     "copy-webpack-plugin": "^4.5.3",
-    "core-js": "^2.6.5",
+    "core-js": "^2.6.9",
     "css-hot-loader": "^1.4.2",
     "css-loader": "^1.0.0",
     "enzyme": "^3.8.0",
