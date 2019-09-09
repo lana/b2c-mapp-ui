@@ -1,7 +1,5 @@
 import { Component } from "preact"
 import '../../Theme'
-import TopBar from '../../navigation/TopBar'
-
 import CSS from './styles.css'
 
 export default class Screen extends Component {
@@ -51,7 +49,6 @@ export default class Screen extends Component {
 			<section
 				className={`${CSS.screen} ${stackedClass} ${this.props.className || ''}`}
 				onClick={e => this.recordClick(e)} >
-				{(this.props.displayMode != 'overlay') ? <TopBar title={this.props.title} /> : ''}
 				{this.props.children}
 			</section>
 		)
