@@ -2,6 +2,10 @@
 
 ## v1.1.7 - 2019-09-08
 
+ - Updated icon package to 1.0.4.
+
+## v1.1.7 - 2019-09-08
+
  - Rollup for distribution build, removed webpack for distribution.
 
 ## v1.1.3 - 2019-09-04
