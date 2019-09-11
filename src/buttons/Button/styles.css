@@ -5,7 +5,7 @@
 	width: 100%;
 	padding: 0 16px;
 	box-sizing: border-box;
-	background: var(--blue);
+	background: var(--blue-500);
 	font: 600 16px/20px Roboto, Sans-serif;
 	text-align: center;
 	text-decoration: none;
@@ -15,28 +15,27 @@
 	cursor: pointer;
 	height: 56px;
 	transition: background 100ms ease-out;
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
 	touch-action: manipulation;
 }
 .button:hover { text-decoration: none; }
 .button.pressed { opacity: 0.8; }
 
 .secondary {
-	background: var(--lblue);
-	color: var(--dblue);
+	background: transparent;
+	color: var(--blue-500);
 	box-shadow: none;
 }
 .secondary:active {  }
 
 .dismiss {
 	background: #fff;
-	color: var(--charcoal);
-	border: solid 1px var(--silver);
+	color: var(--black-700);
+	border: solid 1px var(--black-400);
 }
 
 .disabled {
-	background: var(--silver);
-	color: var(--ash);
+	background: var(--black-400);
+	color: var(--black-500);
 	border-color: transparent;
 	pointer-events: none;
 }
@@ -68,7 +67,7 @@
 
 	.loadingIcon { margin-right: 8px; animation: loadingSpin 1.5s infinite linear; }
 	.button .loadingIcon path[fill] { fill: #FFFFFF; }
-	.button.secondary .loadingIcon path[fill] { fill: var(--dblue); }
+	.button.secondary .loadingIcon path[fill] { fill: var(--blue-500); }
 
 	@keyframes loadingSpin {
 		from {

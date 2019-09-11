@@ -6,21 +6,21 @@
 
 /* Basic .md theme */
 body { user-select: auto; }
-.h1 { font: var(--title1); color: var(--charcoal); margin-bottom: 16px; }
-.h2 { font: var(--title2); color: var(--charcoal); padding-top: 16px; margin-bottom: 16px; }
-.h3 { font: var(--headline); color: var(--charcoal); padding-top: 16px; margin-bottom: 16px; }
-.table { font: var(--body); color: var(--concrete); border: solid 1px var(--silver); border-radius: 3px; margin-bottom: 16px; }
-.table th { background-color: #FFFFFF; color: var(--charcoal); padding: 8px; border: solid 1px var(--silver); }
-.table td { padding: 8px; border: solid 1px var(--silver); }
+.h1 { font: var(--title1); color: var(--black-700); margin-bottom: 16px; }
+.h2 { font: var(--title2); color: var(--black-700); padding-top: 16px; margin-bottom: 16px; }
+.h3 { font: var(--headline); color: var(--black-700); padding-top: 16px; margin-bottom: 16px; }
+.table { font: var(--default-m); color: var(--black-600); border: solid 1px var(--black-400); border-radius: 3px; margin-bottom: 16px; }
+.table th { background-color: #FFFFFF; color: var(--black-700); padding: 8px; border: solid 1px var(--black-400); }
+.table td { padding: 8px; border: solid 1px var(--black-400); }
 .table a { font: var(--callout); }
 .ol { list-style: decimal inside; margin-bottom: 16px; }
 .ul { list-style: circle inside; margin-bottom: 16px; }
-.p, .li { font: var(--body); color: var(--concrete); margin-bottom: 16px; }
+.p, .li { font: var(--default-m); color: var(--black-600); margin-bottom: 16px; }
 .p code, .li code, .table code {
 	display: inline-block;
 	font: var(--callout);
 	font-family: Consolas, Menlo, Monaco, "Courier New", monospace;
-	color: var(--dpurple);
+	color: var(--red-500);
 	padding: 2px 4px;
 	border-radius: 3px;
 }
@@ -28,14 +28,14 @@ body { user-select: auto; }
 .p code:hover,
 .li code:hover,
 .table code:hover { background-color: #FFFFFF; }
-.a { color: var(--blue); }
+.a { color: var(--blue-500); }
 
 :global(.prism-code),
 :global(.doc-screen code[class*="language-"]),
 :global(.doc-screen pre[class*="language-"]) {
 	padding: 16px;
 	background: #FFFFFF;
-	border: solid 1px var(--silver);
+	border: solid 1px var(--black-400);
 	border-radius: 3px;
 	overflow: auto;
 	display: block;
@@ -47,7 +47,7 @@ body { user-select: auto; }
 :global(.react-live-error) {
 	line-height: 1.5em;
 	padding: 16px;
-	color: var(--dpurple);
+	color: var(--red-500);
 	border-radius: 3px;
 }
 

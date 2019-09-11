@@ -1,4 +1,5 @@
 import CSS from './styles.css'
+import Heading from '../../typography/Heading'
 import Text from '../../typography/Text'
 import Toggle from '../../forms/Toggle'
 
@@ -18,9 +19,9 @@ export default function ListItem({
 		<li className={`${CSS.item} ${className || ''}`}>
 			{icon ? <div className={`${CSS.media} ${mediaColorClass}`}>{icon}</div> : null}
 			<div className={CSS.body}>
-				<Text>{title}</Text>
+				<Heading type='txt-medium'>{title}</Heading>
 				{description ? (
-					<Text type={`callout`} color={`concrete`} className={CSS.description}>
+					<Text>
 						{description}
 					</Text>
 				) : null}

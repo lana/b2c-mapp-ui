@@ -15,7 +15,7 @@
 .overlay.visible { opacity: 1; pointer-events: auto; }
 
 .dim {
-	background: rgba(var(--charcoal-rgb), 0.75);
+	background: var(--black-700-alpha);
 	flex-grow: 1;
 }
 
@@ -23,7 +23,7 @@
 	box-sizing: border-box;
 	align-self: flex-end;
 	background: #FFFFFF;
-	padding: 16px;
+	padding-top: 8px;
 	white-space: normal;
 	transform: translateY(5%);
 	transform-origin: center top;
@@ -38,10 +38,9 @@
 .content { max-height: 44vh; }
 
 .actions {
-	padding: 16px 0;
+	padding: 0 16px 16px;
 }
 
 .dismiss {
-	margin-top: 32px;
-	text-align: center;
+	margin-top: 16px;
 }
