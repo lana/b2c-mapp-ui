@@ -2,11 +2,12 @@ import '../../Theme'
 import CSS from './styles.css'
 
 export default class Text {
-	render({ type, color, className }) {
-		let typeClass = type ? CSS[type] : ''
-		let colorClass = color ? CSS[color] : ''
+	render({ type, color, weight, className }) {
+		const typeClass = CSS[type] || ''
+		const colorClass = CSS[color] || ''
+		const weightClass = CSS[weight] || ''
 		return (
-			<p className={`${CSS.text} ${typeClass} ${colorClass} ${className || ''}`}>
+			<p className={`${CSS.txt} ${typeClass} ${colorClass} ${weightClass} ${className || ''}`}>
 				{this.props.children}
 			</p>
 		)

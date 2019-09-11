@@ -19,14 +19,14 @@
 	width: 44px;
 	height: 100%;
 	border-radius: 3px;
-	background: var(--silver);
+	background: var(--black-400);
 }
 
-.media.blue { background-color: var(--lblue); }
-.media.yellow { background-color: var(--lyellow); }
-.media.green { background-color: var(--lgreen); }
-.media.brown { background-color: var(--lbrown); }
-.media.purple { background-color: var(--lpurple); }
+.media.blue { background-color: var(--blue-300); }
+.media.yellow { background-color: var(--yellow-300); }
+.media.green { background-color: var(--green-300); }
+.media.brown { background-color: var(--brown-300); }
+.media.purple { background-color: var(--purple-300); }
 
 .body {
 	height: 100%;
