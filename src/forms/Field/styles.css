@@ -11,8 +11,8 @@
 	position: absolute;
 	top: 32px;
 	left: 16px;
-	font: var(--body);
-	color: var(--ash);
+	font: var(--default-m);
+	color: var(--black-500);
 	transition: all 0.15s ease-out;
 }
 
@@ -22,8 +22,8 @@
 	box-sizing: border-box;
 	padding: 0 0 2px;
 	border: none;
-	font: var(--body);
-	color: var(--charcoal);
+	font: var(--default-m);
+	color: var(--black-700);
 }
 
 .field:before {
@@ -33,34 +33,34 @@
 	left: 16px;
 	right: 16px;
 	height: 1px;
-	background: var(--silver);
+	background: var(--black-400);
 	pointer-events: none;
 	transition: all 0.15s ease-out;
 }
 
 .labeled .label {
 	top: 12px;
-	font: var(--callout);
+	font: var(--default-xs);
 	font-weight: 500;
-	color: var(--dblue);
+	color: var(--blue-600);
 }
 
 .focus:before {
 	height: 2px;
-	background-color: var(--blue);
+	background-color: var(--blue-500);
 }
 
 /* Error state */
-.error:before { background: var(--dpurple); }
-.error .label { color: var(--dpurple); }
+.error:before { background: var(--red-500); }
+.error .label { color: var(--red-500); }
 
 
-.readonly .label { color: var(--ash); }
+.readonly .label { color: var(--black-500); }
 
 .readonly:before {
 	background-color: transparent !important;
 }
 
 .readonly input[readonly] {
-	color: var(--ash);
+	color: var(--black-500);
 }

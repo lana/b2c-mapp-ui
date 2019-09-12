@@ -10,27 +10,27 @@
 	align-items: stretch;
 	width: 240px;
 	background: #FFFFFF;
-	border-right: solid 1px var(--silver);
+	border-right: solid 1px var(--black-400);
 }
 
-.logo { display: block; text-align: center; border-bottom: solid 1px var(--silver); }
+.logo { display: block; text-align: center; border-bottom: solid 1px var(--black-400); }
 .logo svg { width: 180px; height: 100px; display: inline-block }
 
 .heading {
-	font: var(--body);
+	font: var(--default-m);
 	font-weight: 500;
-	color: var(--dblue);
+	color: var(--blue-700);
 	display: block;
 	padding: 16px 16px 8px;
 }
 
 .navigation li a {
 	display: block;
-	font: var(--body);
-	color: var(--concrete);
+	font: var(--default-m);
+	color: var(--black-600);
 	padding: 8px 16px;
-	border-bottom: solid 1px var(--silver);
+	border-bottom: solid 1px var(--black-400);
 }
 
-.navigation li a:hover { color: var(--blue); }
+.navigation li a:hover { color: var(--blue-500); }
 

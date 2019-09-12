@@ -8,7 +8,7 @@
 	display: flex;
 	align-items: center;
 	align-content: center;
-	background: rgba(var(--charcoal-rgb), 0.75);
+	background: var(--black-700-alpha);
 	opacity: 0;
 	transition: opacity 0.15s ease-out;
 	pointer-events: none;
@@ -43,7 +43,7 @@
 				font: var(--callout);
 				font-weight: 500;
 				text-transform: uppercase;
-				color: var(--blue);
+				color: var(--blue-500);
 				padding: 16px 8px;
 			}
-			.action.dismiss { color: var(--ash); }
+			.action.dismiss { color: var(--black-500); }

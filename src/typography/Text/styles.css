@@ -1,26 +1,48 @@
-.text {
-    font: var(--body);
-    color: var(--charcoal);
+.txt {
+  font: var(--default-m);
+  color: var(--black-500);
 }
 
-.callout {
-    font: var(--callout);
-    color: var(--charcoal);
+.txt strong {
+  font-weight: 500;
 }
 
-.footnote {
-    font: var(--footnote);
-    color: var(--charcoal);
+.txt-xxxl {
+  font: var(--default-xxxl);
 }
 
-.concrete {
-	color: var(--concrete);
+.txt-xxl {
+  font: var(--default-xxl);
 }
 
-.ash {
-	color: var(--ash);
+.txt-xl {
+  font: var(--default-xl);
 }
 
-.dblue {
-	color: var(--dblue);
+.txt-large {
+  font: var(--default-l);
+}
+
+.txt-medium {
+  font: var(--default-m);
+}
+
+.txt-small {
+  font: var(--default-s);
+}
+
+.txt-xsmall {
+  font: var(--default-xs);
+}
+
+.blue-500 {
+  color: var(--blue-500)
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.bold {
+  font-weight: 600;
 }

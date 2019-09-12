@@ -13,7 +13,7 @@
 	margin-bottom: 2px;
 	font: var(--callout);
 	font-weight: 500;
-	color: var(--dblue);
+	color: var(--blue-700);
 }
 
 .Icon {
@@ -32,8 +32,8 @@
 	padding: 20px 0 0 16px;
 	box-sizing: border-box;
 	border: none;
-	font: var(--body);
-	color: var(--charcoal);
+	font: var(--default-m);
+	color: var(--black-700);
 	background: none;
 	appearance: none;
 }
@@ -46,12 +46,12 @@
 	left: 16px;
 	right: 16px;
 	height: 1px;
-	background: var(--silver);
+	background: var(--black-400);
 	pointer-events: none;
 	transition: all 0.15s ease-out;
 }
 
 .focus:before {
 	height: 2px;
-	background-color: var(--blue);
+	background-color: var(--blue-500);
 }

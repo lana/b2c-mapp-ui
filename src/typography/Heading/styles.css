@@ -1,31 +1,44 @@
-.headline {
-    font: var(--headline);
-    color: var(--charcoal);
+.title {
+  font: var(--default-xl);
+	color: var(--black-700);
 }
 
-.title0 {
-    font: var(--title0);
-    color: var(--charcoal);
+.txt-xxxl {
+  font: var(--default-xxxl);
 }
 
-.title1 {
-		font: var(--title1);
-    color: var(--charcoal);
+.txt-xxl {
+  font: var(--default-xxl);
 }
 
-.title2 {
-		font: var(--title2);
-    color: var(--charcoal);
+.txt-xl {
+  font: var(--default-xl);
 }
 
-.body {
-	font: var(--body);
-	font-weight: 500;
-	color: var(--charcoal);
+.txt-large {
+  font: var(--default-l);
 }
 
-.callout {
-	font: var(--callout);
-	font-weight: 600;
-	color: var(--dblue);
+.txt-medium {
+  font: var(--default-m);
+}
+
+.txt-small {
+  font: var(--default-s);
+}
+
+.txt-xsmall {
+  font: var(--default-xs);
+}
+
+.normal {
+  font-weight: 400;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.semibold {
+  font-weight: 600;
 }

@@ -1,5 +1,7 @@
 import { Component } from 'preact'
 
+import Wrapper from '../../structure/Wrapper'
+import Heading from '../../typography/Heading'
 import Text from '../../typography/Text'
 import Scroll from '../../structure/Scroll'
 import Button from '../../buttons/Button'
@@ -25,12 +27,14 @@ export default class Dialog extends Component {
 			<section className={`${CSS.overlay} ${visibleClass}`}>
 				<div className={CSS.dim} onClick={() => this.onDismiss()}/>
 				<div className={CSS.dialog}>
-					{ props.title && <Text className={CSS.title}>{props.title}</Text> }
-					{
-						(props.description)
-						? <Text color='concrete' className={CSS.description}>{props.description}</Text>
-						: <Scroll className={CSS.content}>{props.children}</Scroll>
-					}
+					<Wrapper>
+						{ props.title && <Heading>{props.title}</Heading> }
+						{
+							(props.description)
+							? <Text className={CSS.description}>{props.description}</Text>
+							: <Scroll className={CSS.content}>{props.children}</Scroll>
+						}
+					</Wrapper>
 					<div className={CSS.actions}>
 						{ props.confirm &&
 							<Button
@@ -40,11 +44,13 @@ export default class Dialog extends Component {
 							</Button>
 						}
 						{ props.secondary &&
-							<div onClick={e => this.onSecondary(e)} className={CSS.dismiss}>
-								<Text type='callout' color='dblue'>
+							<Button
+								type='secondary'
+								className={CSS.dismiss}
+								onClick={e => this.onSecondary(e)}
+							>
 									{props.secondary}
-								</Text>
-							</div>
+							</Button>
 						}
 					</div>
 				</div>
