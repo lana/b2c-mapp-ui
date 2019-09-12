@@ -15,7 +15,7 @@ export default class Forward extends Component {
 					type={this.props.type}
 					loading={this.props.loading}
 				>
-					<ForwardIcon color="white" />
+					<ForwardIcon color='black-100' />
 					{this.props.children}
 				</Button>
 			</section>

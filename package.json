@@ -1,6 +1,6 @@
 {
   "name": "@lana/b2c-mapp-ui",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Shared custom libraries for building µapps.",
   "repository": {
     "type": "git",
@@ -30,7 +30,7 @@
   "main": "dist/index.js",
   "module": "dist/bundle-esm.js",
   "dependencies": {
-    "@lana/b2c-mapp-ui-assets": "^1.0.4",
+    "@lana/b2c-mapp-ui-assets": "^2.0.0",
     "@mdx-js/tag": "^0.15.0",
     "identity-obj-proxy": "^3.0.0",
     "libphonenumber-js": "^1.4.6",
