@@ -1,5 +1,9 @@
 # Lana B2C MicroApp Libs Changelog
 
+## v1.1.10 - 2019-09-12
+
+ - Updated Field component to be updated on parent component state update.
+
 ## v1.1.7 - 2019-09-08
 
  - Updated icon package to 1.0.4.
