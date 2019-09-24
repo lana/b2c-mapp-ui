@@ -22,11 +22,14 @@
 	background: var(--black-400);
 }
 
-.media.blue { background-color: var(--blue-300); }
-.media.yellow { background-color: var(--yellow-300); }
-.media.green { background-color: var(--green-300); }
-.media.brown { background-color: var(--brown-300); }
-.media.purple { background-color: var(--purple-300); }
+.media.blue-300 { background-color: var(--blue-300); }
+.media.yellow-300 { background-color: var(--yellow-300); }
+.media.green-300 { background-color: var(--green-300); }
+.media.brown-300 { background-color: var(--brown-300); }
+.media.purple-300 { background-color: var(--purple-300); }
+.media.black-100 { background-color: var(--black-100); }
+.media.black-200 { background-color: var(--black-200); }
+.media.black-300 { background-color: var(--black-300); }
 
 .body {
 	height: 100%;

@@ -7,9 +7,7 @@ export default ({ mediaColor, media, meta, onClick, className, title }) => {
 	const mediaColorClass = mediaColor ? CSS[mediaColor] : ''
 	const mediaIcon = media ? <div className={`${CSS.media} ${mediaColorClass}`}>{media}</div> : ''
 	const metaInfo = meta ? (
-		<Text type={`callout`} color={`concrete`}>
-			{meta}
-		</Text>
+		<Text>{meta}</Text>
 	) : (
 		''
 	)
