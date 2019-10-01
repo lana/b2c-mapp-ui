@@ -74,7 +74,7 @@ export default class BankAccountField extends Component {
 				placeholder={props.placeholder}
 				className={`${props.className || ''}`}
 				errorLabel={props.errorLabel}
-				type={`text`}
+				type='tel'
 				value={props.value}
 				maxLength={props.maxLength}
 				onChange={ev => this.onChange(ev)}
