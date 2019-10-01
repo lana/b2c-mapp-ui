@@ -83,7 +83,7 @@ export default class Field extends Component {
 					autoComplete="off"
 					className={CSS.input}
 					type={type}
-					maxLength={maxLength || 1000}
+					maxLength={maxLength || 100}
 					readOnly={readOnly || false}
 					name={name}
 					value={value}

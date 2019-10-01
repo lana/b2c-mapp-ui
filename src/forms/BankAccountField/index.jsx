@@ -68,14 +68,15 @@ export default class BankAccountField extends Component {
 		if (this.props.onBlur) this.props.onBlur(ev.target.value)
 	}
 
-	render() {
+	render(props) {
 		return (
 			<Field
-				placeholder={this.props.placeholder}
-				className={`${this.props.className || ''}`}
-				errorLabel={this.props.errorLabel}
+				placeholder={props.placeholder}
+				className={`${props.className || ''}`}
+				errorLabel={props.errorLabel}
 				type={`text`}
-				value={this.props.value}
+				value={props.value}
+				maxLength={props.maxLength}
 				onChange={ev => this.onChange(ev)}
 				onBlur={ev => this.onBlur(ev)}
 			/>
