@@ -16,6 +16,15 @@ export default class Field extends Component {
 		this.ref = null
 	}
 
+	componentDidUpdate(prevProps) {
+		if (prevProps.value !== this.props.value) {
+			this.setState({
+				value: this.props.value,
+				isFocused: this.props.value.length > 0,
+			})
+		}
+	}
+
 	onFocus(e) {
 		const { onFocus } = this.props
 		this.setState({ isFocused: true })

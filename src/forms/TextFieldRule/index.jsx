@@ -12,6 +12,14 @@ export default class TextFieldRule extends Component {
 		}
 	}
 
+	componentDidUpdate(prevProps) {
+		if (prevProps.value !== this.props.value) {
+			this.setState({
+				value: this.props.value,
+			})
+		}
+	}
+
 	onChange(ev) {
 		this.setState({
 			value: ev.target.value,

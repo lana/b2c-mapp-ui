@@ -1,6 +1,6 @@
 {
   "name": "@lana/b2c-mapp-ui",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Shared custom libraries for building µapps.",
   "repository": {
     "type": "git",
