@@ -35,7 +35,12 @@ export default class Selector extends Component {
 					onChange={e => this.onChange(e)}
 				>
 					{this.props.options.map(option => (
-						<option selected={option.selected} value={option.value}>
+						<option
+							key={option.value}
+							selected={option.selected}
+							value={option.value}
+							disabled={option.disabled}
+						>
 							{option.label}
 						</option>
 					))}

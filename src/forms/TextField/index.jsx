@@ -12,17 +12,19 @@ export default class TextField extends Component {
 	}
 
 	onChange(ev) {
-		this.setState({ value: ev.target.value })
-		if (this.props.onChange) {
-			this.props.onChange(this.state.value)
-		}
+		this.setState({ value: ev.target.value }, () => {
+			if (this.props.onChange) {
+				this.props.onChange(this.state.value)
+			}
+		})
 	}
 
 	onBlur(ev) {
-		this.setState({ value: ev.target.value })
-		if (this.props.onBlur) {
-			this.props.onBlur(this.state.value)
-		}
+		this.setState({ value: ev.target.value }, () => {
+			if (this.props.onBlur) {
+				this.props.onBlur(this.state.value)
+			}
+		})
 	}
 
 	focus() {
