@@ -25,9 +25,10 @@ export default class PhoneField extends Component {
 
 	onChange(ev) {
 		let value = this.formatPhoneNumber(ev.target.value)
-		this.setState({ value })
-		const { onChange } = this.props
-		if (onChange) onChange(value)
+		this.setState({ value }, () => {
+			const { onChange } = this.props
+			if (onChange) onChange(value)
+		})
 	}
 
 	// getPhone provides a phone object that can be used for validation.
@@ -38,11 +39,12 @@ export default class PhoneField extends Component {
 
 	onBlur(ev) {
 		let value = this.formatPhoneNumber(ev.target.value)
-		this.setState({ value })
-		const { onBlur } = this.props
-		if (onBlur) onBlur(value)
-		// Force a field update so we can use the new format
-		this.field.setValue(value)
+		this.setState({ value }, () => {
+			const { onBlur } = this.props
+			if (onBlur) onBlur(value)
+			// Force a field update so we can use the new format
+			this.field.setValue(value)
+		})
 	}
 
 	getPrefix() {
