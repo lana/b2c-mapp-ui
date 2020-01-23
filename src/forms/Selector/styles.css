@@ -11,7 +11,7 @@
 .label {
 	display: block;
 	margin-bottom: 2px;
-	font: var(--callout);
+	font: var(--default-m);
 	font-weight: 500;
 	color: var(--blue-700);
 }

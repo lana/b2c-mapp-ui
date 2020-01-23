@@ -1,5 +1,9 @@
 # Lana B2C MicroApp Libs Changelog
 
+## v3.0.4 - 2020-01-23
+
+ - Update fonts for select.
+
 ## v1.1.7 - 2019-09-08
 
  - Updated icon package to 1.0.4.
