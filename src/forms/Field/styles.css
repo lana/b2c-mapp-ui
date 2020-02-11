@@ -11,7 +11,7 @@
 	position: absolute;
 	top: 32px;
 	left: 16px;
-	font: var(--default-m);
+	font: 500 14px/24px Graphik, Roboto, sans-serif;
 	color: var(--black-500);
 	transition: all 0.15s ease-out;
 }
@@ -40,7 +40,7 @@
 
 .labeled .label {
 	top: 12px;
-	font: var(--default-xs);
+	font: 500 14px/24px Graphik, Roboto, sans-serif;
 	font-weight: 500;
 	color: var(--blue-600);
 }

@@ -11,9 +11,9 @@
 .label {
 	display: block;
 	margin-bottom: 2px;
-	font: var(--default-m);
+	font: 500 14px/24px Graphik, Roboto, sans-serif;
 	font-weight: 500;
-	color: var(--blue-700);
+	color: var(--blue-600);
 }
 
 .Icon {

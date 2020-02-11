@@ -50,7 +50,7 @@
 		}
 
 			.label {
-				font: var(--default-m);
+				font: 500 14px/24px Graphik, Roboto, sans-serif;
 				color: var(--black-700);
 			}
 

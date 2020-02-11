@@ -21,6 +21,14 @@
 	background: var(--black-400);
 }
 
+.media.tp-black { background-color: transparent; border: 1px solid var(--black-300);}
+.media.tp-blue { background-color: transparent; border: 1px solid var(--blue-300);}
+.media.tp-yellow { background-color: transparent; border: 1px solid var(--yellow-300);}
+.media.tp-green { background-color: transparent; border: 1px solid var(--green-300);}
+.media.tp-brown { background-color: transparent; border: 1px solid var(--brown-300);}
+.media.tp-purple { background-color: transparent; border: 1px solid var(--purple-300);}
+
+.media.black { background-color: var(--black-300); }
 .media.blue { background-color: var(--blue-300); }
 .media.yellow { background-color: var(--yellow-300); }
 .media.green { background-color: var(--green-300); }
