@@ -43,6 +43,9 @@
   font-weight: 600;
 }
 
+.black-500 {
+  color: var(--black-500)
+}
 .red-500 {
   color: var(--red-500)
 }
@@ -60,6 +63,9 @@
 }
 .brown-500 {
   color: var(--brow-500)
+}
+.black-700 {
+  color: var(--black-700)
 }
 .red-700 {
   color: var(--red-700)
