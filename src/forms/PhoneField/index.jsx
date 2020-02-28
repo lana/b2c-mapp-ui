@@ -1,6 +1,6 @@
 import { Component } from 'preact'
 import PropTypes from 'prop-types'
-import Metadata from 'mapp-data/libphonenumber-metadata.min.json'
+import Metadata from '../../../data/libphonenumber-metadata.min.json'
 import { parseNumber, AsYouType, getCountryCallingCode } from 'libphonenumber-js/custom'
 
 import CSS from './styles.css'

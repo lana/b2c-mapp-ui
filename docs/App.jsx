@@ -1,5 +1,5 @@
 import { Component } from 'preact'
-import { MDXProvider, MDXTag } from '@mdx-js/tag'
+import { MDXProvider } from '@mdx-js/react'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css'
 import { Router } from 'preact-router'
@@ -56,7 +56,7 @@ import TextDoc from 'src/typography/Text/Readme.md'
 import TextFieldDoc from 'src/forms/TextField/Readme.md'
 import TextFieldRuleDoc from 'src/forms/TextFieldRule/Readme.md'
 import TopBarDoc from 'src/navigation/TopBar/Readme.md'
-import IconDoc from 'icons/Readme.md'
+// import IconDoc from 'icons/Readme.md'
 
 export default class App extends Component {
 	aliases = {
@@ -86,7 +86,11 @@ export default class App extends Component {
 	}
 
 	components = {
-		h1: props => <h1 className={CSS.h1}>{props.children}</h1>,
+		h1: props => {
+			console.log(props, CSS.h1);
+
+			return <h1 className={CSS.h1}>{props.children}</h1>
+		},
 		h2: props => <h2 className={CSS.h2}>{props.children}</h2>,
 		h3: props => <h3 className={CSS.h3}>{props.children}</h3>,
 		p: props => <p className={CSS.p}>{props.children}</p>,
@@ -139,11 +143,13 @@ export default class App extends Component {
 		},
 	}
 
-	componentWillMount() {}
+	// componentWillMount() {}
 
 	componentDidMount() {}
 
 	render() {
+		console.log(IndexDoc);
+
 		return (
 			<MDXProvider components={this.components}>
 				<div className="doc-app">
