@@ -244,7 +244,3 @@ A component for each icon. Icons are now maintained in the asset project, import
 ```
 <WarningIcon />
 ```
-
-```
-<LogoIcon />
-```

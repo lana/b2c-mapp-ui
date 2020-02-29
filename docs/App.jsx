@@ -4,9 +4,11 @@ import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css'
 import { Router } from 'preact-router'
 import { createHashHistory } from 'history'
+import * as Icons from '@lana/b2c-mapp-ui-assets'
 
 import Navigation from 'docs/Navigation'
 import CSS from './App.css'
+import '@lana/b2c-mapp-ui-assets/dist/index.css'
 
 import {
 	Button,
@@ -56,7 +58,7 @@ import TextDoc from 'src/typography/Text/Readme.md'
 import TextFieldDoc from 'src/forms/TextField/Readme.md'
 import TextFieldRuleDoc from 'src/forms/TextFieldRule/Readme.md'
 import TopBarDoc from 'src/navigation/TopBar/Readme.md'
-// import IconDoc from 'icons/Readme.md'
+import IconDoc from 'docs/icons/Readme.md'
 
 export default class App extends Component {
 	aliases = {
@@ -83,14 +85,11 @@ export default class App extends Component {
 		scroll: '/structure/Scroll',
 		heading: '/typography/Heading',
 		text: '/typography/Text',
+		icons: '/icons/Icon',
 	}
 
 	components = {
-		h1: props => {
-			console.log(props, CSS.h1);
-
-			return <h1 className={CSS.h1}>{props.children}</h1>
-		},
+		h1: props => <h1 className={CSS.h1}>{props.children}</h1>,
 		h2: props => <h2 className={CSS.h2}>{props.children}</h2>,
 		h3: props => <h3 className={CSS.h3}>{props.children}</h3>,
 		p: props => <p className={CSS.p}>{props.children}</p>,
@@ -127,6 +126,7 @@ export default class App extends Component {
 				BankAccountField,
 				TextField,
 				TextFieldRule,
+				...Icons,
 			}
 
 			if (props.metaString == null) {
@@ -143,13 +143,9 @@ export default class App extends Component {
 		},
 	}
 
-	// componentWillMount() {}
-
 	componentDidMount() {}
 
 	render() {
-		console.log(IndexDoc);
-
 		return (
 			<MDXProvider components={this.components}>
 				<div className="doc-app">
@@ -260,6 +256,11 @@ export default class App extends Component {
 						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.topbar}>
 							<Scroll>
 								<TopBarDoc />
+							</Scroll>
+						</Screen>
+						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.icons}>
+							<Scroll>
+								<IconDoc />
 							</Scroll>
 						</Screen>
 						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.screen}>

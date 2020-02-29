@@ -1,5 +1,3 @@
-// import "core-js/stable";
-// import "regenerator-runtime/runtime";
 export { default as Button } from './buttons/Button'
 export { default as ButtonWrapped } from './buttons/ButtonWrapped'
 export { default as Forward } from './buttons/Forward'

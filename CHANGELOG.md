@@ -1,6 +1,10 @@
 # Lana B2C MicroApp Libs Changelog
 
-## v3.0.4 - 2020-01-23
+## v3.1.0 - 2020-03-01
+
+ - Update assets to 3.1.0.
+
+## v3.1.0 - 2020-02-28
 
  - Update dependencies.
 
