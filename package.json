@@ -30,7 +30,7 @@
   "main": "dist/index.js",
   "module": "dist/bundle-esm.js",
   "dependencies": {
-    "@lana/b2c-mapp-ui-assets": "^3.1.0",
+    "@lana/b2c-mapp-ui-assets": "^3.2.0",
     "@mdx-js/react": "^1.5.7",
     "core-js": "^3.6.4",
     "libphonenumber-js": "^1.7.44",

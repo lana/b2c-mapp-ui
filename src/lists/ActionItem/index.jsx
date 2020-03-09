@@ -1,6 +1,7 @@
 import CSS from './styles.css'
 import Text from '../../typography/Text'
 
+// eslint-disable-next-line react/display-name
 export default ({ onClick, media, mediaColor, highlight, className, title }) => {
 	const mediaColorClass = mediaColor ? CSS[mediaColor] : ''
 	const highLighClass = highlight ? `${CSS['highlight']}` : ''

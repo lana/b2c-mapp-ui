@@ -33,6 +33,7 @@ import {
 	TextField,
 	TextFieldRule,
 	TopBar,
+	DateField,
 } from 'src'
 
 import IndexDoc from '../README.md'
@@ -44,6 +45,7 @@ import BottomDialogDoc from 'src/overlays/BottomDialog/Readme.md'
 import FieldDoc from 'src/forms/Field/Readme.md'
 import PhoneFieldDoc from 'src/forms/PhoneField/Readme.md'
 import BankAccountFieldDoc from 'src/forms/BankAccountField/Readme.md'
+import DateFieldDoc from 'src/forms/DateField/Readme.md'
 import SelectorDoc from 'src/forms/Selector/Readme.md'
 import SelectionListDoc from 'src/forms/SelectionList/Readme.md'
 import ActionItemDoc from 'src/lists/ActionItem/Readme.md'
@@ -71,6 +73,7 @@ export default class App extends Component {
 		field: '/forms/Field',
 		phoneField: '/forms/PhoneField',
 		bankAccountField: '/forms/BankAccountField',
+		dateField: '/forms/DateField',
 		selector: '/forms/Selector',
 		selectionList: '/forms/SelectionList',
 		textField: '/forms/TextField',
@@ -126,6 +129,7 @@ export default class App extends Component {
 				BankAccountField,
 				TextField,
 				TextFieldRule,
+				DateField,
 				...Icons,
 			}
 
@@ -206,6 +210,11 @@ export default class App extends Component {
 						>
 							<Scroll>
 								<BankAccountFieldDoc />
+							</Scroll>
+						</Screen>
+						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.dateField}>
+							<Scroll>
+								<DateFieldDoc />
 							</Scroll>
 						</Screen>
 						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.selector}>

@@ -9,6 +9,8 @@ A component for each icon. Icons are now maintained in the asset project, import
 | `className` | `String` | false |
 | `color` | `active`, `inactive`, `white` | false |
 
+## Available icons
+
 ```
 <TCBusinessIcon />
 ```
@@ -759,5 +761,4 @@ A component for each icon. Icons are now maintained in the asset project, import
 
 ```
 <WaterIcon />
-
 ```
