@@ -10,6 +10,54 @@ A component for each icon. Icons are now maintained in the asset project, import
 | `color` | `active`, `inactive`, `white` | false |
 
 ```
+<TCBusinessIcon />
+```
+
+```
+<TCCashIcon />
+```
+
+```
+<TCGroceriesIcon />
+```
+
+```
+<TCHealthIcon />
+```
+
+```
+<TCIncomeIcon />
+```
+
+```
+<TCLeisureIcon />
+```
+
+```
+<TCRestaurantsIcon />
+```
+
+```
+<TCShoppingIcon />
+```
+
+```
+<TCTransfersIcon />
+```
+
+```
+<TCTransportIcon />
+```
+
+```
+<TCTravelIcon />
+```
+
+```
+<TCUtilitiesIcon />
+```
+
+```
 <AddIcon />
 ```
 
@@ -18,7 +66,31 @@ A component for each icon. Icons are now maintained in the asset project, import
 ```
 
 ```
+<AddBoldIcon />
+```
+
+```
+<AddLineIcon />
+```
+
+```
 <ArrowBackIcon />
+```
+
+```
+<ArrowDownBoldIcon />
+```
+
+```
+<ArrowDownLineIcon />
+```
+
+```
+<ArrowUpBoldIcon />
+```
+
+```
+<ArrowUpLineIcon />
 ```
 
 ```
@@ -38,7 +110,59 @@ A component for each icon. Icons are now maintained in the asset project, import
 ```
 
 ```
+<BuildingIcon />
+```
+
+```
+<CalculatorIcon />
+```
+
+```
+<CalculatorCashIcon />
+```
+
+```
+<CalendarIcon />
+```
+
+```
+<CameraIcon />
+```
+
+```
 <CarIcon />
+```
+
+```
+<CardIcon />
+```
+
+```
+<CardBlockIcon />
+```
+
+```
+<CardCheckIcon />
+```
+
+```
+<CardDeleteIcon />
+```
+
+```
+<CardLockIcon />
+```
+
+```
+<CardMobileIcon />
+```
+
+```
+<CardRenewalIcon />
+```
+
+```
+<CardShieldIcon />
 ```
 
 ```
@@ -46,7 +170,51 @@ A component for each icon. Icons are now maintained in the asset project, import
 ```
 
 ```
+<CashPaymentIcon />
+```
+
+```
+<CashPaymentBillIcon />
+```
+
+```
 <CheckIcon />
+```
+
+```
+<CheckBoldIcon />
+```
+
+```
+<CheckCircleIcon />
+```
+
+```
+<CheckLineIcon />
+```
+
+```
+<ChevronDownIcon />
+```
+
+```
+<ChevronLeftIcon />
+```
+
+```
+<ChevronRightIcon />
+```
+
+```
+<ChevronUpIcon />
+```
+
+```
+<CircleIcon />
+```
+
+```
+<CircleSmallIcon />
 ```
 
 ```
@@ -54,7 +222,23 @@ A component for each icon. Icons are now maintained in the asset project, import
 ```
 
 ```
+<ClockIcon />
+```
+
+```
 <CloseIcon />
+```
+
+```
+<CloseBoldIcon />
+```
+
+```
+<CloseLineIcon />
+```
+
+```
+<CoinsIcon />
 ```
 
 ```
@@ -62,11 +246,31 @@ A component for each icon. Icons are now maintained in the asset project, import
 ```
 
 ```
+<CollectIcon />
+```
+
+```
+<ContractIcon />
+```
+
+```
 <CopyIcon />
 ```
 
 ```
-<DescriptionIcon />
+<CurrencyDecreaseIcon />
+```
+
+```
+<CurrencyIncreaseIcon />
+```
+
+```
+<DeleteIcon />
+```
+
+```
+<DepositIcon />
 ```
 
 ```
@@ -74,11 +278,59 @@ A component for each icon. Icons are now maintained in the asset project, import
 ```
 
 ```
+<DescriptionIcon />
+```
+
+```
+<DocumentAddedIcon />
+```
+
+```
+<DocumentEditIcon />
+```
+
+```
+<DollarBoldIcon />
+```
+
+```
+<DollarLineIcon />
+```
+
+```
 <DownIcon />
 ```
 
 ```
+<EditIcon />
+```
+
+```
+<EntretainmentIcon />
+```
+
+```
+<EraseIcon />
+```
+
+```
+<EuroBoldIcon />
+```
+
+```
+<EuroLineIcon />
+```
+
+```
 <ExpandSmallIcon />
+```
+
+```
+<FaceIdIcon />
+```
+
+```
+<FacebookIcon />
 ```
 
 ```
@@ -87,6 +339,14 @@ A component for each icon. Icons are now maintained in the asset project, import
 
 ```
 <FAQIcon />
+```
+
+```
+<FavoriteOffIcon />
+```
+
+```
+<FavoriteOnIcon />
 ```
 
 ```
@@ -110,6 +370,10 @@ A component for each icon. Icons are now maintained in the asset project, import
 ```
 
 ```
+<FuelIcon />
+```
+
+```
 <GovernmentIcon />
 ```
 
@@ -118,7 +382,47 @@ A component for each icon. Icons are now maintained in the asset project, import
 ```
 
 ```
+<HelpBoldIcon />
+```
+
+```
+<HelpLineIcon />
+```
+
+```
+<ImageIcon />
+```
+
+```
 <InfoIcon />
+```
+
+```
+<InfoLineIcon />
+```
+
+```
+<InstagramIcon />
+```
+
+```
+<InsuranceIcon />
+```
+
+```
+<InsuranceCarIcon />
+```
+
+```
+<InsuranceDeviceIcon />
+```
+
+```
+<InsuranceHealthIcon />
+```
+
+```
+<InsuranceTravelIcon />
 ```
 
 ```
@@ -126,7 +430,47 @@ A component for each icon. Icons are now maintained in the asset project, import
 ```
 
 ```
+<LandlinePhoneIcon />
+```
+
+```
+<LightIcon />
+```
+
+```
+<LinkedinIcon />
+```
+
+```
+<ListIcon />
+```
+
+```
 <LocationIcon />
+```
+
+```
+<LocationHomeIcon />
+```
+
+```
+<LocationTargetIcon />
+```
+
+```
+<LockIcon />
+```
+
+```
+<LogOutIcon />
+```
+
+```
+<MailIcon />
+```
+
+```
+<MenuIcon />
 ```
 
 ```
@@ -134,7 +478,19 @@ A component for each icon. Icons are now maintained in the asset project, import
 ```
 
 ```
+<MessageBoldIcon />
+```
+
+```
+<MessageLineIcon />
+```
+
+```
 <MoneyIcon />
+```
+
+```
+<MoneyBagIcon />
 ```
 
 ```
@@ -143,6 +499,10 @@ A component for each icon. Icons are now maintained in the asset project, import
 
 ```
 <MopErrorIcon />
+```
+
+```
+<MopPendingIcon />
 ```
 
 ```
@@ -166,7 +526,15 @@ A component for each icon. Icons are now maintained in the asset project, import
 ```
 
 ```
-<PersonIcon />
+<NotificationsClearedIcon />
+```
+
+```
+<PayIcon />
+```
+
+```
+<PdfIcon />
 ```
 
 ```
@@ -174,7 +542,23 @@ A component for each icon. Icons are now maintained in the asset project, import
 ```
 
 ```
+<PinIcon />
+```
+
+```
+<QrCodeIcon />
+```
+
+```
 <QrcardIcon />
+```
+
+```
+<RecordIcon />
+```
+
+```
+<ReloadIcon />
 ```
 
 ```
@@ -182,7 +566,15 @@ A component for each icon. Icons are now maintained in the asset project, import
 ```
 
 ```
+<ResizeIcon />
+```
+
+```
 <RotateIcon />
+```
+
+```
+<RotateDeviceIcon />
 ```
 
 ```
@@ -191,6 +583,10 @@ A component for each icon. Icons are now maintained in the asset project, import
 
 ```
 <RotatePortraitIcon />
+```
+
+```
+<SaveMoneyIcon />
 ```
 
 ```
@@ -206,7 +602,23 @@ A component for each icon. Icons are now maintained in the asset project, import
 ```
 
 ```
+<SelfieIcon />
+```
+
+```
+<SelfiePictureIcon />
+```
+
+```
+<SendIcon />
+```
+
+```
 <ServicesIcon />
+```
+
+```
+<SettingsIcon />
 ```
 
 ```
@@ -218,6 +630,18 @@ A component for each icon. Icons are now maintained in the asset project, import
 ```
 
 ```
+<ShareIosIcon />
+```
+
+```
+<ShoppingIcon />
+```
+
+```
+<SignIcon />
+```
+
+```
 <SMSIcon />
 ```
 
@@ -226,7 +650,19 @@ A component for each icon. Icons are now maintained in the asset project, import
 ```
 
 ```
+<SupportChatLineIcon />
+```
+
+```
 <TaxesIcon />
+```
+
+```
+<TicketIcon />
+```
+
+```
+<TouchIdIcon />
 ```
 
 ```
@@ -238,9 +674,90 @@ A component for each icon. Icons are now maintained in the asset project, import
 ```
 
 ```
+<TvIcon />
+```
+
+```
+<TwitterIcon />
+```
+
+```
+<UnlockIcon />
+```
+
+```
 <UpIcon />
 ```
 
 ```
+<PersonIcon />
+```
+
+```
+<UserAddIcon />
+```
+
+```
+<UserCheckIcon />
+```
+
+```
+<UserEditIcon />
+```
+
+```
+<UserInfoIcon />
+```
+
+```
+<UserMoneyIcon />
+```
+
+```
+<UserShieldIcon />
+```
+
+```
+<VideoIcon />
+```
+
+```
+<ViewIcon />
+```
+
+```
+<ViewMoreIcon />
+```
+
+```
+<ViewMoreVerticalIcon />
+```
+
+```
+<ViewoffIcon />
+```
+
+```
+<VoiceIcon />
+```
+
+```
+<WalletIcon />
+```
+
+```
 <WarningIcon />
+```
+
+```
+<WarningBoldIcon />
+```
+
+```
+<WarningLineIcon />
+```
+
+```
+<WaterIcon />
+
 ```
