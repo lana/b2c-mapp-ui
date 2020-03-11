@@ -34,6 +34,7 @@ import {
 	TextFieldRule,
 	TopBar,
 	DateField,
+	ListCopyable,
 } from 'src'
 
 import IndexDoc from '../README.md'
@@ -60,6 +61,7 @@ import TextDoc from 'src/typography/Text/Readme.md'
 import TextFieldDoc from 'src/forms/TextField/Readme.md'
 import TextFieldRuleDoc from 'src/forms/TextFieldRule/Readme.md'
 import TopBarDoc from 'src/navigation/TopBar/Readme.md'
+import ListCopyableDoc from 'src/lists/ListCopyable/Readme.md'
 import IconDoc from 'docs/icons/Readme.md'
 
 export default class App extends Component {
@@ -81,6 +83,7 @@ export default class App extends Component {
 		actionItem: '/lists/ActionItem',
 		contentItem: '/lists/ContentItem',
 		listItem: '/lists/ListItem',
+		listCopyable: '/lists/ListCopyable',
 		spinner: '/loading/Spinner',
 		stepper: '/navigation/Stepper',
 		topbar: '/navigation/TopBar',
@@ -130,6 +133,7 @@ export default class App extends Component {
 				TextField,
 				TextFieldRule,
 				DateField,
+				ListCopyable,
 				...Icons,
 			}
 
@@ -290,6 +294,11 @@ export default class App extends Component {
 						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.text}>
 							<Scroll>
 								<TextDoc />
+							</Scroll>
+						</Screen>
+						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.listCopyable}>
+							<Scroll>
+								<ListCopyableDoc />
 							</Scroll>
 						</Screen>
 					</Router>

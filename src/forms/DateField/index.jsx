@@ -4,7 +4,7 @@ import uuidv4 from 'uuid/v4'
 import Field from '../Field'
 import CSS from './styles.css'
 import { strToDate, dateToString, autoformatDate } from '../../utils'
-import { ExpandSmallIcon } from '@lana/b2c-mapp-ui-assets'
+import { CalendarIcon } from '@lana/b2c-mapp-ui-assets'
 
 export default class DateField extends Component {
 	constructor(props) {
@@ -84,9 +84,10 @@ export default class DateField extends Component {
 				/>
 				{props.datepicker && (
 					<label htmlFor={`input-date-${this.uniqueId}`} className={CSS.icon_calendar}>
-						<ExpandSmallIcon />
+						<CalendarIcon />
 						<input
 							id={`input-date-${this.uniqueId}`}
+							tabIndex={-1}
 							ref={el => {
 								this.calendar = el
 							}}
