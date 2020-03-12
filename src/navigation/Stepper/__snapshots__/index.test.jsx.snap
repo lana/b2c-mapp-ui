@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UI/navigation/Stepper should render correctly 1`] = `ReactWrapper {}`;
+
+exports[`UI/navigation/Stepper should render correctly 2`] = `ReactWrapper {}`;

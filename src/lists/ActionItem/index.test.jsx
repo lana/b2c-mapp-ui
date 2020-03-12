@@ -1,6 +1,6 @@
 import { mount } from 'enzyme';
 import ActionItem from './index'
-import { shallow } from 'preact-render-spy';
+import { shallow } from 'enzyme';
 
 describe('UI/lists/ActionItem', () => {
 	let wrapper;

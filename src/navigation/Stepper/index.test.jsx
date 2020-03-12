@@ -1,7 +1,5 @@
 import { mount } from 'enzyme';
 import Stepper from './index'
-import { shallow } from 'preact-render-spy';
-import Router from '../../../../src/Router'
 
 describe('UI/navigation/Stepper', () => {
 	let wrapper;
