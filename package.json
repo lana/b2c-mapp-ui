@@ -1,6 +1,6 @@
 {
   "name": "@lana/b2c-mapp-ui",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "Shared custom libraries for building µapps.",
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/lana/b2c-mapp-ui/issues"
   },
-  "homepage": "https://github.com/lana/b2c-mapp-ui#readme",
+  "homepage": "https://lana.github.io/b2c-mapp-ui",
   "license": "ISC",
   "scripts": {
     "libphonenumber-metadata": "libphonenumber-generate-metadata data/libphonenumber-metadata.min.json --countries MX,CL,BR,ES --types mobile",
@@ -25,7 +25,9 @@
     "build:esm": "rollup --config rollup.config.dev.js",
     "prepare": "npm run build:cjs && npm run build:esm",
     "start": "webpack-dev-server --mode=development --hot --inline --debug --devtool eval-cheap-module-source-map --output-pathinfo",
-    "test": "jest"
+    "test": "jest",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "main": "dist/index.js",
   "module": "dist/bundle-esm.js",
@@ -67,6 +69,7 @@
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.18.3",
     "fast-async": "^6.3.8",
+    "gh-pages": "^2.2.0",
     "history": "^4.10.1",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
