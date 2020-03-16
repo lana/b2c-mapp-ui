@@ -23,10 +23,13 @@ export default class Button extends Component {
 		let loadingClass = this.props.loading ? CSS.loading : ''
 		let pressedClass = this.state.isPressed ? CSS.pressed : ''
 		let isButton = !this.props.href
+		let defaultTestId = isButton ? 'button' : 'button-link'
+		let testId = this.props.dataTestId || defaultTestId
 
 		if (isButton) {
 			return (
 				<button
+					data-testid={testId}
 					type="button"
 					onTouchStart={e => this.togglePressed()}
 					onTouchEnd={e => this.togglePressed()}
@@ -44,6 +47,8 @@ export default class Button extends Component {
 		} else {
 			return (
 				<a
+
+					data-testid={testId}
 					href={this.props.href}
 					onClick={e => this.onClick()}
 					onTouchStart={e => this.togglePressed()}
