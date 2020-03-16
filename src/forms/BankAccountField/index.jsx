@@ -69,12 +69,15 @@ export default class BankAccountField extends Component {
 	}
 
 	render(props) {
+		const dataTestId = props.dataTestId || 'BankAccountField'
+
 		return (
 			<Field
+				dataTestId={dataTestId}
 				placeholder={props.placeholder}
 				className={`${props.className || ''}`}
 				errorLabel={props.errorLabel}
-				type='tel'
+				type="tel"
 				value={props.value}
 				maxLength={props.maxLength}
 				onChange={ev => this.onChange(ev)}

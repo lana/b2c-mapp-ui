@@ -54,9 +54,12 @@ export default class TextFieldRule extends Component {
 					? CSS.alignTop
 					: ''
 		const length = parseInt(props.rule)
+		const dataTestId = props.dataTestId || 'TextFieldRule'
+
 		return (
 			<div className={CSS.wrapper}>
 				<Field
+					dataTestId={dataTestId}
 					ref={field => (this.field = field)}
 					placeholder={props.placeholder}
 					className={props.className}
