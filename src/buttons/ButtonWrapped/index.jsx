@@ -5,7 +5,7 @@ import Button from '../Button'
 
 export default class ButtonWrapped extends Component {
 	render() {
-		let dataTestId = this.props.dataTestId || null
+		const dataTestId = this.props.dataTestId || null
 		return (
 			<section className={`${CSS.wrapper} ${this.props.className || ''}`}>
 				<Button
