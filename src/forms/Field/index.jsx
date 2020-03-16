@@ -59,6 +59,7 @@ export default class Field extends Component {
 	render() {
 		const {
 			props: {
+				dataTestId,
 				errorLabel,
 				placeholder,
 				className,
@@ -75,9 +76,11 @@ export default class Field extends Component {
 		const hasError = errorLabel
 		const errorClass = hasError ? CSS.error : ''
 		const readonlyClass = readOnly ? CSS.readonly : null
+		const dataTestId = dataTestId || 'Field'
 
 		return (
 			<label
+				data-testid={`${dataTestId}-label`}
 				className={`${
 					CSS.field
 				} ${labeledClass} ${focusClass} ${errorClass} ${readonlyClass} ${className || ''}`}
@@ -85,6 +88,7 @@ export default class Field extends Component {
 				{children || ''}
 				<strong className={CSS.label}>{hasError ? errorLabel : placeholder}</strong>
 				<input
+					data-testid={`${dataTestId}-input`}
 					ref={elem => (this.ref = elem)}
 					onFocus={e => this.onFocus(e)}
 					onBlur={e => this.onBlur(e)}
@@ -103,6 +107,7 @@ export default class Field extends Component {
 }
 
 Field.propTypes = {
+	dataTestId: PropTypes.string,
 	errorLabel: PropTypes.string.isRequired,
 	errors: PropTypes.array,
 	maxLength: PropTypes.number,
