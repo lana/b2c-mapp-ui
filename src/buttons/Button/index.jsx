@@ -47,7 +47,6 @@ export default class Button extends Component {
 		} else {
 			return (
 				<a
-
 					data-testid={testId}
 					href={this.props.href}
 					onClick={e => this.onClick()}

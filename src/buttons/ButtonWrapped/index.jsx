@@ -5,9 +5,11 @@ import Button from '../Button'
 
 export default class ButtonWrapped extends Component {
 	render() {
+		let dataTestId = this.props.dataTestId || null
 		return (
 			<section className={`${CSS.wrapper} ${this.props.className || ''}`}>
 				<Button
+					dataTestId={dataTestId}
 					id={this.props.id}
 					href={this.props.href}
 					onClick={this.props.onClick}
