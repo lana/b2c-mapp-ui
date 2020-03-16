@@ -60,9 +60,11 @@ export default class PhoneField extends Component {
 	render(props, state) {
 		const prefix = this.getPrefix()
 		const filledClass = props.showCountryCode ? CSS.filled : ''
+		const dataTestId = props.dataTestId || 'PhoneField'
 
 		return (
 			<Field
+				dataTestId={dataTestId}
 				ref={field => (this.field = field)}
 				placeholder={props.placeholder}
 				className={`${CSS.Field} ${filledClass} ${props.className || ''}`}
