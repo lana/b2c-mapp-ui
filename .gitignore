@@ -64,4 +64,7 @@ typings/
 dist/
 build/
 
+# other folders to be ignored (IDE settings, etc..)
+.vscode
+
 .DS_Store
