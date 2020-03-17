@@ -59,7 +59,6 @@ export default class Field extends Component {
 	render() {
 		const {
 			props: {
-				dataTestId,
 				errorLabel,
 				placeholder,
 				className,
@@ -76,7 +75,7 @@ export default class Field extends Component {
 		const hasError = errorLabel
 		const errorClass = hasError ? CSS.error : ''
 		const readonlyClass = readOnly ? CSS.readonly : null
-		const dataTestId = dataTestId || 'Field'
+		const dataTestId = this.props.dataTestId || 'Field'
 
 		return (
 			<label
