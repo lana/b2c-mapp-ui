@@ -1,6 +1,6 @@
 import { Component } from 'preact'
 import PropTypes from 'prop-types'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 import Field from '../Field'
 import CSS from './styles.css'
 import { strToDate, dateToString, autoformatDate } from '../../utils'
@@ -68,9 +68,12 @@ export default class DateField extends Component {
 	}
 
 	render(props, state) {
+		const dataTestId = props.dataTestId || 'DateField'
+
 		return (
 			<div className={CSS.calendar_wrapper}>
 				<Field
+					dataTestId={dataTestId}
 					placeholder={props.label}
 					className={props.className}
 					type="text"

@@ -32,6 +32,7 @@ export default class SelectionList extends Component {
 	}
 
 	render(props) {
+		const dataTestId = this.props.dataTestId || 'selection-list'
 		return (
 			<section className={`${CSS.wrapper} ${props.className || ''}`}>
 				{props.title && (
@@ -39,7 +40,7 @@ export default class SelectionList extends Component {
 						{props.title}
 					</Heading>
 				)}
-				<ul>
+				<ul data-testid={`list-${dataTestId}`}>
 					{props.options.map((option, index) => {
 						let id = `${props.id}-${index}`
 
@@ -55,6 +56,7 @@ export default class SelectionList extends Component {
 
 						return (
 							<li
+								data-testid={`list-element-${dataTestId}`}
 								key={index}
 								className={`${CSS.item} ${checked ? CSS.checked : ''}`}
 								onClick={e => this.onClick(option, index)}

@@ -23,12 +23,13 @@ export default class Selector extends Component {
 
 	render() {
 		let focusClass = this.state.isFocused ? CSS.focus : ''
-
+		let dataTestId = this.props.dataTestId || 'selector'
 		return (
 			<label className={`${CSS.selector} ${focusClass} ${this.props.className || ''}`}>
 				<strong className={CSS.label}>{this.props.label}</strong>
 				<ExpandSmallIcon className={CSS.Icon} />
 				<select
+					data-testId={`select-${dataTestId}`}
 					className={CSS.select}
 					onFocus={e => this.onFocus(e)}
 					onBlur={e => this.onBlur(e)}

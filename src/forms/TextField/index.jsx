@@ -34,12 +34,14 @@ export default class TextField extends Component {
 	}
 
 	render(props) {
-		let { type } = this.props
+		let { type, dataTestId } = this.props
 		if (!type) {
 			type = 'text'
 		}
+
 		return (
 			<Field
+				dataTestId={dataTestId || 'TextField'}
 				ref={field => (this.field = field)}
 				placeholder={props.placeholder}
 				className={props.className}
