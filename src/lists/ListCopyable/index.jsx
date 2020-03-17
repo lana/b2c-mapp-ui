@@ -28,7 +28,7 @@ export default ({ options, title, children, dataTestId }) => {
 							<div className={CSS.item_icon} data-testid={`${testId}-element-icon`}>
 								{icon}
 							</div>
-							<div className={CSS.itemText} data-testid={`${testId}-element-text`}>
+							<div className={CSS.itemText} data-testid={`${testId}-element-content`}>
 								{itemTitle && (
 									<Text dataTestId={`${testId}-element-title`} type="txt-medium" color="black-500">
 										{itemTitle}

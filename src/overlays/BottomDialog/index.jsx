@@ -25,7 +25,7 @@ export default class Dialog extends Component {
 		const testId = props.dataTestId || 'bottom-dialog'
 
 		return (
-			<section dataTestId={testId} className={`${CSS.overlay} ${visibleClass}`}>
+			<section data-testid={testId} className={`${CSS.overlay} ${visibleClass}`}>
 				<div
 					data-testid={`${testId}-dismiss`}
 					className={CSS.dim}
