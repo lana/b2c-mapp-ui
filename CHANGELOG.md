@@ -1,5 +1,8 @@
 # Lana B2C MicroApp Libs Changelog
 
+## v.3.2.2 - 2020-03-17
+ - Add data-testid to inner elements for all components
+
 ## v3.1.2 - 2020-03-12
 
  - Add more components, Update docs, host demo to github.
