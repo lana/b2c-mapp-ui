@@ -13,20 +13,20 @@ export default function ListItem({
 	linkText,
 	onChange,
 	checked,
+	dataTestId,
 }) {
 	const mediaColorClass = iconColor ? CSS[iconColor] : ''
+	const testId = dataTestId || 'list-item'
+
 	return (
-		<li className={`${CSS.item} ${className || ''}`}>
+		<li className={`${CSS.item} ${className || ''}`} data-testid={testId}>
 			{icon ? <div className={`${CSS.media} ${mediaColorClass}`}>{icon}</div> : null}
-			<div className={CSS.body}>
-				<Heading type='txt-medium'>{title}</Heading>
-				{description ? (
-					<Text>
-						{description}
-					</Text>
-				) : null}
+			<div data-testid={`${testId}-heading`} className={CSS.body}>
+				<Heading type="txt-medium">{title}</Heading>
+				{description ? <Text>{description}</Text> : null}
 				{onLink ? (
 					<span
+						data-testid={`${testId}-heading-link`}
 						onClick={() => {
 							onLink()
 						}}
@@ -36,7 +36,9 @@ export default function ListItem({
 					</span>
 				) : null}
 			</div>
-			{onChange ? <Toggle checked={checked} onChange={onChange} /> : null}
+			{onChange ? (
+				<Toggle dataTestId={`${testId}-toggle`} checked={checked} onChange={onChange} />
+			) : null}
 		</li>
 	)
 }
