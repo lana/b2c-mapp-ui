@@ -17,7 +17,7 @@ export default ({ options, title, children, dataTestId }) => {
 	const testId = dataTestId || 'list-copyable'
 
 	return (
-		<section data-testid={`${testId}-section`} className={CSS.section}>
+		<section className={CSS.section}>
 			<Heading className={CSS.title} type="callout">
 				{title}
 			</Heading>
