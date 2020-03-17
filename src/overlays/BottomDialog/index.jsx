@@ -8,7 +8,6 @@ import Button from '../../buttons/Button'
 import CSS from './styles.css'
 
 export default class Dialog extends Component {
-
 	onDismiss() {
 		if (this.props.onDismiss) this.props.onDismiss()
 	}
@@ -22,36 +21,48 @@ export default class Dialog extends Component {
 	}
 
 	render(props) {
-		let visibleClass = (props.visible) ? CSS.visible : ''
+		let visibleClass = props.visible ? CSS.visible : ''
+		const testId = props.dataTestId || 'bottom-dialog'
+
 		return (
-			<section className={`${CSS.overlay} ${visibleClass}`}>
-				<div className={CSS.dim} onClick={() => this.onDismiss()}/>
-				<div className={CSS.dialog}>
+			<section dataTestId={testId} className={`${CSS.overlay} ${visibleClass}`}>
+				<div
+					data-testid={`${testId}-dismiss`}
+					className={CSS.dim}
+					onClick={() => this.onDismiss()}
+				/>
+				<div data-testid={`${testId}-content`} className={CSS.dialog}>
 					<Wrapper>
-						{ props.title && <Heading>{props.title}</Heading> }
-						{
-							(props.description)
-							? <Text className={CSS.description}>{props.description}</Text>
-							: <Scroll className={CSS.content}>{props.children}</Scroll>
-						}
+						{props.title && <Heading>{props.title}</Heading>}
+						{props.description ? (
+							<Text dataTestId={`${testId}-description`} className={CSS.description}>
+								{props.description}
+							</Text>
+						) : (
+							<Scroll className={CSS.content}>{props.children}</Scroll>
+						)}
 					</Wrapper>
-					<div className={CSS.actions}>
-						{ props.confirm &&
+					<div data-testid={`${testId}-actions`} className={CSS.actions}>
+						{props.confirm && (
 							<Button
+								dataTestId={`${testId}-action-confirm`}
 								className={CSS.confirm}
 								onClick={e => this.onConfirm(e)}
-								loading={props.loading ? props.loading : false}>{props.confirm}
+								loading={props.loading ? props.loading : false}
+							>
+								{props.confirm}
 							</Button>
-						}
-						{ props.secondary &&
+						)}
+						{props.secondary && (
 							<Button
-								type='secondary'
+								dataTestId={`${testId}-action-secondary`}
+								type="secondary"
 								className={CSS.dismiss}
 								onClick={e => this.onSecondary(e)}
 							>
-									{props.secondary}
+								{props.secondary}
 							</Button>
-						}
+						)}
 					</div>
 				</div>
 			</section>
