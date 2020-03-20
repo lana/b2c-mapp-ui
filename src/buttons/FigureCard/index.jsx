@@ -2,13 +2,12 @@ import CSS from './styles.css'
 import PropTypes from 'prop-types'
 import Text from '../../typography/Text'
 
-export default function FigureCard ({ dataTestId, size, className, meta, imageSrc, title, link, onClick }) {
+export default function FigureCard ({ dataTestId, size, className, meta, imageSrc, title }) {
 	const backgroundStyle = {
 		backgroundImage: `url('${imageSrc}')`,
 	}
 
 	return (
-		<button data-testid={`${dataTestId}-cta`} onClick={() => onClick(link)} className={CSS.platforms}>
 			<figure className={`${CSS.FigureCard} ${className} ${(size && CSS[size]) || ''}`}>
 				<div data-testid={`${dataTestId}-image`} style={backgroundStyle} />
 				<figcaption>
@@ -16,7 +15,6 @@ export default function FigureCard ({ dataTestId, size, className, meta, imageSr
 					{meta && <Text dataTestId={`${dataTestId}-meta`} type="txt-xsmall">{meta}</Text>}
 				</figcaption>
 			</figure>
-		</button>
 	)
 }
 
@@ -26,9 +24,7 @@ FigureCard.defaultProps = {
 	className: '',
 	meta: '',
 	title: '',
-	imageSrc: '',
-	link: '',
-	onClick: () => {},
+	imageSrc: ''
 }
 
 FigureCard.propTypes = {
