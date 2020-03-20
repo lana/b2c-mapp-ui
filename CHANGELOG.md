@@ -1,5 +1,8 @@
 # Lana B2C MicroApp Libs Changelog
 
+## v.4.0.1 - 2020-03-20
+ - Removed button inside FigureCard component and onclick/link props
+
 ## v.4.0.0 - 2020-03-20
  - Add FigureCard component
 
