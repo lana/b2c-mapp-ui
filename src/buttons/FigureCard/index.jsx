@@ -34,6 +34,4 @@ FigureCard.propTypes = {
 	meta: PropTypes.string,
 	title: PropTypes.string,
 	imageSrc: PropTypes.string,
-	link: PropTypes.string,
-	onClick: PropTypes.func,
 }
