@@ -21,6 +21,7 @@ export default class Navigation extends Component {
 					<ul>
 						<li><Link href='/buttons/Button'>Button</Link></li>
 						<li><Link href='/buttons/ButtonWrapped'>ButtonWrapped</Link></li>
+						<li><Link href='/buttons/FigureCard'>FigureCard</Link></li>
 						<li><Link href='/buttons/Forward'>Forward</Link></li>
 						<li><Link href='/overlays/Dialog'>Dialog</Link></li>
 						<li><Link href='/overlays/BottomDialog'>BottomDialog</Link></li>

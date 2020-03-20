@@ -13,6 +13,7 @@ import '@lana/b2c-mapp-ui-assets/dist/index.css'
 import {
 	Button,
 	ButtonWrapped,
+	FigureCard,
 	Forward,
 	Dialog,
 	BottomDialog,
@@ -40,6 +41,7 @@ import {
 import IndexDoc from '../README.md'
 import ButtonDoc from 'src/buttons/Button/Readme.md'
 import ButtonWrappedDoc from 'src/buttons/ButtonWrapped/Readme.md'
+import FigureCardDoc from 'src/buttons/FigureCard/Readme.md'
 import ForwardDoc from 'src/buttons/Forward/Readme.md'
 import DialogDoc from 'src/overlays/Dialog/Readme.md'
 import BottomDialogDoc from 'src/overlays/BottomDialog/Readme.md'
@@ -69,6 +71,7 @@ export default class App extends Component {
 		index: '/',
 		button: '/buttons/Button',
 		buttonWrapped: '/buttons/ButtonWrapped',
+		figureCard: '/buttons/FigureCard',
 		forward: '/buttons/Forward',
 		dialog: '/overlays/Dialog',
 		bottomDialog: '/overlays/BottomDialog',
@@ -112,6 +115,7 @@ export default class App extends Component {
 			let scope = {
 				Button,
 				ButtonWrapped,
+				FigureCard,
 				Forward,
 				Dialog,
 				BottomDialog,
@@ -172,6 +176,11 @@ export default class App extends Component {
 						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.buttonWrapped}>
 							<Scroll>
 								<ButtonWrappedDoc />
+							</Scroll>
+						</Screen>
+						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.figureCard}>
+							<Scroll>
+								<FigureCardDoc />
 							</Scroll>
 						</Screen>
 						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.forward}>
