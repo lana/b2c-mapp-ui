@@ -1,5 +1,8 @@
 # Lana B2C MicroApp Libs Changelog
 
+## v.4.0.0 - 2020-03-20
+ - Add FigureCard component
+
 ## v.3.2.2 - 2020-03-17
  - Add data-testid to inner elements for all components
 
