@@ -29,7 +29,7 @@ export default class Button extends Component {
 		if (isButton) {
 			return (
 				<button
-					data-testid={testId}
+					data-testid={`${testId}-button`}
 					type="button"
 					onTouchStart={e => this.togglePressed()}
 					onTouchEnd={e => this.togglePressed()}
