@@ -18,6 +18,7 @@
   },
   "homepage": "https://lana.github.io/b2c-mapp-ui",
   "license": "ISC",
+  "private": true,
   "scripts": {
     "libphonenumber-metadata": "libphonenumber-generate-metadata data/libphonenumber-metadata.min.json --countries MX,CL,BR,ES --types mobile",
     "build": "webpack --mode=production --config webpack.config.js",
