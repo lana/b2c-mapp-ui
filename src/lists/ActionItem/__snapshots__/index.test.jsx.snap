@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`UI/lists/ActionItem should render correctly 1`] = `ReactWrapper {}`;
-
-exports[`UI/lists/ActionItem should render correctly with params highlight and mediaColor 1`] = `ReactWrapper {}`;

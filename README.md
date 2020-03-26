@@ -40,4 +40,4 @@ A list of the technologies used in this project:
 * Rollup(for building the package)
 * libphonenumber-js
 * Jest
-* Enzyme
+* preact-testing-library

@@ -1,4 +1,4 @@
-import { mount } from 'enzyme'
+import { render } from '@testing-library/preact';
 import FigureCard from '.'
 
 describe('FigureCard unit test:', () => {
@@ -11,9 +11,8 @@ describe('FigureCard unit test:', () => {
 		imageSrc: 'myImage.png'
 	}
 	it('Should set imageSrc as background for figure-card-test-image:', () => {
-		const mockedClick = jest.fn()
-		const wrapper = mount(<FigureCard {...defaultProps} />)
-		const figureStyles = wrapper.find('[data-testid="figure-card-test-image"]').prop('style')
-		expect(figureStyles).toHaveProperty('backgroundImage', "url('myImage.png')")
-	})
+		const { getByTestId } = render(<FigureCard {...defaultProps} />)
+		const figureStyles = getByTestId('figure-card-test-image');
+		expect(figureStyles.style.backgroundImage).toEqual("url(myImage.png)");
+	});
 })

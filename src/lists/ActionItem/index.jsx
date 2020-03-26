@@ -9,7 +9,7 @@ export default ({ onClick, media, mediaColor, highlight, className, title, dataT
 
 	return (
 		<li data-testid={testId} onClick={onClick ? e => onClick(e) : false} className={`${CSS.item} ${className || ''}`}>
-			{media && <div className={`${CSS.media} ${mediaColorClass}`}>{media}</div>}
+			{media && <div data-testid={`${testId}-mediacolor`} className={`${CSS.media} ${mediaColorClass}`}>{media}</div>}
 			<div className={CSS.body}>
 				<Text className={highLighClass}>{title}</Text>
 			</div>

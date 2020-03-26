@@ -4,10 +4,20 @@ import Text from '../../typography/Text'
 import { ForwardIcon } from '@lana/b2c-mapp-ui-assets'
 
 export default ({ mediaColor, media, meta, onClick, className, title, dataTestId }) => {
-	const mediaColorClass = mediaColor ? CSS[mediaColor] : ''
-	const mediaIcon = media ? <div className={`${CSS.media} ${mediaColorClass}`}>{media}</div> : ''
-	const metaInfo = meta ? <Text>{meta}</Text> : ''
 	const testId = dataTestId || 'content-item'
+	const mediaColorClass = mediaColor ? CSS[mediaColor] : ''
+	const mediaIcon = media ? (
+		<div data-testid={`${testId}-media-icon`} className={`${CSS.media} ${mediaColorClass}`}>
+			{media}
+		</div>
+	) : (
+		''
+	)
+	const metaInfo = meta ? <Text dataTestId={`${testId}-meta-text`}>{meta}</Text> : ''
+
+	const forwardIcon = onClick ? (
+		<ForwardIcon data-testid={`${testId}-forward-icon`} color="inactive" className={CSS.icon} />
+	) : null
 
 	return (
 		<li
@@ -20,11 +30,7 @@ export default ({ mediaColor, media, meta, onClick, className, title, dataTestId
 				<Heading type="txt-medium">{title}</Heading>
 				{metaInfo}
 			</div>
-			{onClick ? (
-				<ForwardIcon dataTestId={`${testId}-forward`} color="inactive" className={CSS.icon} />
-			) : (
-				''
-			)}
+			{forwardIcon}
 		</li>
 	)
 }
