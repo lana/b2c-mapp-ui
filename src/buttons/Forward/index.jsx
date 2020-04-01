@@ -1,26 +1,45 @@
-import { Component } from 'preact'
-
+import PropTypes from 'prop-types'
 import Button from '../Button'
 import { ForwardIcon } from '@lana/b2c-mapp-ui-assets'
 import CSS from './styles.css'
 
-export default class Forward extends Component {
-	render() {
-		const dataTestId = this.props.dataTestId || null
-		return (
-			<section className={`${CSS.wrapper} ${this.props.className || ''}`}>
-				<Button
-					dataTestId={dataTestId}
-					id={this.props.id}
-					href={this.props.href}
-					onClick={this.props.onClick}
-					type={this.props.type}
-					loading={this.props.loading}
-				>
-					<ForwardIcon color="black-100" />
-					{this.props.children}
-				</Button>
-			</section>
-		)
-	}
+const Forward = ({ children, className, dataTestId, href, id, loading, onClick, type }) => {
+	return (
+		<section data-testid={`${dataTestId}-section`} className={`${CSS.wrapper} ${className || ''}`}>
+			<Button
+				dataTestId={dataTestId}
+				id={id}
+				href={href}
+				onClick={onClick}
+				type={type}
+				loading={loading}
+			>
+				<ForwardIcon color="black-100" />
+				{children}
+			</Button>
+		</section>
+	)
 }
+
+Forward.defaultProps = {
+	className: null,
+	dataTestId: 'forward',
+	href: null,
+	id: null,
+	loading: false,
+	type: null,
+	children:''
+}
+
+Forward.propTypes = {
+	children: PropTypes.node,
+	className: PropTypes.string,
+	dataTestId: PropTypes.string,
+	href: PropTypes.string,
+	id: PropTypes.string,
+	loading: PropTypes.bool,
+	onClick: PropTypes.func.isRequired,
+	type: PropTypes.string,
+}
+
+export default Forward

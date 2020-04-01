@@ -1,24 +1,42 @@
-import { Component } from 'preact'
-
+import PropTypes from 'prop-types'
 import CSS from './styles.css'
 import Button from '../Button'
 
-export default class ButtonWrapped extends Component {
-	render() {
-		const dataTestId = this.props.dataTestId || null
-		return (
-			<section className={`${CSS.wrapper} ${this.props.className || ''}`}>
-				<Button
-					dataTestId={dataTestId}
-					id={this.props.id}
-					href={this.props.href}
-					onClick={this.props.onClick}
-					type={this.props.type}
-					loading={this.props.loading}
-				>
-					{this.props.children}
-				</Button>
-			</section>
-		)
-	}
+const ButtonWrapped = ({ dataTestId, id, href, onClick, type, loading, children, className }) => {
+	return (
+		<section data-testid={`${dataTestId}-wrapper`} className={`${CSS.wrapper} ${className || ''}`}>
+			<Button
+				dataTestId={dataTestId}
+				id={id}
+				href={href}
+				onClick={onClick}
+				type={type}
+				loading={loading}
+			>
+				{children}
+			</Button>
+		</section>
+	)
 }
+
+ButtonWrapped.defaultProps = {
+	dataTestId: 'button-wrapped',
+	href: null,
+	id: null,
+	loading: false,
+	className: null,
+	type: null,
+}
+
+ButtonWrapped.propTypes = {
+	children: PropTypes.node.isRequired,
+	className: PropTypes.string,
+	dataTestId: PropTypes.string,
+	href: PropTypes.string,
+	id: PropTypes.string,
+	loading: PropTypes.bool,
+	onClick: PropTypes.func.isRequired,
+	type: PropTypes.string,
+}
+
+export default ButtonWrapped;

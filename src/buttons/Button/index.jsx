@@ -1,62 +1,83 @@
-import { Component } from 'preact'
-
+import PropTypes from 'prop-types'
+import { useState } from 'preact/hooks'
 import CSS from './styles.css'
 import { MopIcon } from '@lana/b2c-mapp-ui-assets'
 
-export default class Button extends Component {
-	state = {
-		isPressed: false,
-	}
+const Button = ({ children, className, dataTestId, href, id, loading, type, onClick }) => {
+	const [isPressed, setIsPressed] = useState(false)
 
-	togglePressed() {
-		this.setState({ isPressed: !this.state.isPressed })
-	}
-
-	onClick(e) {
-		if (this.props.onClick) this.props.onClick(e)
-		if (this.state.isPressed) this.togglePressed()
+	const onHandleClick = e => {
+		if (onClick) onClick(e)
+		if (isPressed) setIsPressed(!isPressed)
 		e.preventDefault()
 	}
 
-	render() {
-		let type = CSS[this.props.type] || ''
-		let loadingClass = this.props.loading ? CSS.loading : ''
-		let pressedClass = this.state.isPressed ? CSS.pressed : ''
-		let isButton = !this.props.href
-		let defaultTestId = isButton ? 'button' : 'button-link'
-		let testId = this.props.dataTestId || defaultTestId
+	const typeClass =
+		type === 'secondary' || type === 'disabled' || type === 'dismiss' ? CSS[type] : ''
+	const loadingClass = loading ? CSS.loading : ''
+	const pressedClass = isPressed ? CSS.pressed : ''
+	const isButton = !href
+	const defaultTestId = isButton ? 'button' : 'button-link'
+	const testId = dataTestId || defaultTestId
 
-		if (isButton) {
-			return (
-				<button
-					data-testid={`${testId}-button`}
-					type="button"
-					onTouchStart={e => this.togglePressed()}
-					onTouchEnd={e => this.togglePressed()}
-					onClick={e => this.onClick(e)}
-					className={`${CSS.button} ${type} ${loadingClass} ${pressedClass} ${this.props
-						.className || ''}`}
-				>
-					<em className={CSS.loadingWrapper}>
+	if (isButton) {
+		return (
+			<button
+				data-testid={`${testId}-button`}
+				type="button"
+				id={id}
+				onTouchStart={() => setIsPressed(!isPressed)}
+				onTouchEnd={() => setIsPressed(!isPressed)}
+				onClick={e => onHandleClick(e)}
+				className={`${CSS.button} ${typeClass} ${loadingClass} ${pressedClass} ${className || ''}`}
+			>
+				{loading ? (
+					<em data-testid={`${testId}-loading`} className={CSS.loadingWrapper}>
 						<MopIcon className={CSS.loadingIcon} />
-						{this.props.loading}...
+						...
 					</em>
-					<span className={CSS.defaultWrapper}>{this.props.children}</span>
-				</button>
-			)
-		} else {
-			return (
-				<a
-					data-testid={testId}
-					href={this.props.href}
-					onClick={e => this.onClick()}
-					onTouchStart={e => this.togglePressed()}
-					onTouchEnd={e => this.togglePressed()}
-					className={`${CSS.button} ${type} ${loadingClass} ${this.props.className || ''}`}
-				>
-					{this.props.children}
-				</a>
-			)
-		}
+				) : (
+					<span data-testid={`${testId}-children`} className={CSS.defaultWrapper}>
+						{children}
+					</span>
+				)}
+			</button>
+		)
+	} else {
+		return (
+			<a
+				data-testid={testId}
+				href={href}
+				id={id}
+				onClick={e => onHandleClick(e)}
+				onTouchStart={() => setIsPressed(!isPressed)}
+				onTouchEnd={() => setIsPressed(!isPressed)}
+				className={`${CSS.button} ${typeClass} ${loadingClass} ${className || ''}`}
+			>
+				{children}
+			</a>
+		)
 	}
 }
+
+Button.defaultProps = {
+	dataTestId: null,
+	href: null,
+	id: null,
+	loading: false,
+	className: null,
+	type: null,
+}
+
+Button.propTypes = {
+	children: PropTypes.node.isRequired,
+	className: PropTypes.string,
+	dataTestId: PropTypes.string,
+	href: PropTypes.string,
+	id: PropTypes.string,
+	loading: PropTypes.bool,
+	onClick: PropTypes.func.isRequired,
+	type: PropTypes.string,
+}
+
+export default Button
