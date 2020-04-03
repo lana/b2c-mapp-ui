@@ -12,7 +12,8 @@ import '@lana/b2c-mapp-ui-assets/dist/index.css'
 
 import {
 	Button,
-	ButtonWrapped,
+	WrappedButton,
+	CopyToClipboard,
 	FigureCard,
 	Forward,
 	Dialog,
@@ -40,7 +41,8 @@ import {
 
 import IndexDoc from '../README.md'
 import ButtonDoc from 'src/buttons/Button/Readme.md'
-import ButtonWrappedDoc from 'src/buttons/ButtonWrapped/Readme.md'
+import WrappedButtonDoc from 'src/buttons/WrappedButton/Readme.md'
+import CopyToClipboardDoc from 'src/buttons/CopyToClipboard/Readme.md'
 import FigureCardDoc from 'src/buttons/FigureCard/Readme.md'
 import ForwardDoc from 'src/buttons/Forward/Readme.md'
 import DialogDoc from 'src/overlays/Dialog/Readme.md'
@@ -70,7 +72,8 @@ export default class App extends Component {
 	aliases = {
 		index: '/',
 		button: '/buttons/Button',
-		buttonWrapped: '/buttons/ButtonWrapped',
+		wrappedButton: '/buttons/WrappedButton',
+		copyToClipboard: '/buttons/CopyToClipboard',
 		figureCard: '/buttons/FigureCard',
 		forward: '/buttons/Forward',
 		dialog: '/overlays/Dialog',
@@ -114,7 +117,8 @@ export default class App extends Component {
 		code: props => {
 			let scope = {
 				Button,
-				ButtonWrapped,
+				WrappedButton,
+				CopyToClipboard,
 				FigureCard,
 				Forward,
 				Dialog,
@@ -173,9 +177,14 @@ export default class App extends Component {
 								<ButtonDoc />
 							</Scroll>
 						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.buttonWrapped}>
+						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.wrappedButton}>
 							<Scroll>
-								<ButtonWrappedDoc />
+								<WrappedButtonDoc />
+							</Scroll>
+						</Screen>
+						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.copyToClipboard}>
+							<Scroll>
+								<CopyToClipboardDoc />
 							</Scroll>
 						</Screen>
 						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.figureCard}>

@@ -1,7 +1,7 @@
 import { useState } from 'preact/hooks'
 import PropTypes from 'prop-types'
-import CSS from './styles.css'
 
+import CSS from './styles.css'
 import copyToClipboard from './../../utils/copy-to-clipboard'
 
 const CopyToClipboard = ({
@@ -42,7 +42,7 @@ const CopyToClipboard = ({
 	return (
 		<button
 			data-testid={`${dataTestId}-button`}
-			className={`${CSS.toclipboard} ${CSS[copyStatus.class]}`}
+			className={`${CSS.clipboard} ${CSS[copyStatus.class]}`}
 			onClick={() => handleOnClick(valueToCopy)}
 		>
 			{copyStatus.label}
@@ -57,9 +57,9 @@ CopyToClipboard.defaultProps = {
 	labelToCopy: 'Copiar',
 	labelCopying: 'Copiando...',
 	labelCopied: 'Copiado!',
-	classNameToCopy: 'tocopy',
-	classNameCopying: 'copying',
-	classNameCopied: 'copied',
+	classToCopy: 'tocopy',
+	classCopying: 'copying',
+	classCopied: 'copied',
 	copyingFeedbackTime: 1000,
 	copiedFeedbackTime: 2500,
 }
@@ -70,9 +70,9 @@ CopyToClipboard.propTypes = {
 	labelToCopy: PropTypes.string,
 	labelCopying: PropTypes.string,
 	labelCopied: PropTypes.string,
-	classNameToCopy: PropTypes.string,
-	classNameCopying: PropTypes.string,
-	classNameCopied: PropTypes.string,
+	classToCopy: PropTypes.string,
+	classCopying: PropTypes.string,
+	classCopied: PropTypes.string,
 	copyingFeedbackTime: PropTypes.number,
 	copiedFeedbackTime: PropTypes.number,
 }

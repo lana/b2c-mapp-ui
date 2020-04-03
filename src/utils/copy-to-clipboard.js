@@ -1,19 +1,21 @@
-const copyToClipboard = (text, callback) => {
-    if (typeof window !== 'undefined') {
-      const hiddenInput = document.createElement('input');
+const getHiddenInputElement = (textToCopy) => {
+  const result = document.createElement('input');
+  result.type = 'text';
+  result.style.height = '0';
+  result.style.opacity = '0';
+  result.value = textToCopy;
+  return result;
+}
+
+const copyToClipboard = (textToCopy, callback) => {
+  if (typeof window === 'undefined') { return; }
+  const hiddenInputElement = getHiddenInputElement(textToCopy);
+  document.body.appendChild(hiddenInputElement);
+  hiddenInputElement.select();
+  document.execCommand('copy');
+  document.body.removeChild(hiddenInputElement);
+  callback();
+};
   
-      hiddenInput.type = 'text';
-      hiddenInput.style.height = '0px';
-      hiddenInput.style.opacity = '0';
-      hiddenInput.value = text;
-  
-      document.body.appendChild(hiddenInput);
-      hiddenInput.select();
-      document.execCommand('copy');
-      document.body.removeChild(hiddenInput);
-      callback();
-    }  
-  };
-  
-  export default copyToClipboard;
+export default copyToClipboard;
   

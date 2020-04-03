@@ -1,5 +1,6 @@
 export { default as Button } from './buttons/Button'
-export { default as ButtonWrapped } from './buttons/ButtonWrapped'
+export { default as WrappedButton } from './buttons/WrappedButton'
+export { default as CopyToClipboard } from './buttons/CopyToClipboard'
 export { default as FigureCard } from './buttons/FigureCard'
 export { default as Forward } from './buttons/Forward'
 export { default as Dialog } from './overlays/Dialog'

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import CSS from './styles.css'
 import Button from '../Button'
 
-const ButtonWrapped = ({ dataTestId, id, href, onClick, type, loading, children, className }) => {
+const WrappedButton = ({ dataTestId, id, href, onClick, type, loading, children, className }) => {
 	return (
 		<section data-testid={`${dataTestId}-wrapper`} className={`${CSS.wrapper} ${className || ''}`}>
 			<Button
@@ -19,7 +19,7 @@ const ButtonWrapped = ({ dataTestId, id, href, onClick, type, loading, children,
 	)
 }
 
-ButtonWrapped.defaultProps = {
+WrappedButton.defaultProps = {
 	dataTestId: 'button-wrapped',
 	href: null,
 	id: null,
@@ -28,7 +28,7 @@ ButtonWrapped.defaultProps = {
 	type: null,
 }
 
-ButtonWrapped.propTypes = {
+WrappedButton.propTypes = {
 	children: PropTypes.node.isRequired,
 	className: PropTypes.string,
 	dataTestId: PropTypes.string,
@@ -39,4 +39,4 @@ ButtonWrapped.propTypes = {
 	type: PropTypes.string,
 }
 
-export default ButtonWrapped;
+export default WrappedButton;
