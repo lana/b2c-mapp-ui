@@ -12,7 +12,8 @@ import '@lana/b2c-mapp-ui-assets/dist/index.css'
 
 import {
 	Button,
-	ButtonWrapped,
+	WrappedButton,
+	CopyToClipboard,
 	FigureCard,
 	Forward,
 	Dialog,
@@ -35,12 +36,13 @@ import {
 	TextFieldRule,
 	TopBar,
 	DateField,
-	ListCopyable,
+	CopyableList,
 } from 'src'
 
 import IndexDoc from '../README.md'
 import ButtonDoc from 'src/buttons/Button/Readme.md'
-import ButtonWrappedDoc from 'src/buttons/ButtonWrapped/Readme.md'
+import WrappedButtonDoc from 'src/buttons/WrappedButton/Readme.md'
+import CopyToClipboardDoc from 'src/buttons/CopyToClipboard/Readme.md'
 import FigureCardDoc from 'src/buttons/FigureCard/Readme.md'
 import ForwardDoc from 'src/buttons/Forward/Readme.md'
 import DialogDoc from 'src/overlays/Dialog/Readme.md'
@@ -63,14 +65,15 @@ import TextDoc from 'src/typography/Text/Readme.md'
 import TextFieldDoc from 'src/forms/TextField/Readme.md'
 import TextFieldRuleDoc from 'src/forms/TextFieldRule/Readme.md'
 import TopBarDoc from 'src/navigation/TopBar/Readme.md'
-import ListCopyableDoc from 'src/lists/ListCopyable/Readme.md'
+import CopyableListDoc from 'src/lists/CopyableList/Readme.md'
 import IconDoc from 'docs/icons/Readme.md'
 
 export default class App extends Component {
 	aliases = {
 		index: '/',
 		button: '/buttons/Button',
-		buttonWrapped: '/buttons/ButtonWrapped',
+		wrappedButton: '/buttons/WrappedButton',
+		copyToClipboard: '/buttons/CopyToClipboard',
 		figureCard: '/buttons/FigureCard',
 		forward: '/buttons/Forward',
 		dialog: '/overlays/Dialog',
@@ -86,7 +89,7 @@ export default class App extends Component {
 		actionItem: '/lists/ActionItem',
 		contentItem: '/lists/ContentItem',
 		listItem: '/lists/ListItem',
-		listCopyable: '/lists/ListCopyable',
+		copyableList: '/lists/CopyableList',
 		spinner: '/loading/Spinner',
 		stepper: '/navigation/Stepper',
 		topbar: '/navigation/TopBar',
@@ -114,7 +117,8 @@ export default class App extends Component {
 		code: props => {
 			let scope = {
 				Button,
-				ButtonWrapped,
+				WrappedButton,
+				CopyToClipboard,
 				FigureCard,
 				Forward,
 				Dialog,
@@ -137,7 +141,7 @@ export default class App extends Component {
 				TextField,
 				TextFieldRule,
 				DateField,
-				ListCopyable,
+				CopyableList,
 				...Icons,
 			}
 
@@ -173,9 +177,14 @@ export default class App extends Component {
 								<ButtonDoc />
 							</Scroll>
 						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.buttonWrapped}>
+						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.wrappedButton}>
 							<Scroll>
-								<ButtonWrappedDoc />
+								<WrappedButtonDoc />
+							</Scroll>
+						</Screen>
+						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.copyToClipboard}>
+							<Scroll>
+								<CopyToClipboardDoc />
 							</Scroll>
 						</Screen>
 						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.figureCard}>
@@ -305,9 +314,9 @@ export default class App extends Component {
 								<TextDoc />
 							</Scroll>
 						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.listCopyable}>
+						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.copyableList}>
 							<Scroll>
-								<ListCopyableDoc />
+								<CopyableListDoc />
 							</Scroll>
 						</Screen>
 					</Router>

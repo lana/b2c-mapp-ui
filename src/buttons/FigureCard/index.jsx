@@ -9,7 +9,9 @@ export default function FigureCard ({ dataTestId, size, className, meta, imageSr
 
 	return (
 			<figure className={`${CSS.FigureCard} ${className} ${(size && CSS[size]) || ''}`}>
-				<div data-testid={`${dataTestId}-image`} style={backgroundStyle} />
+				<div className={CSS['image-wrapper']}>
+					<div className={CSS['image']} data-testid={`${dataTestId}-image`} style={backgroundStyle} />
+				</div>
 				<figcaption>
 					<Text dataTestId={`${dataTestId}-title`} type="txt-small">{title}</Text>
 					{meta && <Text dataTestId={`${dataTestId}-meta`} type="txt-xsmall">{meta}</Text>}

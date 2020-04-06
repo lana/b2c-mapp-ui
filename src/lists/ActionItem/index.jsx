@@ -1,18 +1,39 @@
+import PropTypes from 'prop-types';
+
 import CSS from './styles.css'
 import Text from '../../typography/Text'
 
-// eslint-disable-next-line react/display-name
-export default ({ onClick, media, mediaColor, highlight, className, title, dataTestId }) => {
-	const mediaColorClass = mediaColor ? CSS[mediaColor] : ''
-	const highLighClass = highlight ? `${CSS['highlight']}` : ''
-	const testId = dataTestId || 'action-item'
+const ActionItem = ({ onClick, mediaContent, mediaColor, highlight, className, title, dataTestId }) => {
+	const mediaColorClass = (mediaColor) ? CSS[mediaColor] : '';
+	const highLighClass = (highlight) ? `${CSS['highlight']}` : '';
 
 	return (
-		<li data-testid={testId} onClick={onClick ? e => onClick(e) : false} className={`${CSS.item} ${className || ''}`}>
-			{media && <div data-testid={`${testId}-mediacolor`} className={`${CSS.media} ${mediaColorClass}`}>{media}</div>}
+		<li data-testid={dataTestId} onClick={(onClick) ? e => onClick(e) : false} className={`${CSS.item} ${className}`}>
+			{mediaContent && <div data-testid={`${dataTestId}-mediacolor`} className={`${CSS.media} ${mediaColorClass}`}>{mediaContent}</div>}
 			<div className={CSS.body}>
-				<Text className={highLighClass}>{title}</Text>
+				<Text dataTestId={`${dataTestId}-highlight`} className={highLighClass}>{title}</Text>
 			</div>
 		</li>
 	)
 }
+
+ActionItem.defaultProps = {
+	dataTestId: 'action-item',
+	className: '',
+	onClick: null,
+	mediaContent: null,
+	mediaColor: false,
+	highlight: false,
+}
+
+ActionItem.propTypes = {
+	onClick: PropTypes.func,
+	mediaContent: PropTypes.node,
+	mediaColor: PropTypes.bool,
+	highlight: PropTypes.bool,
+	dataTestId: PropTypes.string,
+	className: PropTypes.string,
+	title: PropTypes.string.isRequired
+}
+
+export default ActionItem;

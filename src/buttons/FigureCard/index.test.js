@@ -12,7 +12,7 @@ describe('FigureCard unit test:', () => {
 	}
 	it('Should set imageSrc as background for figure-card-test-image:', () => {
 		const { getByTestId } = render(<FigureCard {...defaultProps} />)
-		const figureStyles = getByTestId('figure-card-test-image');
-		expect(figureStyles.style.backgroundImage).toEqual("url(myImage.png)");
+		const backgroundApplied = getByTestId('figure-card-test-image').style.backgroundImage === 'url(myImage.png)';
+		expect(backgroundApplied).toBeTruthy();
 	});
 })

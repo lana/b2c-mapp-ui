@@ -13,5 +13,5 @@ Card looks like button containing figure & caption
 | `onClick`   | `(link) => void`                   | false    |
 
 ```
-<FigureCard imageSrc={'assets/lanaLogo.svg'} title={'Lana FigureCard'} meta={'Meta for FigureCard'} link={'#'}/>
+<FigureCard imageSrc={'https://source.unsplash.com/random/44x44'} title={'Lana FigureCard'} meta={'Meta for FigureCard'} link={'#'}/>
 ```
