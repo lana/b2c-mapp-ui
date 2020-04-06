@@ -23,36 +23,36 @@ describe('UI/buttons/Button', () => {
 	describe('Button behavior', () => {
 		it('Should render a button if href is not provided', () => {
 			const { getByTestId } = render(<Button {...defaultButtonProps} />)
-			const button = getByTestId('button-button')
-			expect(button).toBeTruthy()
+			const itsAButton = getByTestId('button-button')
+			expect(itsAButton).toBeTruthy()
 		})
 
 		it('Should NOT render a anchor if href is not provided', () => {
-			const { queryByTestId } = render(<Button {...defaultButtonProps} />)
-			const link = queryByTestId('button-link')
-			expect(link).not.toBeTruthy()
+			const { queryAllByTestId } = render(<Button {...defaultButtonProps} />)
+			const itsNotALink = !queryAllByTestId('button-link').length > 0
+			expect(itsNotALink).toBeTruthy()
 		})
 
 		it('Should add secondary className if secondary type is given', () => {
-			const { getByTestId } = render(<Button {...defaultButtonProps} />)
-			const buttonClasses = getByTestId('button-button').className
-			expect(buttonClasses.includes('secondary')).toBe(true)
+			const { getByTestId } = render(<Button {...defaultButtonProps} />);
+			const hasSecondaryClassName = getByTestId('button-button').className.includes('secondary');
+			expect(hasSecondaryClassName).toBeTruthy()
 		})
 
 		it('Should add disabled className if disabled type is given', () => {
 			const { getByTestId } = render(<Button {...defaultButtonProps} type="disabled" />)
-			const buttonClasses = getByTestId('button-button').className
-			expect(buttonClasses.includes('disabled')).toBe(true)
+			const hasDisabledClassName = getByTestId('button-button').className.includes('disabled')
+			expect(hasDisabledClassName).toBeTruthy()
 		})
 		it('Should add dismiss className if dismiss type is given', () => {
 			const { getByTestId } = render(<Button {...defaultButtonProps} type="dismiss" />)
-			const buttonClasses = getByTestId('button-button').className
-			expect(buttonClasses.includes('dismiss')).toBe(true)
+			const hasDismissClassName = getByTestId('button-button').className.includes('dismiss')
+			expect(hasDismissClassName).toBeTruthy()
 		})
 		it('Should NOT add type className if given type is NOT disabled|secondary|dismiss', () => {
 			const { getByTestId } = render(<Button {...defaultButtonProps} type="wrongType" />)
-			const buttonClasses = getByTestId('button-button').className
-			expect(buttonClasses.includes('wrongType')).toBe(false)
+			const wrongTypeNotSupported = !getByTestId('button-button').className.includes('wrongType')
+			expect(wrongTypeNotSupported).toBeTruthy()
 		})
 
 		it('Should call onClick when is clicked', () => {
@@ -66,35 +66,35 @@ describe('UI/buttons/Button', () => {
 		describe('Loading behavior', () => {
 			it('Should show button-children-content if is NOT loading', () => {
 				const { getByTestId } = render(<Button {...defaultButtonProps} loading={false} />)
-				const children = getByTestId('button-children')
-				expect(children).toBeTruthy()
+				const childrenExists = getByTestId('button-children')
+				expect(childrenExists).toBeTruthy()
 			})
 			it('Should NOT show button-loading if is NOT loading', () => {
-				const { queryByTestId } = render(<Button {...defaultButtonProps} loading={false} />)
-				const loadingContent = queryByTestId('button-loading')
-				expect(loadingContent).not.toBeTruthy()
+				const { queryAllByTestId } = render(<Button {...defaultButtonProps} loading={false} />)
+				const withoutLoadingContent = queryAllByTestId('button-loading').length === 0;
+				expect(withoutLoadingContent).toBeTruthy()
 			})
 
 			it('Should NOT add loadingClass if given loading is false', () => {
 				const { getByTestId } = render(<Button {...defaultButtonProps} loading={false} />)
-				const buttonClasses = getByTestId('button-button').className
-				expect(buttonClasses.includes('loading')).toBe(false)
+				const loadingClassNotApplied = !getByTestId('button-button').className.includes('loading')
+				expect(loadingClassNotApplied).toBeTruthy()
 			})
 			it('Should add loading class if given loading is true', () => {
 				const { getByTestId } = render(<Button {...defaultButtonProps} loading={true} />)
-				const buttonClasses = getByTestId('button-button').className
-				expect(buttonClasses.includes('loading')).toBe(true)
+				const loadingClassApplied = getByTestId('button-button').className.includes('loading')
+				expect(loadingClassApplied).toBeTruthy()
 			})
 			it('Should NOT show button-children-content if is loading', () => {
-				const { queryByTestId } = render(<Button {...defaultButtonProps} loading={true} />)
-				const children = queryByTestId('button-children')
-				expect(children).not.toBeTruthy()
+				const { queryAllByTestId } = render(<Button {...defaultButtonProps} loading={true} />)
+				const childrenNotExsist = queryAllByTestId('button-children').length === 0
+				expect(childrenNotExsist).toBeTruthy()
 			})
 
 			it('Should show loading content if given loading is true', () => {
 				const { getByTestId } = render(<Button {...defaultButtonProps} loading={true} />)
-				const loadingContent = getByTestId('button-loading')
-				expect(loadingContent).toBeTruthy()
+				const loadingContentExist = getByTestId('button-loading')
+				expect(loadingContentExist).toBeTruthy()
 			})
 		})
 	})
@@ -102,14 +102,14 @@ describe('UI/buttons/Button', () => {
 	describe('Link behavior', () => {
         it('Should render a link if href is provided', () => {
 			const { getByTestId } = render(<Button {...defaultLinkProps} />)
-			const link = getByTestId('button-link')
-			expect(link).toBeTruthy()
+			const itsALink = getByTestId('button-link')
+			expect(itsALink).toBeTruthy()
 		})
 
 		it('Should NOT render a button if href is provided', () => {
-			const { queryByTestId } = render(<Button {...defaultLinkProps} />)
-			const button = queryByTestId('button-button')
-			expect(button).not.toBeTruthy()
+			const { queryAllByTestId } = render(<Button {...defaultLinkProps} />)
+			const itsNotAButton = queryAllByTestId('button-button').length === 0;
+			expect(itsNotAButton).toBeTruthy()
 		})
 
 		it('Should call onClick when is clicked', () => {

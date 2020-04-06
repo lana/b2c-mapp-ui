@@ -18,39 +18,39 @@ describe('UI/lists/ContentItem', () => {
 	}
 
 	it('Should NOT show mediaIcon if its not given', () => {
-		const { queryByTestId } = render(<ContentItem {...defaultProps} media={null} />)
-		const media = queryByTestId('content-item-media-icon')
-		expect(media).not.toBeTruthy()
+		const { queryAllByTestId } = render(<ContentItem {...defaultProps} media={null} />)
+		const mediaIconNotVisible = queryAllByTestId('content-item-media-icon').length === 0
+		expect(mediaIconNotVisible).toBeTruthy()
 	})
 
 	it('Should show given mediaIcon', () => {
 		const { getByTestId } = render(<ContentItem {...defaultProps} />)
-		const media = getByTestId('content-item-media-icon')
-		expect(media).toBeTruthy()
+		const mediaIconVisible = getByTestId('content-item-media-icon')
+		expect(mediaIconVisible).toBeTruthy()
 	})
 
 	it('Should add given mediaColor to content-item-media-icon', () => {
 		const { getByTestId } = render(<ContentItem {...defaultProps} />)
-		const mediaClasses = getByTestId('content-item-media-icon').className
-		expect(mediaClasses.includes('MEDIACOLOR')).toBe(true)
+		const mediaClassApplied = getByTestId('content-item-media-icon').className.includes('MEDIACOLOR')
+		expect(mediaClassApplied).toBeTruthy()
 	})
 
 	it('Should not add mediaColor class to content-item-media-icon if its not given', () => {
 		const { getByTestId } = render(<ContentItem {...defaultProps} mediaColor={null} />)
-		const mediaClasses = getByTestId('content-item-media-icon').className
-		expect(mediaClasses.includes('MEDIACOLOR')).toBe(false)
+		const mediaClassNotApplied = !getByTestId('content-item-media-icon').className.includes('MEDIACOLOR')
+		expect(mediaClassNotApplied).toBeTruthy()
 	})
 
 	it('Should show given meta info', () => {
 		const { getByTestId } = render(<ContentItem {...defaultProps} />)
-		const metaInfo = getByTestId('content-item-meta-text').textContent
-		expect(metaInfo).toEqual('META')
+		const metaInfoExist = getByTestId('content-item-meta-text').textContent === 'META'
+		expect(metaInfoExist).toBeTruthy()
 	})
 
 	it('Should NOT show meta information if is not given', () => {
-		const { queryByTestId } = render(<ContentItem {...defaultProps} meta={null} />)
-		const metaInfo = queryByTestId('content-item-meta-text')
-		expect(metaInfo).not.toBeTruthy()
+		const { queryAllByTestId } = render(<ContentItem {...defaultProps} meta={null} />)
+		const metaInfoNotExist = queryAllByTestId('content-item-meta-text').length === 0
+		expect(metaInfoNotExist).toBeTruthy()
 	})
 
 	it('Should call onClick when content-item is clicked', () => {
@@ -63,13 +63,13 @@ describe('UI/lists/ContentItem', () => {
 
 	it('Should display ForwardIcon if onClick is given', () => {
 		const { getByTestId } = render(<ContentItem {...defaultProps} />)
-		const forward = getByTestId('content-item').getElementsByClassName('icon')
-		expect(forward.length).toEqual(1)
+		const forwardIconExist = getByTestId('content-item').getElementsByClassName('icon').length === 1
+		expect(forwardIconExist).toBeTruthy()
 	})
 
 	it('Should NOT display ForwardIcon if onClick is NOT given', () => {
 		const { queryByTestId } = render(<ContentItem {...defaultProps} onClick={null} />)
-		const forward = queryByTestId('content-item').getElementsByClassName('icon')
-		expect(forward.length).toEqual(0)
+		const forwardIconNotExist = queryByTestId('content-item').getElementsByClassName('icon').length === 0
+		expect(forwardIconNotExist).toBeTruthy()
 	})
 })

@@ -10,15 +10,14 @@ describe('UI/buttons/Forward', () => {
 
 	it('Should wrap a Button with a section', () => {
 		const { getByTestId } = render(<Forward {...defaultProps}/>)
-
-		const section = getByTestId('test-id-section')
-		expect(section).toBeTruthy()
+		const sectionWrapperExist = getByTestId('test-id-section')
+		expect(sectionWrapperExist).toBeTruthy()
 	})
 
 	it('Should add extra class if given', () => {
         const { getByTestId } = render(<Forward {...defaultProps} className={'myClassName'}/>)
-		const section = getByTestId('test-id-section')
-		expect(section.className.includes('myClassName')).toBe(true)
+		const extraClassApplied = getByTestId('test-id-section').className.includes('myClassName')
+		expect(extraClassApplied).toBeTruthy()
 	})
 
 	it('Should trigger onClick when its clicked', () => {

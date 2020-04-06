@@ -22,9 +22,9 @@ describe('UI/lists/ListItem', () => {
         });
 
         it('Should not show empty description if not given', () => {
-            const { queryByTestId } = render(<ListItem {...defaultProps}/>);
-            const descriptionExists = queryByTestId('list-item-description');
-            expect(descriptionExists).not.toBeTruthy();
+            const { queryAllByTestId } = render(<ListItem {...defaultProps}/>);
+            const descriptionNotExists = queryAllByTestId('list-item-description').length === 0;
+            expect(descriptionNotExists).toBeTruthy();
         });
 
         it('Should show given icon if given', () => {
@@ -34,9 +34,9 @@ describe('UI/lists/ListItem', () => {
         });
 
         it('Should not show icon if not given', () => {
-            const { queryByTestId } = render(<ListItem {...defaultProps}/>);
-            const iconExists = queryByTestId('list-item-icon');
-            expect(iconExists).not.toBeTruthy();
+            const { queryAllByTestId } = render(<ListItem {...defaultProps}/>);
+            const iconNotExists = queryAllByTestId('list-item-icon').length === 0;
+            expect(iconNotExists).toBeTruthy();
         });
     })
 
@@ -49,9 +49,9 @@ describe('UI/lists/ListItem', () => {
         }
 
         it('Should not show link content if onLink is not given', () => {
-            const { queryByTestId } = render(<ListItem {...defaultProps}/>);
-            const linkExists = queryByTestId('list-item-heading-link');
-            expect(linkExists).not.toBeTruthy();
+            const { queryAllByTestId } = render(<ListItem {...defaultProps}/>);
+            const linkNotExists = queryAllByTestId('list-item-heading-link').length === 0;
+            expect(linkNotExists).toBeTruthy();
         });
 
         it('Should show link content if onLink event is given', () => {
@@ -74,8 +74,8 @@ describe('UI/lists/ListItem', () => {
     describe('Toggler behavior', () => {
         it('Should not visible if onChange is not provided', () => {
             const { queryAllByTestId } = render(<ListItem {...defaultProps} />);
-            const toggleExists = queryAllByTestId('list-item-toggle').length;
-            expect(toggleExists).not.toBeTruthy();
+            const toggleNotExists = queryAllByTestId('list-item-toggle').length === 0;
+            expect(toggleNotExists).toBeTruthy();
         });
 
         it('Should be visible if onChange is  provided', () => {

@@ -11,14 +11,14 @@ describe('UI/buttons/WrappedButton', () => {
 	it('Should wrap a Button with a section', () => {
 		const { getByTestId } = render(<WrappedButton {...defaultProps}>content</WrappedButton>)
 
-		const section = getByTestId('test-id-wrapper')
-		expect(section).toBeTruthy()
+		const sectionWrapperExist = getByTestId('test-id-wrapper')
+		expect(sectionWrapperExist).toBeTruthy()
 	})
 
 	it('Should add extra class if given', () => {
         const { getByTestId } = render(<WrappedButton {...defaultProps} className={'myClassName'}>content</WrappedButton>)
-		const section = getByTestId('test-id-wrapper')
-		expect(section.className.includes('myClassName')).toBe(true)
+		const extraClassApplied = getByTestId('test-id-wrapper').className.includes('myClassName')
+		expect(extraClassApplied).toBeTruthy();
 	})
 
 	it('Should trigger onClick when its clicked', () => {

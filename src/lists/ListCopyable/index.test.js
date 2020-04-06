@@ -50,8 +50,8 @@ describe('UI/lists/ListCopyable', () => {
     it('Should NOT display copy to clipboard button if hide property is true for given option', () => {
         const { queryAllByTestId } = render(<ListCopyable {...defaultProps}/>);
         const option = queryAllByTestId('list-copyable-element')[1];
-        const copyToClipboardFound = option.getElementsByTagName('button').length;
-        expect(copyToClipboardFound).not.toBeTruthy();
+        const copyToClipboardNotFound = option.getElementsByTagName('button').length === 0;
+        expect(copyToClipboardNotFound).toBeTruthy();
     });
 
     it('Should display copy to clipboard button if hide property is NOT given in option', () => {
