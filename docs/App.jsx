@@ -1,4 +1,5 @@
 import { Component } from 'preact'
+import { useState } from 'preact/hooks'
 import { MDXProvider } from '@mdx-js/react'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
 import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css'
@@ -68,39 +69,58 @@ import TopBarDoc from 'src/navigation/TopBar/Readme.md'
 import CopyableListDoc from 'src/lists/CopyableList/Readme.md'
 import IconDoc from 'docs/icons/Readme.md'
 
-export default class App extends Component {
-	aliases = {
-		index: '/',
-		button: '/buttons/Button',
-		wrappedButton: '/buttons/WrappedButton',
-		copyToClipboard: '/buttons/CopyToClipboard',
-		figureCard: '/buttons/FigureCard',
-		forward: '/buttons/Forward',
-		dialog: '/overlays/Dialog',
-		bottomDialog: '/overlays/BottomDialog',
-		field: '/forms/Field',
-		phoneField: '/forms/PhoneField',
-		bankAccountField: '/forms/BankAccountField',
-		dateField: '/forms/DateField',
-		selector: '/forms/Selector',
-		selectionList: '/forms/SelectionList',
-		textField: '/forms/TextField',
-		textFieldRule: '/forms/TextFieldRule',
-		actionItem: '/lists/ActionItem',
-		contentItem: '/lists/ContentItem',
-		listItem: '/lists/ListItem',
-		copyableList: '/lists/CopyableList',
-		spinner: '/loading/Spinner',
-		stepper: '/navigation/Stepper',
-		topbar: '/navigation/TopBar',
-		screen: '/structure/Screen',
-		scroll: '/structure/Scroll',
-		heading: '/typography/Heading',
-		text: '/typography/Text',
-		icons: '/icons/Icon',
-	}
+const App = () => {
 
-	components = {
+	const aliases = [
+		{ path: '/', doc: <IndexDoc /> },
+
+		{ path: '/buttons/Button', doc: <ButtonDoc />},
+		{
+			path: '/buttons/WrappedButton',
+			doc: <WrappedButtonDoc />
+		},
+		{
+			path: '/buttons/CopyToClipboard',
+			doc: <CopyToClipboardDoc />
+		},
+		{ path: '/buttons/FigureCard', doc: <FigureCardDoc />},
+		{ path: '/buttons/Forward', doc: <ForwardDoc />},
+		{ path: '/overlays/Dialog', doc: <DialogDoc />},
+		{
+			path: '/overlays/BottomDialog',
+			doc: <BottomDialogDoc />},
+		{ path: '/forms/Field', doc: <FieldDoc />},
+		{ path: '/forms/PhoneField', doc: <PhoneFieldDoc /> },
+		{
+			path: '/forms/BankAccountField',
+			doc: <BankAccountFieldDoc />,
+		},
+		{ path: '/forms/DateField', doc: <DateFieldDoc />},
+		{ path: '/forms/Selector', doc: <SelectorDoc /> },
+		{
+			path: '/forms/SelectionList',
+			doc: <SelectionListDoc />
+		},
+		{ path: '/forms/TextField', doc: <TextFieldDoc /> },
+		{
+			path: '/forms/TextFieldRule',
+			doc: <TextFieldRuleDoc />
+		},
+		{ path: '/lists/ActionItem', doc: <ActionItemDoc />},
+		{ path: '/lists/ContentItem', doc: <ContentItemDoc />},
+		{ path: '/lists/ListItem', doc: <ListItemDoc />},
+		{ path: '/lists/CopyableList', doc: <CopyableListDoc />},
+		{ path: '/loading/Spinner', doc: <SpinnerDoc />},
+		{ path: '/navigation/Stepper', doc: <StepperDoc />},
+		{ path: '/navigation/TopBar', doc: <TopBarDoc />},
+		{ path: '/structure/Screen', doc: <ScreenDoc />},
+		{ path: '/structure/Scroll', doc: <ScrollDoc />},
+		{ path: '/typography/Heading', doc: <HeadingDoc /> },
+		{ path: '/typography/Text', doc: <TextDoc />},
+		{ path: '/icons/Icon', doc: <IconDoc /> },
+	]
+
+	const components = {
 		h1: props => <h1 className={CSS.h1}>{props.children}</h1>,
 		h2: props => <h2 className={CSS.h2}>{props.children}</h2>,
 		h3: props => <h3 className={CSS.h3}>{props.children}</h3>,
@@ -159,169 +179,22 @@ export default class App extends Component {
 		},
 	}
 
-	componentDidMount() {}
 
-	render() {
-		return (
-			<MDXProvider components={this.components}>
-				<div className="doc-app">
-					<Navigation />
-					<Router history={createHashHistory()}>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.index}>
-							<Scroll>
-								<IndexDoc />
-							</Scroll>
+
+	return (
+		<MDXProvider components={components}>
+			<div className="doc-app">
+				<Navigation/>
+				<Router history={createHashHistory()}>
+					{aliases.map(({ path, doc }) => (
+						<Screen className="doc-screen" displayMode="overlay" path={path}>
+							<Scroll>{doc}</Scroll>
 						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.button}>
-							<Scroll>
-								<ButtonDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.wrappedButton}>
-							<Scroll>
-								<WrappedButtonDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.copyToClipboard}>
-							<Scroll>
-								<CopyToClipboardDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.figureCard}>
-							<Scroll>
-								<FigureCardDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.forward}>
-							<Scroll>
-								<ForwardDoc />
-							</Scroll>
-						</Screen>
-						<Screen
-							className="doc-screen doc-full-viewport"
-							displayMode="overlay"
-							path={this.aliases.dialog}
-						>
-							<Scroll>
-								<DialogDoc />
-							</Scroll>
-						</Screen>
-						<Screen
-							className="doc-screen doc-full-viewport"
-							displayMode="overlay"
-							path={this.aliases.bottomDialog}
-						>
-							<Scroll>
-								<BottomDialogDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.field}>
-							<Scroll>
-								<FieldDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.phoneField}>
-							<Scroll>
-								<PhoneFieldDoc />
-							</Scroll>
-						</Screen>
-						<Screen
-							className="doc-screen"
-							displayMode="overlay"
-							path={this.aliases.bankAccountField}
-						>
-							<Scroll>
-								<BankAccountFieldDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.dateField}>
-							<Scroll>
-								<DateFieldDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.selector}>
-							<Scroll>
-								<SelectorDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.selectionList}>
-							<Scroll>
-								<SelectionListDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.textField}>
-							<Scroll>
-								<TextFieldDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.textFieldRule}>
-							<Scroll>
-								<TextFieldRuleDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.actionItem}>
-							<Scroll>
-								<ActionItemDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.contentItem}>
-							<Scroll>
-								<ContentItemDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.listItem}>
-							<Scroll>
-								<ListItemDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.spinner}>
-							<Scroll>
-								<SpinnerDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.stepper}>
-							<Scroll>
-								<StepperDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.topbar}>
-							<Scroll>
-								<TopBarDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.icons}>
-							<Scroll>
-								<IconDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.screen}>
-							<Scroll>
-								<ScreenDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.scroll}>
-							<Scroll>
-								<ScrollDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.heading}>
-							<Scroll>
-								<HeadingDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.text}>
-							<Scroll>
-								<TextDoc />
-							</Scroll>
-						</Screen>
-						<Screen className="doc-screen" displayMode="overlay" path={this.aliases.copyableList}>
-							<Scroll>
-								<CopyableListDoc />
-							</Scroll>
-						</Screen>
-					</Router>
-				</div>
-			</MDXProvider>
-		)
-	}
+					))}
+				</Router>
+			</div>
+		</MDXProvider>
+	)
 }
+
+export default App;
