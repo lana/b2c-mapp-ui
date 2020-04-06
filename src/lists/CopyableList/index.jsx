@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Text from '../../typography/Text'
 import Heading from '../../typography/Heading'
 import CopyToClipboard from '../../buttons/CopyToClipboard';
-import CSS from './ListCopyable.css'
+import CSS from './CopyableList.css'
 
 
-const ListCopyable = ({ options, title, children, dataTestId }) => (
+const CopyableList = ({ options, title, children, dataTestId }) => (
 	<section className={CSS.section}>
 		<Heading className={CSS.title} type="callout">
 			{title}
@@ -50,12 +50,12 @@ const ListCopyable = ({ options, title, children, dataTestId }) => (
 	</section>
 )
 
-ListCopyable.defaultProps = {
+CopyableList.defaultProps = {
 	children: '',
 	dataTestId: 'list-copyable',
 }
 
-ListCopyable.propTypes = {
+CopyableList.propTypes = {
 	children: PropTypes.node,
 	dataTestId: PropTypes.String,
 	title: PropTypes.string.isRequired,
@@ -69,4 +69,4 @@ ListCopyable.propTypes = {
 	).isRequired
 }
 
-export default ListCopyable;
+export default CopyableList;

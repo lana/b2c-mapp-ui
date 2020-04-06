@@ -4,7 +4,9 @@
  - Added CopyToClipboard button
  - Component refactors from class to functional
  - Unit tests
- - Refactor ListCopyable using new CopyToClipboard button
+ - Renaming ListCopyable to CopyableLIst
+ - Renaming ButtonWrapped to WrappedButton
+ - Refactor CopyableList using new CopyToClipboard button
  - Added Toggle Hook & copy-to-clipboard utilities
  - Refactor ActionItem component: from `media` to `mediaContent` prop
 

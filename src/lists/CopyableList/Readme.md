@@ -1,4 +1,4 @@
-# ListCopyable
+# CopyableList
 
 A list item which takes the consumer to perform an action in another screen.
 
@@ -9,7 +9,7 @@ A list item which takes the consumer to perform an action in another screen.
 | `children` | `ReactNode`                                                                            | false      |
 
 ```
-<ListCopyable
+<CopyableList
 	title={'Datos de la cuenta'}
 	options={[
 		{
