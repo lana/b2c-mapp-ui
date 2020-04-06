@@ -7,11 +7,11 @@
 
 .FigureCard,
 .FigureCard figure,
-.FigureCard div {
+.FigureCard .image-wrapper {
 	border-radius: 6px;
 }
 
-.FigureCard div {
+.FigureCard .image-wrapper {
 	box-sizing: border-box;
 	width: 135px;
 	height: 85px;
@@ -20,6 +20,11 @@
 	background-repeat: no-repeat;
 	padding: 8px;
 	margin: 0 auto;
+}
+
+.FigureCard .image-wrapper .image {
+	width: 100%;
+	height: 100%;
 }
 
 .FigureCard a {

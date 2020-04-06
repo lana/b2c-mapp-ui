@@ -4,7 +4,7 @@ A list item which takes the consumer to perform an action in another screen.
 | Prop |  Value Type | Required |
 | --- | --- | --- |
 | `className` | `String` | false |
-| `media` | `ReactNode` | false |
+| `mediaContent` | `ReactNode` | false |
 | `mediaColor` | `blue`, `green`, `yellow`, `brown`, `purple` | false |
 | `title` | `String` | **true** |
 | `onClick` | `(e: HTMLMouseEvent) => void` | false |
@@ -12,9 +12,9 @@ A list item which takes the consumer to perform an action in another screen.
 
 ```
 <ul>
-    <ActionItem title='1st item' media={<img src="https://source.unsplash.com/random/44x44" />} />
-    <ActionItem title='2nd item' media={<UpIcon />} highlight mediaColor="blue" />
-    <ActionItem title='3nd item' media={<UpIcon />} highlight mediaColor="purple" />
-    <ActionItem title='4rd item' media={<UpIcon />} />
+    <ActionItem title='1st item' mediaContent={<img src="https://source.unsplash.com/random/44x44" />} />
+    <ActionItem title='2nd item' mediaContent={<UpIcon />} highlight mediaColor="blue" />
+    <ActionItem title='3nd item' mediaContent={<UpIcon />} highlight mediaColor="purple" />
+    <ActionItem title='4rd item' mediaContent={<UpIcon />} />
 </ul>
 ```

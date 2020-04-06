@@ -20,7 +20,8 @@ export default class Navigation extends Component {
 					<h2 className={CSS.heading}>UI</h2>
 					<ul>
 						<li><Link href='/buttons/Button'>Button</Link></li>
-						<li><Link href='/buttons/ButtonWrapped'>ButtonWrapped</Link></li>
+						<li><Link href='/buttons/WrappedButton'>WrappedButton</Link></li>
+						<li><Link href='/buttons/CopyToClipboard'>CopyToClipboard</Link></li>
 						<li><Link href='/buttons/FigureCard'>FigureCard</Link></li>
 						<li><Link href='/buttons/Forward'>Forward</Link></li>
 						<li><Link href='/overlays/Dialog'>Dialog</Link></li>
@@ -36,7 +37,7 @@ export default class Navigation extends Component {
 						<li><Link href='/lists/ActionItem'>ActionItem</Link></li>
 						<li><Link href='/lists/ContentItem'>ContentItem</Link></li>
 						<li><Link href='/lists/ListItem'>ListItem</Link></li>
-						<li><Link href='/lists/ListCopyable'>ListCopyable</Link></li>
+						<li><Link href='/lists/CopyableList'>CopyableList</Link></li>
 						<li><Link href='/loading/Spinner'>Spinner</Link></li>
 						<li><Link href='/navigation/Stepper'>Stepper</Link></li>
 						<li><Link href='/navigation/TopBar'>TopBar</Link></li>

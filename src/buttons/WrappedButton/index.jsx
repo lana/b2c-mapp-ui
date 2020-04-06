@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types'
-import Button from '../Button'
-import { ForwardIcon } from '@lana/b2c-mapp-ui-assets'
 import CSS from './styles.css'
+import Button from '../Button'
 
-const Forward = ({ children, className, dataTestId, href, id, loading, onClick, type }) => {
+const WrappedButton = ({ dataTestId, id, href, onClick, type, loading, children, className }) => {
 	return (
-		<section data-testid={`${dataTestId}-section`} className={`${CSS.wrapper} ${className || ''}`}>
+		<section data-testid={`${dataTestId}-wrapper`} className={`${CSS.wrapper} ${className || ''}`}>
 			<Button
 				dataTestId={dataTestId}
 				id={id}
@@ -14,25 +13,23 @@ const Forward = ({ children, className, dataTestId, href, id, loading, onClick, 
 				type={type}
 				loading={loading}
 			>
-				<ForwardIcon color="black-100" />
 				{children}
 			</Button>
 		</section>
 	)
 }
 
-Forward.defaultProps = {
-	className: null,
-	dataTestId: 'forward',
+WrappedButton.defaultProps = {
+	dataTestId: 'button-wrapped',
 	href: null,
 	id: null,
 	loading: false,
+	className: null,
 	type: null,
-	children:''
 }
 
-Forward.propTypes = {
-	children: PropTypes.node,
+WrappedButton.propTypes = {
+	children: PropTypes.node.isRequired,
 	className: PropTypes.string,
 	dataTestId: PropTypes.string,
 	href: PropTypes.string,
@@ -42,4 +39,4 @@ Forward.propTypes = {
 	type: PropTypes.string,
 }
 
-export default Forward
+export default WrappedButton;
