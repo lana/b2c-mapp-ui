@@ -6,6 +6,7 @@
  - Unit tests
  - Refactor ListCopyable using new CopyToClipboard button
  - Added Toggle Hook & copy-to-clipboard utilities
+ - Refactor ActionItem component: from `media` to `mediaContent` prop
 
 ## v.4.0.1 - 2020-03-20
  - Removed button inside FigureCard component and onclick/link props

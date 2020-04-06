@@ -6,34 +6,47 @@ describe('UI/lists/ActionItem', () => {
     const defaultProps = {
         dataTestId:'action-item',
         className: "CLASSNAME",
-        mediaColor: "MEDIACOLOR",
-        media: "MEDIA",
+        mediaColor: "RED",
+        mediaContent: <img src='' alt=''/>,
         highlight: true,
+        title: "TITLE"
+    }
+
+    const withoutMediaContentProps = {
+        dataTestId:'action-item',
+        className: "CLASSNAME",
+        mediaColor: "RED",
         title: "TITLE"
     }
     
     it('Should apply given className class', () => {
         const { getByTestId } = render(<ActionItem {...defaultProps} />);
-        const li = getByTestId('action-item');
-        expect(li.className.includes('CLASSNAME')).toBe(true);
+        const classNameApplied = getByTestId('action-item').className.includes('CLASSNAME');
+        expect(classNameApplied).toBeTruthy();
     });
 
-    it('Should apply given mediaColor class', () => {
+    it('Should apply mediaColorClassname if mediaContent and mediaColor prop is given', () => {
         const { getByTestId } = render(<ActionItem {...defaultProps} />);
-        const div = getByTestId('action-item-mediacolor');
-        expect(div.className.includes('MEDIACOLOR')).toBe(true);
+        const mediaColorClassApplied = getByTestId('action-item-mediacolor').className.includes('RED');
+        expect(mediaColorClassApplied).toBeTruthy();
     });
 
-    it('Should show given media content', () => {
-        const { getByTestId } = render(<ActionItem {...defaultProps} />);
-        const mediaContent = getByTestId('action-item-mediacolor').textContent;
-        expect(mediaContent).toEqual("MEDIA");
+    it('Should NOT include action-item-mediacolor item if mediaContent is NOT given', () => {
+        const { queryAllByTestId } = render(<ActionItem {...withoutMediaContentProps} />);
+        const mediaColorNotExist = queryAllByTestId('action-item-mediacolor').length === 0;
+        expect(mediaColorNotExist).toBeTruthy();
     });
 
     it('Should apply given highlight class to inner text', () => {
         const { getByTestId } = render(<ActionItem {...defaultProps} />);
-        const textClass = getByTestId('text').className;
-        expect(textClass.includes('highlight')).toBe(true);
+        const highlightApplied = getByTestId('action-item-highlight').className.includes('highlight');
+        expect(highlightApplied).toBe(true);
+    });
+
+    it('Should NOT apply given highlight class to action-item-highlight if highlight is NOT given', () => {
+        const { getByTestId } = render(<ActionItem {...defaultProps} highlight={false} />);
+        const highlightNotApplied = !getByTestId('action-item-highlight').className.includes('highlight');
+        expect(highlightNotApplied).toBeTruthy();
     });
 
 	it('should trigger components onClick', () => {
