@@ -43,8 +43,12 @@ const Navigation = () => {
 	const [filterValue, setFilterValue] = useState('');
 
 	const filterItems = (newFilterValue) => {
+		const upperFilterValue = (newFilterValue !== '' )? newFilterValue.toUpperCase() : '';
 		setFilterValue(newFilterValue);
-		const newLinks = defaultLinks.filter(({keywords}) => keywords.includes(newFilterValue));
+		const newLinks = defaultLinks.filter(({keywords}) => {
+			const upperKeywords = keywords.toUpperCase();
+			return upperKeywords.includes(upperFilterValue)
+		});
 		setLinks(newLinks);
 	}
 

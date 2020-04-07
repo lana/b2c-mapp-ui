@@ -1,123 +1,117 @@
-import { Component } from 'preact'
-import PropTypes from 'prop-types'
+import { useMemo, useEffect, useRef, useState } from 'preact/hooks'
+import PropTypes from 'prop-types';
 
-import CSS from './styles.css'
+import {useToggle} from './../../utils/hooks';
 
-export default class Field extends Component {
-	constructor(props) {
-		super(props)
-		const value = props.value || ''
-		this.state = {
-			name: props.name,
-			value: value,
-			isFocused: false,
-			isLabeled: value.length != 0,
+import CSS from './styles.css';
+
+const Field = ({
+	id,
+	dataTestId,
+	errorLabel,
+	startFocused,
+	maxLength,
+	type,
+	value,
+	readOnly,
+	className,
+	placeholder,
+	showPrefix,
+	children,
+	onBlur,
+	onChange,
+	onFocus,
+}) => {
+	const [isFocused, toggleFocus] = useToggle(false);
+
+	let inputRef = useRef(null);
+
+	useEffect(() => {
+		if (startFocused) {
+			toggleFocus();
+			inputRef && inputRef.focus(); 
 		}
-		this.ref = null
+	}, []);
+	
+	const handleOnFocus = (e) => {
+		toggleFocus();
+		if (onFocus) { onFocus(e); }
 	}
 
-	componentDidUpdate(prevProps) {
-		if (prevProps.value !== this.props.value) {
-			this.setState({
-				value: this.props.value,
-				isLabeled: this.props.value.length > 0,
-			})
-		}
+	const handleOnBlur = (e) => {
+		toggleFocus();
+		if (onBlur) { onBlur(e); }
 	}
 
-	onFocus(e) {
-		const { onFocus } = this.props
-		this.setState({ isFocused: true })
-		if (onFocus) onFocus(e)
+	const handleOnChange = ({target: { value: fieldValue }}) => {
+		if (onChange) { onChange(fieldValue); }
 	}
 
-	onBlur(e) {
-		const { onBlur } = this.props
-		this.setState({ isFocused: false })
-		if (onBlur) onBlur(e)
-	}
-
-	onChange(e) {
-		const { onChange } = this.props
-		this.setValue(e.target.value)
-		if (onChange) onChange(e)
-	}
-
-	setValue(value) {
-		this.setState({
-			value: value,
-			isLabeled: value.length != 0,
-		})
-	}
-
-	focus() {
-		if (this.ref) {
-			this.ref.focus()
-		}
-	}
-
-	render() {
-		const {
-			props: {
-				errorLabel,
-				placeholder,
-				className,
-				children,
-				type,
-				showPrefix,
-				maxLength,
-				readOnly,
-			},
-			state: { isLabeled, isFocused, name, value },
-		} = this
-		const labeledClass = showPrefix || isLabeled || readOnly ? CSS.labeled : ''
-		const focusClass = isFocused ? CSS.focus : ''
-		const hasError = errorLabel
-		const errorClass = hasError ? CSS.error : ''
-		const readonlyClass = readOnly ? CSS.readonly : null
-		const dataTestId = this.props.dataTestId || 'Field'
-
+	return (useMemo(() => {
+		const isLabeled = value !== '';
+		const labeledClass = (showPrefix || isLabeled || readOnly) ? CSS.labeled : '';
 		return (
 			<label
 				data-testid={`${dataTestId}-label`}
-				className={`${
-					CSS.field
-				} ${labeledClass} ${focusClass} ${errorClass} ${readonlyClass} ${className || ''}`}
+				className={`${CSS.field} ${labeledClass} ${(isFocused) ? CSS.focus : ''} ${(errorLabel) ? CSS.error : ''} ${(readOnly) ? CSS.readonly : ''} ${className}`}
 			>
-				{children || ''}
-				<strong className={CSS.label}>{hasError ? errorLabel : placeholder}</strong>
+				{ children || '' }
+				<strong className={CSS.label}>{errorLabel || placeholder}</strong>
 				<input
 					data-testid={`${dataTestId}-input`}
-					ref={elem => (this.ref = elem)}
-					onFocus={e => this.onFocus(e)}
-					onBlur={e => this.onBlur(e)}
-					onInput={e => this.onChange(e)}
+					id={id || name}
+					ref={elem => (inputRef = elem)}
+					onFocus={handleOnFocus}
+					onBlur={handleOnBlur}
+					onChange={handleOnChange}
+					onInput={handleOnChange}
 					autoComplete="off"
 					className={CSS.input}
 					type={type}
-					maxLength={maxLength || 100}
-					readOnly={readOnly || false}
+					maxLength={maxLength}
+					readOnly={readOnly}
 					name={name}
 					value={value}
 				/>
 			</label>
-		)
-	}
+		);
+	}, [inputRef, isFocused, value]));
+
+};
+
+Field.defaultProps = {
+	id: null,
+	dataTestId: 'field',
+	errorLabel: '',
+	maxLength: 100,
+	value: '',
+	readOnly: false,
+	className: '',
+	showPrefix: false,
+	children: null,
+	startFocused: false,
+	onBlur: null,
+	onChange: null,
+	onFocus: null,
 }
 
 Field.propTypes = {
+	name: PropTypes.string.isRequired,
+	placeholder: PropTypes.string.isRequired,
+	type: PropTypes.string.isRequired,
+	errorLabel: PropTypes.string,
+	id: PropTypes.string,
 	dataTestId: PropTypes.string,
-	errorLabel: PropTypes.string.isRequired,
-	errors: PropTypes.array,
 	maxLength: PropTypes.number,
-	type: PropTypes.string,
 	value: PropTypes.string,
 	readOnly: PropTypes.bool,
+	startFocused: PropTypes.bool,
 	className: PropTypes.string,
-	placeholder: PropTypes.string,
 	showPrefix: PropTypes.bool,
 	children: PropTypes.node,
 	onBlur: PropTypes.func,
 	onChange: PropTypes.func,
 	onFocus: PropTypes.func,
-}
+};
+
+export default Field;

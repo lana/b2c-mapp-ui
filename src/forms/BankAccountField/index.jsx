@@ -1,88 +1,126 @@
-import { Component } from 'preact'
+import PropTypes from 'prop-types';
 
-import CSS from './styles.css'
-import Field from '../Field'
+import Field from '../Field';
 
-// BankAccountField extends a regular Field including special formatting
-// for bank account numbers as the user types. Validation is passed to the caller.
-export default class BankAccountField extends Component {
-	templates = {
+const BankAccountField = ({
+	countryCode,
+	className,
+	dataTestId,
+	maxLength,
+	placeholder,
+	errorLabel,
+	value,
+	onChange,
+	onBlur,
+	onFocus,
+}) => {
+	const templates = {
 		MX: `XXX XXX XXXXXXXXXXX X`,
-	}
+	};
 
-	validations = {
+	const validations = {
 		MX: account => {
-			let value = account.split('')
-			let dcIn = parseInt(value.pop())
+			const accountValue = account.split('');
+			const controlDigitIn = parseInt(accountValue.pop());
 
-			let sum = value.reduce(
+			const sum = accountValue.reduce(
 				(buffer, digit, index) => (buffer += (digit * [3, 7, 1][index % 3]) % 10),
 				0,
-			)
-			let dcOut = (10 - (sum % 10)) % 10
+			);
 
-			return dcIn === dcOut
+			const controlDigitOut = (10 - (sum % 10)) % 10;
+			return controlDigitIn === controlDigitOut;
 		},
-	}
+	};
 
-	validateAccountNumber(accountNumber, countryCode) {
-		let value = accountNumber.replace(/ /g, '')
-		let templateLength = this.templates[countryCode].replace(/ /g, '').length
-		let customValidation = this.validations[countryCode](value)
+	const validateAccountNumber = ({ accountNumber, countryCode }) => {
+		const accountValue = accountNumber.replace(/ /g, '');
+		const templateLength = templates[countryCode].replace(/ /g, '').length;
+		const customValidation = validations[countryCode](accountValue);
 
-		let isMaxLength = value.length === templateLength
-		let isValid = isMaxLength && customValidation
+		const isMaxLength = accountValue.length === templateLength;
+		const isValid = isMaxLength && customValidation;
 
-		return { isValid: isValid, isMaxLength: isMaxLength }
-	}
+		return { isValid, isMaxLength };
+	};
 
-	parseAccountNumber(accountNumber, countryCode) {
-		let template = this.templates[countryCode].slice(0)
-		let accountDigits = accountNumber.split('')
+	const accountNumberFormatter = ({ accountNumber, countryCode }) => {
+		const template = templates[countryCode].slice(0);
+		const accountDigits = accountNumber.split('');
 
-		let value = accountDigits.reduce((buffer, digit, index) => {
+		const accountValue = accountDigits.reduce((buffer, digit, index) => {
 			if (index < template.length && !isNaN(digit)) {
 				if (template[index] === 'X') {
-					buffer.push(digit)
+					buffer.push(digit);
 				} else {
-					if (digit !== ' ') buffer.push(' ')
-					buffer.push(digit)
+					if (digit !== ' ') buffer.push(' ');
+					buffer.push(digit);
 				}
 			}
-			return buffer
-		}, [])
+			return buffer;
+		}, []);
 
-		// Remove leading spaces
-		if (value[value.length - 1] === ' ') value.pop()
+		return accountValue.join('').trim();
+	};
 
-		return value.join('')
-	}
+	const handleOnChange = ({ target: { value: fieldValue } }) => {
+		const parsedValue = accountNumberFormatter({ accountNumber: fieldValue, countryCode });
+		const validation = validateAccountNumber({ accountNumber: parsedValue, countryCode });
+		if (onChange) {
+			onChange(fieldValue, validation);
+		}
+	};
 
-	onChange(e) {
-		let value = this.parseAccountNumber(e.target.value, this.props.countryCode)
-		let validation = this.validateAccountNumber(value, this.props.countryCode)
-		if (this.props.onChange) this.props.onChange(value, validation)
-	}
+	const handleOnBlur = ({ target: { value: fieldValue } }) => {
+		if (onBlur) {
+			onBlur(fieldValue);
+		}
+	};
 
-	onBlur(ev) {
-		if (this.props.onBlur) this.props.onBlur(ev.target.value)
-	}
+	const handleOnFocus = ({ target: { value: fieldValue } }) => {
+		if (onFocus) {
+			onFocus(fieldValue);
+		}
+	};
 
-	render(props) {
-		const dataTestId = props.dataTestId || 'BankAccountField'
+	return (
+		<Field
+			dataTestId={dataTestId}
+			placeholder={placeholder}
+			className={`${className || ''}`}
+			errorLabel={errorLabel}
+			type="tel"
+			value={value}
+			maxLength={maxLength}
+			onChange={handleOnChange}
+			onBlur={handleOnBlur}
+			onFocus={handleOnFocus}
+		/>
+	);
+};
 
-		return (
-			<Field
-				dataTestId={dataTestId}
-				placeholder={props.placeholder}
-				className={`${props.className || ''}`}
-				errorLabel={props.errorLabel}
-				type="tel"
-				value={props.value}
-				maxLength={props.maxLength}
-				onChange={ev => this.onChange(ev)}
-				onBlur={ev => this.onBlur(ev)}
-			/>
-		)
-	}
-}
+BankAccountField.defaultProps = {
+	dataTestId: 'bank-account-field',
+	className: '',
+	maxLength: 18,
+	errorLabel: '',
+	value: '',
+	onBlur: null,
+	onChange: null,
+	onFocus: null
+};
+
+BankAccountField.propTypes = {
+	dataTestId: PropTypes.string,
+	className: PropTypes.string,
+	countryCode: PropTypes.string.isRequired,
+	maxLength: PropTypes.number,
+	placeholder: PropTypes.string.isRequired,
+	errorLabel: PropTypes.string,
+	value: PropTypes.string,
+	onChange: PropTypes.func,
+	onBlur: PropTypes.func,
+	onFocus: PropTypes.func,
+};
+
+export default BankAccountField;
