@@ -1,16 +1,30 @@
-import CSS from './styles.css'
-import Text from '../Text/Text'
+import PropTypes from 'prop-types';
 
-export default class Heading extends Text {
-	render({type, weight, className, dataTestId}) {
-		const typeClass = CSS[type] || ''
-		const weightClass = CSS[weight] || ''
-		const testId = dataTestId || 'heading'
+import CSS from './styles.css';
 
-		return (
-			<h1 data-testid={testId} className={`${CSS.title} ${typeClass} ${weightClass} ${className || ''}`}>
-				{this.props.children}
-			</h1>
-		)
-	}
-}
+const Heading = ({type, weight, className, dataTestId, children}) => {
+	const typeClass = CSS[type] || '';
+	const weightClass = CSS[weight] || '';
+	return (
+		<h1 data-testid={dataTestId} className={`${CSS.title} ${typeClass} ${weightClass} ${className}`}>
+			{children}
+		</h1>
+	);
+};
+
+Heading.defaultProps = {
+	type: null,
+	weight: null,
+	className: '',
+	dataTestId: 'heading',
+};
+
+Heading.propTypes = {
+	type: PropTypes.string,
+	weight: PropTypes.string,
+	className: PropTypes.string,
+	children: PropTypes.node.isRequired,
+	dataTestId: PropTypes.string,
+};
+
+export default Heading;

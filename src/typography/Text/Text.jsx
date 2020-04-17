@@ -1,20 +1,35 @@
-import '../../Theme/Theme'
-import CSS from './styles.css'
+import PropTypes from 'prop-types';
 
-export default class Text {
-	render({ type, color, weight, className, dataTestId }) {
-		const typeClass = CSS[type] || ''
-		const colorClass = CSS[color] || ''
-		const weightClass = CSS[weight] || ''
-		const testId = dataTestId || 'text'
+import '../../Theme/Theme';
+import CSS from './styles.css';
 
-		return (
-			<p
-				data-testid={testId}
-				className={`${CSS.txt} ${typeClass} ${colorClass} ${weightClass} ${className || ''}`}
-			>
-				{this.props.children}
-			</p>
-		)
-	}
-}
+const Text = ({ type, color, weight, className, dataTestId, children }) => {
+	const typeClass = CSS[type] || '';
+	const colorClass = CSS[color] || '';
+	const weightClass = CSS[weight] || '';
+
+	return (
+		<p data-testid={dataTestId} className={`${CSS.txt} ${typeClass} ${colorClass} ${weightClass} ${className}`}>
+			{children}
+		</p>
+	);
+};
+
+Text.defaultProps = {
+	type: '',
+	color: '',
+	weight: '',
+	className: '',
+	dataTestId: 'text',
+};
+
+Text.propTypes = {
+	type: PropTypes.string,
+	color: PropTypes.string,
+	weight: PropTypes.string,
+	className: PropTypes.string,
+	dataTestId: PropTypes.string,
+	children: PropTypes.node.isRequired,
+};
+
+export default Text;

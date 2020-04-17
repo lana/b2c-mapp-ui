@@ -10,7 +10,7 @@ export default class Scroll extends Component {
 	}
 
 	scrollTo(position) {
-		if (typeof position == 'number') this.node.scrollTop = position
+		if (typeof position == 'number') { this.node.scrollTop = position; }
 	}
 
 	render() {
