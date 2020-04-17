@@ -1,11 +1,11 @@
-import { useState } from 'preact/hooks'
+import { useState } from 'preact/hooks';
 import { Link } from 'preact-router';
-import 'src/Theme'
-import CSS from './Navigation.css'
 
-import Scroll from 'src/structure/Scroll'
-import Logo from  'docs/images/img_logo'
-import TextField from 'src/forms/TextField';
+import 'src/Theme/Theme';
+import CSS from './Navigation.css';
+import Scroll from 'src/structure/Scroll/Scroll';
+import Logo from  'docs/images/img_logo';
+import TextField from 'src/forms/TextField/TextField';
 
 const Navigation = () => {
 

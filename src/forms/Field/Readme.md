@@ -24,23 +24,23 @@ A simple text field.
 - No focused & No value
 
 ```
-<Field placeholder='Enter your name' />
+<Field placeholder='Enter your name' name={'example_one'}/>
 ```
 
 - Focused & Value
 
 ```
-<Field placeholder="Example" value="foo" startFocused/>
+<Field placeholder="Example" value="foo" startFocused name={'example_two'}/>
 ```
 
 - No Focused, with error:
 
 ```
-<Field value="foo" errorLabel="Invalid value" />
+<Field value="foo" errorLabel="Invalid value"  name={'example_three'}/>
 ```
 
 - Readonly:
 
 ```
-<Field placeholder='Enter your name' value='value locked' readOnly/>
+<Field placeholder='Enter your name' value='value locked' readOnly name={'example_four'}/>
 ```
