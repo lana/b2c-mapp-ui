@@ -36,6 +36,7 @@ import {
 	TopBar,
 	DateField,
 	CopyableList,
+	Toggle,
 } from 'src';
 
 import IndexDoc from '../README.md';
@@ -52,6 +53,7 @@ import BankAccountFieldDoc from 'src/forms/BankAccountField/Readme.md';
 import DateFieldDoc from 'src/forms/DateField/Readme.md';
 import SelectorDoc from 'src/forms/Selector/Readme.md';
 import SelectionListDoc from 'src/forms/SelectionList/Readme.md';
+import ToggleDoc from 'src/forms/Toggle/Readme.md';
 import ActionItemDoc from 'src/lists/ActionItem/Readme.md';
 import ContentItemDoc from 'src/lists/ContentItem/Readme.md';
 import ListItemDoc from 'src/lists/ListItem/Readme.md';
@@ -95,6 +97,7 @@ const App = () => {
 		},
 		{ path: '/forms/DateField', doc: <DateFieldDoc /> },
 		{ path: '/forms/Selector', doc: <SelectorDoc /> },
+		{ path: '/forms/Toggle', doc: <ToggleDoc /> },
 		{
 			path: '/forms/SelectionList',
 			doc: <SelectionListDoc />,
@@ -160,6 +163,7 @@ const App = () => {
 				TextFieldRule,
 				DateField,
 				CopyableList,
+				Toggle,
 				...Icons,
 			};
 

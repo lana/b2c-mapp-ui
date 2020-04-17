@@ -1,61 +1,86 @@
-import { Component } from 'preact'
+import { useMemo } from 'preact/hooks';
+import PropTypes from 'prop-types';
 
 import Heading from '../../typography/Heading/Heading'
 import Text from '../../typography/Text/Text'
 import Scroll from '../../structure/Scroll/Scroll'
 import CSS from './styles.css'
 
-export default class Dialog extends Component {
-	onDismiss(e) {
-		if (this.props.onDismiss) this.props.onDismiss(e)
+const Dialog = ({ dataTestId, confirm, dismiss, visible, title, description, children, onDismiss, onConfirm }) => {
+	const handleOnDismiss = (event) => {
+		if (onDismiss) { onDismiss(event); }
 	}
 
-	onConfirm(e) {
-		if (this.props.onConfirm) this.props.onConfirm(e)
+	const handleOnConfirm = (event) => {
+		if (onConfirm) { onConfirm(event); }
 	}
 
-	render() {
-		let visibleClass = this.props.visible ? CSS.visible : ''
-		const testId = this.props.dataTestId || 'dialog'
+	return useMemo(() => {
+		const visibleClass = visible ? CSS.visible : '';
 
 		return (
-			<section data-testid={testId} className={`${CSS.overlay} ${visibleClass}`}>
-				<div data-testid={`${testId}-content`} className={CSS.dialog}>
-					{this.props.title && (
-						<Heading type="title2" className={CSS.title}>
-							{this.props.title}
+			<section data-testid={`${dataTestId}-section`} className={`${CSS.overlay} ${visibleClass}`}>
+				<div data-testid={`${dataTestId}-content`} className={CSS.dialog}>
+					{(title) && (
+						<Heading dataTestId={`${dataTestId}-title`} type="title2" className={CSS.title}>
+							{title}
 						</Heading>
 					)}
-					{this.props.description ? (
-						<Text dataTestId={`${testId}-description`} color="concrete" className={CSS.description}>
-							{this.props.description}
+					{(description) ? (
+						<Text dataTestId={`${dataTestId}-description`} color="concrete" className={CSS.description}>
+							{description}
 						</Text>
 					) : (
-						<Scroll className={CSS.content}>{this.props.children}</Scroll>
+						<Scroll dataTestId={`${dataTestId}-children`} className={CSS.content}>{children}</Scroll>
 					)}
 
-					<div data-testid={`${testId}-actions`} className={CSS.actions}>
-						{this.props.dismiss && (
+					<div data-testid={`${dataTestId}-actions`} className={CSS.actions}>
+						{(dismiss) && (
 							<button
-								data-testid={`${testId}-action-dismiss`}
-								onClick={e => this.onDismiss(e)}
+								data-testid={`${dataTestId}-action-dismiss-button`}
+								onClick={handleOnDismiss}
 								className={`${CSS.action} ${CSS.dismiss}`}
 							>
-								{this.props.dismiss}
+								{dismiss}
 							</button>
 						)}
-						{this.props.confirm && (
+						{confirm && (
 							<button
-								data-testid={`${testId}-action-confirm`}
-								onClick={e => this.onConfirm(e)}
+								data-testid={`${dataTestId}-action-confirm-button`}
+								onClick={handleOnConfirm}
 								className={CSS.action}
 							>
-								{this.props.confirm}
+								{confirm}
 							</button>
 						)}
 					</div>
 				</div>
 			</section>
-		)
-	}
+		)}, [visible, title, description, dismiss, children, confirm]);
 }
+
+Dialog.defaultProps = {
+	dataTestId: 'dialog',
+	visible: false,
+	title: '',
+	description: '',
+	children: null,
+	onDismiss: null,
+	onConfirm: null,
+	confirm: null,
+	dismiss: null
+};
+
+Dialog.propTypes = {
+	dataTestId: PropTypes.string,
+	confirm: PropTypes.string,
+	dismiss: PropTypes.string,
+	visible: PropTypes.bool,
+	title: PropTypes.string,
+	description: PropTypes.string,
+	children: PropTypes.node,
+	onDismiss: PropTypes.func,
+	onConfirm: PropTypes.func,
+};
+
+export default Dialog;

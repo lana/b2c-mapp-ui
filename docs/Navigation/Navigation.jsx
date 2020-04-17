@@ -24,6 +24,7 @@ const Navigation = () => {
 		{ link: <li><Link href='/forms/SelectionList'>SelectionList</Link></li>, keywords: 'forms selectionlist input'},
 		{ link: <li><Link href='/forms/TextField'>TextField</Link></li>, keywords: 'forms textfield input'},
 		{ link: <li><Link href='/forms/TextFieldRule'>TextFieldRule</Link></li>, keywords: 'forms textfieldrule input'},
+		{ link: <li><Link href='/forms/Toggle'>Toggle</Link></li>, keywords: 'forms toggle input'},
 		{ link: <li><Link href='/forms/DateField'>DateField</Link></li>, keywords: 'forms datefield input'},
 		{ link: <li><Link href='/lists/ActionItem'>ActionItem</Link></li>, keywords: 'lists actionitem'},
 		{ link: <li><Link href='/lists/ContentItem'>ContentItem</Link></li>, keywords: 'lists contentitem'},

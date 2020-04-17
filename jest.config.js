@@ -13,6 +13,6 @@ module.exports = {
 	},
 	moduleFileExtensions: ['js', 'jsx'],
 	collectCoverage: true,
-	collectCoverageFrom: ['src/(lists|navigation|buttons|forms)/**/*.{js,jsx}'],
+	collectCoverageFrom: ['src/(lists|navigation|buttons|forms|overlays|navigation|structure|typography|utils)/**/*.{js,jsx}'],
 	verbose: true,
 }

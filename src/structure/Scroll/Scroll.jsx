@@ -17,6 +17,7 @@ export default class Scroll extends Component {
 		return (
 			<section
 				{...this.props}
+				data-testid={this.props.dataTestId}
 				ref={elem => (this.node = elem || null)}
 				className={`${CSS.scroll} ${this.props.className || ''}`}
 			>

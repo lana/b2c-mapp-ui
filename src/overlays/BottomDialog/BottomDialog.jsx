@@ -1,4 +1,5 @@
-import { Component } from 'preact';
+import { useMemo } from 'preact/hooks';
+import PropTypes from 'prop-types';
 
 import Wrapper from '../../structure/Wrapper/Wrapper';
 import Heading from '../../typography/Heading/Heading';
@@ -7,51 +8,82 @@ import Scroll from '../../structure/Scroll/Scroll';
 import Button from '../../buttons/Button/Button';
 import CSS from './styles.css';
 
-export default class Dialog extends Component {
-	onDismiss() {
-		if (this.props.onDismiss) this.props.onDismiss();
-	}
+const BottomDialog = ({ dataTestId, confirm, secondary, loading, visible, title, description, children, onDismiss, onConfirm, onSecondary }) => {
+	const handleOnDismiss = event => {
+		if (onDismiss) { onDismiss(); }
+	};
 
-	onSecondary(e) {
-		if (this.props.onSecondary) this.props.onSecondary(e);
-	}
+	const handleOnSecondary = event => {
+		if (onSecondary) { onSecondary(event); }
+	};
 
-	onConfirm(e) {
-		if (this.props.onConfirm) this.props.onConfirm(e);
-	}
+	const handleOnConfirm = event => {
+		if (onConfirm) { onConfirm(event); }
+	};
 
-	render(props) {
-		let visibleClass = props.visible ? CSS.visible : '';
-		const testId = props.dataTestId || 'bottom-dialog';
+	return useMemo(() => {
+		const visibleClass = visible ? CSS.visible : '';
 
 		return (
-			<section data-testid={testId} className={`${CSS.overlay} ${visibleClass}`}>
-				<div data-testid={`${testId}-dismiss`} className={CSS.dim} onClick={() => this.onDismiss()} />
-				<div data-testid={`${testId}-content`} className={CSS.dialog}>
+			<section data-testid={`${dataTestId}-section`} className={`${CSS.overlay} ${visibleClass}`}>
+				<div data-testid={`${dataTestId}-dismiss`} className={CSS.dim} onClick={handleOnDismiss} />
+				<div data-testid={`${dataTestId}-content`} className={CSS.dialog}>
 					<Wrapper>
-						{props.title && <Heading>{props.title}</Heading>}
-						{props.description ? (
-							<Text dataTestId={`${testId}-description`} className={CSS.description}>
-								{props.description}
+						{title && <Heading dataTestId={`${dataTestId}-title`}>{title}</Heading>}
+						{description ? (
+							<Text dataTestId={`${dataTestId}-description`} className={CSS.description}>
+								{description}
 							</Text>
 						) : (
-							<Scroll className={CSS.content}>{props.children}</Scroll>
+							<Scroll dataTestId={`${dataTestId}-children`} className={CSS.content}>
+								{children}
+							</Scroll>
 						)}
 					</Wrapper>
-					<div data-testid={`${testId}-actions`} className={CSS.actions}>
-						{props.confirm && (
-							<Button dataTestId={`${testId}-action-confirm`} className={CSS.confirm} onClick={e => this.onConfirm(e)} loading={props.loading ? props.loading : false}>
-								{props.confirm}
+					<div data-testid={`${dataTestId}-actions`} className={CSS.actions}>
+						{confirm && (
+							<Button dataTestId={`${dataTestId}-action-confirm`} className={CSS.confirm} onClick={handleOnConfirm} loading={loading}>
+								{confirm}
 							</Button>
 						)}
-						{props.secondary && (
-							<Button dataTestId={`${testId}-action-secondary`} type="secondary" className={CSS.dismiss} onClick={e => this.onSecondary(e)}>
-								{props.secondary}
+						{secondary && (
+							<Button dataTestId={`${dataTestId}-action-secondary`} type="secondary" className={CSS.dismiss} onClick={handleOnSecondary}>
+								{secondary}
 							</Button>
 						)}
 					</div>
 				</div>
 			</section>
 		);
-	}
-}
+	}, [loading, visible, children, confirm, secondary, title, description]);
+};
+
+BottomDialog.defaultProps = {
+	dataTestId: 'bottom-dialog',
+	loading: false,
+	visible: false,
+	title: '',
+	description: '',
+	children: null,
+	onDismiss: null,
+	onConfirm: null,
+	onSecondary: null,
+	confirm: null,
+	secondary: null,
+};
+
+BottomDialog.propTypes = {
+	dataTestId: PropTypes.string,
+	confirm: PropTypes.string,
+	secondary: PropTypes.string,
+	loading: PropTypes.bool,
+	visible: PropTypes.bool,
+	title: PropTypes.string,
+	description: PropTypes.string,
+	children: PropTypes.node,
+	onDismiss: PropTypes.func,
+	onConfirm: PropTypes.func,
+	onSecondary: PropTypes.func,
+};
+
+export default BottomDialog;

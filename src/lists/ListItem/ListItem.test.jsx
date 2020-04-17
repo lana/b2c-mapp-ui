@@ -76,7 +76,7 @@ describe('UI/lists/ListItem', () => {
 
 		it('Should be visible if onChange is  provided', () => {
 			const { getByTestId } = render(<ListItem {...defaultProps} onChange={jest.fn()} />);
-			const toggleExists = getByTestId('list-item-toggle');
+			const toggleExists = getByTestId('list-item-toggle-wrapper');
 			expect(toggleExists).toBeTruthy();
 		});
 
