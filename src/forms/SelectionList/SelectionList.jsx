@@ -6,7 +6,7 @@ import CSS from './styles.css';
 
 const SelectionList = ({ className, dataTestId, value, title, options, id, onChange }) => {
 	const [currentValue, setCurrentValue] = useState(null);
-	const delayCallback = 250;
+	const callbackDelayInMilliseconds = 250;
 
 	useEffect(() => {
 		if (value) {
@@ -19,10 +19,10 @@ const SelectionList = ({ className, dataTestId, value, title, options, id, onCha
 
 	const handleOnClick = ({ selected, label, value: optionValue, children, onClick }, index) => {
 		if (onClick) {
-			setTimeout(() => onClick(optionValue, index), delayCallback);
+			setTimeout(() => { onClick(optionValue, index); } , callbackDelayInMilliseconds);
 		}
 		if (currentValue !== optionValue && onChange) {
-			setTimeout(() => onChange(optionValue, index), delayCallback);
+			setTimeout(() => { onChange(optionValue, index); }, callbackDelayInMilliseconds);
 		}
 		setCurrentValue(optionValue);
 	};
@@ -46,11 +46,11 @@ const SelectionList = ({ className, dataTestId, value, title, options, id, onCha
 								key={index} 
 								data-checked={checked} 
 								className={`${CSS.item} ${checked ? CSS.checked : ''}`} 
-								onClick={event => handleOnClick({ selected, label, value: optionValue, children, onClick }, index)}
+								onClick={event => { handleOnClick({ selected, label, value: optionValue, children, onClick }, index); }}
 							>
 								<input 
-									type="radio" c
-									lassName={CSS.radio} 
+									type="radio" 
+									className={CSS.radio} 
 									id={elementId} 
 									checked={checked} 
 									name={elementId} 

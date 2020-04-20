@@ -1,11 +1,11 @@
 import {useState, useEffect, useRef, useMemo} from 'preact/hooks';
 import PropTypes from 'prop-types'
-import Metadata from '../../../data/libphonenumber-metadata.min.json'
-import { AsYouType, getCountryCallingCode } from 'libphonenumber-js/custom'
 
-import CSS from './styles.css'
-import Field from '../Field/Field'
-import Text from '../../typography/Text/Text'
+import Metadata from '../../../data/libphonenumber-metadata.min.json';
+import { AsYouType, getCountryCallingCode } from 'libphonenumber-js/custom';
+import CSS from './styles.css';
+import Field from '../Field/Field';
+import Text from '../../typography/Text/Text';
 
 const PhoneField = ({countryCode, className, dataTestId, name, value, placeholder, errorLabel, showCountryCode, onChange, onBlur, ...props}) => {
 	const [phoneValue, setPhoneValue] = useState('');

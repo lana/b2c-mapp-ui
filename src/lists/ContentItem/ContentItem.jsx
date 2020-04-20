@@ -37,7 +37,7 @@ ContentItem.defaultProps = {
 	onClick: () => {}, 
 	className: '', 
 	title: '', 
-	dataTestId: 'content-item' 
+	dataTestId: 'content-item',
 }
 
 ContentItem.propTypes = {
@@ -47,8 +47,7 @@ ContentItem.propTypes = {
 	onClick: PropTypes.func, 
 	className: PropTypes.string, 
 	title: PropTypes.string, 
-	dataTestId: PropTypes.string 
-
+	dataTestId: PropTypes.string,
 }
 
 export default ContentItem;

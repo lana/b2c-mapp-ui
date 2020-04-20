@@ -1,4 +1,4 @@
-# CopyToClipboard
+# CopyToClipboardButton
 
 Button that copy the given value to the clipboard and provide 3 steps feedback for user
 
@@ -21,13 +21,9 @@ Allow to add specific classNames for each feedback and specific transition time 
 | `copyingFeedbackTime` | `Number`   | false    |
 | `copiedFeedbackTime`  | `Number`   | false    |
 
-Default:
-```
-<CopyToClipboard toCopyValue='text to be copied'/>
 
-```
 -----------
 Modifying feedback times and labels for each state:
 ```
-<CopyToClipboard toCopyValue='text to be copied' toCopyLabel={"Takes too long to copy"} copyingLabel={"Copying... take a coffee..."} copiedLabel={"Fast success feedback!"} copyingFeedbackTime={5000} copiedFeedbackTime={500}/>
+<CopyToClipboardButton toCopyValue='text to be copied' toCopyLabel={"Takes too long to copy"} copyingLabel={"Copying... take a coffee..."} copiedLabel={"Fast success feedback!"} copyingFeedbackTime={5000} copiedFeedbackTime={500}/>
 ```

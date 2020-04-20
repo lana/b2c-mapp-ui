@@ -18,46 +18,45 @@ const Dialog = ({ dataTestId, confirm, dismiss, visible, title, description, chi
 	const result = useMemo(() => {
 		const visibleClass = visible ? CSS.visible : '';
 
-		return (
-			<section data-testid={`${dataTestId}-section`} className={`${CSS.overlay} ${visibleClass}`}>
-				<div data-testid={`${dataTestId}-content`} className={CSS.dialog}>
-					{(title) && (
-						<Heading dataTestId={`${dataTestId}-title`} type="title2" className={CSS.title}>
-							{title}
-						</Heading>
-					)}
-					{(description) ? (
-						<Text dataTestId={`${dataTestId}-description`} color="concrete" className={CSS.description}>
-							{description}
-						</Text>
-					) : (
-						<Scroll dataTestId={`${dataTestId}-children`} className={CSS.content}>{children}</Scroll>
-					)}
+		return (<section data-testid={`${dataTestId}-section`} className={`${CSS.overlay} ${visibleClass}`}>
+			<div data-testid={`${dataTestId}-content`} className={CSS.dialog}>
+				{(title) && (
+					<Heading dataTestId={`${dataTestId}-title`} type="title2" className={CSS.title}>
+						{title}
+					</Heading>
+				)}
+				{(description) ? (
+					<Text dataTestId={`${dataTestId}-description`} color="concrete" className={CSS.description}>
+						{description}
+					</Text>
+				) : (
+					<Scroll dataTestId={`${dataTestId}-children`} className={CSS.content}>{children}</Scroll>
+				)}
 
-					<div data-testid={`${dataTestId}-actions`} className={CSS.actions}>
-						{(dismiss) && (
-							<button
-								data-testid={`${dataTestId}-action-dismiss-button`}
-								onClick={handleOnDismiss}
-								className={`${CSS.action} ${CSS.dismiss}`}
-							>
-								{dismiss}
-							</button>
-						)}
-						{confirm && (
-							<button
-								data-testid={`${dataTestId}-action-confirm-button`}
-								onClick={handleOnConfirm}
-								className={CSS.action}
-							>
-								{confirm}
-							</button>
-						)}
-					</div>
+				<div data-testid={`${dataTestId}-actions`} className={CSS.actions}>
+					{(dismiss) && (
+						<button
+							data-testid={`${dataTestId}-action-dismiss-button`}
+							onClick={handleOnDismiss}
+							className={`${CSS.action} ${CSS.dismiss}`}
+						>
+							{dismiss}
+						</button>
+					)}
+					{confirm && (
+						<button
+							data-testid={`${dataTestId}-action-confirm-button`}
+							onClick={handleOnConfirm}
+							className={CSS.action}
+						>
+							{confirm}
+						</button>
+					)}
 				</div>
-			</section>
-		)}, [visible, title, description, dismiss, children, confirm]
-	);
+			</div>
+		</section>
+	)}, [visible, title, description, dismiss, children, confirm]);
+
 	return result;
 }
 

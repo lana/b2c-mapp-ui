@@ -19,6 +19,7 @@ const Button = ({ children, className, dataTestId, href, id, loading, type, onCl
 		event.preventDefault();
 	};
 
+	const changePressedStatus = () => setIsPressed(!isPressed);
 	const typeClass = validTypes.includes(type) ? CSS[type] : '';
 	const loadingClass = loading ? CSS.loading : '';
 	const pressedClass = isPressed ? CSS.pressed : '';
@@ -31,9 +32,9 @@ const Button = ({ children, className, dataTestId, href, id, loading, type, onCl
 			<button 
 				data-testid={`${testId}-button`} 
 				type="button" id={id} 
-				onTouchStart={() => setIsPressed(!isPressed)} 
-				onTouchEnd={() => setIsPressed(!isPressed)} 
-				onClick={e => onHandleClick(e)} 
+				onTouchStart={changePressedStatus} 
+				onTouchEnd={changePressedStatus} 
+				onClick={onHandleClick} 
 				className={`${CSS.button} ${typeClass} ${loadingClass} ${pressedClass} ${className || ''}`}
 			>
 				{loading ? (
@@ -54,8 +55,8 @@ const Button = ({ children, className, dataTestId, href, id, loading, type, onCl
 			href={href} 
 			id={id} 
 			onClick={onHandleClick} 
-			onTouchStart={() => setIsPressed(!isPressed)} 
-			onTouchEnd={() => setIsPressed(!isPressed)} 
+			onTouchStart={changePressedStatus} 
+			onTouchEnd={changePressedStatus} 
 			className={`${CSS.button} ${typeClass} ${loadingClass} ${className || ''}`}
 		>
 			{children}

@@ -10,7 +10,7 @@ import TextField from 'src/forms/TextField/TextField';
 const defaultLinks = [
 	{ link: <li><Link href='/buttons/Button'>Button</Link></li>, keywords: 'buttons'},
 	{ link: <li><Link href='/buttons/WrappedButton'>WrappedButton</Link></li>, keywords: 'buttons wrapped'},
-	{ link: <li><Link href='/buttons/CopyToClipboard'>CopyToClipboard</Link></li>, keywords: 'buttons copytoclipboard'},
+	{ link: <li><Link href='/buttons/CopyToClipboardButton'>CopyToClipboardButton</Link></li>, keywords: 'buttons copytoclipboard'},
 	{ link: <li><Link href='/buttons/FigureCard'>FigureCard</Link></li>, keywords: 'buttons figurecard'},
 	{ link: <li><Link href='/buttons/Forward'>Forward</Link></li>, keywords: 'buttons forward'},
 	{ link: <li><Link href='/overlays/Dialog'>Dialog</Link></li>, keywords: 'overlays dialog'},

@@ -1,12 +1,12 @@
 # Lana B2C MicroApp Libs Changelog
 
 ## v.5.0.0 - 17-04-2020
- - Added CopyToClipboard button
+ - Added CopyToClipboardButton button
  - Component refactors from class to functional
  - Unit tested
  - Renaming ListCopyable to CopyableList
- - Refactor ListCopyable using new `CopyToClipboard` button
- - Removed `withCopyBehaviour` HOC in favour of `copy-to-clipboard` utils and `CopyToClipboard` button.
+ - Refactor ListCopyable using new `CopyToClipboardButton` button
+ - Removed `withCopyBehaviour` HOC in favour of `copy-to-clipboard` utils and `CopyToClipboardButton` button.
  - Renaming ButtonWrapped to WrappedButton
  - Added Toggle Hook & copy-to-clipboard utilities.
  - Refactor ActionItem component: from `media` to `mediaContent` prop

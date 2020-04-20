@@ -53,7 +53,7 @@ const TextFieldRule = ({ className, dataTestId, name, readOnly, placeholder, err
 				/>
 				<Text 
 					dataTestId={`${dataTestId}-rule`} 
-					color={`ash`} 
+					color={'ash'} 
 					className={`${CSS.rule} ${labeledClass}`}
 				>
 					{rule}

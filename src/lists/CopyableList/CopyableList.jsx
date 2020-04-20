@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import Text from '../../typography/Text/Text';
 import Heading from '../../typography/Heading/Heading';
-import CopyToClipboard from '../../buttons/CopyToClipboard/CopyToClipboard';
+import CopyToClipboardButton from '../../buttons/CopyToClipboardButton/CopyToClipboardButton';
 import CSS from './styles.css';
 
 const CopyableList = ({ options, title, children, dataTestId }) => (
@@ -29,7 +29,7 @@ const CopyableList = ({ options, title, children, dataTestId }) => (
 						</div>
 						{!hide && (
 							<Text dataTestId={`${dataTestId}-element-copy-text`} className={CSS.item_copy} type="callout">
-								<CopyToClipboard dataTestId={`${dataTestId}-copy-to-clipboard-button`} toCopyValue={text} />
+								<CopyToClipboardButton dataTestId={`${dataTestId}-copy-to-clipboard-button`} toCopyValue={text} />
 							</Text>
 						)}
 					</li>

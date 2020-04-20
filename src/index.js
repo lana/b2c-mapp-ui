@@ -3,7 +3,7 @@ export { default as BankAccountField } from './forms/BankAccountField/BankAccoun
 export { default as BottomDialog } from './overlays/BottomDialog/BottomDialog';
 export { default as Button } from './buttons/Button/Button';
 export { default as ContentItem } from './lists/ContentItem/ContentItem';
-export { default as CopyToClipboard } from './buttons/CopyToClipboard/CopyToClipboard';
+export { default as CopyToClipboardButton } from './buttons/CopyToClipboardButton/CopyToClipboardButton';
 export { default as CopyableList } from './lists/CopyableList/CopyableList';
 export { default as DateField } from './forms/DateField/DateField';
 export { default as Dialog } from './overlays/Dialog/Dialog';

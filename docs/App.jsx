@@ -12,7 +12,7 @@ import CSS from './App.css';
 import {
 	Button,
 	WrappedButton,
-	CopyToClipboard,
+	CopyToClipboardButton,
 	FigureCard,
 	Forward,
 	Dialog,
@@ -42,7 +42,7 @@ import {
 import IndexDoc from '../README.md';
 import ButtonDoc from 'src/buttons/Button/Readme.md';
 import WrappedButtonDoc from 'src/buttons/WrappedButton/Readme.md';
-import CopyToClipboardDoc from 'src/buttons/CopyToClipboard/Readme.md';
+import CopyToClipboardButtonDoc from 'src/buttons/CopyToClipboardButton/Readme.md';
 import FigureCardDoc from 'src/buttons/FigureCard/Readme.md';
 import ForwardDoc from 'src/buttons/Forward/Readme.md';
 import DialogDoc from 'src/overlays/Dialog/Readme.md';
@@ -79,8 +79,8 @@ const App = () => {
 			doc: <WrappedButtonDoc />,
 		},
 		{
-			path: '/buttons/CopyToClipboard',
-			doc: <CopyToClipboardDoc />,
+			path: '/buttons/CopyToClipboardButton',
+			doc: <CopyToClipboardButtonDoc />,
 		},
 		{ path: '/buttons/FigureCard', doc: <FigureCardDoc /> },
 		{ path: '/buttons/Forward', doc: <ForwardDoc /> },
@@ -139,7 +139,7 @@ const App = () => {
 			let scope = {
 				Button,
 				WrappedButton,
-				CopyToClipboard,
+				CopyToClipboardButton,
 				FigureCard,
 				Forward,
 				Dialog,
