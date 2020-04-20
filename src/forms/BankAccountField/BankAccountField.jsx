@@ -43,12 +43,12 @@ const BankAccountField = ({ countryCode, className, dataTestId, placeholder, nam
 	const accountNumberFormatter = ({ accountNumber, template }) => {
 		let accountDigitIndex = 0;
 		const generateAccountValue = (prevResult, patternCharacter) => {
-            if (!accountNumber[accountDigitIndex]) { return prevResult; }
-            let nextCharacter = (patternCharacter === digitPattern) ? accountNumber[accountDigitIndex] : patternCharacter;
-            if (patternCharacter === digitPattern) { accountDigitIndex++; }
-            const newResult = `${prevResult}${nextCharacter}`;
-            return newResult;
-		}
+		if (!accountNumber[accountDigitIndex]) { return prevResult; }
+		let nextCharacter = (patternCharacter === digitPattern) ? accountNumber[accountDigitIndex] : patternCharacter;
+		if (patternCharacter === digitPattern) { accountDigitIndex++; }
+		const newResult = `${prevResult}${nextCharacter}`;
+		return newResult;
+	}
 		
 		const parsedAccountNumber = template.split('').reduce(generateAccountValue, '');
 		return parsedAccountNumber;

@@ -9,10 +9,7 @@ describe('UI/lists/ContentItem', () => {
 		media: <img src="any" />,
 		meta: 'META',
 		textColor: 'TEXTCOLOR',
-		onClick: () => {
-			console.log('test');
-			return 'bu';
-		},
+		onClick: () => {},
 		className: 'CLASSNAME',
 		title: 'TITLE',
 	};

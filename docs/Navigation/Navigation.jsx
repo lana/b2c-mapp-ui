@@ -57,7 +57,8 @@ const Navigation = () => {
 			<nav className={CSS.navigation}>
 				<Logo className={CSS.logo} />
 				<ul>
-					<li><TextField 
+					<li>
+						<TextField 
 						placeholder='Filter...'
 						onChange={filterItems}
 						value={filterValue}

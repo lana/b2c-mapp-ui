@@ -1,4 +1,4 @@
-import {render, fireEvent} from '@testing-library/preact';
+import {render, fireEvent, waitForDomChange} from '@testing-library/preact';
 
 import PhoneField from './PhoneField';
 
@@ -24,6 +24,14 @@ describe('UI/forms/PhoneField', () => {
         const {getByTestId} = render(<PhoneField  {...defaultProps} errorLabel={'Error!'} value='551234123234324'/>);
         const errorLabel = getByTestId('phone-field-label').className.includes('error');
         expect(errorLabel).toBeTruthy();
+    });
+
+    it('Should show given errorLabel text content if given value is NOT valid', () => {
+        const {getByTestId} = render(<PhoneField  {...defaultProps} errorLabel={'Error!'} value='551234123234324'/>);
+        waitForDomChange(() => {
+            const errorLabel = getByTestId('phone-field-label').textContent === 'Error!';
+            expect(errorLabel).toBeTruthy();
+        });
     });
 
     it('Should show country code if showCountryCode is given', () => {

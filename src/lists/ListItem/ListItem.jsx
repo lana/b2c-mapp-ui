@@ -9,8 +9,7 @@ const ListItem = ({ title, icon, iconColor, description, className, onLink, link
 	<li className={`${CSS.item} ${className}`} data-testid={dataTestId}>
 		{icon ? (
 			<div data-testid={`${dataTestId}-icon`} className={`${CSS.media} ${iconColor ? CSS[iconColor] : ''}`}>
-				{' '}
-				{icon}{' '}
+				{icon}
 			</div>
 		) : null}
 		<div data-testid={`${dataTestId}-heading`} className={CSS.body}>
@@ -19,9 +18,7 @@ const ListItem = ({ title, icon, iconColor, description, className, onLink, link
 			{onLink ? (
 				<span
 					data-testid={`${dataTestId}-heading-link`}
-					onClick={() => {
-						onLink();
-					}}
+					onClick={onLink}
 					className={CSS.link}
 				>
 					{linkText}
