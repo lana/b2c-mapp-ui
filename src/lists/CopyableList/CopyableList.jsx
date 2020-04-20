@@ -29,7 +29,7 @@ const CopyableList = ({ options, title, children, dataTestId }) => (
 						</div>
 						{!hide && (
 							<Text dataTestId={`${dataTestId}-element-copy-text`} className={CSS.item_copy} type="callout">
-								<CopyToClipboard dataTestId={`${dataTestId}-copy-to-clipboard-button`} valueToCopy={text} />
+								<CopyToClipboard dataTestId={`${dataTestId}-copy-to-clipboard-button`} toCopyValue={text} />
 							</Text>
 						)}
 					</li>

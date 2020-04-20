@@ -1,6 +1,6 @@
 # Toggle
 
-A simple toggle input: The control of this component should be handled in parent.
+A simple toggle input: The control of this component should be handled by its consumer.
 
 | Prop         | Value Type                    | Required |
 | ------------ | ----------------------------- | -------- |

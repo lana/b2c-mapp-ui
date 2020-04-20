@@ -6,10 +6,9 @@ const TextField = ({ className, dataTestId, name, readOnly, placeholder, errorLa
 	const [currentValue, setCurrentValue] = useState('');
 
 	useEffect(() => {
-		if (value) {
-			setCurrentValue(value);
-		}
-	}, [value]);
+		if (!value) { return; }
+		setCurrentValue(value);
+	}, []);
 
 	const handleOnChange = eventValue => {
 		if (currentValue !== eventValue) {
@@ -30,9 +29,24 @@ const TextField = ({ className, dataTestId, name, readOnly, placeholder, errorLa
 		}
 	};
 
-	return useMemo(() => {
-		return <Field dataTestId={dataTestId} placeholder={placeholder} className={className} type={type} name={name} value={currentValue} errorLabel={errorLabel} onChange={handleOnChange} onBlur={handleOnBlur} readOnly={readOnly} startFocused={startFocused} {...props}/>;
+	const result = useMemo(() => {
+		return <Field 
+					dataTestId={dataTestId}
+					placeholder={placeholder} 
+					className={className} 
+					type={type} 
+					name={name} 
+					value={currentValue} 
+					errorLabel={errorLabel} 
+					onChange={handleOnChange} 
+					onBlur={handleOnBlur} 
+					readOnly={readOnly} 
+					startFocused={startFocused} 
+					{...props}
+				/>;
 	}, [value, currentValue, errorLabel, readOnly]);
+
+	return result;
 };
 
 TextField.defaultProps = {

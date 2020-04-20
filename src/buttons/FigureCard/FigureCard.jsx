@@ -2,7 +2,7 @@ import CSS from './styles.css';
 import PropTypes from 'prop-types';
 import Text from '../../typography/Text/Text';
 
-export default function FigureCard({ dataTestId, size, className, meta, imageSrc, title }) {
+const FigureCard = ({ dataTestId, size, className, meta, imageSrc, title }) => {
 	const backgroundStyle = {
 		backgroundImage: `url('${imageSrc}')`,
 	};
@@ -24,7 +24,7 @@ export default function FigureCard({ dataTestId, size, className, meta, imageSrc
 			</figcaption>
 		</figure>
 	);
-}
+};
 
 FigureCard.defaultProps = {
 	dataTestId: 'figure-card',
@@ -43,3 +43,5 @@ FigureCard.propTypes = {
 	title: PropTypes.string,
 	imageSrc: PropTypes.string,
 };
+
+export default FigureCard;

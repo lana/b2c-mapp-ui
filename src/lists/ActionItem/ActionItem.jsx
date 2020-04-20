@@ -8,7 +8,7 @@ const ActionItem = ({ onClick, mediaContent, mediaColor, highlight, className, t
 	const highLighClass = highlight ? `${CSS['highlight']}` : '';
 
 	return (
-		<li data-testid={dataTestId} onClick={onClick ? e => onClick(e) : false} className={`${CSS.item} ${className}`}>
+		<li data-testid={dataTestId} onClick={onClick ? event => onClick(event) : false} className={`${CSS.item} ${className}`}>
 			{mediaContent && (
 				<div data-testid={`${dataTestId}-mediacolor`} className={`${CSS.media} ${mediaColorClass}`}>
 					{mediaContent}

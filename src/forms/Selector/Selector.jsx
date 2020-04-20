@@ -31,16 +31,32 @@ const Selector = ({ className, dataTestId, options, label, value, onChange }) =>
 		}
 	};
 
-	return useMemo(() => {
+	const result = useMemo(() => {
 		const focusClass = isFocused ? CSS.focus : '';
 		return (
-			<label data-testid={`${dataTestId}-label`} className={`${CSS.selector} ${focusClass} ${className}`}>
+			<label 
+				data-testid={`${dataTestId}-label`}
+				className={`${CSS.selector} ${focusClass} ${className}`}
+			>
 				<strong className={CSS.label}>{label}</strong>
 				<ExpandSmallIcon className={CSS.Icon} />
-				<select data-testId={`${dataTestId}-select`} className={CSS.select} onFocus={toggleFocus} onBlur={toggleFocus}>
+				<select 
+					data-testId={`${dataTestId}-select`} 
+					className={CSS.select} 
+					onFocus={toggleFocus} 
+					onBlur={toggleFocus}
+				>
 					{options.map(({ value: optionValue, selected, disabled, label }) => {
 						const isSelected = ((currentValue && currentValue === optionValue) || (!currentValue && selected)) ? true : false;
-						return ( <option data-testid={`${dataTestId}-option`} key={optionValue} data-selected={isSelected} selected={isSelected} value={optionValue} disabled={disabled} onClick={handleOnChange}>
+						return ( <option 
+									data-testid={`${dataTestId}-option`}
+									key={optionValue}
+									data-selected={isSelected}
+									selected={isSelected}
+									value={optionValue} 
+									disabled={disabled}
+									onClick={handleOnChange}
+								>
 									{label}
 								</option>
 						)
@@ -49,6 +65,8 @@ const Selector = ({ className, dataTestId, options, label, value, onChange }) =>
 			</label>
 		);
 	}, [currentValue, isFocused, value]);
+
+	return result;
 };
 
 Selector.defaultProps = {

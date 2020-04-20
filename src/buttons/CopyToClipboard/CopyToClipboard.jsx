@@ -4,60 +4,71 @@ import PropTypes from 'prop-types';
 import CSS from './styles.css';
 import copyToClipboard from '../../utils/copy-to-clipboard';
 
-const CopyToClipboard = ({ dataTestId, valueToCopy, labelToCopy, labelCopying, labelCopied, classToCopy, classCopying, classCopied, copyingFeedbackTime, copiedFeedbackTime }) => {
-	const TO_COPY = { class: classToCopy, label: labelToCopy };
-	const COPYING = { class: classCopying, label: labelCopying };
-	const COPIED = { class: classCopied, label: labelCopied };
+const CopyToClipboard = ({ dataTestId, toCopyValue, toCopyLabel, copyingLabel, copiedLabel, toCopyClass, copyingClass, copiedClass, copyingFeedbackTime, copiedFeedbackTime }) => {
+	const copyStatusLookup = {
+		toCopy: { 
+		  class: toCopyClass,
+		  label: toCopyLabel,
+		},
+		copied: {
+		  class: copiedClass,
+		  label: copiedLabel,
+		},
+		copying: {
+		  class: copyingClass,
+		  label: copyingLabel,
+		},
+	  };
 
-	const COPY_TIMEOUT = copyingFeedbackTime;
-	const COPIED_TIMEOUT = copiedFeedbackTime;
+	const copyTimeout = copyingFeedbackTime;
+	const copiedTimeout = copiedFeedbackTime;
 
-	const [copyStatus, setCopyStatus] = useState(TO_COPY);
+	const [copyStatus, setCopyStatus] = useState(copyStatusLookup.toCopy);
 
 	const afterCopy = () => {
-		setCopyStatus(COPIED);
+		setCopyStatus(copyStatusLookup.copied);
 		setTimeout(() => {
-			setCopyStatus(TO_COPY);
-		}, COPIED_TIMEOUT);
+			setCopyStatus(copyStatusLookup.toCopy);
+		}, copiedTimeout);
 	};
 
 	const handleOnClick = textToCopy => {
-		setCopyStatus(COPYING);
+		setCopyStatus(copyStatusLookup.copying);
 		setTimeout(() => {
 			copyToClipboard(textToCopy, afterCopy);
-		}, COPY_TIMEOUT);
+		}, copyTimeout);
 	};
 
 	return (
-		<button data-testid={`${dataTestId}-button`} className={`${CSS.clipboard} ${CSS[copyStatus.class]}`} onClick={() => handleOnClick(valueToCopy)}>
+		<button data-testid={`${dataTestId}-button`} className={`${CSS.clipboard} ${CSS[copyStatus.class]}`} onClick={() => handleOnClick(toCopyValue)}>
 			{copyStatus.label}
 		</button>
 	);
 };
 
-export default CopyToClipboard;
-
 CopyToClipboard.defaultProps = {
 	dataTestId: 'copy-to-clipboard',
-	labelToCopy: 'Copiar',
-	labelCopying: 'Copiando...',
-	labelCopied: 'Copiado!',
-	classToCopy: 'tocopy',
-	classCopying: 'copying',
-	classCopied: 'copied',
+	toCopyLabel: 'Copiar',
+	copyingLabel: 'Copiando...',
+	copiedLabel: 'Copiado!',
+	toCopyClass: 'tocopy',
+	copyingClass: 'copying',
+	copiedClass: 'copied',
 	copyingFeedbackTime: 1000,
 	copiedFeedbackTime: 2500,
 };
 
 CopyToClipboard.propTypes = {
 	dataTestId: PropTypes.string,
-	valueToCopy: PropTypes.string.isRequired,
-	labelToCopy: PropTypes.string,
-	labelCopying: PropTypes.string,
-	labelCopied: PropTypes.string,
-	classToCopy: PropTypes.string,
-	classCopying: PropTypes.string,
-	classCopied: PropTypes.string,
+	toCopyValue: PropTypes.string.isRequired,
+	toCopyLabel: PropTypes.string,
+	copyingLabel: PropTypes.string,
+	copiedLabel: PropTypes.string,
+	toCopyClass: PropTypes.string,
+	copyingClass: PropTypes.string,
+	copiedClass: PropTypes.string,
 	copyingFeedbackTime: PropTypes.number,
 	copiedFeedbackTime: PropTypes.number,
 };
+
+export default CopyToClipboard;

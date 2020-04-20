@@ -7,7 +7,7 @@ jest.useFakeTimers();
 
 describe('UI/buttons/CopyToClipboard', () => {
 	it('Should call copy-to-clipboard on click', () => {
-		const { getByTestId } = render(<CopyToClipboard valueToCopy="myValue" />);
+		const { getByTestId } = render(<CopyToClipboard toCopyValue="myValue" />);
 		const button = getByTestId('copy-to-clipboard-button');
 		fireEvent.click(button);
 		jest.runAllTimers();
@@ -16,7 +16,7 @@ describe('UI/buttons/CopyToClipboard', () => {
 
 	it('Should call copy-to-clipboard on click with given value to be copied', () => {
 		const mockCallback = jest.fn();
-		const { getByTestId } = render(<CopyToClipboard valueToCopy="myValue" />);
+		const { getByTestId } = render(<CopyToClipboard toCopyValue="myValue" />);
 		const button = getByTestId('copy-to-clipboard-button');
 		fireEvent.click(button);
 		jest.runAllTimers();
@@ -26,7 +26,7 @@ describe('UI/buttons/CopyToClipboard', () => {
 
 	it('Should call copy-to-clipboard on click with callback function as second argument', () => {
 		const mockCallback = jest.fn();
-		const { getByTestId } = render(<CopyToClipboard valueToCopy="myValue" />);
+		const { getByTestId } = render(<CopyToClipboard toCopyValue="myValue" />);
 		const button = getByTestId('copy-to-clipboard-button');
 		fireEvent.click(button);
 		jest.runAllTimers();

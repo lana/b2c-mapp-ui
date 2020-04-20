@@ -4,18 +4,19 @@ import { useState } from 'preact/hooks';
 import { MopIcon } from '@lana/b2c-mapp-ui-assets';
 import CSS from './styles.css';
 
+const validTypes = ['secondary', 'disabled', 'dismiss'];
+
 const Button = ({ children, className, dataTestId, href, id, loading, type, onClick }) => {
 	const [isPressed, setIsPressed] = useState(false);
-	const validTypes = ['secondary', 'disabled', 'dismiss'];
 
-	const onHandleClick = e => {
+	const onHandleClick = event => {
 		if (onClick) {
-			onClick(e);
+			onClick(event);
 		}
 		if (isPressed) {
 			setIsPressed(!isPressed);
 		}
-		e.preventDefault();
+		event.preventDefault();
 	};
 
 	const typeClass = validTypes.includes(type) ? CSS[type] : '';
@@ -27,7 +28,14 @@ const Button = ({ children, className, dataTestId, href, id, loading, type, onCl
 
 	if (isButton) {
 		return (
-			<button data-testid={`${testId}-button`} type="button" id={id} onTouchStart={() => setIsPressed(!isPressed)} onTouchEnd={() => setIsPressed(!isPressed)} onClick={e => onHandleClick(e)} className={`${CSS.button} ${typeClass} ${loadingClass} ${pressedClass} ${className || ''}`}>
+			<button 
+				data-testid={`${testId}-button`} 
+				type="button" id={id} 
+				onTouchStart={() => setIsPressed(!isPressed)} 
+				onTouchEnd={() => setIsPressed(!isPressed)} 
+				onClick={e => onHandleClick(e)} 
+				className={`${CSS.button} ${typeClass} ${loadingClass} ${pressedClass} ${className || ''}`}
+			>
 				{loading ? (
 					<em data-testid={`${testId}-loading`} className={CSS.loadingWrapper}>
 						<MopIcon className={CSS.loadingIcon} />
@@ -42,7 +50,14 @@ const Button = ({ children, className, dataTestId, href, id, loading, type, onCl
 		);
 	}
 	return (
-		<a data-testid={testId} href={href} id={id} onClick={e => onHandleClick(e)} onTouchStart={() => setIsPressed(!isPressed)} onTouchEnd={() => setIsPressed(!isPressed)} className={`${CSS.button} ${typeClass} ${loadingClass} ${className || ''}`}>
+		<a data-testid={testId} 
+			href={href} 
+			id={id} 
+			onClick={onHandleClick} 
+			onTouchStart={() => setIsPressed(!isPressed)} 
+			onTouchEnd={() => setIsPressed(!isPressed)} 
+			className={`${CSS.button} ${typeClass} ${loadingClass} ${className || ''}`}
+		>
 			{children}
 		</a>
 	);

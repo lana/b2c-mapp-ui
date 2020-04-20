@@ -15,7 +15,7 @@ const Dialog = ({ dataTestId, confirm, dismiss, visible, title, description, chi
 		if (onConfirm) { onConfirm(event); }
 	}
 
-	return useMemo(() => {
+	const result = useMemo(() => {
 		const visibleClass = visible ? CSS.visible : '';
 
 		return (
@@ -56,7 +56,9 @@ const Dialog = ({ dataTestId, confirm, dismiss, visible, title, description, chi
 					</div>
 				</div>
 			</section>
-		)}, [visible, title, description, dismiss, children, confirm]);
+		)}, [visible, title, description, dismiss, children, confirm]
+	);
+	return result;
 }
 
 Dialog.defaultProps = {

@@ -4,22 +4,24 @@ import PropTypes from 'prop-types';
 import Field from '../Field/Field';
 
 const digitPattern = 'X';
+const templates = {
+	MX: 'XXX XXX XXXXXXXXXXX X',
+};
+const defaultCountryCode = 'MX';
+const spaceRegexp = / /g;
+
 const BankAccountField = ({ countryCode, className, dataTestId, placeholder, name, errorLabel, value, onChange, onBlur, onFocus }) => {
-	const templates = {
-		MX: `XXX XXX XXXXXXXXXXX X`,
-	};
-	const defaultCountryCode = 'MX';
+	
 	const [bankAccountValue, setBankAccountValue] = useState('');
 	const [isValidBankAccount, setIsValidBankAccount] = useState(true);
 
 	useEffect(() => {
-		if (value !== '') {
-			const template = (countryCode) ? templates[countryCode] : templates[defaultCountryCode];
-			const formattedAccountNumber = accountNumberFormatter({accountNumber: value, template});
-			setBankAccountValue(formattedAccountNumber);
-			const validation = validateAccountNumber({accountNumber: value, countryCode: countryCode || defaultCountryCode})
-			setIsValidBankAccount(validation.isValid);
-		}
+		if (!value) { return; }
+		const template = (countryCode) ? templates[countryCode] : templates[defaultCountryCode];
+		const formattedAccountNumber = accountNumberFormatter({accountNumber: value, template});
+		setBankAccountValue(formattedAccountNumber);
+		const validation = validateAccountNumber({accountNumber: value, countryCode: countryCode || defaultCountryCode})
+		setIsValidBankAccount(validation.isValid);
 	}, []);
 
 	const validations = {
@@ -33,7 +35,7 @@ const BankAccountField = ({ countryCode, className, dataTestId, placeholder, nam
 	};
 
 	const validateAccountNumber = ({ accountNumber, countryCode }) => {
-		const templateLength = templates[countryCode].replace(/ /g, '').length;
+		const templateLength = templates[countryCode].replace(spaceRegexp, '').length;
 		const customValidation = validations[countryCode](accountNumber);
 		const isMaxLength = accountNumber.length === templateLength;
 		const isValid = isMaxLength && customValidation;
@@ -44,7 +46,7 @@ const BankAccountField = ({ countryCode, className, dataTestId, placeholder, nam
 		let accountDigitIndex = 0;
 		const generateAccountValue = (prevResult, patternCharacter) => {
 		if (!accountNumber[accountDigitIndex]) { return prevResult; }
-		let nextCharacter = (patternCharacter === digitPattern) ? accountNumber[accountDigitIndex] : patternCharacter;
+		const nextCharacter = (patternCharacter === digitPattern) ? accountNumber[accountDigitIndex] : patternCharacter;
 		if (patternCharacter === digitPattern) { accountDigitIndex++; }
 		const newResult = `${prevResult}${nextCharacter}`;
 		return newResult;
@@ -56,8 +58,8 @@ const BankAccountField = ({ countryCode, className, dataTestId, placeholder, nam
 
 	const handleOnChange = fieldValue => {
 		const template = (countryCode) ? templates[countryCode] : templates[defaultCountryCode];
-		const templateLength = template.replace(/ /g, '').length;
-		const accountNumber = fieldValue.replace(/ /g, '');
+		const templateLength = template.replace(spaceRegexp, '').length;
+		const accountNumber = fieldValue.replace(spaceRegexp, '');
 		if (accountNumber.length > templateLength) { return; }
 		const validation = validateAccountNumber({ accountNumber, countryCode: countryCode || defaultCountryCode });
 		const parsedAccountNumber = accountNumberFormatter({accountNumber, template});
@@ -74,13 +76,25 @@ const BankAccountField = ({ countryCode, className, dataTestId, placeholder, nam
 		if (onFocus) { onFocus(fieldValue); }
 	};
 
-	return useMemo(() => {
+	const result = useMemo(() => {
 		const showErrorLabel = (isValidBankAccount) ? false : true;
 		const maxLength = (countryCode) ? templates[countryCode].length : templates[defaultCountryCode].length;
-		return <Field dataTestId={dataTestId} placeholder={placeholder} className={className} errorLabel={(showErrorLabel) ? errorLabel : ''} type="tel" name={name} value={bankAccountValue} maxLength={maxLength} onChange={handleOnChange} onBlur={handleOnBlur} onFocus={handleOnFocus} />
+		return <Field 
+					dataTestId={dataTestId} 
+					placeholder={placeholder} 
+					className={className} 
+					errorLabel={(showErrorLabel) ? errorLabel : ''} 
+					type="tel" 
+					name={name} 
+					value={bankAccountValue} 
+					maxLength={maxLength} 
+					onChange={handleOnChange} 
+					onBlur={handleOnBlur} 
+					onFocus={handleOnFocus} 
+				/>
 	},[value, bankAccountValue, isValidBankAccount]);
 	
-
+	return result;
 };
 
 BankAccountField.defaultProps = {

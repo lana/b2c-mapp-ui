@@ -8,10 +8,9 @@ const TextFieldRule = ({ className, dataTestId, name, readOnly, placeholder, err
 	const [currentValue, setCurrentValue] = useState('');
 
 	useEffect(() => {
-		if (value) {
-			setCurrentValue(value);
-		}
-	}, [value]);
+		if(!value) { return; }
+		setCurrentValue(value);
+	}, []);
 
 	const handleOnChange = eventValue => {
 		if (currentValue !== eventValue) {
@@ -34,17 +33,36 @@ const TextFieldRule = ({ className, dataTestId, name, readOnly, placeholder, err
 		}
 	};
 
-	return useMemo(() => {
+	const result = useMemo(() => {
 		const labeledClass = (currentValue) ? CSS.alignTop : '';
 		return (
 			<div className={CSS.wrapper}>
-				<TextField dataTestId={dataTestId} placeholder={placeholder} className={className} type={type} name={name} value={currentValue} errorLabel={errorLabel} onChange={handleOnChange} onBlur={handleOnBlur} maxLength={rule} startFocused={startFocused} {...props} />
-				<Text dataTestId={`${dataTestId}-rule`} color={`ash`} className={`${CSS.rule} ${labeledClass}`}>
+				<TextField 
+					dataTestId={dataTestId} 
+					placeholder={placeholder} 
+					className={className} 
+					type={type} 
+					name={name} 
+					value={currentValue} 
+					errorLabel={errorLabel} 
+					onChange={handleOnChange} 
+					onBlur={handleOnBlur} 
+					maxLength={rule} 
+					startFocused={startFocused} 
+					{...props} 
+				/>
+				<Text 
+					dataTestId={`${dataTestId}-rule`} 
+					color={`ash`} 
+					className={`${CSS.rule} ${labeledClass}`}
+				>
 					{rule}
 				</Text>
 			</div>
 		);
 	}, [value, currentValue, errorLabel, readOnly]);
+
+	return result;
 };
 
 TextFieldRule.defaultProps = {

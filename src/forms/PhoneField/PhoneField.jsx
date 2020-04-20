@@ -13,9 +13,8 @@ const PhoneField = ({countryCode, className, dataTestId, name, value, placeholde
 	let phoneField = useRef(null);
 
 	useEffect(() => {
-		if (value !== '') {
-			setPhoneValue(formatPhoneNumber(value));
-		}
+		if (!value) { return; }
+		setPhoneValue(formatPhoneNumber(value));
 	}, []);
 
 	const formatPhoneNumber = (unformattedPhoneNumber) => {
@@ -39,13 +38,13 @@ const PhoneField = ({countryCode, className, dataTestId, name, value, placeholde
 
 	const getPrefix = () => `+${getCountryCallingCode(countryCode, Metadata)}`;
 
-	return useMemo(() => {
+	const result = useMemo(() => {
 		const prefix = getPrefix();
 		const filledClass = showCountryCode ? CSS.filled : '';
 		return (
 			<Field
 				dataTestId={dataTestId}
-				ref={field => (phoneField = field)}
+				ref={field => { phoneField = field; }}
 				placeholder={placeholder}
 				className={`${CSS.Field} ${filledClass} ${className}`}
 				type="tel"
@@ -65,6 +64,8 @@ const PhoneField = ({countryCode, className, dataTestId, name, value, placeholde
 			</Field>
 		)
 	}, [showCountryCode, countryCode, phoneValue, value]);
+
+	return result;
 };
 
 PhoneField.propTypes = {

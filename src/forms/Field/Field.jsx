@@ -28,10 +28,9 @@ const Field = ({
 	let inputRef = useRef(null);
 
 	useEffect(() => {
-		if (startFocused) {
-			toggleFocus();
-			inputRef && inputRef.focus(); 
-		}
+		if (!startFocused) { return; }
+		toggleFocus();
+		if (inputRef) { inputRef.focus(); } 
 	}, []);
 	
 	const handleOnFocus = (event) => {
@@ -48,7 +47,7 @@ const Field = ({
 		if (onChange) { onChange(fieldValue); }
 	}
 
-	return (useMemo(() => {
+	const result = (useMemo(() => {
 		const isLabeled = value !== '';
 		const labeledClass = (showPrefix || isLabeled || readOnly) ? CSS.labeled : '';
 		const inputId = ( id !== null ) ? id : name;
@@ -80,6 +79,7 @@ const Field = ({
 		);
 	}, [inputRef, isFocused, value]));
 
+	return result;
 };
 
 Field.defaultProps = {

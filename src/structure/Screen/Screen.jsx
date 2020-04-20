@@ -3,45 +3,39 @@ import { Component } from 'preact';
 import '../../Theme/Theme';
 import CSS from './styles.css';
 
-export default class Screen extends Component {
-	lastClick = { x: 0, y: 0 };
+const Screen = (props) => {
+	const [lastClick, setLastClick] = useState({x:0, y:0})
+	const viewport = { width: 0, height: 0};
 
-	viewport = {
-		width: window.innerWidth,
-		height: window.innerHeight,
+	useEffect(() => {
+		viewport.width = window.innerWidth;
+		viewport.height = window.innerHeight;
+		window.addEventListener('resize', handleOnWindowResize);
+		return () => {
+			window.removeEventListener('resize', handleOnWindowResize);
+		};
+	}, []);
+
+	const recordClick = (event) => {
+		setLastClick({x: event.clientX, y: event.clientY});
 	};
 
-	recordClick(event) {
-		this.lastClick.x = event.clientX;
-		this.lastClick.y = event.clientY;
-	}
-
-	onKeyboardFocus(screenHeight, viewport) {
-		if (this.props.onKeyboardFocus) this.props.onKeyboardFocus(screenHeight, viewport, this.lastClick);
-	}
-
-	onKeyboardBlur(screenHeight, viewport) {
-		if (this.props.onKeyboardFocus) this.props.onKeyboardBlur(screenHeight, viewport, this.lastClick);
-	}
-
-	onWindowResize = event => {
-		let screenSize = event.target.innerHeight;
-		this.viewport.height > screenSize ? this.onKeyboardFocus(screenSize, this.viewport) : this.onKeyboardBlur(screenSize, this.viewport);
+	const handleOnKeyboardFocus = (screenHeight, viewport) => {
+		if (props.onKeyboardFocus) { props.onKeyboardFocus(screenHeight, viewport, lastClick) };
 	};
 
-	componentDidMount() {
-		window.addEventListener('resize', this.onWindowResize);
-	}
+	const handleOnKeyboardBlur = (screenHeight, viewport) => {
+		if (props.onKeyboardFocus) { props.onKeyboardBlur(screenHeight, viewport, lastClick); }
+	};
 
-	componentWillUnmount() {
-		window.removeEventListener('resize', this.onWindowResize);
-	}
+	const handleOnWindowResize = event => {
+		const {target: { innerHeight: screenSize }} = event;
+		viewport.height > (screenSize) ? handleOnKeyboardFocus(screenSize, viewport) : handleOnKeyboardBlur(screenSize, viewport);
+	};
 
-	render() {
-		return (
-			<section className={`${CSS.screen} ${this.props.className || ''}`} onClick={this.recordClick}>
-				{this.props.children}
-			</section>
-		);
-	}
+	return  (<section className={`${CSS.screen} ${props.className || ''}`} onClick={recordClick}>
+				{props.children}
+			</section>);
 }
+
+export default Screen;

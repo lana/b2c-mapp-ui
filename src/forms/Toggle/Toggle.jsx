@@ -13,8 +13,9 @@ const Toggle = ({ onChange, checked, dataTestId, className }) => {
 					data-testid={`${dataTestId}-input`}
 					type="checkbox"
 					checked={checked}
-					onChange={e => {
-						onChange ? onChange(e) : null;
+					onChange={event => {
+						if(!onChange) { return; }
+						onChange(event);
 					}}
 				></input>
 			</label>

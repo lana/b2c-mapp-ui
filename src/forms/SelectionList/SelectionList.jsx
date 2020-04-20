@@ -13,7 +13,7 @@ const SelectionList = ({ className, dataTestId, value, title, options, id, onCha
 			setCurrentValue(value);
 			return;
 		}
-		const defaultCheckedOptionIndex = options.findIndex(option => option.selected);
+		const defaultCheckedOptionIndex = options.findIndex(({ selected }) => selected);
 		setCurrentValue(defaultCheckedOptionIndex !== -1 ? options[defaultCheckedOptionIndex].value : null);
 	}, [value, options]);
 
@@ -27,7 +27,7 @@ const SelectionList = ({ className, dataTestId, value, title, options, id, onCha
 		setCurrentValue(optionValue);
 	};
 
-	return useMemo(() => {
+	const result = useMemo(() => {
 		return (
 			<section className={`${CSS.wrapper} ${className}`}>
 				{title && (
@@ -41,11 +41,29 @@ const SelectionList = ({ className, dataTestId, value, title, options, id, onCha
 						const elementId = `${id}-${index}`;
 						const checked = currentValue === optionValue ? true : false;
 						return (
-							<li data-testid={`${dataTestId}-option`} key={index} data-checked={checked} className={`${CSS.item} ${checked ? CSS.checked : ''}`} onClick={event => handleOnClick({ selected, label, value: optionValue, children, onClick }, index)}>
-								<input type="radio" className={CSS.radio} id={elementId} checked={checked} name={elementId} value={optionValue} />
+							<li 
+								data-testid={`${dataTestId}-option`} 
+								key={index} 
+								data-checked={checked} 
+								className={`${CSS.item} ${checked ? CSS.checked : ''}`} 
+								onClick={event => handleOnClick({ selected, label, value: optionValue, children, onClick }, index)}
+							>
+								<input 
+									type="radio" c
+									lassName={CSS.radio} 
+									id={elementId} 
+									checked={checked} 
+									name={elementId} 
+									value={optionValue} 
+								/>
+
 								<div className={CSS.content}>
 									{(label) ? (
-										<label data-testid={`${dataTestId}-option-label`} className={CSS.label} htmlFor={elementId}>
+										<label 
+											data-testid={`${dataTestId}-option-label`} 
+											className={CSS.label} 
+											htmlFor={elementId}
+										>
 											{label}
 										</label>
 									) : children ? (
@@ -59,6 +77,8 @@ const SelectionList = ({ className, dataTestId, value, title, options, id, onCha
 			</section>
 		);
 	}, [options, value, currentValue]);
+
+	return result;
 };
 
 SelectionList.propTypes = {

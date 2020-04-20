@@ -7,12 +7,12 @@ const Stepper = ({ steps, activeStep, hideActive, title, className, dataTestId }
 	<navigation data-testid={`${dataTestId}-navigation`} className={`${CSS.stepper} ${className}`}>
 		{title && <Heading type={`callout`}>{title}</Heading>}
 		<ol data-testid={`${dataTestId}-list`} className={CSS.steps}>
-			{[...Array(steps).keys()].map((step, idx) => {
-				const activeClass = (idx === activeStep && !hideActive) ? CSS.active : '';
-				const inactiveClass = (idx > activeStep) ? CSS.inactive : '';
+			{[...Array(steps).keys()].map((step, index) => {
+				const activeClass = (index === activeStep && !hideActive) ? CSS.active : '';
+				const inactiveClass = (index > activeStep) ? CSS.inactive : '';
 				return (
 					<li data-testid={`${dataTestId}-element`} className={`${CSS.step} ${activeClass} ${inactiveClass}`}>
-						Paso {idx + 1}
+						Paso {index + 1}
 					</li>
 				);
 			})}

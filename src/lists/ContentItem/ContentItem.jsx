@@ -1,26 +1,27 @@
+import PropTypes from 'prop-types';
+
 import CSS from './styles.css';
 import Heading from '../../typography/Heading/Heading';
 import Text from '../../typography/Text/Text';
 import { ForwardIcon } from '@lana/b2c-mapp-ui-assets';
 
-export default ({ mediaColor, media, meta, onClick, className, title, dataTestId }) => {
-	const testId = dataTestId || 'content-item';
+const ContentItem =  ({ mediaColor, media, meta, onClick, className, title, dataTestId }) => {
 	const mediaColorClass = mediaColor ? CSS[mediaColor] : '';
 	const mediaIcon = media ? (
-		<div data-testid={`${testId}-media-icon`} className={`${CSS.media} ${mediaColorClass}`}>
+		<div data-testid={`${dataTestId}-media-icon`} className={`${CSS.media} ${mediaColorClass}`}>
 			{media}
 		</div>
 	) : (
 		''
 	);
-	const metaInfo = meta ? <Text dataTestId={`${testId}-meta-text`}>{meta}</Text> : '';
+	const metaInfo = meta ? <Text dataTestId={`${dataTestId}-meta-text`}>{meta}</Text> : '';
 
-	const forwardIcon = onClick ? <ForwardIcon data-testid={`${testId}-forward-icon`} color="inactive" className={CSS.icon} /> : null;
+	const forwardIcon = onClick ? <ForwardIcon data-testid={`${dataTestId}-forward-icon`} color="inactive" className={CSS.icon} /> : null;
 
 	return (
-		<li data-testid={testId} onClick={onClick ? e => onClick(e) : false} className={`${CSS.item} ${className || ''}`}>
+		<li data-testid={dataTestId} onClick={onClick ? event => onClick(event) : false} className={`${CSS.item} ${className || ''}`}>
 			{mediaIcon}
-			<div data-testid={`${testId}-heading`} className={CSS.body}>
+			<div data-testid={`${dataTestId}-heading`} className={CSS.body}>
 				<Heading type="txt-medium">{title}</Heading>
 				{metaInfo}
 			</div>
@@ -28,3 +29,26 @@ export default ({ mediaColor, media, meta, onClick, className, title, dataTestId
 		</li>
 	);
 };
+
+ContentItem.defaultProps = { 
+	mediaColor: false, 
+	media: null, 
+	meta: null, 
+	onClick: () => {}, 
+	className: '', 
+	title: '', 
+	dataTestId: 'content-item' 
+}
+
+ContentItem.propTypes = {
+	mediaColor: PropTypes.boolean, 
+	media: PropTypes.node, 
+	meta: PropTypes.node, 
+	onClick: PropTypes.func, 
+	className: PropTypes.string, 
+	title: PropTypes.string, 
+	dataTestId: PropTypes.string 
+
+}
+
+export default ContentItem;

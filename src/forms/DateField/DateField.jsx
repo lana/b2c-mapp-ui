@@ -33,13 +33,12 @@ const DateField = ({ autoformat, className, dataTestId, datepicker, errorLabel, 
 
 	const handleCalendarChange = event => {
 		const { target: { value: eventValue }} = event;
-		if (eventValue) {
-			const formattedDate = dateToString(new Date(eventValue));
-			dateField.value = formattedDate;
-			setFieldValue(formattedDate);
-			if (onChange) {
-				onChange({ target: { value: formattedDate } });
-			}
+		if (!eventValue) { return; }
+		const formattedDate = dateToString(new Date(eventValue));
+		dateField.value = formattedDate;
+		setFieldValue(formattedDate);
+		if (onChange) {
+			onChange({ target: { value: formattedDate } });
 		}
 	};
 
