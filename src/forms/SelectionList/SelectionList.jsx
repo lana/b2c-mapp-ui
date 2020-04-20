@@ -66,9 +66,7 @@ const SelectionList = ({ className, dataTestId, value, title, options, id, onCha
 										>
 											{label}
 										</label>
-									) : children ? (
-										children
-									) : null}
+									) : (children || null)}
 								</div>
 							</li>
 						);

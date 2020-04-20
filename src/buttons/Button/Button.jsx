@@ -31,7 +31,8 @@ const Button = ({ children, className, dataTestId, href, id, loading, type, onCl
 		return (
 			<button 
 				data-testid={`${testId}-button`} 
-				type="button" id={id} 
+				type="button"
+				id={id} 
 				onTouchStart={changePressedStatus} 
 				onTouchEnd={changePressedStatus} 
 				onClick={onHandleClick} 

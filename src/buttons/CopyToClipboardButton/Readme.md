@@ -1,12 +1,12 @@
 # CopyToClipboardButton
 
-Button that copy the given value to the clipboard and provide 3 steps feedback for user
+A button that copies the given value to the clipboard and provides 3 steps of feedback to the user.
 
 - Copy (default status)
-- Copying... (work in progress)
+- Copying... (Working/In progress)
 - Copied! (success or end of the process)
 
-Allow to add specific classNames for each feedback and specific transition time between them (no required)
+(Optional) You can specify classNames for each feedback state, and specify the duration of the transitions between the states.
 
 | Prop                  | Value Type | Required |
 | --------------------- | ---------- | -------- |
