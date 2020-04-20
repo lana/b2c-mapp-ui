@@ -1,14 +1,21 @@
 # Lana B2C MicroApp Libs Changelog
 
-## v.4.x.x - xxxx-xx-xx
- - Added CopyToClipboard button
+## v.5.0.0 - 17-04-2020
+ - Added CopyToClipboardButton button
  - Component refactors from class to functional
- - Unit tests
- - Renaming ListCopyable to CopyableLIst
+ - Unit tested
+ - Renaming ListCopyable to CopyableList
+ - Refactor ListCopyable using new `CopyToClipboardButton` button
+ - Removed `withCopyBehaviour` HOC in favour of `copy-to-clipboard` utils and `CopyToClipboardButton` button.
  - Renaming ButtonWrapped to WrappedButton
- - Refactor CopyableList using new CopyToClipboard button
- - Added Toggle Hook & copy-to-clipboard utilities
+ - Added Toggle Hook & copy-to-clipboard utilities.
  - Refactor ActionItem component: from `media` to `mediaContent` prop
+ - Refactors for Field, TextField, PhoneField, DateField & BankAccountField:
+    - Removing excesive use of `refs` on them.
+    - Added `useMemo` hook.
+- Changed `index.jsx` entry point of each component folder to component file name (`MyComponent.jsx`)
+- Updated READMEs of each component
+- New Search Input in UI website.
 
 ## v.4.0.1 - 2020-03-20
  - Removed button inside FigureCard component and onclick/link props
