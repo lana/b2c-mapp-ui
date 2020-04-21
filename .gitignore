@@ -67,4 +67,5 @@ build/
 # other folders to be ignored (IDE settings, etc..)
 .vscode
 .idea
+
 .DS_Store
