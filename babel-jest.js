@@ -1,7 +1,9 @@
-const babelConfig = require('./babelConfig')
+const babelJest = require('babel-jest');
 
-module.exports = require('babel-jest').createTransformer({
-	presets: [
+const babelConfig = require('./babelConfig');
+
+const config = babelJest.createTransformer({
+  presets: [
     [
       '@babel/preset-env',
       {
@@ -11,5 +13,7 @@ module.exports = require('babel-jest').createTransformer({
       },
     ],
   ],
-	plugins: babelConfig.plugins,
-})
+  plugins: babelConfig.plugins,
+});
+
+module.exports = config;
