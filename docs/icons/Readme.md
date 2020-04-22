@@ -1,6 +1,6 @@
 # Icons
 
-A component for each icon. Icons are now maintained in the asset project, import using `@lana/b2c-mapp-ui-assets`.
+A component for each icon. Icons are now maintained in the assets project, import using `@lana/b2c-mapp-ui-assets`.
 
 [See all the available icons as .jsx](https://github.com/lana/b2c-mapp-ui-assets/tree/master/src/icons).
 

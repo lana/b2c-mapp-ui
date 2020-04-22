@@ -1,5 +1,25 @@
 # Lana B2C MicroApp Libs Changelog
 
+## v.5.0.1 - 22-04-2020
+ - Updated ESLint rules to match our new standards.
+ - Fixes and cleanup related to our new ESLint rules
+ - Added GitHub workflow to block PR merges when there are ESLint errors
+ - Removed Prettier
+ - Simplified the directory structure of the components by flattening it
+ - Renamed `BankAccountField` component to: `BankAccountNumberInputField`
+ - Renamed `Field` component to: `FormField`
+ - Renamed `Forward` component to: `ForwardButton`
+ - Renamed `PhoneField` component to: `PhoneNumberInputField`
+ - Renamed `SelectionList` component to: `RadioList`
+ - Renamed `Selector` component to: `SelectBox`
+ - Renamed `TextFieldRule` component to: `TextFieldWithValidation`
+ - Renamed `Toggle` component to: `ToggleSwitch`
+ - Renamed `BottomDialog` component to: `ToastConfirmationDialog`
+ - Renamed `Dialog` component to: `ModalConfirmationDialog`
+ - Renamed `Scroll` component to: `ScrollWrapper`
+ - Renamed `Text` component to: `TextParagraph`
+ - Renamed `Spinner` component to: `LoadingSpinner`
+
 ## v.5.0.0 - 17-04-2020
  - Added CopyToClipboardButton button
  - Component refactors from class to functional
