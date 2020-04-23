@@ -14,7 +14,7 @@ const RadioList = ({ className, dataTestId, value, title, options, id, onChange 
       return;
     }
     const defaultCheckedOptionIndex = options.findIndex(({ selected }) => selected);
-    setCurrentValue(defaultCheckedOptionIndex !== -1 ? options[defaultCheckedOptionIndex].value : null);
+    setCurrentValue((defaultCheckedOptionIndex !== -1) ? options[defaultCheckedOptionIndex].value : null);
   }, [value, options]);
 
   const handleOnClick = ({ optionValue, onClick }, index) => {
