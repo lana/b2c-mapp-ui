@@ -40,7 +40,7 @@ const PhoneNumberInputField = ({ countryCode, className, dataTestId, name, value
 
   const result = useMemo(() => {
     const prefix = getPrefix();
-    const filledClass = showCountryCode ? CSS.filled : '';
+    const filledClass = (showCountryCode) ? CSS.filled : '';
     return (
       <FormField
         dataTestId={dataTestId}
