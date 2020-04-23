@@ -4,8 +4,8 @@ import CSS from './styles.css';
 import TextParagraph from '../TextParagraph/TextParagraph';
 
 const ActionItem = ({ onClick, mediaContent, mediaColor, highlight, className, title, dataTestId }) => {
-  const mediaColorClass = mediaColor ? CSS[mediaColor] : '';
-  const highLighClass = highlight ? `${CSS.highlight}` : '';
+  const mediaColorClass = (mediaColor) ? CSS[mediaColor] : '';
+  const highLighClass = (highlight) ? `${CSS.highlight}` : '';
 
   return (
     <li data-testid={dataTestId} onClick={onClick ? (event) => onClick(event) : false} className={`${CSS.item} ${className}`}>
