@@ -37,7 +37,7 @@ const RadioList = ({ className, dataTestId, value, title, options, id, onChange 
               data-testid={`${dataTestId}-option`}
               key={index}
               data-checked={checked}
-              className={`${CSS.item} ${checked ? CSS.checked : ''}`}
+              className={`${CSS.item} ${(checked) ? CSS.checked : ''}`}
               onClick={() => { handleOnClick({ optionValue, onClick }, index); }}
             >
               <input
