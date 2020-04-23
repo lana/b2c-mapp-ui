@@ -7,7 +7,7 @@ import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 
 const ListItem = ({ title, icon, iconColor, description, className, onLink, linkText, onChange, checked, dataTestId }) => (
   <li className={`${CSS.item} ${className}`} data-testid={dataTestId}>
-    {(icon) ? (<div data-testid={`${dataTestId}-icon`} className={`${CSS.media} ${iconColor ? CSS[iconColor] : ''}`}>{icon}</div>) : null}
+    {(icon) ? (<div data-testid={`${dataTestId}-icon`} className={`${CSS.media} ${(iconColor) ? CSS[iconColor] : ''}`}>{icon}</div>) : null}
     <div data-testid={`${dataTestId}-heading`} className={CSS.body}>
       <Heading type="txt-medium">{title}</Heading>
       {(description) ? <TextParagraph dataTestId={`${dataTestId}-description`}>{description}</TextParagraph> : null}
