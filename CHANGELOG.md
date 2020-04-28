@@ -1,5 +1,8 @@
 # Lana B2C MicroApp Libs Changelog
 
+## v.4.0.2 - 2020-04-28
+ - Better scrolling.
+
 ## v.4.0.1 - 2020-03-20
  - Removed button inside FigureCard component and onclick/link props
 

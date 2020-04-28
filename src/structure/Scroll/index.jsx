@@ -20,7 +20,7 @@ export default class Scroll extends Component {
 				ref={elem => (this.node = elem || null)}
 				className={`${CSS.scroll} ${this.props.className || ''}`}
 			>
-				{this.props.children}
+				<div> {this.props.children} </div>
 			</section>
 		)
 	}
