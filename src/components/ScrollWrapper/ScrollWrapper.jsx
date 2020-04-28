@@ -27,7 +27,7 @@ class ScrollWrapper extends Component { // eslint-disable-line fp/no-class
         ref={(element) => { this.node = (element || null); }}
         className={`${CSS.scroll} ${this.props.className || ''}`}
       >
-        {this.props.children}
+        <div> {this.props.children} </div>
       </section>
     );
   }
