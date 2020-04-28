@@ -20,7 +20,7 @@ export default class Scroll extends Component {
 				ref={elem => (this.node = elem || null)}
 				className={`${CSS.scroll} ${this.props.className || ''}`}
 			>
-				{this.props.children}
+				<div className={CSS.scrollableContent}> {this.props.children} </div>
 			</section>
 		)
 	}
