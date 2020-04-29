@@ -28,6 +28,8 @@ const defaultExample = () => ({
   },
   template: `
     <div>
+      <h2><strong>TextParagraph:</strong>&nbsp;A text view that represents a paragraph.</h2>
+      <hr>
       <TextParagraph :weight="weight"
                      :color="color"
                      :size="size"

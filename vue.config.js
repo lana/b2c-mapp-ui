@@ -5,6 +5,7 @@
 // TODO JASON: Update Storybook to use knobs: https://github.com/storybookjs/storybook/tree/master/addons/knobs
 
 module.exports = {
+  productionSourceMap: false,
   lintOnSave: false,
   css: { extract: false },
   configureWebpack: {

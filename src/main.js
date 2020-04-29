@@ -3,7 +3,9 @@ import Vue from 'vue';
 import App from './App.vue';
 
 Vue.config.productionTip = false;
-
-new Vue({
+const appRootSelector = '#app';
+const vueOptions = {
   render: (h) => h(App),
-}).$mount('#app');
+};
+
+new Vue(vueOptions).$mount(appRootSelector);
