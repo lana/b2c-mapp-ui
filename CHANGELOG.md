@@ -1,5 +1,8 @@
 # Lana B2C MicroApp Libs Changelog
 
+## v.4.0.3 - 2020-04-29
+ - Scrolling height adjustments for short lists.
+ 
 ## v.4.0.2 - 2020-04-28
  - Better scrolling.
 
