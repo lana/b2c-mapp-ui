@@ -1,3 +1,5 @@
+// TODO JASON: Confirm whether this is even still needed
+
 import { JSDOM } from 'jsdom';
 
 const dom = new JSDOM();

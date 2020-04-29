@@ -2,7 +2,7 @@
 Lana B2C µApp UI library.
 
 ## Install
-You can install it as a standard yarn package.
+You can install it as a standard npm package.
 
 `npm install @lana/b2c-mapp-ui`
 
@@ -13,17 +13,10 @@ You can install it as a standard yarn package.
 
 ## Build
 
-We can build the package by `npm run build`. To seperately build `es` and `cjs` modules please use `npm run build:esm` and `npm run build:cjs` respectively.
+We can build the package by `npm run build`.
 
 ### Documentation
-All documentation is generated based on the `Readme.md` files inside each library and component. You can use those `Readme.md` files to test your changes.
-
-To start a local documentation site follow this steps.
-
-1. `npm install`
-2. `npm start`
-
-Now every change you make will be automatically avaliable at [localhost:3000](http://localhost:3000).
+All documentation can be found inside of Storybook: `npm run storybook`
 
 ### Tests
 
@@ -33,11 +26,14 @@ The tests are configured to 'verbose', so, that means when you run you should se
 
 ## Technologies
 A list of the technologies used in this project:
-* Preact
+* VueJS
+* Vuex
+* Storybook
 * CSS Modules + PostCSS
-* Babel for ES6 and Preact transpiling
+* Babel for ES6
 * Webpack(for dev server to test the component in realtime)
-* Rollup(for building the package)
 * libphonenumber-js
 * Jest
-* preact-testing-library
+
+### Customize Vue-CLI Configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
