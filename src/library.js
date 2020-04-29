@@ -4,12 +4,12 @@
 
 // TODO JASON: Remove everything that's not needed and then move these bits over into the b2c-mapp-ui repo
 
-import Foo from './components/Foo.vue';
-import HelloWorld from './components/HelloWorld/HelloWorld.vue';
+// import Foo from './components/Foo.vue';
+// import HelloWorld from './components/HelloWorld/HelloWorld.vue';
 
 const libraryComponents = {
-  Foo,
-  HelloWorld,
+  // Foo,
+  // HelloWorld,
 };
 
 export default libraryComponents;

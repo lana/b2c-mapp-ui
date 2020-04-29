@@ -2,41 +2,38 @@
   "name": "@lana/b2c-mapp-ui",
   "version": "5.0.0",
   "description": "Shared custom libraries for building µapps.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lana/b2c-mapp-ui.git"
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --target lib --name b2cMappUi ./src/library.js && rm ./dist/demo.html",
+    "lint": "vue-cli-service lint",
+    "deploy": "gh-pages -d build",
+    "libphonenumber-metadata": "libphonenumber-generate-metadata data/libphonenumber-metadata.min.json --countries MX,CL,BR,ES --types mobile",
+    "predeploy": "npm run build",
+    "prepare": "npm run build",
+    "storybook:build": "vue-cli-service storybook:build -c config/storybook",
+    "storybook:serve": "vue-cli-service storybook:serve -p 6006 -c config/storybook",
+    "storybook": "npm run storybook:serve",
+    "test": "vue-cli-service test:unit"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
+  "main": "dist/index.js",
+  "module": "dist/bundle-esm.js",
   "files": [
     "CHANGELOG.md",
     "dist/*"
   ],
-  "bugs": {
-    "url": "https://github.com/lana/b2c-mapp-ui/issues"
-  },
-  "homepage": "https://lana.github.io/b2c-mapp-ui",
-  "license": "ISC",
-  "scripts": {
-    "libphonenumber-metadata": "libphonenumber-generate-metadata data/libphonenumber-metadata.min.json --countries MX,CL,BR,ES --types mobile",
-    "prepare": "npm run build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name b2cMappUi ./src/library.js && rm ./dist/demo.html",
-    "test": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
-  },
-  "main": "dist/index.js",
-  "module": "dist/bundle-esm.js",
   "dependencies": {
     "core-js": "^3.6.4",
-    "vue": "^2.6.11",
     "libphonenumber-js": "^1.7.44",
-    "uuid": "^7.0.2"
+    "uuid": "^7.0.2",
+    "vue": "^2.6.11"
   },
   "devDependencies": {
+    "@storybook/addon-actions": ">=5.3.0",
+    "@storybook/addon-docs": ">=5.3.0",
+    "@storybook/addon-knobs": ">=5.3.0",
+    "@storybook/addon-links": ">=5.3.0",
+    "@storybook/addon-notes": ">=5.3.0",
+    "@storybook/vue": ">=5.3.0",
     "@vue/cli-plugin-babel": "~4.3.0",
     "@vue/cli-plugin-eslint": "~4.3.0",
     "@vue/cli-plugin-unit-jest": "~4.3.0",
@@ -46,11 +43,24 @@
     "autoprefixer": "^9.7.4",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-fp": "^2.3.0",
+    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^6.2.2",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
+    "vue-cli-plugin-storybook": "~1.2.2",
     "vue-template-compiler": "^2.6.11"
+  },
+  "bugs": {
+    "url": "https://github.com/lana/b2c-mapp-ui/issues"
+  },
+  "homepage": "https://lana.github.io/b2c-mapp-ui",
+  "license": "ISC",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lana/b2c-mapp-ui.git"
   }
 }
