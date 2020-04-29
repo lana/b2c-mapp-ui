@@ -1,0 +1,103 @@
+@import '../../styles/colors';
+@import '../../styles/typography';
+
+.txt {
+  font: $default-m;
+  color: $black-500;
+}
+
+.txt strong {
+  font-weight: 500;
+}
+
+.txt-xxxl {
+  font: $default-xxxl;
+}
+
+.txt-xxl {
+  font: $default-xxl;
+}
+
+.txt-xl {
+  font: $default-xl;
+}
+
+.txt-large {
+  font: $default-l;
+}
+
+.txt-medium {
+  font: $default-m;
+}
+
+.txt-small {
+  font: $default-s;
+}
+
+.txt-xsmall {
+  font: $default-xs;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.black-500 {
+  color: $black-500;
+}
+
+.red-500 {
+  color: $red-500;
+}
+
+.blue-500 {
+  color: $blue-500;
+}
+
+.green-500 {
+  color: $green-500;
+}
+
+.purple-500 {
+  color: $purple-500;
+}
+
+.yellow-500 {
+  color: $yellow-500;
+}
+
+.brown-500 {
+  color: $brown-500;
+}
+
+.black-700 {
+  color: $black-700;
+}
+
+.red-700 {
+  color: $red-700;
+}
+
+.blue-700 {
+  color: $blue-700;
+}
+
+.green-700 {
+  color: $green-700;
+}
+
+.purple-700 {
+  color: $purple-700;
+}
+
+.yellow-700 {
+  color: $yellow-700;
+}
+
+.brown-700 {
+  color: $brown-700;
+}
