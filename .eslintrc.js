@@ -11,7 +11,6 @@ module.exports = {
   ignorePatterns: [
     'build/**/*',
     'dist/**/*',
-    'docs/**/*', // TODO JASON: Remove this line after migrating to Storybook
   ],
   globals: {
     document: true,

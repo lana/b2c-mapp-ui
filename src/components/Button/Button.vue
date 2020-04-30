@@ -1,0 +1,34 @@
+<template>
+  <component class="button"
+             :is="componentType"
+             :class="[{ loading, pressed: (!isLinkButton && isPressed) }, type]"
+             :type="buttonTypeAttribute"
+             :disabled="disabled"
+             :id="id"
+             :data-testid="dataTestIdToUse"
+             @click="onClick"
+             @touchStart="toggleIsPressed"
+             @touchEnd="toggleIsPressed"
+  >
+    <slot v-if="isLinkButton"/>
+    <template v-if="!isLinkButton">
+      <em v-if="loading"
+          class="loading-wrapper"
+          :data-testid="`${baseDataTestIdToUse}-loading`"
+      >
+        <!-- TODO JASON: Uncomment the next line once we have the icons -->
+        <!-- <MopIcon className={CSS.loadingIcon}/> -->
+        ...
+      </em>
+      <span v-if="!loading"
+            class="default-wrapper"
+            :data-testid="`${baseDataTestIdToUse}-children`"
+      >
+      <slot/>
+    </span>
+    </template>
+  </component>
+</template>
+
+<script src="./Button.js"/>
+<style lang="scss" scoped src="./Button.scss"/>

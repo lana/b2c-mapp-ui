@@ -1,0 +1,105 @@
+@import '../../styles/colors';
+
+.button {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+  background: $blue-500;
+  font: 600 16px/20px Graphik, Roboto, Sans-serif;
+  text-align: center;
+  text-decoration: none;
+  color: $white;
+  border-radius: 28px;
+  border: solid 1px transparent;
+  cursor: pointer;
+  height: 56px;
+  transition: background 100ms ease-out;
+  touch-action: manipulation;
+
+  &.pressed {
+    opacity: 0.8;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:disabled {
+    background: $black-400;
+    color: $black-500;
+    border-color: transparent;
+    pointer-events: none;
+  }
+}
+
+.secondary {
+  background: transparent;
+  color: $blue-500;
+  box-shadow: none;
+}
+
+.dismiss {
+  background: $white;
+  color: $black-700;
+  border: solid 1px $black-400;
+}
+
+.default-wrapper {
+  display: block;
+}
+
+.loading-wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+.default-wrapper,
+.loading-wrapper {
+  transition: all 100ms ease-out;
+}
+
+.loading .loading-wrapper {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.loading .default-wrapper {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.loading-icon {
+  margin-right: 8px;
+  animation: loadingSpin 1.5s infinite linear;
+}
+
+.button .loading-icon path[fill] { // TODO JASON: Make sure that this still works with the new icons
+  fill: $white;
+}
+
+.button.secondary .loading-icon path[fill] { // TODO JASON: Make sure that this still works with the new icons
+  fill: $blue-500;
+}
+
+@keyframes loadingSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

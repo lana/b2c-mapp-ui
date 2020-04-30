@@ -2,8 +2,7 @@ import { withKnobs, select } from '@storybook/addon-knobs';
 
 import TextParagraph from './TextParagraph.vue';
 import { availableSizes, availableColors, availableWeights } from './TextParagraph';
-
-const capitalizeFirstLetter = (originalText) => `${originalText.charAt(0).toUpperCase()}${originalText.slice(1)}`; // TODO JASON: Refactor this into a util library
+import { capitalizeFirstLetter } from '../../lib/textHelper';
 
 const TextParagraphStories = {
   component: TextParagraph,
@@ -17,17 +16,17 @@ const defaultExample = () => ({
   },
   props: {
     color: {
-      default: select('Color', availableColors, 'black-500'),
+      default: select('Color', [...availableColors, ''], ''),
     },
     weight: {
-      default: select('Weight', availableWeights, 'medium'),
+      default: select('Weight', [...availableWeights, ''], ''),
     },
     size: {
-      default: select('Size', availableSizes, 'medium'),
+      default: select('Size', [...availableSizes, ''], ''),
     },
   },
   template: `
-    <div>
+    <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>TextParagraph:</strong>&nbsp;A text view that represents a paragraph.</h2>
       <hr>
       <TextParagraph :weight="weight"
@@ -66,7 +65,7 @@ const weights = () => ({
     capitalizeFirstLetter,
   },
   template: `
-    <div>
+    <div style="margin: 10px 50px 10px 50px;">
       <TextParagraph>Default weight example</TextParagraph>
       <TextParagraph v-for="(weight, index) in availableWeights"
                      :key="index"
@@ -91,7 +90,7 @@ const sizes = () => ({
     capitalizeFirstLetter,
   },
   template: `
-    <div>
+    <div style="margin: 50px">
       <TextParagraph>Default size example</TextParagraph>
       <TextParagraph v-for="(size, index) in availableSizes"
                      :key="index"
@@ -116,8 +115,8 @@ const colors = () => ({
     capitalizeFirstLetter,
   },
   template: `
-    <div>
-      <TextParagraph>Default size example</TextParagraph>
+    <div style="margin: 10px 50px 10px 50px;">
+      <TextParagraph>Default color example</TextParagraph>
       <TextParagraph v-for="(color, index) in availableColors"
                      :key="index"
                      :color="color"

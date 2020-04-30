@@ -1,3 +1,5 @@
+@import '../../styles/colors';
+
 .item {
   display: flex;
   flex-direction: row;
@@ -19,27 +21,31 @@
   width: 44px;
   height: 100%;
   border-radius: 3px;
-  background: var(--black-400);
+  background: $black-400;
+}
 
-  .blue {
-    background-color: var(--blue-300);
-  }
-  .yellow {
-    background-color: var(--yellow-300);
-  }
-  .green {
-    background-color: var(--green-300);
-  }
-  .brown {
-    background-color: var(--brown-300);
-  }
-  .purple {
-    background-color: var(--purple-300);
-  }
+.blue {
+  background-color: $blue-300;
+}
+
+.yellow {
+  background-color: $yellow-300;
+}
+
+.green {
+  background-color: $green-300;
+}
+
+.brown {
+  background-color: $brown-300;
+}
+
+.purple {
+  background-color: $purple-300;
 }
 
 .highlight {
-  color: var(--blue-500)
+  color: $blue-500;
 }
 
 .body {
