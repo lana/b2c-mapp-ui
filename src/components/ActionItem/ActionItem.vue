@@ -2,7 +2,7 @@
   <li :data-testid="dataTestId"
       class="item"
       @click="onClick"
-    >
+  >
     <div v-if="$slots.default"
          class="media"
          :data-testid="`${dataTestId}-mediacolor`"
@@ -10,8 +10,8 @@
     >
       <slot/>
     </div>
-    <div className={CSS.body}>
-      <TextParagraph data-test-id="`${dataTestId}-highlight`"
+    <div class="body">
+      <TextParagraph :data-test-id="`${dataTestId}-highlight`"
                      :class="{ highlight }"
       >
         {{ title }}

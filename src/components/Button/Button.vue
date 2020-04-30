@@ -1,10 +1,10 @@
 <template>
-  <component class="button"
-             :is="componentType"
+  <component :is="componentType"
+             :id="id"
+             class="button"
              :class="[{ loading, pressed: (!isLinkButton && isPressed) }, type]"
              :type="buttonTypeAttribute"
              :disabled="disabled"
-             :id="id"
              :data-testid="dataTestIdToUse"
              @click="onClick"
              @touchStart="toggleIsPressed"
@@ -24,8 +24,8 @@
             class="default-wrapper"
             :data-testid="`${baseDataTestIdToUse}-children`"
       >
-      <slot/>
-    </span>
+        <slot/>
+      </span>
     </template>
   </component>
 </template>
