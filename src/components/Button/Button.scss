@@ -87,11 +87,11 @@
   animation: loadingSpin 1.5s infinite linear;
 }
 
-.button .loading-icon path[fill] { // TODO JASON: Make sure that this still works with the new icons
+.button /deep/ .loading-icon path[fill] {
   fill: $white;
 }
 
-.button.secondary .loading-icon path[fill] { // TODO JASON: Make sure that this still works with the new icons
+.secondary /deep/ .loading-icon path[fill] {
   fill: $blue-500;
 }
 

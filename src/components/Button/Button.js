@@ -1,3 +1,9 @@
+import { MopIcon } from '../../../../b2c-mapp-ui-assets/dist/index'; // TODO JASON: Update this path to use the npm package once ready
+
+const components = {
+  MopIcon,
+};
+
 const availableTypes = [
   'dismiss',
   'secondary',
@@ -57,6 +63,7 @@ const methods = {
 };
 
 const Button = {
+  components,
   props,
   data,
   computed,

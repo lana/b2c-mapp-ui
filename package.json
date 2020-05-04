@@ -2,6 +2,18 @@
   "name": "@lana/b2c-mapp-ui",
   "version": "5.0.0",
   "description": "Shared custom libraries for building µapps.",
+  "bugs": {
+    "url": "https://github.com/lana/b2c-mapp-ui/issues"
+  },
+  "homepage": "https://lana.github.io/b2c-mapp-ui",
+  "license": "ISC",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lana/b2c-mapp-ui.git"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name b2cMappUi ./src/library.js && rm ./dist/demo.html",
@@ -50,17 +62,5 @@
     "sass-loader": "^8.0.2",
     "vue-cli-plugin-storybook": "~1.2.2",
     "vue-template-compiler": "^2.6.11"
-  },
-  "bugs": {
-    "url": "https://github.com/lana/b2c-mapp-ui/issues"
-  },
-  "homepage": "https://lana.github.io/b2c-mapp-ui",
-  "license": "ISC",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lana/b2c-mapp-ui.git"
   }
 }

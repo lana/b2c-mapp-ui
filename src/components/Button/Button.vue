@@ -16,8 +16,7 @@
           class="loading-wrapper"
           :data-testid="`${baseDataTestIdToUse}-loading`"
       >
-        <!-- TODO JASON: Uncomment the next line once we have the icons -->
-        <!-- <MopIcon className={CSS.loadingIcon}/> -->
+        <MopIcon class="loading-icon"/>
         ...
       </em>
       <span v-if="!loading"
