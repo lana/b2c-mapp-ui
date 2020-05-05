@@ -1,0 +1,47 @@
+@import '../../styles/colors';
+@import '../../styles/typography';
+
+.title {
+  font: $default-xl;
+  color: $black-700;
+}
+
+.txt-xxxl {
+  font: $default-xxxl;
+}
+
+.txt-xxl {
+  font: $default-xxl;
+}
+
+.txt-xl {
+  font: $default-xl;
+}
+
+.txt-large {
+  font: $default-l;
+}
+
+.txt-medium {
+  font: $default-m;
+}
+
+.txt-small {
+  font: $default-s;
+}
+
+.txt-xsmall {
+  font: $default-xs;
+}
+
+.normal {
+  font-weight: 400;
+}
+
+.medium {
+  font-weight: 500;
+}
+
+.semibold {
+  font-weight: 600;
+}

@@ -71,7 +71,7 @@ const examples = () => ({
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>FormField:</strong>&nbsp;Examples.</h2>
+      <h2><strong>BankAccountNumberInputField:</strong>&nbsp;Examples.</h2>
       <hr>
       <div style="display: flex; flex-direction: column; width: 100%;">
         <div style="width: 500px">
