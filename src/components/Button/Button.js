@@ -1,4 +1,4 @@
-import { MopIcon } from '../../../../b2c-mapp-ui-assets/dist/index'; // TODO JASON: Update this path to use the npm package once ready
+import { MopIcon } from '@lana/b2c-mapp-ui-assets/dist/index';
 
 const components = {
   MopIcon,
