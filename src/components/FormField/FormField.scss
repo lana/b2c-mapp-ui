@@ -29,12 +29,12 @@
   font: 500 14px/24px Graphik, Roboto, sans-serif;
   color: $black-500;
   transition: all 0.15s ease-out;
+}
 
-  .label {
-    top: 12px;
-    font: 500 14px/24px Graphik, Roboto, sans-serif;
-    color: $blue-600;
-  }
+.labeled .label {
+  top: 12px;
+  font: 500 14px/24px Graphik, Roboto, sans-serif;
+  color: $blue-600;
 }
 
 .input {

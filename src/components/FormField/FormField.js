@@ -39,7 +39,7 @@ const computed = {
     return result;
   },
   errorLabelOrPlaceholder() {
-    const result = (this.errorLabel || ((!this.inputValue && this.placeholder) || ''));
+    const result = (this.errorLabel || this.placeholder || '');
     return result;
   },
 };

@@ -92,7 +92,6 @@ const examples = () => ({
         </div>
         <br>
         <div style="width: 500px">
-          <!-- TODO: it seems that we need to fix the error-label, it should likely move above (or to the left of) the input field's content -->
           <label>Unfocused with error:</label>
           <FormField value="foo" errorLabel="Invalid value"/>
         </div>
