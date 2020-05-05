@@ -1,123 +1,131 @@
 import { shallowMount } from '@vue/test-utils';
 
-import Button from './Button.vue';
+import FormField from './FormField.vue';
 
-describe('UI/buttons/Button', () => {
-  const defaultButtonProps = {
-    class: 'my-class-name',
-    type: 'secondary',
-    loading: false,
-    href: null,
-    // children: <span>Children</span>,
-  };
-
-  const defaultLinkProps = {
-    class: 'my-class-name',
-    type: 'primary',
-    loading: false,
-    href: '#',
-    // children: <span data-testid={'link-children'}>Children</span>,
-  };
 
 // TODO: Uncomment the below test cases after refactoring to work with Vue
-//   describe('Button behavior', () => {
-//     it('Should render a button if href is not provided', () => {
-//       const { getByTestId } = render(<Button {...defaultButtonProps} />);
-//       const itsAButton = getByTestId('button-button');
-//       expect(itsAButton).toBeTruthy();
+// describe('UI/forms/FormField', () => {
+//   const defaultProps = {
+//     name: 'my-input',
+//     placeholder: 'Placeholder',
+//     type: 'text',
+//   };
+//
+//   describe('Label behavior', () => {
+//     it('Should have focus class if focus is triggered', () => {
+//       const { getByTestId } = render(<FormField {...defaultProps} />);
+//       const input = getByTestId('field-input');
+//       fireEvent.focus(input);
+//       const focusClass = getByTestId('field-label').className.includes('focus');
+//       expect(focusClass).toBeTruthy();
 //     });
 //
-//     it('Should NOT render a anchor if href is not provided', () => {
-//       const { queryAllByTestId } = render(<Button {...defaultButtonProps} />);
-//       const itsNotALink = !queryAllByTestId('button-link').length > 0;
-//       expect(itsNotALink).toBeTruthy();
+//     it('Should have focus class if focus it starts focused', () => {
+//       const { getByTestId } = render(<FormField {...defaultProps} startFocused />);
+//       const focusClass = getByTestId('field-label').className.includes('focus');
+//       expect(focusClass).toBeTruthy();
 //     });
 //
-//     it('Should add secondary className if secondary type is given', () => {
-//       const { getByTestId } = render(<Button {...defaultButtonProps} />);
-//       const hasSecondaryClassName = getByTestId('button-button').className.includes('secondary');
-//       expect(hasSecondaryClassName).toBeTruthy();
+//     it('Should NOT have focus class if not focused', () => {
+//       const { getByTestId } = render(<FormField {...defaultProps} />);
+//       const noFocusClass = !getByTestId('field-label').className.includes('focus');
+//       expect(noFocusClass).toBeTruthy();
 //     });
 //
-//     it('Should add disabled className if disabled type is given', () => {
-//       const { getByTestId } = render(<Button {...defaultButtonProps} type="disabled" />);
-//       const hasDisabledClassName = getByTestId('button-button').className.includes('disabled');
-//       expect(hasDisabledClassName).toBeTruthy();
-//     });
-//     it('Should add dismiss className if dismiss type is given', () => {
-//       const { getByTestId } = render(<Button {...defaultButtonProps} type="dismiss" />);
-//       const hasDismissClassName = getByTestId('button-button').className.includes('dismiss');
-//       expect(hasDismissClassName).toBeTruthy();
-//     });
-//     it('Should NOT add type className if given type is NOT disabled|secondary|dismiss', () => {
-//       const { getByTestId } = render(<Button {...defaultButtonProps} type="wrongType" />);
-//       const wrongTypeNotSupported = !getByTestId('button-button').className.includes('wrongType');
-//       expect(wrongTypeNotSupported).toBeTruthy();
+//     it('Should have labeled class if is readOnly', () => {
+//       const { getByTestId } = render(<FormField {...defaultProps} readOnly />);
+//       const labeledClass = getByTestId('field-label').className.includes('labeled');
+//       expect(labeledClass).toBeTruthy();
 //     });
 //
-//     it('Should call onClick when is clicked', () => {
-//       const myMockClick = jest.fn();
-//       const { getByTestId } = render(<Button {...defaultButtonProps} onClick={myMockClick} />);
-//       const button = getByTestId('button-button');
-//       fireEvent.click(button);
-//       expect(myMockClick).toHaveBeenCalled();
+//     it('Should NOT have labeled class if is NOT readOnly', () => {
+//       const { getByTestId } = render(<FormField {...defaultProps} />);
+//       const noLabeledClass = !getByTestId('field-label').className.includes('labeled');
+//       expect(noLabeledClass).toBeTruthy();
 //     });
 //
-//     describe('Loading behavior', () => {
-//       it('Should show button-children-content if is NOT loading', () => {
-//         const { getByTestId } = render(<Button {...defaultButtonProps} loading={false} />);
-//         const childrenExists = getByTestId('button-children');
-//         expect(childrenExists).toBeTruthy();
-//       });
-//       it('Should NOT show button-loading if is NOT loading', () => {
-//         const { queryAllByTestId } = render(<Button {...defaultButtonProps} loading={false} />);
-//         const withoutLoadingContent = queryAllByTestId('button-loading').length === 0;
-//         expect(withoutLoadingContent).toBeTruthy();
-//       });
+//     it('Should have labeled class if showPrefix is given', () => {
+//       const { getByTestId } = render(<FormField {...defaultProps} showPrefix />);
+//       const labeledClass = getByTestId('field-label').className.includes('labeled');
+//       expect(labeledClass).toBeTruthy();
+//     });
 //
-//       it('Should NOT add loadingClass if given loading is false', () => {
-//         const { getByTestId } = render(<Button {...defaultButtonProps} loading={false} />);
-//         const loadingClassNotApplied = !getByTestId('button-button').className.includes('loading');
-//         expect(loadingClassNotApplied).toBeTruthy();
-//       });
-//       it('Should add loading class if given loading is true', () => {
-//         const { getByTestId } = render(<Button {...defaultButtonProps} loading={true} />);
-//         const loadingClassApplied = getByTestId('button-button').className.includes('loading');
-//         expect(loadingClassApplied).toBeTruthy();
-//       });
-//       it('Should NOT show button-children-content if is loading', () => {
-//         const { queryAllByTestId } = render(<Button {...defaultButtonProps} loading={true} />);
-//         const childrenNotExsist = queryAllByTestId('button-children').length === 0;
-//         expect(childrenNotExsist).toBeTruthy();
-//       });
+//     it('Should NOT have labeled class if showPrefix is NOT given', () => {
+//       const { getByTestId } = render(<FormField {...defaultProps} />);
+//       const noLabeledClass = !getByTestId('field-label').className.includes('labeled');
+//       expect(noLabeledClass).toBeTruthy();
+//     });
 //
-//       it('Should show loading content if given loading is true', () => {
-//         const { getByTestId } = render(<Button {...defaultButtonProps} loading={true} />);
-//         const loadingContentExist = getByTestId('button-loading');
-//         expect(loadingContentExist).toBeTruthy();
-//       });
+//     it('Should have labeled class if value is given', () => {
+//       const { getByTestId } = render(<FormField {...defaultProps} value="yep" />);
+//       const labeledClass = getByTestId('field-label').className.includes('labeled');
+//       expect(labeledClass).toBeTruthy();
+//     });
+//
+//     it('Should NOT have labeled class if value is NOT given', () => {
+//       const { getByTestId } = render(<FormField {...defaultProps} />);
+//       const noLabeledClass = !getByTestId('field-label').className.includes('labeled');
+//       expect(noLabeledClass).toBeTruthy();
+//     });
+//
+//     it('Should show given children inside field-label', () => {
+//       const { getByTestId } = render(<FormField {...defaultProps}> Hey! </FormField>);
+//       const childrenIsInLabel = getByTestId('field-label').textContent.includes('Hey!');
+//       expect(childrenIsInLabel).toBeTruthy();
+//     });
+//
+//     it('Should show given errorLabel as label content', () => {
+//       const { getByTestId } = render(<FormField {...defaultProps} errorLabel={'Error Label'} />);
+//       const errorLabel = getByTestId('field-label').textContent.includes('Error Label');
+//       expect(errorLabel).toBeTruthy();
+//     });
+//
+//     it('Should NOT show given placeholder if errorLabel is given', () => {
+//       const { getByTestId } = render(<FormField {...defaultProps} errorLabel={'Error Label'} />);
+//       const noPlacholder = !getByTestId('field-label').textContent.includes('Placeholder');
+//       expect(noPlacholder).toBeTruthy();
 //     });
 //   });
 //
-//   describe('Link behavior', () => {
-//     it('Should render a link if href is provided', () => {
-//       const { getByTestId } = render(<Button {...defaultLinkProps} />);
-//       const itsALink = getByTestId('button-link');
-//       expect(itsALink).toBeTruthy();
+//   describe('Input behavior', () => {
+//     it('Should call given onChange when onChange is triggered', () => {
+//       const handleChangeMock = jest.fn();
+//       const { getByTestId } = render(<FormField {...defaultProps} onChange={handleChangeMock} />);
+//       const input = getByTestId('field-input');
+//       fireEvent.change(input);
+//       expect(handleChangeMock).toHaveBeenCalled();
 //     });
 //
-//     it('Should NOT render a button if href is provided', () => {
-//       const { queryAllByTestId } = render(<Button {...defaultLinkProps} />);
-//       const itsNotAButton = queryAllByTestId('button-button').length === 0;
-//       expect(itsNotAButton).toBeTruthy();
+//     it('Should call given onChange when onInput is triggered', () => {
+//       const handleChangeMock = jest.fn();
+//       const { getByTestId } = render(<FormField {...defaultProps} onChange={handleChangeMock} />);
+//       const input = getByTestId('field-input');
+//       fireEvent.input(input);
+//       expect(handleChangeMock).toHaveBeenCalled();
 //     });
 //
-//     it('Should call onClick when is clicked', () => {
-//       const myMockClick = jest.fn();
-//       const { getByTestId } = render(<Button {...defaultLinkProps} onClick={myMockClick} />);
-//       const link = getByTestId('button-link');
-//       fireEvent.click(link);
-//       expect(myMockClick).toHaveBeenCalled();
+//     it('Should call given onBlur when onBlur is triggered', () => {
+//       const handleBlurMock = jest.fn();
+//       const { getByTestId } = render(<FormField {...defaultProps} onBlur={handleBlurMock} />);
+//       const input = getByTestId('field-input');
+//       fireEvent.blur(input);
+//       expect(handleBlurMock).toHaveBeenCalled();
+//     });
+//
+//     it('Should call given onFocus when onFocus is triggered', () => {
+//       const handleFocusMock = jest.fn();
+//       const { getByTestId } = render(<FormField {...defaultProps} onFocus={handleFocusMock} />);
+//       const input = getByTestId('field-input');
+//       fireEvent.focus(input);
+//       expect(handleFocusMock).toHaveBeenCalled();
+//     });
+//
+//     it('Should call given onFocus when startFocused is given', () => {
+//       const handleFocusMock = jest.fn();
+//       const { getByTestId } = render(<FormField {...defaultProps} startFocused onFocus={handleFocusMock} />,);
+//       const input = getByTestId('field-input');
+//       fireEvent.focus(input);
+//       expect(handleFocusMock).toHaveBeenCalled();
 //     });
 //   });
-});
+// });
