@@ -16,6 +16,7 @@ jobs:
 
     env:
       working-dir: ./
+      TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
 
     steps:
       - uses: actions/checkout@v2
