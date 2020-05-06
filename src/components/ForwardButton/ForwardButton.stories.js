@@ -48,6 +48,7 @@ const defaultExample = () => ({
     </div>
   `,
 });
+
 export {
   defaultExample,
 };
