@@ -8,6 +8,7 @@
 import ActionItem from './components/ActionItem/ActionItem.vue';
 import BankAccountNumberInputField from './components/BankAccountNumberInputField/BankAccountNumberInputField.vue';
 import Button from './components/Button/Button.vue';
+import CopyToClipboardButton from './components/CopyToClipboardButton/CopyToClipboardButton.vue';
 import ContentItem from './components/ContentItem/ContentItem.vue';
 import FormField from './components/FormField/FormField.vue';
 import Heading from './components/Heading/Heading.vue';
@@ -18,6 +19,7 @@ const libraryComponents = { // TODO JASON: Alpha-sort these
   ActionItem,
   BankAccountNumberInputField,
   Button,
+  CopyToClipboardButton,
   ContentItem,
   FormField,
   Heading,

@@ -7,14 +7,13 @@ const getHiddenInputElement = (textToCopy) => {
   return result;
 };
 
-const copyToClipboard = (textToCopy, callback) => {
+const copyTextToClipboard = (textToCopy) => {
   if (typeof window === 'undefined') { return; }
   const hiddenInputElement = getHiddenInputElement(textToCopy);
   document.body.appendChild(hiddenInputElement);
   hiddenInputElement.select();
   document.execCommand('copy');
   document.body.removeChild(hiddenInputElement);
-  if (callback) { callback(); }
 };
 
-export default copyToClipboard;
+export { copyTextToClipboard };
