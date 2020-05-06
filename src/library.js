@@ -19,6 +19,7 @@ import ForwardButton from './components/ForwardButton/ForwardButton.vue';
 import Heading from './components/Heading/Heading.vue';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner.vue';
 import Screen from './components/Screen/Screen.vue';
+import ScrollWrapper from './components/ScrollWrapper/ScrollWrapper.vue';
 import TextParagraph from './components/TextParagraph/TextParagraph.vue';
 import './styles/normalize.scss';
 
@@ -35,6 +36,7 @@ const libraryComponents = { // TODO JASON: Alpha-sort these
   Heading,
   LoadingSpinner,
   Screen,
+  ScrollWrapper,
   TextParagraph,
 };
 
