@@ -21,6 +21,7 @@ import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner.vue';
 import Screen from './components/Screen/Screen.vue';
 import ScrollWrapper from './components/ScrollWrapper/ScrollWrapper.vue';
 import TextParagraph from './components/TextParagraph/TextParagraph.vue';
+import Wrapper from './components/Wrapper/Wrapper.vue';
 import './styles/normalize.scss';
 
 const libraryComponents = { // TODO JASON: Alpha-sort these
@@ -38,6 +39,7 @@ const libraryComponents = { // TODO JASON: Alpha-sort these
   Screen,
   ScrollWrapper,
   TextParagraph,
+  Wrapper,
 };
 
 export default libraryComponents;
