@@ -7,7 +7,7 @@ import FormField from './FormField.vue';
 // describe('UI/forms/FormField', () => {
 //   const defaultProps = {
 //     name: 'my-input',
-//     placeholder: 'Placeholder',
+//     label: 'Placeholder',
 //     type: 'text',
 //   };
 //

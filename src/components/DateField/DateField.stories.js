@@ -1,21 +1,24 @@
 import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean, text, number } from '@storybook/addon-knobs';
 
-import FormField from './FormField.vue';
+import DateField from './DateField.vue';
 
-const FormFieldStories = {
-  component: FormField,
-  title: 'FormField',
+const DateFieldStories = {
+  component: DateField,
+  title: 'DateField',
   decorators: [withKnobs],
 };
 
 const defaultExample = () => ({
   components: {
-    FormField,
+    DateField,
   },
   props: {
-    type: {
-      default: text('Type', ''),
+    autoformat: {
+      default: boolean('Enable autoformatting?', false),
+    },
+    datePicker: {
+      default: boolean('Enable Date Picker?', false),
     },
     disabled: {
       default: boolean('Is Disabled?', false),
@@ -24,16 +27,13 @@ const defaultExample = () => ({
       default: boolean('Is Readonly?', false),
     },
     label: {
-      default: text('Label', 'Example FormField'),
+      default: text('Label', 'Example Date Field'),
     },
     errorLabel: {
-      default: text('Error Label', ''),
+      default: text('Error Label', 'Fecha no válida (DD/MM/YYYY)'),
     },
     maxLength: {
-      default: number('Max Length'),
-    },
-    showPrefix: {
-      default: boolean('Show Prefix?', false),
+      default: number('Max Length', 10),
     },
   },
   data() {
@@ -44,23 +44,27 @@ const defaultExample = () => ({
   methods: {
     onBlur: action('Blur!'),
     onFocus: action('Focus!'),
+    onChange: action('Change!'),
+    onValidate: action('Validate!'),
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>FormField:</strong>&nbsp;A simple text field.</h2>
+      <h2><strong>DateField:</strong>&nbsp;A simple date input field.</h2>
       <hr>
       <div style="display: flex; flex-direction: column; width: 100%;">
         <div style="width: 500px">
-          <FormField :type="type"
+          <DateField :autoformat="autoformat"
                      :disabled="disabled"
                      :readonly="readonly"
+                     :date-picker="datePicker"
                      :label="label"
                      :error-label="errorLabel"
                      :max-length="maxLength"
-                     :show-prefix="showPrefix"
                      v-model="value"
                      @blur="onBlur"
                      @focus="onFocus"
+                     @change="onChange"
+                     @validate="onValidate"
           />
           <br>
           <div>
@@ -72,44 +76,32 @@ const defaultExample = () => ({
   `,
 });
 
-const examples = () => ({
+const validation = () => ({
   components: {
-    FormField,
+    DateField,
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>FormField:</strong>&nbsp;Examples.</h2>
+      <h2><strong>DateField:</strong>&nbsp;Validations.</h2>
       <hr>
       <div style="display: flex; flex-direction: column; width: 100%;">
         <div style="width: 500px">
-          <label>Unfocused with no value:</label>
-          <FormField label='Enter your name'/>
+          <label>With Valid Date:</label>
+          <DateField value="01/12/1990" label='Enter your DOB' date-picker/>
         </div>
         <br>
         <div style="width: 500px">
-          <label>Focused with value:</label>
-          <FormField label="Example" value="foo" start-focused/>
-        </div>
-        <br>
-        <div style="width: 500px">
-          <label>Unfocused with error:</label>
-          <FormField value="foo" errorLabel="Invalid value"/>
-        </div>
-        <br>
-        <div style="width: 500px">
-          <label>Readonly:</label>
-          <FormField label="Enter your name" value="value locked" readonly/>
+          <label>With Invalid Date:</label>
+          <DateField value="01/20/1990" label='Enter your DOB' date-picker/>
         </div>
       </div>
     </div>
   `,
 });
 
-// TODO: Add more stories for this component to showcase more usage scenarios
-
 export {
   defaultExample,
-  examples,
+  validation,
 };
 
-export default FormFieldStories;
+export default DateFieldStories;

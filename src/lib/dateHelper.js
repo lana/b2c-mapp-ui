@@ -1,5 +1,4 @@
-const nonDigitSlashRegexp = /\D\/$/;
-const nonDigitRegexp = /\D/g;
+import { nonDigitSlashRegexp, nonDigitRegexp } from './regexHelper';
 
 const getFormattedStringFromDate = (date) => {
   const datePart = `0${date.getUTCDate()}`.slice(-2);

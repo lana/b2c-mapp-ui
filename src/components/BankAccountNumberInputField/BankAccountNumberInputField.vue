@@ -1,7 +1,7 @@
 <template>
   <FormField v-model="inputValue"
              :data-test-id="dataTestId"
-             :placeholder="placeholder"
+             :label="label"
              :error-label="errorLabelToShow"
              :disabled="disabled"
              :readonly="readonly"

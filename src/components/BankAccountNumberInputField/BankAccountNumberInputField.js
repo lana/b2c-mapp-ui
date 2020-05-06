@@ -21,7 +21,7 @@ const props = {
     type: String,
     default: 'Invalid account number',
   },
-  placeholder: String,
+  label: String,
   countryCode: String,
   name: String,
   disabled: Boolean,

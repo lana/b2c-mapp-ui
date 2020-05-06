@@ -20,8 +20,8 @@ const defaultExample = () => ({
     readonly: {
       default: boolean('Is Readonly?', false),
     },
-    placeholder: {
-      default: text('Placeholder', 'Example BankAccount Field'),
+    label: {
+      default: text('Label', 'Example BankAccount Field'),
     },
     errorLabel: {
       default: text('Error Label', ''),
@@ -48,7 +48,7 @@ const defaultExample = () => ({
         <div style="width: 500px">
           <BankAccountNumberInputField :disabled="disabled"
                                        :readonly="readonly"
-                                       :placeholder="placeholder"
+                                       :label="label"
                                        :error-label="errorLabel"
                                        v-model="value"
                                        @blur="onBlur"
@@ -77,7 +77,7 @@ const examples = () => ({
         <div style="width: 500px">
           <label>Normal example:</label>
           <BankAccountNumberInputField country-code="MX"
-                                       placeholder="Introduce un CLABE"
+                                       label="Introduce un CLABE"
                                        error-label="Invalid CLABE number"
           />
         </div>
@@ -85,7 +85,7 @@ const examples = () => ({
         <div style="width: 500px">
           <label>With a valid value:</label>
           <BankAccountNumberInputField country-code="MX"
-                                       placeholder="Introduce un CLABE"
+                                       label="Introduce un CLABE"
                                        error-label="Invalid CLABE number"
                                        value="138211000000000127"
           />
@@ -94,7 +94,7 @@ const examples = () => ({
         <div style="width: 500px">
           <label>With an invalid value:</label>
           <BankAccountNumberInputField country-code="MX"
-                                       placeholder="Introduce un CLABE"
+                                       label="Introduce un CLABE"
                                        error-label="Invalid CLABE number"
                                        value="1382110000000"
           />
@@ -103,7 +103,7 @@ const examples = () => ({
         <div style="width: 500px">
           <label>Readonly:</label>
           <BankAccountNumberInputField country-code="MX"
-                                       placeholder="Introduce un CLABE"
+                                       label="Introduce un CLABE"
                                        error-label="Invalid CLABE number"
                                        value="138211000000000127"
                                        readonly
@@ -112,7 +112,7 @@ const examples = () => ({
         <div style="width: 500px">
           <label>Disabled:</label>
           <BankAccountNumberInputField country-code="MX"
-                                       placeholder="Introduce un CLABE"
+                                       label="Introduce un CLABE"
                                        error-label="Invalid CLABE number"
                                        value="138211000000000127"
                                        disabled

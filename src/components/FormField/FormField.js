@@ -13,7 +13,7 @@ const props = {
   },
   id: String,
   name: String,
-  placeholder: String,
+  label: String,
   type: String,
   disabled: Boolean,
   errorLabel: String,
@@ -39,7 +39,7 @@ const computed = {
     return result;
   },
   errorLabelOrPlaceholder() {
-    const result = (this.errorLabel || this.placeholder || '');
+    const result = (this.errorLabel || this.label || '');
     return result;
   },
 };

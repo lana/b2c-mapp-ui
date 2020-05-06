@@ -37,7 +37,6 @@
     "@lana/b2c-mapp-ui-assets": "^4.0.0",
     "core-js": "^3.6.4",
     "libphonenumber-js": "^1.7.44",
-    "uuid": "^7.0.2",
     "vue": "^2.6.11"
   },
   "devDependencies": {

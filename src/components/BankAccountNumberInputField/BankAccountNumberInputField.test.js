@@ -6,7 +6,7 @@ import BankAccountNumberInputField from './BankAccountNumberInputField.vue';
 // TODO: Uncomment the below test cases after refactoring to work with Vue
 // describe('UI/forms/BankAccountNumberInputField', () =>{
 //   const defaultProps = {
-//     placeholder: 'Introduce un CLABE',
+//     label: 'Introduce un CLABE',
 //     name:'example',
 //   };
 //   it('Should not show errors if given value is empty', () => {
