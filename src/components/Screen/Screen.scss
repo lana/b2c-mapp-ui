@@ -1,0 +1,18 @@
+@import '../../styles/colors';
+
+.screen {
+  z-index: 5;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  background: $white;
+  opacity: 1;
+  height: 100vh;
+}
+
+.stacked {
+  transform: translateX(0);
+  opacity: 1;
+}
