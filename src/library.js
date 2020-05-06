@@ -13,6 +13,7 @@ import Button from './components/Button/Button.vue';
 import CopyToClipboardButton from './components/CopyToClipboardButton/CopyToClipboardButton.vue';
 import ContentItem from './components/ContentItem/ContentItem.vue';
 import DateField from './components/DateField/DateField.vue';
+import FigureCard from './components/FigureCard/FigureCard.vue';
 import FormField from './components/FormField/FormField.vue';
 import Heading from './components/Heading/Heading.vue';
 import TextParagraph from './components/TextParagraph/TextParagraph.vue';
@@ -25,6 +26,7 @@ const libraryComponents = { // TODO JASON: Alpha-sort these
   CopyToClipboardButton,
   ContentItem,
   DateField,
+  FigureCard,
   FormField,
   Heading,
   TextParagraph,
