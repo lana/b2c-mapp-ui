@@ -15,6 +15,7 @@ import ContentItem from './components/ContentItem/ContentItem.vue';
 import DateField from './components/DateField/DateField.vue';
 import FigureCard from './components/FigureCard/FigureCard.vue';
 import FormField from './components/FormField/FormField.vue';
+import ForwardButton from './components/ForwardButton/ForwardButton.vue';
 import Heading from './components/Heading/Heading.vue';
 import TextParagraph from './components/TextParagraph/TextParagraph.vue';
 import './styles/normalize.scss';
@@ -28,6 +29,7 @@ const libraryComponents = { // TODO JASON: Alpha-sort these
   DateField,
   FigureCard,
   FormField,
+  ForwardButton,
   Heading,
   TextParagraph,
 };

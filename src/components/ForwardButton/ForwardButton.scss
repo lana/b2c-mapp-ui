@@ -1,0 +1,15 @@
+@import '../../styles/colors';
+
+.wrapper {
+  margin-left: auto;
+  padding: 16px;
+  width: 58px;
+  height: 52px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.forward-icon /deep/ path[fill] {
+  fill: $black-100;
+}
