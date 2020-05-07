@@ -22,6 +22,7 @@ import Screen from './components/Screen/Screen.vue';
 import ScrollWrapper from './components/ScrollWrapper/ScrollWrapper.vue';
 import TextParagraph from './components/TextParagraph/TextParagraph.vue';
 import Wrapper from './components/Wrapper/Wrapper.vue';
+import WrappedButton from './components/WrappedButton/WrappedButton.vue';
 import './styles/normalize.scss';
 
 const libraryComponents = { // TODO JASON: Alpha-sort these
@@ -40,6 +41,7 @@ const libraryComponents = { // TODO JASON: Alpha-sort these
   ScrollWrapper,
   TextParagraph,
   Wrapper,
+  WrappedButton,
 };
 
 export default libraryComponents;
