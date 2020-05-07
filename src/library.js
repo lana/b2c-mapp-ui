@@ -20,6 +20,7 @@ import Heading from './components/Heading/Heading.vue';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner.vue';
 import Screen from './components/Screen/Screen.vue';
 import ScrollWrapper from './components/ScrollWrapper/ScrollWrapper.vue';
+import TextField from './components/TextField/TextField.vue';
 import TextParagraph from './components/TextParagraph/TextParagraph.vue';
 import ToggleSwitch from './components/ToggleSwitch/ToggleSwitch.vue';
 import TopBar from './components/TopBar/TopBar.vue';
@@ -41,6 +42,7 @@ const libraryComponents = { // TODO JASON: Alpha-sort these
   LoadingSpinner,
   Screen,
   ScrollWrapper,
+  TextField,
   TextParagraph,
   ToggleSwitch,
   TopBar,
