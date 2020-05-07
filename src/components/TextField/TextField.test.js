@@ -2,6 +2,8 @@ import { shallowMount } from '@vue/test-utils';
 
 import TextField from './TextField.vue';
 
+// TODO: Consolidate and refactor any tests from the old `TextFieldWithValidation` component into this file too
+
 // TODO: Uncomment the below test cases after refactoring to work with Vue
 // describe('UI/forms/TextField', () => {
 //   const defaultProps = {

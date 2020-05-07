@@ -1,7 +1,9 @@
 import FormField from '../FormField/FormField.vue';
+import TextParagraph from '../TextParagraph/TextParagraph.vue';
 
 const components = {
   FormField,
+  TextParagraph,
 };
 
 const props = {
@@ -25,12 +27,20 @@ const props = {
   errorLabel: String,
   readonly: Boolean,
   startFocused: Boolean,
+  lengthHint: Number,
 };
 
 const data = function () {
   return {
     inputValue: this.value,
   };
+};
+
+const computed = {
+  maxLengthToUse() {
+    const result = (this.maxLength || this.lengthHint);
+    return result;
+  },
 };
 
 const methods = {
@@ -56,6 +66,7 @@ const watch = {
 
 const TextField = {
   components,
+  computed,
   props,
   data,
   methods,

@@ -32,6 +32,9 @@ const defaultExample = () => ({
     maxLength: {
       default: number('Max Length'),
     },
+    lengthHint: {
+      default: number('Length Hint'),
+    },
   },
   data() {
     return {
@@ -55,6 +58,7 @@ const defaultExample = () => ({
                      :label="label"
                      :error-label="errorLabel"
                      :max-length="maxLength"
+                     :length-hint="lengthHint"
                      @blur="onBlur"
                      @focus="onFocus"
           />
@@ -83,13 +87,23 @@ const examples = () => ({
         </div>
         <br>
         <div style="width: 500px">
+          <label>No value with length hint:</label>
+          <TextField label='Credit Card Number' :length-hint="16"/>
+        </div>
+        <br>
+        <div style="width: 500px">
           <label>Focused with value:</label>
           <TextField label="Example" value="foo" start-focused/>
         </div>
         <br>
         <div style="width: 500px">
           <label>Unfocused with error:</label>
-          <TextField value="foo" errorLabel="Invalid value"/>
+          <TextField value="foo" error-label="Invalid value"/>
+        </div>
+        <br>
+        <div style="width: 500px">
+          <label>Length hint with error:</label>
+          <TextField value="1234" label="Credit Card Number" :length-hint="16" error-label="Length should be 16"/>
         </div>
         <br>
         <div style="width: 500px">

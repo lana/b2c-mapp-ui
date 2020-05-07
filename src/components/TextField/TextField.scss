@@ -1,0 +1,17 @@
+.wrapper {
+  position: relative;
+}
+
+.hint {
+  position: absolute;
+  top: 33px;
+  right: 16px;
+  z-index: 10;
+  font-size: 12px;
+  transition: transform 0.15s ease
+}
+
+.align-top {
+  transform: translateY(-22px);
+}
+
