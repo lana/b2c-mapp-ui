@@ -5,5 +5,9 @@ module.exports = {
     '**/*.test.js',
     '**/*.spec.js',
   ],
+  collectCoverageFrom: [
+    'src/**/*.{js,vue}',
+    '!src/main.js',
+  ],
   verbose: true,
 };

@@ -11,7 +11,7 @@
       <slot/>
     </div>
     <div class="body">
-      <TextParagraph :data-test-id="`${dataTestId}-highlight`"
+      <TextParagraph :data-testid="`${dataTestId}-highlight`"
                      :class="{ highlight }"
       >
         {{ title }}

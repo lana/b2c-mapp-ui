@@ -1,4 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
+import { render, fireEvent } from '@testing-library/vue';
 
 import ActionItem from './ActionItem.vue';
 
@@ -21,8 +22,26 @@ describe('UI/lists/ActionItem', () => {
   // };
 
   it('Should apply given className class', () => {
-    const wrapper = shallowMount(ActionItem, { propsData: { ...defaultProps } });
+    const wrapper = shallowMount(ActionItem, { slots: { default: '<img src=""/>' }, propsData: { ...defaultProps } });
     expect(wrapper.classes()).toContain(defaultClassname);
+  });
+
+  it('Should display action-item-mediacolor if default slot is provided', () => {
+    const { queryAllByTestId } = render(ActionItem, { slots: { default: '<img src=""/>' }, propsData: { ...defaultProps } });
+    const mediaColorDisplayed = queryAllByTestId('action-item-mediacolor').length;
+    expect(mediaColorDisplayed).toBeTruthy();
+  });
+
+  it('Should apply color given by prop to class if default slot is given to action-item-mediacolor', () => {
+    const { getByTestId } = render(ActionItem, { slots: { default: '<img src=""/>' }, propsData: { ...defaultProps } });
+    const hasGivenColorClass = getByTestId('action-item-mediacolor').className.includes('blue');
+    expect(hasGivenColorClass).toBeTruthy();
+  });
+
+  it('Should not display action-item-mediacolor if default slot is not provided', () => {
+    const { queryAllByTestId } = render(ActionItem, { propsData: { ...defaultProps } });
+    const mediaColorNotDisplayed = !queryAllByTestId('action-item-mediacolor').length;
+    expect(mediaColorNotDisplayed).toBeTruthy();
   });
 
   // TODO: Uncomment the below tests after updating them to work with Vue
