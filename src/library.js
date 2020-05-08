@@ -1,6 +1,6 @@
 // TODO JASON: Finish updating this file to export all the library components
 
-// TODO JASON: Add Rollup back once ready, and then update the `module` and `main` entries inside of package.json
+// TODO JASON: Add Rollup back once ready (copy the config from the ui-assets repo and compare with the old ui libs config), and then update the `module` and `main` entries inside of package.json
 
 // TODO JASON: Ask Rahul about configuring auto-deploy of static-storybook to GH (and make sure to add the needed package.json script for that too)
 
@@ -19,6 +19,7 @@ import ListItem from './components/ListItem/ListItem.vue';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner.vue';
 import Screen from './components/Screen/Screen.vue';
 import ScrollWrapper from './components/ScrollWrapper/ScrollWrapper.vue';
+import SelectBox from './components/SelectBox/SelectBox.vue';
 import Stepper from './components/Stepper/Stepper.vue';
 import TextField from './components/TextField/TextField.vue';
 import TextParagraph from './components/TextParagraph/TextParagraph.vue';
@@ -43,6 +44,7 @@ const libraryComponents = { // TODO JASON: Alpha-sort these
   LoadingSpinner,
   Screen,
   ScrollWrapper,
+  SelectBox,
   Stepper,
   TextField,
   TextParagraph,
