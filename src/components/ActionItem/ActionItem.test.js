@@ -1,9 +1,6 @@
-import { shallowMount, config } from '@vue/test-utils';
 import { render, fireEvent } from '@testing-library/vue';
 
 import ActionItem from './ActionItem.vue';
-
-// TODO: Remove this config for new versions of test-utils
 
 describe('UI/lists/ActionItem', () => {
   const defaultClassname = 'CLASSNAME';
@@ -16,14 +13,14 @@ describe('UI/lists/ActionItem', () => {
   };
 
   beforeAll(() => {
-    config.showDeprecationWarnings = false;
-    config.silent = true;
-    console.error = jest.fn();
+    // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
+    console.error = jest.fn(); // eslint-disable-line no-console
   });
 
   it('Should apply given className class', () => {
-    const wrapper = shallowMount(ActionItem, { slots: { default: '<img src=""/>' }, propsData: { ...defaultProps } });
-    expect(wrapper.classes()).toContain(defaultClassname);
+    const { getByTestId } = render(ActionItem, { propsData: { ...defaultProps } });
+    const hasGivenClass = getByTestId('action-item').className.includes(defaultClassname);
+    expect(hasGivenClass).toBeTruthy();
   });
 
   it('Should display action-item-mediacolor if default slot is provided', () => {
@@ -56,7 +53,7 @@ describe('UI/lists/ActionItem', () => {
     expect(highlightNotApplied).toBeTruthy();
   });
 
-  it('should trigger components onClick', () => {
+  it('should emit an event when is clicked', () => {
     const { getByTestId, emitted } = render(ActionItem, { propsData: { ...defaultProps } });
     const element = getByTestId('action-item');
     fireEvent.click(element);
