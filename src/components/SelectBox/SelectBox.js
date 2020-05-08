@@ -15,6 +15,8 @@ const props = {
   },
   value: String,
   label: String,
+  id: String,
+  name: String,
   disabled: Boolean,
 };
 

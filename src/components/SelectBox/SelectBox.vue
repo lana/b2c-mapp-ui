@@ -5,8 +5,10 @@
   >
     <strong class="label">{{ label }}</strong>
     <ExpandSmallIcon/>
-    <select v-model="selectedValue"
+    <select :id="id"
+            v-model="selectedValue"
             class="select"
+            :name="name"
             :data-testid="`${dataTestId}-select`"
             :disabled="disabled"
             @focus="toggleFocus"
