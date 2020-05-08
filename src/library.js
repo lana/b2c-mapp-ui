@@ -17,6 +17,7 @@ import FigureCard from './components/FigureCard/FigureCard.vue';
 import FormField from './components/FormField/FormField.vue';
 import ForwardButton from './components/ForwardButton/ForwardButton.vue';
 import Heading from './components/Heading/Heading.vue';
+import ListItem from './components/ListItem/ListItem.vue';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner.vue';
 import Screen from './components/Screen/Screen.vue';
 import ScrollWrapper from './components/ScrollWrapper/ScrollWrapper.vue';
@@ -40,6 +41,7 @@ const libraryComponents = { // TODO JASON: Alpha-sort these
   FormField,
   ForwardButton,
   Heading,
+  ListItem,
   LoadingSpinner,
   Screen,
   ScrollWrapper,

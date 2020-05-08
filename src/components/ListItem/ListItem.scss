@@ -1,0 +1,90 @@
+@import '../../styles/colors';
+@import '../../styles/typography';
+
+$default-media-color: $black-400;
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  overflow: hidden;
+  position: relative;
+  padding: 8px 16px;
+}
+
+.media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  margin-right: 12px;
+  width: 44px;
+  height: 44px;
+  border-radius: 3px;
+  background: $default-media-color;
+}
+
+.body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+.link {
+  color: $blue-500;
+  font: $callout;
+  font-weight: 500;
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+
+.transparent {
+  background-color: transparent;
+  border: 1px solid $default-media-color;
+
+  &.black {
+    background-color: transparent;
+    border: 1px solid $black-300;
+  }
+
+  &.blue {
+    background-color: transparent;
+    border: 1px solid $blue-300;
+  }
+
+  &.brown {
+    background-color: transparent;
+    border: 1px solid $brown-300;
+  }
+
+  &.green {
+    background-color: transparent;
+    border: 1px solid $green-300;
+  }
+
+  &.purple {
+    background-color: transparent;
+    border: 1px solid $purple-300;
+  }
+
+  &.yellow {
+    background-color: transparent;
+    border: 1px solid $yellow-300;
+  }
+}
+
+.black { background-color: $black-300; }
+.blue { background-color: $blue-300; }
+.brown { background-color: $brown-300; }
+.green { background-color: $green-300; }
+.purple { background-color: $purple-300; }
+.yellow { background-color: $yellow-300; }

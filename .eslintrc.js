@@ -7,7 +7,10 @@ module.exports = {
     'plugin:vue/essential',
     '@vue/airbnb',
   ],
-  plugins: ['fp'],
+  plugins: [
+    'fp',
+    '@spothero/eslint-plugin-spothero',
+  ],
   ignorePatterns: [
     'build/**/*',
     'dist/**/*',
@@ -63,6 +66,7 @@ module.exports = {
     'fp/no-class': 'error',
     'fp/no-delete': 'error',
     'fp/no-get-set': 'error',
+    '@spothero/spothero/ternary-parentheses': 'error',
     'vue/no-shared-component-data': 'error',
     'vue/no-side-effects-in-computed-properties': 'error',
     'vue/no-unused-components': 'error',
