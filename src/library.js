@@ -17,6 +17,7 @@ import ForwardButton from './components/ForwardButton/ForwardButton.vue';
 import Heading from './components/Heading/Heading.vue';
 import ListItem from './components/ListItem/ListItem.vue';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner.vue';
+import RadioList from './components/RadioList/RadioList.vue';
 import Screen from './components/Screen/Screen.vue';
 import ScrollWrapper from './components/ScrollWrapper/ScrollWrapper.vue';
 import SelectBox from './components/SelectBox/SelectBox.vue';
@@ -42,6 +43,7 @@ const libraryComponents = { // TODO JASON: Alpha-sort these
   Heading,
   ListItem,
   LoadingSpinner,
+  RadioList,
   Screen,
   ScrollWrapper,
   SelectBox,

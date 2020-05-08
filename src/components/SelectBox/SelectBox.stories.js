@@ -36,7 +36,7 @@ const defaultExample = () => ({
         },
         {
           label: 'Option 3',
-          value: 'option2',
+          value: 'option3',
         },
       ],
       preSelectedOptions: [

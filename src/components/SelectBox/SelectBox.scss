@@ -10,7 +10,7 @@
   cursor: text;
   touch-action: manipulation;
 
-  :before {
+  &:before {
     content: "";
     position: absolute;
     bottom: 12px;

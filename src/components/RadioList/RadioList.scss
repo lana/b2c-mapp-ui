@@ -1,0 +1,75 @@
+@import '../../styles/colors';
+
+.wrapper {
+  background: $white;
+  padding-bottom: 16px;
+  flex-grow: 1;
+}
+
+.title {
+  padding: 24px 16px 8px;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  touch-action: manipulation;
+}
+
+.checked {
+  .radio {
+    border-color: $blue-500;
+    background-color: $white;
+
+    &:before {
+      background: $blue-500;
+      transform: scale(1);
+    }
+  }
+
+  .label {
+    color: $blue-500;
+  }
+}
+
+.radio {
+  position: relative;
+  margin: 16px;
+  flex-shrink: 0;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: solid 2px $black-500;
+  border-radius: 20px;
+  transition: all 0.15s ease-out;
+
+  &:before {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -5px 0 0 -5px;
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: $black-500;
+    border-radius: 8px;
+    transform: scale(0);
+    transition: all 0.15s ease-out;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  padding-right: 16px;
+}
+
+.label {
+  font: 500 14px/24px Graphik, Roboto, sans-serif;
+  color: $black-700;
+}
