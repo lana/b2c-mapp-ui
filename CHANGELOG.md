@@ -2,6 +2,8 @@
 
 ## v.6.0.0 - 28-04-2020
  - Re-wrote everything in Vue
+ - Consolidated the `TextFieldWithValidation` component into the `TextField` component
+ - Renamed many props, please check the Storybook documentation for more details.
  - TODO JASON: Add more things here
 
 ## v.4.0.3 - 2020-04-29
