@@ -10,6 +10,7 @@ import BankAccountNumberInputField from './components/BankAccountNumberInputFiel
 import Button from './components/Button/Button.vue';
 import CopyToClipboardButton from './components/CopyToClipboardButton/CopyToClipboardButton.vue';
 import ContentItem from './components/ContentItem/ContentItem.vue';
+import ConfirmationModalDialog from './components/ConfirmationModalDialog/ConfirmationModalDialog.vue';
 import ConfirmationToastDialog from './components/ConfirmationToastDialog/ConfirmationToastDialog.vue';
 import DateField from './components/DateField/DateField.vue';
 import FigureCard from './components/FigureCard/FigureCard.vue';
@@ -36,6 +37,7 @@ const libraryComponents = { // TODO JASON: Alpha-sort these
   BankAccountNumberInputField,
   Button,
   CopyToClipboardButton,
+  ConfirmationModalDialog,
   ConfirmationToastDialog,
   ContentItem,
   DateField,
