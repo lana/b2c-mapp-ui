@@ -12,6 +12,7 @@ import CopyToClipboardButton from './components/CopyToClipboardButton/CopyToClip
 import ContentItem from './components/ContentItem/ContentItem.vue';
 import ConfirmationModalDialog from './components/ConfirmationModalDialog/ConfirmationModalDialog.vue';
 import ConfirmationToastDialog from './components/ConfirmationToastDialog/ConfirmationToastDialog.vue';
+import CopyableListItem from './components/CopyableListItem/CopyableListItem.vue';
 import DateField from './components/DateField/DateField.vue';
 import FigureCard from './components/FigureCard/FigureCard.vue';
 import FormField from './components/FormField/FormField.vue';
@@ -40,6 +41,7 @@ const libraryComponents = { // TODO JASON: Alpha-sort these
   ConfirmationModalDialog,
   ConfirmationToastDialog,
   ContentItem,
+  CopyableListItem,
   DateField,
   FigureCard,
   FormField,
