@@ -24,7 +24,7 @@
     "prepare": "npm run build",
     "predeploy-storybook": "npm run build-storybook",
     "deploy-storybook": "storybook-to-ghpages",
-    "deploy-storybook-ci": "npm run deploy-storybook -- --ci --host-token-env-variable=TOKEN --existing-output-dir=.storybook-static",
+    "deploy-storybook-ci": "npm run deploy-storybook -- --ci --host-token-env-variable=TOKEN --existing-output-dir=storybook-static",
     "build-storybook": "vue-cli-service storybook:build -c config/storybook",
     "storybook": "vue-cli-service storybook:serve -p 6006 -c config/storybook",
     "test": "vue-cli-service test:unit"
