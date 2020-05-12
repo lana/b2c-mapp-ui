@@ -3,7 +3,6 @@ import svg from 'rollup-plugin-vue-inline-svg';
 import resolve from '@rollup/plugin-node-resolve';
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
-import { terser } from 'rollup-plugin-terser';
 import globals from 'rollup-plugin-node-globals';
 import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
@@ -49,7 +48,6 @@ const config = {
       babelHelpers: 'runtime',
     }),
     json(),
-    terser(),
   ],
 };
 
