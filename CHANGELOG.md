@@ -1,10 +1,10 @@
 # Lana B2C MicroApp Libs Changelog
 
-## v.6.0.0 - 28-04-2020
+## v.6.0.0 - 12-05-2020
  - Re-wrote everything in Vue
+ - Added Storybook stories for each component to showcase their possible props and states
  - Consolidated the `TextFieldWithValidation` component into the `TextField` component
- - Renamed many props, please check the Storybook documentation for more details.
- - TODO JASON: Add more things here
+ - Renamed many components and their props, please check the Storybook documentation for more details.
 
 ## v.4.0.3 - 2020-04-29
  - Scrolling height adjustments for short lists.
