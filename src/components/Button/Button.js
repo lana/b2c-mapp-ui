@@ -1,4 +1,4 @@
-import { MopIcon } from '@lana/b2c-mapp-ui-assets/dist/index';
+import { MopIcon } from '@lana/b2c-mapp-ui-assets';
 
 const components = {
   MopIcon,

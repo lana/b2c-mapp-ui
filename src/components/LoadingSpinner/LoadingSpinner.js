@@ -1,4 +1,4 @@
-import { MopSpinnerIcon } from '@lana/b2c-mapp-ui-assets/dist/index';
+import { MopSpinnerIcon } from '@lana/b2c-mapp-ui-assets';
 
 const components = {
   MopSpinnerIcon,

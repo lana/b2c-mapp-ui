@@ -1,4 +1,4 @@
-import { ForwardIcon } from '@lana/b2c-mapp-ui-assets/dist/index';
+import { ForwardIcon } from '@lana/b2c-mapp-ui-assets';
 
 import Heading from '../Heading/Heading.vue';
 import TextParagraph from '../TextParagraph/TextParagraph.vue';

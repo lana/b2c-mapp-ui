@@ -8,7 +8,7 @@
 }
 
 .filled {
-  /deep/ input {
+  ::v-deep input {
     text-indent: 36px;
   }
 

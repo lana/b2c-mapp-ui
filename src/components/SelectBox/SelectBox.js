@@ -1,4 +1,4 @@
-import { ExpandSmallIcon } from '@lana/b2c-mapp-ui-assets/dist/index';
+import { ExpandSmallIcon } from '@lana/b2c-mapp-ui-assets';
 
 const components = {
   ExpandSmallIcon,

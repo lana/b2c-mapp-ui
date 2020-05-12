@@ -87,11 +87,11 @@
   animation: loadingSpin 1.5s infinite linear;
 }
 
-.button /deep/ .loading-icon path[fill] {
+.button::v-deep .loading-icon path[fill] {
   fill: $white;
 }
 
-.secondary /deep/ .loading-icon path[fill] {
+.secondary::v-deep .loading-icon path[fill] {
   fill: $blue-500;
 }
 

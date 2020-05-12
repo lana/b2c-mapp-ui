@@ -4,11 +4,11 @@
   margin: -2px 8px 0 0;
   animation: SpinnerSpin 1.5s infinite linear;
 
-  /deep/ path[fill="#333333"] {
+  ::v-deep path[fill="#333333"] {
     fill: $black-700;
   }
 
-  /deep/ path[fill="#FFFFFF"] {
+  ::v-deep path[fill="#FFFFFF"] {
     fill: $white;
   }
 }

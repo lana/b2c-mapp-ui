@@ -1,4 +1,4 @@
-import { CalendarIcon } from '@lana/b2c-mapp-ui-assets/dist/index'; // TODO: Figure out how to not require adding the `/dist/index` path to the end of these imports
+import { CalendarIcon } from '@lana/b2c-mapp-ui-assets';
 
 import FormField from '../FormField/FormField.vue';
 import { getDateFromDateString, getFormattedStringFromDate, autoformatDate } from '../../lib/dateHelper';

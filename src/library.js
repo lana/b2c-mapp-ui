@@ -1,5 +1,3 @@
-// TODO JASON: Add Rollup back once ready (copy the config from the ui-assets repo and compare with the old ui libs config), and then update the `module` and `main` entries inside of package.json
-
 import ActionItem from './components/ActionItem/ActionItem.vue';
 import BankAccountNumberInputField from './components/BankAccountNumberInputField/BankAccountNumberInputField.vue';
 import Button from './components/Button/Button.vue';
