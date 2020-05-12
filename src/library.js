@@ -1,7 +1,5 @@
 // TODO JASON: Add Rollup back once ready (copy the config from the ui-assets repo and compare with the old ui libs config), and then update the `module` and `main` entries inside of package.json
 
-// TODO JASON: Ask Rahul about configuring auto-deploy of static-storybook to GH (and make sure to add the needed package.json script for that too)
-
 import ActionItem from './components/ActionItem/ActionItem.vue';
 import BankAccountNumberInputField from './components/BankAccountNumberInputField/BankAccountNumberInputField.vue';
 import Button from './components/Button/Button.vue';
