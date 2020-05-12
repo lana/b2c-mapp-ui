@@ -1,4 +1,4 @@
-import AllIcons from '@lana/b2c-mapp-ui-assets/dist/index';
+import * as AllIcons from '@lana/b2c-mapp-ui-assets/dist/index';
 
 const TopBarStories = {
   title: 'Icons',
