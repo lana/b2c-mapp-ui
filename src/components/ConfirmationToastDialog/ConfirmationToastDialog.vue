@@ -20,7 +20,7 @@
                        class="content"
                        :data-test-id="`${dataTestId}-children`"
         >
-          {{ children }}
+          <slot/>
         </ScrollWrapper>
       </Wrapper>
       <div class="actions" :data-testid="`${dataTestId}-actions`">
