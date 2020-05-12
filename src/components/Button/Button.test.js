@@ -1,7 +1,7 @@
 import { render, fireEvent } from '@testing-library/vue';
 
 import Button from './Button.vue';
-import ActionItem from '../ActionItem/ActionItem';
+import ButtonTestWrapper from './UnitTestWrappers/ButtonTestWrapper.vue';
 
 describe('UI/buttons/Button', () => {
   beforeAll(() => {
@@ -22,11 +22,21 @@ describe('UI/buttons/Button', () => {
   };
 
   describe('Button behavior', () => {
-
     it('Should apply given class', () => {
       const { getByTestId } = render(Button, { propsData: { ...defaultButtonProps, class: 'my-class' } });
       const itsHasMyClass = getByTestId('button-button').className.includes('my-class');
       expect(itsHasMyClass).toBeTruthy();
+    });
+
+    it('Should apply given additonal class to existing ones', () => {
+      const { getByTestId } = render(ButtonTestWrapper, { propsData: { ...defaultButtonProps, additionalClass: 'extra-class' } });
+      const button = getByTestId('button-button');
+      const classes = button.className;
+      const hasTypeClass = classes.includes('secondary');
+      const hasAdditionalClass = classes.includes('extra-class');
+      const hasMainElementClass = classes.includes('button');
+      const hasAllNeededClasses = hasTypeClass && hasAdditionalClass && hasMainElementClass;
+      expect(hasAllNeededClasses).toBeTruthy();
     });
 
     it('Should render a button if href is not provided', () => {
@@ -42,7 +52,7 @@ describe('UI/buttons/Button', () => {
     });
 
     it('Should add "secondary" className if "secondary" type is given', () => {
-      const { getByTestId } = render(Button, { propsData: { type: 'secondary', loading: false } });
+      const { getByTestId } = render(Button, { propsData: { ...defaultButtonProps } });
       const hasSecondaryClassName = getByTestId('button-button').className.includes('secondary');
       expect(hasSecondaryClassName).toBeTruthy();
     });
@@ -113,6 +123,17 @@ describe('UI/buttons/Button', () => {
   });
 
   describe('Link behavior', () => {
+    it('Should apply given additonal class to existing ones', () => {
+      const { getByTestId } = render(ButtonTestWrapper, { propsData: { ...defaultLinkProps, additionalClass: 'extra-class' } });
+      const button = getByTestId('button-link');
+      const classes = button.className;
+      const hasTypeClass = classes.includes('primary');
+      const hasAdditionalClass = classes.includes('extra-class');
+      const hasMainElementClass = classes.includes('button');
+      const hasAllNeededClasses = hasTypeClass && hasAdditionalClass && hasMainElementClass;
+      expect(hasAllNeededClasses).toBeTruthy();
+    });
+
     it('Should render a link if href is provided', () => {
       const { getByTestId } = render(Button, { propsData: { ...defaultLinkProps } });
       const itsALink = getByTestId('button-link');

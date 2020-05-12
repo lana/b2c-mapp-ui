@@ -1,4 +1,5 @@
 import { render, fireEvent } from '@testing-library/vue';
+import { mount } from '@vue/test-utils';
 
 import BankAccountNumberInputField from './BankAccountNumberInputField.vue';
 
@@ -49,4 +50,24 @@ describe('BankAccountNumberInputField unit test:', () => {
     const isBlurEmitted = emitted().blur;
     expect(isBlurEmitted).toBeTruthy();
   });
+
+  it('Should apply right format for given value: ', () => new Promise((resolve) => {
+    const wrapper = mount(BankAccountNumberInputField, { propsData: { ...defaultProps, value: '138211000000000127' } });
+    setTimeout(() => {
+      const input = wrapper.find('input');
+      expect(input.element.value).toEqual('138 211 00000000012 7');
+      resolve();
+    });
+  }));
+
+  it('Should apply right format when modify its value', () => new Promise((resolve) => {
+    const wrapper = mount(BankAccountNumberInputField, { propsData: { ...defaultProps, value: '138211000000000127' } });
+    const input = wrapper.find('input');
+    input.setValue('13821');
+    input.trigger('change');
+    setTimeout(() => {
+      expect(input.element.value).toEqual('138 21');
+      resolve();
+    });
+  }));
 });
