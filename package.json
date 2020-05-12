@@ -22,9 +22,8 @@
     "libphonenumber-metadata": "libphonenumber-generate-metadata data/libphonenumber-metadata.min.json --countries MX,CL,BR,ES --types mobile",
     "predeploy": "npm run build",
     "prepare": "npm run build",
-    "storybook:build": "vue-cli-service storybook:build -c config/storybook",
-    "storybook:serve": "vue-cli-service storybook:serve -p 6006 -c config/storybook",
-    "storybook": "npm run storybook:serve",
+    "buildstorybook": "vue-cli-service storybook:build -c config/storybook",
+    "storybook": "vue-cli-service storybook:serve -p 6006 -c config/storybook",
     "test": "vue-cli-service test:unit"
   },
   "main": "dist/index.js",
