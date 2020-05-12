@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-          working-directory: ${{ env.working-dir }}
+        working-directory: ${{ env.working-dir }}
       - run: npm run prepare --if-present
         working-directory: ${{ env.working-dir }}
       - run: npm run lint
