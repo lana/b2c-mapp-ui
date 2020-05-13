@@ -28,7 +28,7 @@ import WrappedButton from './components/WrappedButton/WrappedButton.vue';
 import Wrapper from './components/Wrapper/Wrapper.vue';
 import './styles/normalize.scss';
 
-const libraryComponents = {
+export {
   ActionItem,
   BankAccountNumberInputField,
   Button,
@@ -58,5 +58,3 @@ const libraryComponents = {
   WrappedButton,
   Wrapper,
 };
-
-export default libraryComponents;
