@@ -46,7 +46,7 @@ const config = {
     vue(),
     babel({
       ...babelConfig,
-      babelHelpers: 'runtime',
+      babelHelpers: 'inline',
     }),
     json(),
     terser(),

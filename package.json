@@ -39,10 +39,13 @@
     "@babel/runtime": "^7.9.6",
     "@lana/b2c-mapp-ui-assets": "^4.0.1",
     "core-js": "^3.6.4",
+    "fast-async": "^6.3.8",
     "libphonenumber-js": "^1.7.44",
     "vue": "^2.6.11"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-export-default-from": "^7.8.3",
+    "@babel/plugin-proposal-export-namespace-from": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.9.6",
     "@rollup/plugin-babel": "^5.0.0",
     "@rollup/plugin-commonjs": "^11.1.0",
