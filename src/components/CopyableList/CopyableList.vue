@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section :data-testid="`${dataTestId}-section`" class="section">
     <Heading class="title">{{ title }}</Heading>
     <ul :data-testid="`${dataTestId}-list`">
       <slot/>

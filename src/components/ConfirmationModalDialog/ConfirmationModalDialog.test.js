@@ -1,9 +1,10 @@
 import { render, fireEvent } from '@testing-library/vue';
+import { mount } from '@vue/test-utils';
 
 import ConfirmationModalDialog from './ConfirmationModalDialog.vue';
 import ConfirmationModalDialogWrapper from './UnitTestWrappers/ConfirmationModalDialogWrapper.vue';
 
-describe('UI/buttons/Button', () => {
+describe('ConfirmationmodalDialog unit test', () => {
   beforeAll(() => {
     // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
     console.error = jest.fn(); // eslint-disable-line no-console

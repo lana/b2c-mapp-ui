@@ -2,7 +2,7 @@ import { render, fireEvent } from '@testing-library/vue';
 
 import ActionItem from './ActionItem.vue';
 
-describe('UI/lists/ActionItem', () => {
+describe('ActionItem unit test', () => {
   const defaultClassname = 'CLASSNAME';
   const defaultProps = {
     dataTestId: 'action-item',

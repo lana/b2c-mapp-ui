@@ -3,7 +3,7 @@ import { render, fireEvent } from '@testing-library/vue';
 import Button from './Button.vue';
 import ButtonTestWrapper from './UnitTestWrappers/ButtonTestWrapper.vue';
 
-describe('UI/buttons/Button', () => {
+describe('Button unit test', () => {
   beforeAll(() => {
     // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
     console.error = jest.fn(); // eslint-disable-line no-console

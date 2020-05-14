@@ -4,7 +4,7 @@ import ConfirmationToastDialog from './ConfirmationToastDialog.vue';
 import ConfirmationToastDialogWrapper from './UnitTestWrappers/ConfirmationToastDialogWrapper.vue';
 
 
-describe('UI/buttons/Button', () => {
+describe('ConfirmationToastDialog unit test', () => {
   beforeAll(() => {
     // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
     console.error = jest.fn(); // eslint-disable-line no-console
