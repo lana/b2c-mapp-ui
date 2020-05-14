@@ -1,4 +1,5 @@
 import { render, fireEvent } from '@testing-library/vue';
+import { mount } from '@vue/test-utils';
 
 import Button from './Button.vue';
 import ButtonTestWrapper from './UnitTestWrappers/ButtonTestWrapper.vue';
@@ -152,6 +153,39 @@ describe('Button unit test', () => {
       fireEvent.click(link);
       const clicked = emitted().click;
       expect(clicked).toBeTruthy();
+    });
+  });
+
+  describe('Touch events', () => {
+    it('Should add pressed class if its in pressed status', async () => {
+      const wrapper = mount(Button, { propsData: { ...defaultButtonProps } });
+      const button = wrapper.find('button');
+      button.trigger('touchStart');
+      await wrapper.vm.$nextTick();
+      const addPressedClass = button.classes().includes('pressed');
+      expect(addPressedClass).toBeTruthy();
+    });
+
+    it('Should remove pressed class if its not in pressed status', async () => {
+      const wrapper = mount(Button, { propsData: { ...defaultButtonProps } });
+      const button = wrapper.find('button');
+      button.trigger('touchStart');
+      await wrapper.vm.$nextTick();
+      button.trigger('touchEnd');
+      await wrapper.vm.$nextTick();
+      const doNotHavePressedClass = !button.classes().includes('pressed');
+      expect(doNotHavePressedClass).toBeTruthy();
+    });
+
+    it('Should remove pressed class if its clicked when it was pressed', async () => {
+      const wrapper = mount(Button, { propsData: { ...defaultButtonProps } });
+      const button = wrapper.find('button');
+      button.trigger('touchStart');
+      await wrapper.vm.$nextTick();
+      button.trigger('click');
+      await wrapper.vm.$nextTick();
+      const doNotHavePressedClass = !button.classes().includes('pressed');
+      expect(doNotHavePressedClass).toBeTruthy();
     });
   });
 });

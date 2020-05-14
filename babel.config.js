@@ -16,7 +16,7 @@ const config = {
       '@babel/preset-env',
       {
         debug: false,
-        modules: false,
+        modules: 'commonjs',
         useBuiltIns: false,
         exclude: ['transform-regenerator', 'transform-async-to-generator'],
         targets: '> 0.1%, not dead',
