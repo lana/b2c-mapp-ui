@@ -1,8 +1,7 @@
 import { mount } from '@vue/test-utils';
-import { render, fireEvent } from '@testing-library/vue';
+import { render } from '@testing-library/vue';
 
 import PhoneNumberField from './PhoneNumberField.vue';
-import BankAccountNumberInputField from "../BankAccountNumberInputField/BankAccountNumberInputField";
 
 // TODO: Uncomment the below test cases after refactoring to work with Vue
 describe('UI/forms/PhoneNumberField', () => {

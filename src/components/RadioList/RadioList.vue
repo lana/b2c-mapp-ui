@@ -10,6 +10,7 @@
       >
         <input :id="`${id}-${index}`"
                v-model="selectedValue"
+               :data-testid="`${dataTestId}-option-input`"
                type="radio"
                class="radio"
                :name="`${id}-${index}`"

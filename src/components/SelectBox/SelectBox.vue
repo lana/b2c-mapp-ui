@@ -18,6 +18,7 @@
               :key="`${optionValue}-${index}`"
               :value="optionValue"
               :selected="(((selectedValue === optionValue) || (!selectedValue && selected)))"
+              :data-selected="(((selectedValue === optionValue) || (!selectedValue && selected)))"
               :disabled="isOptionDisabled"
               :data-testid="`${dataTestId}-option`"
       >

@@ -1,5 +1,4 @@
 import { render, fireEvent } from '@testing-library/vue';
-import { mount } from '@vue/test-utils';
 
 import ConfirmationModalDialog from './ConfirmationModalDialog.vue';
 import ConfirmationModalDialogWrapper from './UnitTestWrappers/ConfirmationModalDialogWrapper.vue';

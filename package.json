@@ -27,8 +27,8 @@
     "deploy-storybook-ci": "npm run deploy-storybook -- --ci --host-token-env-variable=TOKEN --existing-output-dir=storybook-static",
     "build-storybook": "vue-cli-service storybook:build -c config/storybook",
     "storybook": "vue-cli-service storybook:serve -p 6006 -c config/storybook",
-    "test": "vue-cli-service test:unit",
-    "coverage": "vue-cli-service test:unit --collect-coverage"
+    "test": "vue-cli-service test:unit --no-cache",
+    "coverage": "vue-cli-service test:unit --collect-coverage --no-cache"
   },
   "main": "dist/index.js",
   "module": "dist/bundle-esm.js",

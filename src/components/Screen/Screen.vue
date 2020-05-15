@@ -1,5 +1,5 @@
 <template>
-  <section class="screen" @click="recordClick">
+  <section data-testid="screen-section" class="screen" @click="recordClick">
     <slot/>
   </section>
 </template>

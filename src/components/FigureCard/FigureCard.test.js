@@ -21,7 +21,7 @@ describe('FigureCard unit test', () => {
 
   it('Should not show metaText if its not given', () => {
     const { queryAllByTestId } = render(FigureCard, { propsData: { ...defaultProps } });
-    const noMetaTextShown = !queryAllByTestId('figure-card-meta').length
+    const noMetaTextShown = !queryAllByTestId('figure-card-meta').length;
     expect(noMetaTextShown).toBeTruthy();
   });
 
