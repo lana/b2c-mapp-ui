@@ -5,7 +5,7 @@ import BankAccountNumberInputField from './BankAccountNumberInputField.vue';
 
 const BankAccountNumberInputFieldStories = {
   component: BankAccountNumberInputField,
-  title: 'BankAccountNumberInputField',
+  title: 'Components/BankAccountNumberInputField',
   decorators: [withKnobs],
 };
 

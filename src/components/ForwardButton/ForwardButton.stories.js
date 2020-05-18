@@ -6,7 +6,7 @@ import { availableTypes } from './ForwardButton';
 
 const ForwardButtonStories = {
   component: ForwardButton,
-  title: 'ForwardButton',
+  title: 'Components/ForwardButton',
   decorators: [withKnobs],
 };
 

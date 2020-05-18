@@ -7,7 +7,7 @@ import { capitalizeFirstLetter } from '../../lib/textHelper';
 
 const ActionItemStories = {
   component: ActionItem,
-  title: 'ActionItem',
+  title: 'Components/ActionItem',
   decorators: [withKnobs],
 };
 

@@ -6,7 +6,7 @@ import { capitalizeFirstLetter } from '../../lib/textHelper';
 
 const HeadingStories = {
   component: Heading,
-  title: 'Heading',
+  title: 'Components/Heading',
   decorators: [withKnobs],
 };
 

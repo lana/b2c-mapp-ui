@@ -7,7 +7,7 @@ import { capitalizeFirstLetter } from '../../lib/textHelper';
 
 const ButtonStories = {
   component: Button,
-  title: 'Button',
+  title: 'Components/Button',
   decorators: [withKnobs],
 };
 

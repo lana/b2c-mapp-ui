@@ -5,7 +5,7 @@ import RadioList from './RadioList.vue';
 
 const RadioListStories = {
   component: RadioList,
-  title: 'RadioList',
+  title: 'Components/RadioList',
   decorators: [withKnobs],
 };
 

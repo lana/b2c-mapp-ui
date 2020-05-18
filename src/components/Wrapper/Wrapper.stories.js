@@ -2,7 +2,7 @@ import Wrapper from './Wrapper.vue';
 
 const WrapperStories = {
   component: Wrapper,
-  title: 'Wrapper',
+  title: 'Components/Wrapper',
 };
 
 const defaultExample = () => ({

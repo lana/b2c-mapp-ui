@@ -4,7 +4,7 @@ import Screen from './Screen.vue';
 
 const ScreenStories = {
   component: Screen,
-  title: 'Screen',
+  title: 'Components/Screen',
 };
 
 const defaultExample = () => ({

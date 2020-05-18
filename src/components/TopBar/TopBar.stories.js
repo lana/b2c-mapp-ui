@@ -4,7 +4,7 @@ import TopBar from './TopBar.vue';
 
 const TopBarStories = {
   component: TopBar,
-  title: 'TopBar',
+  title: 'Components/TopBar',
   decorators: [withKnobs],
 };
 

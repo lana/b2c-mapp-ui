@@ -7,7 +7,7 @@ import ContentItem from './ContentItem.vue';
 
 const ContentItemStories = {
   component: ContentItem,
-  title: 'ContentItem',
+  title: 'Components/ContentItem',
   decorators: [withKnobs],
 };
 

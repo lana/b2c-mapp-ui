@@ -5,7 +5,7 @@ import FormField from './FormField.vue';
 
 const FormFieldStories = {
   component: FormField,
-  title: 'FormField',
+  title: 'Components/FormField',
   decorators: [withKnobs],
 };
 

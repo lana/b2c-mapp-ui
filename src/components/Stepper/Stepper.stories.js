@@ -4,7 +4,7 @@ import Stepper from './Stepper.vue';
 
 const StepperStories = {
   component: Stepper,
-  title: 'Stepper',
+  title: 'Components/Stepper',
   decorators: [withKnobs],
 };
 

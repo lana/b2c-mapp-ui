@@ -5,7 +5,7 @@ import DateField from './DateField.vue';
 
 const DateFieldStories = {
   component: DateField,
-  title: 'DateField',
+  title: 'Components/DateField',
   decorators: [withKnobs],
 };
 

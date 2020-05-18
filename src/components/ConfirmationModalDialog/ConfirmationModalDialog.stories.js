@@ -5,7 +5,7 @@ import ConfirmationModalDialog from './ConfirmationModalDialog.vue';
 
 const ConfirmationModalDialogStories = {
   component: ConfirmationModalDialog,
-  title: 'ConfirmationModalDialog',
+  title: 'Components/ConfirmationModalDialog',
   decorators: [withKnobs],
 };
 

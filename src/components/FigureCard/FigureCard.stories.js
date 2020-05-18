@@ -4,7 +4,7 @@ import FigureCard from './FigureCard.vue';
 
 const FigureCardStories = {
   component: FigureCard,
-  title: 'FigureCard',
+  title: 'Components/FigureCard',
   decorators: [withKnobs],
 };
 

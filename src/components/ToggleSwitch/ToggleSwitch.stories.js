@@ -2,7 +2,7 @@ import ToggleSwitch from './ToggleSwitch.vue';
 
 const ToggleSwitchStories = {
   component: ToggleSwitch,
-  title: 'ToggleSwitch',
+  title: 'Components/ToggleSwitch',
 };
 
 const defaultExample = () => ({

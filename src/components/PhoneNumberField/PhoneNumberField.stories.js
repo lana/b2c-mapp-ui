@@ -8,7 +8,7 @@ const defaultCountryCode = 'MX';
 
 const PhoneNumberFieldStories = {
   component: PhoneNumberField,
-  title: 'PhoneNumberField',
+  title: 'Components/PhoneNumberField',
   decorators: [withKnobs],
 };
 

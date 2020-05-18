@@ -5,7 +5,7 @@ import TextField from './TextField.vue';
 
 const TextFieldStories = {
   component: TextField,
-  title: 'TextField',
+  title: 'Components/TextField',
   decorators: [withKnobs],
 };
 

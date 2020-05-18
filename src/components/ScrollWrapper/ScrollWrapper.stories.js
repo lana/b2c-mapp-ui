@@ -3,7 +3,7 @@ import Screen from '../Screen/Screen.vue';
 
 const ScrollWrapperStories = {
   component: ScrollWrapper,
-  title: 'ScrollWrapper',
+  title: 'Components/ScrollWrapper',
 };
 
 const defaultExample = () => ({ // TODO: Update this story so that we can actually demonstrate scrolling within the wrapper

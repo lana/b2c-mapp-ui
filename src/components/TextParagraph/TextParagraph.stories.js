@@ -6,7 +6,7 @@ import { capitalizeFirstLetter } from '../../lib/textHelper';
 
 const TextParagraphStories = {
   component: TextParagraph,
-  title: 'TextParagraph',
+  title: 'Components/TextParagraph',
   decorators: [withKnobs],
 };
 

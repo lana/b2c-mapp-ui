@@ -5,7 +5,7 @@ import SelectBox from './SelectBox.vue';
 
 const SelectBoxStories = {
   component: SelectBox,
-  title: 'SelectBox',
+  title: 'Components/SelectBox',
   decorators: [withKnobs],
 };
 

@@ -5,7 +5,7 @@ import ConfirmationToastDialog from './ConfirmationToastDialog.vue';
 
 const ConfirmationToastDialogStories = {
   component: ConfirmationToastDialog,
-  title: 'ConfirmationToastDialog',
+  title: 'Components/ConfirmationToastDialog',
   decorators: [withKnobs],
 };
 

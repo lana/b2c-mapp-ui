@@ -5,7 +5,7 @@ import CopyableListItem from './CopyableListItem.vue';
 
 const CopyableListItemStories = {
   component: CopyableListItem,
-  title: 'CopyableListItem',
+  title: 'Components/CopyableListItem',
   decorators: [withKnobs],
 };
 

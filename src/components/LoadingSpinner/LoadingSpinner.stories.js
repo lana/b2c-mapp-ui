@@ -2,7 +2,7 @@ import LoadingSpinner from './LoadingSpinner.vue';
 
 const LoadingSpinnerStories = {
   component: LoadingSpinner,
-  title: 'LoadingSpinner',
+  title: 'Components/LoadingSpinner',
 };
 
 const defaultExample = () => ({

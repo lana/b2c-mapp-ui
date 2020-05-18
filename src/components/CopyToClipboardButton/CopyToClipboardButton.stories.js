@@ -5,7 +5,7 @@ import CopyToClipboardButton from './CopyToClipboardButton.vue';
 
 const CopyToClipboardButtonStories = {
   component: CopyToClipboardButton,
-  title: 'CopyToClipboardButton',
+  title: 'Components/CopyToClipboardButton',
   decorators: [withKnobs],
 };
 

@@ -6,7 +6,7 @@ import { availableTypes } from './WrappedButton';
 
 const WrappedButtonStories = {
   component: WrappedButton,
-  title: 'WrappedButton',
+  title: 'Components/WrappedButton',
   decorators: [withKnobs],
 };
 
