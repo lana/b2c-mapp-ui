@@ -98,7 +98,7 @@ const examples = () => ({
         <br>
         <div style="width: 500px">
           <label>Readonly:</label>
-          <FormField label="Enter your name" value="value locked" readonly/>
+          <FormField label="Enter your name" value="Locked Value" readonly/>
         </div>
       </div>
     </div>
