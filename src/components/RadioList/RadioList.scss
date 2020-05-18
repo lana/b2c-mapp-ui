@@ -70,6 +70,9 @@
 }
 
 .label {
-  font: 500 14px/24px Graphik, Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: Graphik, Roboto, sans-serif;
   color: $black-700;
 }
