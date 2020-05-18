@@ -4,8 +4,7 @@ import { mount } from '@vue/test-utils';
 import ListItem from './ListItem.vue';
 
 describe('ListItem', () => {
-  beforeAll(() => {
-    // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
+  beforeAll(() => { // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
     console.error = jest.fn(); // eslint-disable-line no-console
   });
 
@@ -18,13 +17,6 @@ describe('ListItem', () => {
       const { getByTestId } = render(ListItem, { propsData: { ...defaultProps } });
       const titleExists = getByTestId('heading').textContent.includes('Main Title');
       expect(titleExists).toBeTruthy();
-    });
-
-    it('Should apply given color if its valid', async () => {
-      const wrapper = mount(ListItem, { slots: { default: '<span>Slot</span>' }, propsData: { ...defaultProps, description: 'desc', color: 'black' } });
-      await wrapper.vm.$nextTick();
-      const colorIsApplied = wrapper.find('div[data-testid="list-item-icon"]').element.className.includes('black');
-      expect(colorIsApplied).toBeTruthy();
     });
 
     it('Should show given description if given', () => {

@@ -8,24 +8,10 @@ const components = {
   ToggleSwitch,
 };
 
-const availableColors = [
-  'black',
-  'blue',
-  'brown',
-  'green',
-  'purple',
-  'yellow',
-];
-
 const props = {
   dataTestId: {
     type: String,
     default: 'list-item',
-  },
-  color: {
-    type: String,
-    default: '',
-    validator(value) { return (!value || availableColors.includes(value)); },
   },
   title: String,
   description: String,
@@ -67,10 +53,6 @@ const ListItem = {
   data,
   methods,
   watch,
-};
-
-export {
-  availableColors,
 };
 
 export default ListItem;
