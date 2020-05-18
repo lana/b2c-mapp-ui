@@ -1,4 +1,3 @@
-import { render } from '@testing-library/vue';
 import { mount } from '@vue/test-utils';
 
 import TextField from './TextField.vue';
@@ -23,13 +22,51 @@ describe('UI/forms/TextField', () => {
     expect(takesGivenValue).toBeTruthy();
   });
 
-  it('Should not take value with greater length than maxlengthgit ', async () => {
+  it('Should take given value', async () => {
     const givenValue = 'given value';
     const wrapper = mount(TextField, { propsData: { ...defaultProps, value: givenValue } });
+    wrapper.vm.$options.watch.value.call(wrapper.vm, givenValue);
     await wrapper.vm.$nextTick();
     const takesGivenValue = wrapper.vm.$data.inputValue === givenValue;
     expect(takesGivenValue).toBeTruthy();
   });
+
+  it('Should emit input event when value is given', async () => {
+    const givenValue = 'given value';
+    const wrapper = mount(TextField, { propsData: { ...defaultProps, value: givenValue } });
+    wrapper.vm.$options.watch.inputValue.call(wrapper.vm, givenValue);
+    await wrapper.vm.$nextTick();
+    const inputEventEmitted = wrapper.emitted().input;
+    expect(inputEventEmitted).toBeTruthy();
+  });
+
+  it('Should provide current input value when input event is emitted', async () => {
+    const givenValue = 'given value';
+    const wrapper = mount(TextField, { propsData: { ...defaultProps, value: givenValue } });
+    wrapper.vm.$options.watch.inputValue.call(wrapper.vm, givenValue);
+    await wrapper.vm.$nextTick();
+    const inputValueEmitted = wrapper.emitted().input[0][0] === givenValue;
+    expect(inputValueEmitted).toBeTruthy();
+  });
+
+  it('Should emit blur event when its blurred', async () => {
+    const givenValue = 'given value';
+    const wrapper = mount(TextField, { propsData: { ...defaultProps, value: givenValue } });
+    wrapper.find('input').trigger('blur');
+    await wrapper.vm.$nextTick();
+    const blurEventEmitted = wrapper.emitted().blur;
+    expect(blurEventEmitted).toBeTruthy();
+  });
+
+  it('Should emit focus event when is focused', async () => {
+    const givenValue = 'given value';
+    const wrapper = mount(TextField, { propsData: { ...defaultProps, value: givenValue } });
+    wrapper.find('input').trigger('focus');
+    await wrapper.vm.$nextTick();
+    const focusEventEmitted = wrapper.emitted().focus;
+    expect(focusEventEmitted).toBeTruthy();
+  });
+
 
   //
   // it('Should NOT be empty if given value is provided', async () => {

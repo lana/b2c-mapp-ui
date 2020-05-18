@@ -1,4 +1,5 @@
 import { render } from '@testing-library/vue';
+import { mount } from '@vue/test-utils';
 
 import ToggleSwitch from './ToggleSwitch.vue';
 
@@ -25,5 +26,32 @@ describe('UI/forms/ToggleSwitch', () => {
     const { getByTestId } = render(ToggleSwitch);
     const inputIsNotChecked = !getByTestId('toggle-wrapper').className.includes('checked');
     expect(inputIsNotChecked).toBeTruthy();
+  });
+
+  it('Should emit a input event when is checked/unchecked', async () => {
+    const wrapper = mount(ToggleSwitch, { propsData: { value: true } });
+    await wrapper.vm.$nextTick();
+    wrapper.vm.$options.watch.isChecked.call(wrapper.vm);
+    await wrapper.vm.$nextTick();
+    const emittedInput = wrapper.emitted().input;
+    expect(emittedInput).toBeTruthy();
+  });
+
+  it('Should emit current value when is checked/unchecked', async () => {
+    const wrapper = mount(ToggleSwitch, { propsData: { value: true } });
+    await wrapper.vm.$nextTick();
+    wrapper.vm.$options.watch.isChecked.call(wrapper.vm);
+    await wrapper.vm.$nextTick();
+    const currentValueEmitted = wrapper.emitted().input[0][0];
+    expect(currentValueEmitted).toBeTruthy();
+  });
+
+  it('Should takes given value', async () => {
+    const wrapper = mount(ToggleSwitch, { propsData: { value: true } });
+    await wrapper.vm.$nextTick();
+    wrapper.vm.$options.watch.value.call(wrapper.vm);
+    await wrapper.vm.$nextTick();
+    const takesGivenValue = wrapper.vm.$data.isChecked;
+    expect(takesGivenValue).toBeTruthy();
   });
 });

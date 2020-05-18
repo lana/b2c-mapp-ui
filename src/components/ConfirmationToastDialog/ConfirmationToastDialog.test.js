@@ -1,9 +1,8 @@
 import { render, fireEvent } from '@testing-library/vue';
+import { mount } from '@vue/test-utils';
 
 import ConfirmationToastDialog from './ConfirmationToastDialog.vue';
 import ConfirmationToastDialogWrapper from './UnitTestWrappers/ConfirmationToastDialogWrapper.vue';
-import { mount } from '@vue/test-utils';
-import ConfirmationModalDialog from '../ConfirmationModalDialog/ConfirmationModalDialog';
 
 
 describe('ConfirmationToastDialog unit test', () => {
