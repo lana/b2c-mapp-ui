@@ -138,7 +138,21 @@ describe('DateField unit test', () => {
     expect(blurEmittedEvent).toBeTruthy();
   });
 
-  // it('Should pass current value on change emitted event) -> currently sending empty
+  it('Should apply given input value: ', async () => {
+    const newValue = '2';
+    const wrapper = mount(DateField, { propsData: { ...defaultProps, value: newValue } });
+    wrapper.vm.$options.watch.value.call(wrapper.vm, newValue);
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.$data.inputValue).toEqual(newValue);
+  });
+
+  it('Should apply given input value if autoformat is not given: ', async () => {
+    const newValue = '2303';
+    const wrapper = mount(DateField, { propsData: { ...defaultProps, autoformat: false, value: newValue } });
+    wrapper.vm.$options.watch.value.call(wrapper.vm, newValue);
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.$data.inputValue).toEqual(newValue);
+  });
 
   describe('Datepicker behavior:', () => {
     it('Should emit a validation event when its value changed : ', async () => {

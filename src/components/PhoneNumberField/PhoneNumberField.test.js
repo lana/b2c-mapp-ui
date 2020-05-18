@@ -15,6 +15,27 @@ describe('UI/forms/PhoneNumberField', () => {
     countryCode: 'MX',
   };
 
+  it('Should apply given value', async () => {
+    const givenValue = '5600000000';
+    const wrapper = mount(PhoneNumberField, { propsData: { ...defaultProps, value: givenValue } });
+    await wrapper.vm.$nextTick();
+    wrapper.vm.$options.watch.value.call(wrapper.vm, givenValue);
+    await wrapper.vm.$nextTick();
+    const takesGivenValue = wrapper.vm.$data.inputValue === givenValue;
+    expect(takesGivenValue).toBeTruthy();
+  });
+
+  it('Should apply formatted phone number', async () => {
+    const givenValue = '5600000000';
+    const formattedValue = '56 0000 0000';
+    const wrapper = mount(PhoneNumberField, { propsData: { ...defaultProps, value: givenValue } });
+    await wrapper.vm.$nextTick();
+    wrapper.vm.$options.watch.inputValue.call(wrapper.vm, givenValue);
+    await wrapper.vm.$nextTick();
+    const takesGivenValue = wrapper.vm.$data.inputValue === formattedValue;
+    expect(takesGivenValue).toBeTruthy();
+  });
+
   it('Should not show error label if given value is empty', () => {
     const { getByTestId } = render(PhoneNumberField, { propsData: { ...defaultProps } });
     const noErrorLabel = !getByTestId('phone-field-label').className.includes('error');
@@ -48,6 +69,13 @@ describe('UI/forms/PhoneNumberField', () => {
   it('Should NOT show country code if given hideCountryCode is true', () => {
     const { queryAllByTestId } = render(PhoneNumberField, { propsData: { ...defaultProps, hideCountryCode: true, value: '551234123234324' } });
     const prefixIsNotShown = !queryAllByTestId('phone-field-prefix').length;
+    expect(prefixIsNotShown).toBeTruthy();
+  });
+
+  it('Should NOT show country code if is not given', () => {
+    const { getByTestId } = render(PhoneNumberField, { propsData: { ...defaultProps, countryCode: null, value: '551234123234324' } });
+    const prefix = getByTestId('phone-field-prefix').textContent.replace(/\s+$/, '');
+    const prefixIsNotShown = !prefix;
     expect(prefixIsNotShown).toBeTruthy();
   });
 

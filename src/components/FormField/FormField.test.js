@@ -14,6 +14,16 @@ describe('FormField unit test', () => {
     type: 'text',
   };
 
+  it('Should apply given value', async () => {
+    const newValue = '123';
+    const wrapper = mount(FormField, { propsData: { ...defaultProps, value: newValue } });
+    await wrapper.vm.$nextTick();
+    wrapper.vm.$options.watch.value.call(wrapper.vm, newValue);
+    await wrapper.vm.$nextTick();
+    const appliedValue = wrapper.vm.$data.inputValue === newValue;
+    expect(appliedValue).toBeTruthy();
+  });
+
   it('Should have focus class if focus is triggered', async () => {
     const wrapper = mount(FormField, { propsData: { ...defaultProps } });
     const inputField = wrapper.find('input');
@@ -28,6 +38,13 @@ describe('FormField unit test', () => {
     const wrapper = mount(FormField, { propsData: { ...defaultProps } });
     const noFocusClass = !wrapper.find('label[data-testid="field-label"]').element.className.includes('focus');
     expect(noFocusClass).toBeTruthy();
+  });
+
+  it('Should emit focus event if startFocused is true', async () => {
+    const wrapper = mount(FormField, { propsData: { ...defaultProps, startFocused: true } });
+    await wrapper.vm.$nextTick();
+    const focusEventEmitted = wrapper.emitted().focus;
+    expect(focusEventEmitted).toBeTruthy();
   });
 
   it('Should have labeled class if is readonly', async () => {

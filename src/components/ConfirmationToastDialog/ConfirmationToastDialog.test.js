@@ -2,6 +2,8 @@ import { render, fireEvent } from '@testing-library/vue';
 
 import ConfirmationToastDialog from './ConfirmationToastDialog.vue';
 import ConfirmationToastDialogWrapper from './UnitTestWrappers/ConfirmationToastDialogWrapper.vue';
+import { mount } from '@vue/test-utils';
+import ConfirmationModalDialog from '../ConfirmationModalDialog/ConfirmationModalDialog';
 
 
 describe('ConfirmationToastDialog unit test', () => {
@@ -66,6 +68,14 @@ describe('ConfirmationToastDialog unit test', () => {
     const { getByTestId } = render(ConfirmationToastDialog, { slots: { default: '<span data-testid="confirmation-modal-dialog-slot">Hey!</span>' }, propsData: { ...defaultProps, description: null } });
     const childrenIsShown = getByTestId('confirmation-modal-dialog-slot').textContent.includes('Hey!');
     expect(childrenIsShown).toBeTruthy();
+  });
+
+  it('Should emit a dismiss event when its closed', async () => {
+    const wrapper = mount(ConfirmationToastDialog, { propsData: { ...defaultProps } });
+    wrapper.vm.$options.watch.isShowing.call(wrapper.vm, false);
+    await wrapper.vm.$nextTick();
+    const closeEventEmitted = wrapper.emitted().dismiss;
+    expect(closeEventEmitted).toBeTruthy();
   });
 
   describe('Confirm actions behavior', () => {

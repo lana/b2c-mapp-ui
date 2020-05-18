@@ -49,6 +49,19 @@ describe('CopyToClipboardButton unit test', () => {
     expect(givenLabelIsShown).toBeTruthy();
   });
 
+  it('Should not emit a click event when is copying and its clicked', async () => {
+    const givenLabel = 'copiando';
+    jest.useFakeTimers();
+    const wrapper = mount(CopyToClipboardButton, { propsData: { toCopyValue: 'myValue', copyingLabel: givenLabel } });
+    const button = wrapper.find('button[data-testid="copy-to-clipboard-button"]');
+    button.element.click();
+    await wrapper.vm.$forceUpdate();
+    button.element.click();
+    jest.runTimersToTime('1000');
+    const onlyOneClickEmitted = wrapper.emitted().click.length === 1;
+    expect(onlyOneClickEmitted).toBeTruthy();
+  });
+
   it('Should apply given copyingClass when is copying', async () => {
     const givenClass = 'my-custom-class';
     jest.useFakeTimers();

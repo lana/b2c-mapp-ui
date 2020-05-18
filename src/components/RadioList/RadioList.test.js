@@ -34,6 +34,16 @@ describe('UI/forms/RadioList', () => {
     expect(firstOptionIsNotSelectedByDefault).toBeTruthy();
   });
 
+  it('Should apply selected given value', async () => {
+    const givenValue = 'option_2';
+    const wrapper = mount(RadioList, { propsData: { ...defaultProps, value: givenValue } });
+    await wrapper.vm.$nextTick();
+    wrapper.vm.$options.watch.value.call(wrapper.vm, givenValue);
+    await wrapper.vm.$nextTick();
+    const appliedGivenValue = wrapper.vm.$data.selectedValue === givenValue;
+    expect(appliedGivenValue).toBeTruthy();
+  });
+
   it('Should apply selected option based on given value', () => {
     const { queryAllByTestId } = render(RadioList, { propsData: { ...defaultProps, value: 'option_2' } });
     const selectedOptions = queryAllByTestId('selection-list-option');

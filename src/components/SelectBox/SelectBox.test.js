@@ -77,4 +77,23 @@ describe('SelectBox unit test', () => {
     const rightOptionSelected = firstOptionIsNotSelected && secondOptionIsNotSelected;
     expect(rightOptionSelected).toBeTruthy();
   });
+
+  it('Should emit input event when value is selected', async () => {
+    const wrapper = mount(SelectBox, { propsData: { ...defaultProps, value: 'option_2' } });
+    await wrapper.vm.$nextTick();
+    wrapper.vm.$options.watch.selectedValue.call(wrapper.vm, 'option_2');
+    await wrapper.vm.$nextTick();
+    const inputEventEmitted = wrapper.emitted().input;
+    expect(inputEventEmitted).toBeTruthy();
+  });
+
+  it('Should apply given value as selectedValue', async () => {
+    const givenValue = 'option_2';
+    const wrapper = mount(SelectBox, { propsData: { ...defaultProps, value: givenValue } });
+    await wrapper.vm.$nextTick();
+    wrapper.vm.$options.watch.value.call(wrapper.vm, 'option_2');
+    await wrapper.vm.$nextTick();
+    const takesGivenValue = wrapper.vm.$data.selectedValue === givenValue;
+    expect(takesGivenValue).toBeTruthy();
+  });
 });

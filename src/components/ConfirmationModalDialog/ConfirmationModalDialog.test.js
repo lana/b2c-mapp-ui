@@ -1,4 +1,5 @@
 import { render, fireEvent } from '@testing-library/vue';
+import { mount } from '@vue/test-utils';
 
 import ConfirmationModalDialog from './ConfirmationModalDialog.vue';
 import ConfirmationModalDialogWrapper from './UnitTestWrappers/ConfirmationModalDialogWrapper.vue';
@@ -114,6 +115,14 @@ describe('ConfirmationmodalDialog unit test', () => {
       fireEvent.click(dismissCTA);
       const clickEvent = emitted().dismiss;
       expect(clickEvent).toBeTruthy();
+    });
+
+    it('Should emit a close event when its closed', async () => {
+      const wrapper = mount(ConfirmationModalDialog, { propsData: { ...defaultProps } });
+      wrapper.vm.$options.watch.isShowing.call(wrapper.vm, false);
+      await wrapper.vm.$nextTick();
+      const closeEventEmitted = wrapper.emitted().close;
+      expect(closeEventEmitted).toBeTruthy();
     });
   });
 });

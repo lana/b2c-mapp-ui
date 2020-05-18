@@ -20,7 +20,7 @@ const availableColors = [
 const props = {
   dataTestId: {
     type: String,
-    default: 'text',
+    default: 'list-item',
   },
   color: {
     type: String,
