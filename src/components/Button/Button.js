@@ -57,6 +57,7 @@ const methods = {
     this.isPressed = !this.isPressed;
   },
   onClick(event) {
+    if (this.disabled) { return; }
     if (this.isPressed) { this.isPressed = false; }
     this.$emit('click', event);
   },

@@ -83,6 +83,7 @@
     "rollup-plugin-vue-inline-svg": "^1.1.1",
     "sass-loader": "^8.0.2",
     "vue-cli-plugin-storybook": "~1.2.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "webfontloader": "^1.6.28"
   }
 }
