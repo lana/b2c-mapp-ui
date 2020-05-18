@@ -1,5 +1,7 @@
 @import '../../styles/colors';
 
+$item-box-size: 48px;
+
 .item {
   display: flex;
   flex-direction: row;
@@ -7,7 +9,7 @@
   align-items: center;
   overflow: hidden;
   position: relative;
-  height: 44px;
+  height: $item-box-size;
   padding: 8px 16px;
 }
 
@@ -18,34 +20,11 @@
   flex-shrink: 0;
   overflow: hidden;
   margin-right: 12px;
-  width: 44px;
+  width: $item-box-size;
   height: 100%;
-  border-radius: 3px;
-  background: $black-400;
-}
-
-.blue {
-  background-color: $blue-300;
-}
-
-.yellow {
-  background-color: $yellow-300;
-}
-
-.green {
-  background-color: $green-300;
-}
-
-.brown {
-  background-color: $brown-300;
-}
-
-.purple {
-  background-color: $purple-300;
-}
-
-.highlight {
-  color: $blue-500;
+  border-radius: 14px;
+  background-color: $black-100;
+  border: solid 1px $black-300;
 }
 
 .body {
@@ -59,4 +38,14 @@
 
 .icon {
   flex-shrink: 0;
+}
+
+.title {
+  font-size: 16px;
+  line-height: 24px;
+  color: $black-700;
+
+  &.highlight {
+    color: $blue-500;
+  }
 }

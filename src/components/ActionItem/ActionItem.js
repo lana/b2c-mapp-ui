@@ -1,13 +1,5 @@
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
 
-const availableColors = [
-  'blue',
-  'green',
-  'yellow',
-  'brown',
-  'purple',
-];
-
 const components = {
   TextParagraph,
 };
@@ -18,11 +10,6 @@ const props = {
     default: '',
   },
   highlight: Boolean,
-  color: {
-    type: String,
-    default: '',
-    validator(value) { return (!value || availableColors.includes(value)); },
-  },
   dataTestId: {
     type: String,
     default: 'action-item',
@@ -40,7 +27,5 @@ const ActionItem = {
   props,
   methods,
 };
-
-export { availableColors };
 
 export default ActionItem;

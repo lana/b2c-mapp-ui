@@ -6,13 +6,13 @@
     <div v-if="$slots.default"
          class="media"
          :data-testid="`${dataTestId}-mediacolor`"
-         :class="color"
     >
       <slot/>
     </div>
     <div class="body">
-      <TextParagraph :data-testid="`${dataTestId}-highlight`"
+      <TextParagraph class="title"
                      :class="{ highlight }"
+                     :data-testid="`${dataTestId}-highlight`"
       >
         {{ title }}
       </TextParagraph>
