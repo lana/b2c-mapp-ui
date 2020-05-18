@@ -43,11 +43,17 @@ const defaultExample = () => ({
   },
   methods: {
     onLinkClick: action('Link Clicked!'),
+    onToggleChanged: action('Toggle value changed'),
   },
   data() {
     return {
       isChecked: false,
     };
+  },
+  watch: {
+    isChecked() {
+      this.onToggleChanged(this.isChecked);
+    },
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
