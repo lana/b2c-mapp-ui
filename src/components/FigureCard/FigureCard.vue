@@ -7,13 +7,7 @@
       />
     </div>
     <figcaption>
-      <TextParagraph :data-test-id="`${dataTestId}-title`" size="small">{{ title }}</TextParagraph>
-      <TextParagraph v-if="metaText"
-                     :data-test-id="`${dataTestId}-meta`"
-                     size="xsmall"
-      >
-        {{ metaText }}
-      </TextParagraph>
+      <TextParagraph :data-test-id="`${dataTestId}-title`" size="small" color="black-700">{{ title }}</TextParagraph>
     </figcaption>
   </figure>
 </template>

@@ -9,10 +9,6 @@ const props = {
     type: String,
     default: 'figure-card',
   },
-  metaText: {
-    type: String,
-    default: '',
-  },
   title: {
     type: String,
     default: '',

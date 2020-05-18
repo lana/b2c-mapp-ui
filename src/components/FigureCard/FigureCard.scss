@@ -1,8 +1,10 @@
 @import '../../styles/colors';
 
+$corner-radius: 16px;
+
 .figure-card {
   background: $white;
-  border: 1px solid $black-400;
+  border: 1px solid $black-300;
   position: relative;
   text-align: center;
 
@@ -12,9 +14,9 @@
 
   figcaption {
     background: $black-200;
-    padding: 10px 11px;
-    border-top: 1px solid $black-400;
-    border-radius: 0 0 6px 6px;
+    padding: 10px 16px;
+    border-top: 1px solid $black-300;
+    border-radius: 0 0 $corner-radius $corner-radius;
     text-align: left;
   }
 
@@ -42,7 +44,7 @@
 .figure-card,
 .figure-card figure,
 .figure-card .image-wrapper {
-  border-radius: 6px;
+  border-radius: $corner-radius;
 }
 
 .arrow {
