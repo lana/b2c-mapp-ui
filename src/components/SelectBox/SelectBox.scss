@@ -26,14 +26,34 @@
 .label {
   display: block;
   margin-bottom: 2px;
-  font: 500 14px/24px Graphik, Roboto, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  font-family: Graphik, Roboto, sans-serif;
   color: $blue-600;
 }
+
+.disabled {
+  .label {
+    color: $black-500;
+  }
+
+  .icon ::v-deep path {
+    fill: $black-500;
+  }
+}
+
+
 
 .icon {
   position: absolute;
   right: 12px;
   top: 20px;
+  transform: scale(1.3);
+
+  ::v-deep path {
+    fill: $blue-500;
+  }
 }
 
 .select {

@@ -1,6 +1,6 @@
 <template>
   <label class="select-box-container"
-         :class="{ focus: isFocused }"
+         :class="{ focus: isFocused, disabled }"
          :data-testid="`${dataTestId}-label`"
   >
     <strong class="label">{{ label }}</strong>
