@@ -4,12 +4,10 @@
             :data-test-id="dataTestId"
             :name="name"
             :disabled="disabled"
-            :loading="loading"
-            :href="href"
-            :type="type"
+            drop-shadow
             @click="onClick"
     >
-      <ForwardIcon class="forward-icon"/>
+      <ChevronRightIcon class="forward-icon"/>
       <slot/>
     </Button>
   </section>

@@ -25,6 +25,9 @@ const defaultExample = () => ({
     loading: {
       default: boolean('Is Loading?', false),
     },
+    dropShadow: {
+      default: boolean('Has Drop Shadow?', false),
+    },
     href: {
       default: text('href', ''),
     },
@@ -44,6 +47,7 @@ const defaultExample = () => ({
           <Button :type="type"
                   :href="href"
                   :loading="loading"
+                  :drop-shadow="dropShadow"
                   :disabled="disabled"
                   @click="onClick"
           >
@@ -81,6 +85,8 @@ const types = () => ({
           <Button loading @click="onClick('Loading')">Loading Example</Button>
           <br>
           <Button href="http://lana.xyz" type="secondary" @click="onClick('Link')">Link Button Example</Button>
+          <br>
+          <Button drop-shadow @click="onClick('Drop Shadow')">With Drop Shadow</Button>
           <br>
           <template v-for="(type, index) in availableTypes">
             <Button :key="index"

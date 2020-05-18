@@ -3,8 +3,8 @@
 .wrapper {
   margin-left: auto;
   padding: 16px;
-  width: 58px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   position: fixed;
   bottom: 0;
   right: 0;
@@ -12,4 +12,10 @@
 
 .forward-icon::v-deep path[fill] {
   fill: $black-100;
+
+  :disabled & {
+    fill: $black-500;
+  }
 }
+
+

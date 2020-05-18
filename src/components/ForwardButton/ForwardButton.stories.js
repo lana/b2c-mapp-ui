@@ -1,8 +1,7 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 
 import ForwardButton from './ForwardButton.vue';
-import { availableTypes } from './ForwardButton';
 
 const ForwardButtonStories = {
   component: ForwardButton,
@@ -15,17 +14,8 @@ const defaultExample = () => ({
     ForwardButton,
   },
   props: {
-    type: {
-      default: select('Type', [...availableTypes, ''], ''),
-    },
     disabled: {
       default: boolean('Is Disabled?', false),
-    },
-    loading: {
-      default: boolean('Is Loading?', false),
-    },
-    href: {
-      default: text('href', ''),
     },
   },
   methods: {
@@ -37,10 +27,7 @@ const defaultExample = () => ({
       <hr>
       <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
         <div style="width: 500px">
-          <ForwardButton :type="type"
-                         :href="href"
-                         :loading="loading"
-                         :disabled="disabled"
+          <ForwardButton :disabled="disabled"
                          @click="onClick"
           />
         </div>
