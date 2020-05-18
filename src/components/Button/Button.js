@@ -15,6 +15,7 @@ const props = {
     validator(value) { return (!value || availableTypes.includes(value)); },
   },
   href: String,
+  link: Boolean,
   loading: Boolean,
   dataTestId: String,
   disabled: Boolean,
@@ -46,7 +47,7 @@ const computed = {
     return result;
   },
   isLinkButton() {
-    const result = !!this.href;
+    const result = (!!this.href || this.link);
     return result;
   },
 };

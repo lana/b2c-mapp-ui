@@ -4,10 +4,8 @@ import { mount } from '@vue/test-utils';
 import ConfirmationToastDialog from './ConfirmationToastDialog.vue';
 import ConfirmationToastDialogWrapper from './UnitTestWrappers/ConfirmationToastDialogWrapper.vue';
 
-
 describe('ConfirmationToastDialog unit test', () => {
-  beforeAll(() => {
-    // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
+  beforeAll(() => { // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
     console.error = jest.fn(); // eslint-disable-line no-console
   });
 
@@ -19,14 +17,14 @@ describe('ConfirmationToastDialog unit test', () => {
     disabled: false,
   };
 
-  it('Should be intially visible if given value is set to true', () => {
+  it('Should be initially visible if given value is set to true', () => {
     const { getByTestId } = render(ConfirmationToastDialog, { propsData: { ...defaultProps, value: true } });
     const dialog = getByTestId('bottom-dialog-section');
     const dialogIsVisible = dialog.className.includes('visible');
     expect(dialogIsVisible).toBeTruthy();
   });
 
-  it('Should be intially NOT visible if given value is set to false', () => {
+  it('Should be initially NOT visible if given value is set to false', () => {
     const { getByTestId } = render(ConfirmationToastDialog, { propsData: { ...defaultProps, value: false } });
     const dialog = getByTestId('bottom-dialog-section');
     const dialogIsNotVisible = !dialog.className.includes('visible');
@@ -103,24 +101,24 @@ describe('ConfirmationToastDialog unit test', () => {
   });
 
   describe('Secondary actions behavior', () => {
-    it('Should show bottom-dialog-action-secondary-button button when secondaryText is given', () => {
+    it('Should show bottom-dialog-action-secondary button when secondaryText is given', () => {
       const { getByTestId } = render(ConfirmationToastDialog, { propsData: { ...defaultProps } });
-      const dismissIsShown = getByTestId('bottom-dialog-action-secondary-button').textContent.includes('secondary');
+      const dismissIsShown = getByTestId('bottom-dialog-action-secondary').textContent.includes('secondary');
       expect(dismissIsShown).toBeTruthy();
     });
 
-    it('Should NOT show bottom-dialog-action-secondary-button when secondaryText is NOT given', () => {
+    it('Should NOT show bottom-dialog-action-secondary when secondaryText is NOT given', () => {
       const { queryAllByTestId } = render(ConfirmationToastDialog, { propsData: {
         ...defaultProps,
         secondaryButtonText: null,
       } });
-      const secondaryIsNotShown = !queryAllByTestId('bottom-dialog-action-secondary-button').length;
+      const secondaryIsNotShown = !queryAllByTestId('bottom-dialog-action-secondary').length;
       expect(secondaryIsNotShown).toBeTruthy();
     });
 
-    it('Should emit an event when secondary is given and bottom-dialog-action-secondary-button is clicked', () => {
+    it('Should emit an event when secondary is given and bottom-dialog-action-secondary is clicked', () => {
       const { getByTestId, emitted } = render(ConfirmationToastDialog, { propsData: { ...defaultProps } });
-      const secondaryCTA = getByTestId('bottom-dialog-action-secondary-button');
+      const secondaryCTA = getByTestId('bottom-dialog-action-secondary');
       fireEvent.click(secondaryCTA);
       const clickEvent = emitted().secondary;
       expect(clickEvent).toBeTruthy();

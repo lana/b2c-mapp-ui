@@ -38,6 +38,7 @@
                 :disabled="disabled"
                 :data-test-id="`${dataTestId}-action-secondary`"
                 type="secondary"
+                link
                 @click="onSecondary"
         >
           {{ secondaryButtonText }}
