@@ -76,6 +76,8 @@ const types = () => ({
           <br>
           <Button disabled @click="onClick('Disabled')">Disabled Example</Button>
           <br>
+          <Button disabled href="http://lana.xyz" @click="onClick('Disabled Link')">Disabled Link Button Example</Button>
+          <br>
           <Button loading @click="onClick('Loading')">Loading Example</Button>
           <br>
           <Button href="http://lana.xyz" type="secondary" @click="onClick('Link')">Link Button Example</Button>

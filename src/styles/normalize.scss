@@ -2,7 +2,7 @@
 // All base styles that we need to normalize the starting point for cross-browser development.
 
 // Base font
-html { min-height: 100%; position: relative; overflow-y: scroll; }
+html { min-height: 100%; position: relative; overflow: hidden; }
 body { height: 100%; margin: 0; padding: 0; text-align: left; vertical-align: middle; overflow: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; user-select: none; }
 
 // Text conventions
