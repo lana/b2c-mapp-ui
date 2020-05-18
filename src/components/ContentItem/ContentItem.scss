@@ -1,5 +1,7 @@
 @import '../../styles/colors';
 
+$item-box-size: 48px;
+
 .item {
   display: flex;
   flex-direction: row;
@@ -7,7 +9,7 @@
   align-items: center;
   overflow: hidden;
   position: relative;
-  height: 44px;
+  height: $item-box-size;
   padding: 8px 16px;
 }
 
@@ -17,11 +19,12 @@
   align-items: center;
   flex-shrink: 0;
   overflow: hidden;
-  margin-right: 12px;
-  width: 44px;
+  margin-right: 16px;
+  width: $item-box-size;
   height: 100%;
-  border-radius: 3px;
-  background: $black-400;
+  border-radius: 14px;
+  background-color: $black-100;
+  border: solid 1px $black-300;
 }
 
 .body {
@@ -37,18 +40,6 @@
   flex-shrink: 0;
 }
 
-.media.blue-300 { background-color: $blue-300; }
-
-.media.yellow-300 { background-color: $yellow-300; }
-
-.media.green-300 { background-color: $green-300; }
-
-.media.brown-300 { background-color: $brown-300; }
-
-.media.purple-300 { background-color: $purple-300; }
-
-.media.black-100 { background-color: $black-100; }
-
-.media.black-200 { background-color: $black-200; }
-
-.media.black-300 { background-color: $black-300; }
+.meta-text {
+  font-size: 14px;
+}

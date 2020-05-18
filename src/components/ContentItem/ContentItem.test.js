@@ -10,7 +10,6 @@ describe('ContentItem unit test', () => {
 
   const defaultProps = {
     dataTestId: 'content-item',
-    color: 'MEDIACOLOR',
     title: 'TITLE',
     metaText: 'META',
     disabled: false,
@@ -26,18 +25,6 @@ describe('ContentItem unit test', () => {
     const { getByTestId } = render(ContentItem, { slots: { default: "<img src='any' alt=''/>" }, propsData: { ...defaultProps } });
     const mediaIconVisible = getByTestId('content-item-media-icon');
     expect(mediaIconVisible).toBeTruthy();
-  });
-
-  it('Should add given color to content-item-media-icon', () => {
-    const { getByTestId } = render(ContentItem, { slots: { default: "<img src='any' alt=''/>" }, propsData: { ...defaultProps } });
-    const mediaClassApplied = getByTestId('content-item-media-icon').className.includes('MEDIACOLOR');
-    expect(mediaClassApplied).toBeTruthy();
-  });
-
-  it('Should not add color class to content-item-media-icon if its not given', () => {
-    const { getByTestId } = render(ContentItem, { slots: { default: "<img src='any' alt=''/>" }, propsData: { ...defaultProps, color: null } });
-    const mediaClassNotApplied = !getByTestId('content-item-media-icon').className.includes('MEDIACOLOR');
-    expect(mediaClassNotApplied).toBeTruthy();
   });
 
   it('Should show given meta info', () => {

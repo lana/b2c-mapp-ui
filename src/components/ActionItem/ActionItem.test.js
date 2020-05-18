@@ -7,7 +7,6 @@ describe('ActionItem unit test', () => {
   const defaultProps = {
     dataTestId: 'action-item',
     class: defaultClassname,
-    color: 'blue',
     highlight: true,
     title: 'TITLE',
   };

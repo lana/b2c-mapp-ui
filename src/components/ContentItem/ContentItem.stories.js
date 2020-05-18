@@ -1,8 +1,7 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text, select } from '@storybook/addon-knobs';
+import { withKnobs, boolean, text } from '@storybook/addon-knobs';
+import { DocumentFilledIcon } from '@lana/b2c-mapp-ui-assets';
 
-import { availableColors } from './ContentItem';
-import { capitalizeFirstLetter } from '../../lib/textHelper';
 import ContentItem from './ContentItem.vue';
 
 const ContentItemStories = {
@@ -14,11 +13,9 @@ const ContentItemStories = {
 const defaultExample = () => ({
   components: {
     ContentItem,
+    DocumentFilledIcon,
   },
   props: {
-    color: {
-      default: select('Color', [...availableColors, ''], ''),
-    },
     disabled: {
       default: boolean('Is Disabled?', false),
     },
@@ -41,51 +38,15 @@ const defaultExample = () => ({
       <hr>
       <div style="display: flex; flex-direction: column; width: 100%;">
         <div style="width: 500px">
-          <ContentItem :color="color"
-                       :title="title"
+          <ContentItem :title="title"
                        :meta-text="metaText"
                        :has-forward-button="hasForwardButton"
                        :disabled="disabled"
                        @click="onClick"
           >
-            Media
+            <DocumentFilledIcon/>
           </ContentItem>
         </div>
-      </div>
-    </div>
-  `,
-});
-
-const colors = () => ({
-  components: {
-    ContentItem,
-  },
-  data() {
-    return {
-      availableColors,
-    };
-  },
-  methods: {
-    capitalizeFirstLetter,
-  },
-  template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>ContentItem:</strong>&nbsp;Available Colors</h2>
-      <hr>
-      <div style="width: 500px;">
-        <ContentItem title="Default Color Example"
-                     meta-text="Example metatext"
-        >
-          1
-        </ContentItem>
-        <ContentItem v-for="(color, index) in availableColors"
-                     :key="index"
-                     :color="color"
-                     :title="capitalizeFirstLetter(color) + ' Color Example'"
-                     :meta-text="'Example ' + capitalizeFirstLetter(color) + ' metatext'"
-        >
-          {{ index + 2 }}
-        </ContentItem>
       </div>
     </div>
   `,
@@ -95,23 +56,35 @@ const withImage = () => ({
   components: {
     ContentItem,
   },
-  data() {
-    return {
-      availableColors,
-    };
-  },
-  methods: {
-    capitalizeFirstLetter,
-  },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>ContentItem:</strong>&nbsp;With Image</h2>
+      <h2><strong>ContentItem:</strong>&nbsp;Example With Image</h2>
       <hr>
       <div style="width: 500px;">
         <ContentItem title="Example with Image"
                      meta-text="Example metatext"
         >
-          <img src="https://source.unsplash.com/random/44x44"/>
+          <img src="https://source.unsplash.com/random/48x48"/>
+        </ContentItem>
+      </div>
+    </div>
+  `,
+});
+
+const withIcon = () => ({
+  components: {
+    ContentItem,
+    DocumentFilledIcon,
+  },
+  template: `
+    <div style="margin: 10px 50px 10px 50px;">
+      <h2><strong>ContentItem:</strong>&nbsp;Example With Icon</h2>
+      <hr>
+      <div style="width: 500px;">
+        <ContentItem title="Example with Image"
+                     meta-text="Example metatext"
+        >
+          <DocumentFilledIcon/>
         </ContentItem>
       </div>
     </div>
@@ -120,8 +93,8 @@ const withImage = () => ({
 
 export {
   defaultExample,
-  colors,
   withImage,
+  withIcon,
 };
 
 export default ContentItemStories;
