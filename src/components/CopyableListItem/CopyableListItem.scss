@@ -1,5 +1,7 @@
 @import '../../styles/colors';
 
+$item-box-size: 48px;
+
 .copyable-list-item {
   display: flex;
   flex-direction: row;
@@ -7,7 +9,7 @@
   align-items: center;
   overflow: hidden;
   position: relative;
-  height: 44px;
+  height: $item-box-size;
   padding: 8px 16px;
   transition: background-color 0.15s linear;
 }
@@ -18,11 +20,16 @@
   align-items: center;
   flex-shrink: 0;
   overflow: hidden;
-  margin-right: 12px;
-  width: 44px;
+  margin-right: 16px;
+  width: $item-box-size;
   height: 100%;
-  border: 1px solid $black-300;
-  border-radius: 8px;
+  border-radius: 14px;
+  background-color: $black-100;
+  border: solid 1px $black-300;
+}
+
+.title {
+  font-size: 14px;
 }
 
 .item-text {

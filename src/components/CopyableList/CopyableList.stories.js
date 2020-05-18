@@ -1,5 +1,5 @@
 import { withKnobs, text } from '@storybook/addon-knobs';
-import { InfoIcon, FaceIdIcon, TouchIdIcon } from '@lana/b2c-mapp-ui-assets/dist/index';
+import { InfoIcon, DocumentFilledIcon } from '@lana/b2c-mapp-ui-assets/dist/index';
 
 import CopyableList from './CopyableList.vue';
 import CopyableListItem from '../CopyableListItem/CopyableListItem.vue';
@@ -15,8 +15,7 @@ const defaultExample = () => ({
     CopyableList,
     CopyableListItem,
     InfoIcon,
-    FaceIdIcon,
-    TouchIdIcon,
+    DocumentFilledIcon,
   },
   props: {
     title: {
@@ -32,7 +31,7 @@ const defaultExample = () => ({
           <CopyableListItem title="An info example"
                             text="Text to be copied"
           >
-            <InfoIcon/>
+            <DocumentFilledIcon/>
           </CopyableListItem>
           <CopyableListItem title="Random URL (with hidden copy button)"
                             text="https://source.unsplash.com/random/24x24"
@@ -40,15 +39,15 @@ const defaultExample = () => ({
           >
             <img src="https://source.unsplash.com/random/24x24"/>
           </CopyableListItem>
-          <CopyableListItem title="FaceID"
+          <CopyableListItem title="Example Title"
                             text="1234567890ABCDE"
           >
-            <FaceIdIcon/>
+            <DocumentFilledIcon/>
           </CopyableListItem>
-          <CopyableListItem title="Touch ID"
+          <CopyableListItem title="Some other title"
                             text="1234567890ABCDE"
           >
-            <TouchIdIcon/>
+            <InfoIcon/>
           </CopyableListItem>
           <div slot="content">
             <p style="margin: 20px">Some example extra content</p>

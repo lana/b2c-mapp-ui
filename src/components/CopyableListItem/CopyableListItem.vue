@@ -3,6 +3,7 @@
     <div class="item-icon" :data-testid="`${dataTestId}-icon`"><slot/></div>
     <div class="item-text-container" :data-testid="`${dataTestId}-content`">
       <TextParagraph v-if="title"
+                     class="title"
                      size="medium"
                      color="black-500"
                      :data-test-id="`${dataTestId}-title`"
