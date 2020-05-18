@@ -64,18 +64,6 @@ describe('Button unit test', () => {
       expect(hasDisabledClassName).toBeTruthy();
     });
 
-    it('Should add "dismiss" className if "dismiss" type is given', () => {
-      const { getByTestId } = render(Button, { propsData: { type: 'dismiss', loading: false } });
-      const hasDismissClassName = getByTestId('button-button').className.includes('dismiss');
-      expect(hasDismissClassName).toBeTruthy();
-    });
-
-    it('Should add "dismiss" className if "dismiss" type is given', () => {
-      const { getByTestId } = render(Button, { propsData: { type: 'not-valid', loading: false, class: 'class' } });
-      const hasNotWrongClassName = !getByTestId('button-button').className.includes('not-valid');
-      expect(hasNotWrongClassName).toBeTruthy();
-    });
-
     it('Should emit a click event when its clicked', () => {
       const { getByTestId, emitted } = render(Button, { propsData: { type: 'primary', loading: false } });
       const button = getByTestId('button-button');

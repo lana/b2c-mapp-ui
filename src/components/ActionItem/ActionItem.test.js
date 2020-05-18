@@ -29,12 +29,6 @@ describe('ActionItem unit test', () => {
     expect(mediaColorDisplayed).toBeTruthy();
   });
 
-  it('Should apply color given by prop to class if default slot is given to action-item-mediacolor', () => {
-    const { getByTestId } = render(ActionItem, { slots: { default: '<img src=""/>' }, propsData: { ...defaultProps } });
-    const hasGivenColorClass = getByTestId('action-item-mediacolor').className.includes('blue');
-    expect(hasGivenColorClass).toBeTruthy();
-  });
-
   it('Should not display action-item-mediacolor if default slot is not provided', () => {
     const { queryAllByTestId } = render(ActionItem, { propsData: { ...defaultProps } });
     const mediaColorNotDisplayed = !queryAllByTestId('action-item-mediacolor').length;
