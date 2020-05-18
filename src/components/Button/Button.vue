@@ -2,7 +2,7 @@
   <component :is="componentType"
              :id="id"
              class="button"
-             :class="[{ loading, pressed: (!isLinkButton && isPressed), 'link-button': isLinkButton }, type]"
+             :class="[{ loading, pressed: (!isLinkButton && isPressed), 'link-button': isLinkButton, 'drop-shadow': dropShadow }, type]"
              :type="buttonTypeAttribute"
              :disabled="disabled"
              :data-testid="dataTestIdToUse"

@@ -19,6 +19,7 @@ const props = {
   loading: Boolean,
   dataTestId: String,
   disabled: Boolean,
+  dropShadow: Boolean,
   id: String,
 };
 
