@@ -1,6 +1,6 @@
 # Lana B2C MicroApp Libs Changelog
 
-## v.6.0.0 - 12-05-2020
+## v.6.0.0 - 18-05-2020
  - Re-wrote everything in Vue
  - Added Storybook stories for each component to showcase their possible props and states
  - Consolidated the `TextFieldWithValidation` component into the `TextField` component
