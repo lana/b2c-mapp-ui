@@ -1,6 +1,6 @@
 import * as AllIcons from '@lana/b2c-mapp-ui-assets/dist/index';
 
-const TopBarStories = {
+const IconStories = {
   title: 'Components/Icons',
 };
 
@@ -36,4 +36,4 @@ export {
   defaultExample,
 };
 
-export default TopBarStories;
+export default IconStories;
