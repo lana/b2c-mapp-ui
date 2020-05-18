@@ -8,7 +8,10 @@
   padding: 0 16px;
   box-sizing: border-box;
   background: $blue-500;
-  font: 600 16px/20px Graphik, Roboto, Sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: Graphik, Roboto, Sans-serif;
   text-align: center;
   text-decoration: none;
   color: $white;
@@ -28,7 +31,7 @@
   }
 
   &:disabled {
-    background: $black-400;
+    background: $black-300;
     color: $black-500;
     border-color: transparent;
     pointer-events: none;
@@ -39,12 +42,15 @@
   background: transparent;
   color: $blue-500;
   box-shadow: none;
+  border: solid 1px $black-300
 }
 
-.dismiss {
-  background: $white;
-  color: $black-700;
-  border: solid 1px $black-400;
+.link-button {
+  border: none;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .default-wrapper {
@@ -80,26 +86,4 @@
 .loading .default-wrapper {
   opacity: 0;
   transform: translateY(-100%);
-}
-
-.loading-icon {
-  margin-right: 8px;
-  animation: loadingSpin 1.5s infinite linear;
-}
-
-.button::v-deep .loading-icon path[fill] {
-  fill: $white;
-}
-
-.secondary::v-deep .loading-icon path[fill] {
-  fill: $blue-500;
-}
-
-@keyframes loadingSpin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

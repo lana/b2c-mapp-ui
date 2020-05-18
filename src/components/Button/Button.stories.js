@@ -66,9 +66,7 @@ const types = () => ({
   },
   methods: {
     capitalizeFirstLetter,
-    onClick(name) {
-      action(`Clicked ${name}!`);
-    },
+    onClick: action('Clicked!'),
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
@@ -80,7 +78,7 @@ const types = () => ({
           <br>
           <Button loading @click="onClick('Loading')">Loading Example</Button>
           <br>
-          <Button href="foo" type="secondary" @click="onClick('Link')">Link Button Example</Button>
+          <Button href="http://lana.xyz" type="secondary" @click="onClick('Link')">Link Button Example</Button>
           <br>
           <template v-for="(type, index) in availableTypes">
             <Button :key="index"

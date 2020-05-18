@@ -4,8 +4,7 @@ const components = {
   MopIcon,
 };
 
-const availableTypes = [
-  'dismiss',
+const availableTypes = [ // TODO: Consider removing this list entirely (in favor of new `secondary` prop) if we don't plan on adding any other types in the near future
   'secondary',
 ];
 

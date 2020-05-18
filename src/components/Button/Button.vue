@@ -2,7 +2,7 @@
   <component :is="componentType"
              :id="id"
              class="button"
-             :class="[{ loading, pressed: (!isLinkButton && isPressed) }, type]"
+             :class="[{ loading, pressed: (!isLinkButton && isPressed), 'link-button': isLinkButton }, type]"
              :type="buttonTypeAttribute"
              :disabled="disabled"
              :data-testid="dataTestIdToUse"
@@ -10,14 +10,16 @@
              @touchStart="toggleIsPressed"
              @touchEnd="toggleIsPressed"
   >
-    <slot v-if="isLinkButton"/>
+    <span v-if="isLinkButton" class="default-wrapper">
+      <slot/>
+    </span>
     <template v-if="!isLinkButton">
       <em v-if="loading"
           class="loading-wrapper"
           :data-testid="`${baseDataTestIdToUse}-loading`"
       >
-        <MopIcon class="loading-icon"/>
-        ...
+        <!-- TODO: Implement progress filling the background (See: https://www.figma.com/file/7qn2DSkgoUT5i9hIt4FL1C/Storybook?node-id=1%3A2) once we've discussed further with the design team -->
+        Cargando...
       </em>
       <span v-if="!loading"
             class="default-wrapper"
