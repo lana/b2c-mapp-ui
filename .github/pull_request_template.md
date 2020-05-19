@@ -1,6 +1,12 @@
 ## Description
 A few sentences describing the overall goals of the pull request's commits.
 
+## Testing
+Describe the testing steps you've taken
+
+## Screenshots/Captures
+Please include screenshots or screencaps if you've made visual changes
+
 ## Checks
 - [ ] Requires documentation update
 - [ ] Requires lib version update

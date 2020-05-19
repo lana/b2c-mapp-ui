@@ -1,0 +1,24 @@
+@import '../../styles/colors';
+
+.spinner {
+  margin: -2px 8px 0 0;
+  animation: SpinnerSpin 1.5s infinite linear;
+
+  ::v-deep path[fill="#333333"] {
+    fill: $black-700;
+  }
+
+  ::v-deep path[fill="#FFFFFF"] {
+    fill: $white;
+  }
+}
+
+
+@keyframes SpinnerSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

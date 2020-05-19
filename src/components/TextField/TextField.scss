@@ -1,0 +1,22 @@
+.wrapper {
+  position: relative;
+}
+
+.hint {
+  position: absolute;
+  top: 24px;
+  right: 16px;
+  z-index: 10;
+  font-size: 14px;
+  line-height: 24px;
+  transition: transform 0.15s ease
+}
+
+.align-top {
+  transform: translateY(-22px);
+}
+
+.labeled ~ .hint {
+  top: 33px;
+}
+

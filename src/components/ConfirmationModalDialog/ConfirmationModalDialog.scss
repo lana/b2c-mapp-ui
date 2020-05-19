@@ -1,0 +1,71 @@
+@import '../../styles/colors';
+@import '../../styles/typography';
+
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 995;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  background: $modal-dim-alpha;
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+  pointer-events: none;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.dialog {
+  flex-grow: 1;
+  margin: 32px;
+  background: $white;
+  white-space: normal;
+  border-radius: 3px;
+  transform: translateY(20%) scale(0.9);
+  transform-origin: center top;
+  transition: transform 0.15s ease-out 0.05s;
+}
+
+.visible .dialog {
+  transform: translateY(0) scale(1);
+}
+
+
+.title {
+  padding: 16px 16px 0;
+}
+
+.description {
+  padding: 16px 16px 0;
+}
+
+.content {
+  max-height: 44vh;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 16px 8px 0;
+}
+
+.action {
+  font: $callout;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: $blue-500;
+  padding: 16px 8px;
+
+  &.dismiss {
+    color: $black-500;
+  }
+}

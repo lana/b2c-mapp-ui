@@ -1,0 +1,64 @@
+@import '../../styles/colors';
+
+$item-box-size: 48px;
+
+.copyable-list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  height: $item-box-size;
+  padding: 8px 16px;
+  transition: background-color 0.15s linear;
+}
+
+.item-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  margin-right: 16px;
+  width: $item-box-size;
+  height: 100%;
+  border-radius: 14px;
+  background-color: $black-100;
+  border: solid 1px $black-300;
+}
+
+.title {
+  font-size: 14px;
+}
+
+.item-text {
+  flex: 1 0 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.item-text-container {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+.copy-button-container {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+
+  a {
+    text-transform: uppercase;
+    display: block;
+    width: 84px;
+    letter-spacing: 0.25px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+}

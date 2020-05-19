@@ -1,0 +1,53 @@
+@import '../../styles/colors';
+@import '../../styles/typography';
+
+$item-box-size: 48px;
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  overflow: hidden;
+  position: relative;
+  padding: 8px 16px;
+}
+
+.media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  margin-right: 16px;
+  width: $item-box-size;
+  height: $item-box-size;
+  border-radius: 14px;
+  border: solid 1px $black-300;
+  background-color: $black-100;
+}
+
+.body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+.link {
+  color: $blue-500;
+  font: $callout;
+  font-weight: 500;
+  line-height: 24px;
+  margin-top: 8px;
+}
+
+.description {
+  font-size: 14px;
+}

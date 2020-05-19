@@ -1,0 +1,20 @@
+@import '../../styles/colors';
+@import '../../styles/typography';
+
+.clipboard {
+  font: $default-m;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tocopy {
+  color: $blue-500;
+}
+
+.copying {
+  color: $black-500;
+}
+
+.copied {
+  color: $green-600;
+}

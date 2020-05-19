@@ -1,0 +1,20 @@
+@import '../../styles/colors';
+
+.wrapper-content {
+  padding: 16px 16px 24px;
+}
+
+.wrapper-modal {
+  padding: 24px 16px 32px;
+  text-align: center;
+}
+
+.wrapper > h1 {
+  color: $black-700;
+  font-weight: 500;
+}
+
+.wrapper > p {
+  color: $black-500;
+  margin-top: 8px;
+}
