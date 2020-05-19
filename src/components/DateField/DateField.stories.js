@@ -18,7 +18,7 @@ const defaultExample = () => ({
       default: boolean('Enable autoformatting?', false),
     },
     datePicker: {
-      default: boolean('Enable Date Picker?', false),
+      default: boolean('Enable Date Picker?', true),
     },
     disabled: {
       default: boolean('Is Disabled?', false),
