@@ -31,7 +31,7 @@ const data = function () {
 
 const computed = {
   hasLabel() {
-    const result = (this.showPrefix || !!this.inputValue || this.readonly);
+    const result = (this.showPrefix || !!this.inputValue || this.readonly || this.isFocused);
     return result;
   },
   inputId() {
