@@ -11,12 +11,12 @@ const components = {
 const props = {
   title: {
     type: String,
-    default: 'Próximamente...',
+    default: '',
   },
 
   description: {
     type: String,
-    default: 'Estamos trabajando en esta funcionalidad y pronto podrás acceder a ella.',
+    default: '',
   },
 };
 
