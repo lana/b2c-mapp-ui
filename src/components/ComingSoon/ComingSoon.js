@@ -16,6 +16,11 @@ const data = function () {
 };
 
 const props = {
+  dataTestId: {
+    type: String,
+    default: 'coming-soon',
+  },
+
   title: {
     type: String,
     default: '',
