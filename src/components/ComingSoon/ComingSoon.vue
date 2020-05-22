@@ -8,7 +8,7 @@
     <div class="image-wrapper">
       <img :src="image" alt="kitten" width="360" height="264">
     </div>
-    <Button @click="onClose">
+    <Button :data-testid="dataTestId" @click="onClose">
       Aceptar
     </Button>
   </section>
