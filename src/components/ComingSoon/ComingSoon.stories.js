@@ -16,10 +16,10 @@ const defaultExample = () => ({
   },
   props: {
     title: {
-      default: text('Title', 'Example Title'),
+      default: text('Title', 'Próximamente...'),
     },
     description: {
-      default: text('Description', 'Example Description'),
+      default: text('Description', 'Estamos trabajando en esta funcionalidad y pronto podrás acceder a ella.'),
     },
   },
   methods: {
@@ -31,8 +31,8 @@ const defaultExample = () => ({
     <hr>
     <div style="display: flex; flex-direction: column; width: 100%;">
       <div style="width: 500px">
-        <ComingSoon :title="metaText"
-                    :description="metaText"
+        <ComingSoon :title="title"
+                    :description="description"
                     @click="onClose"
         >
         </ComingSoon>
