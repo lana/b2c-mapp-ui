@@ -4,9 +4,8 @@
     <div class="text-info">
       <TextParagraph class="description" size="medium"> {{ description }}</TextParagraph>
     </div>
-    <!-- <img src="/src/assets/img_wip.svg" alt="Work in progress"> -->
     <div class="image-wrapper">
-      <img :src="image" alt="kitten" width="360" height="264">
+      <img :src="image" alt="Sheep working" width="360" height="264">
     </div>
     <Button :data-testid="dataTestId" @click="onClose">
       Aceptar

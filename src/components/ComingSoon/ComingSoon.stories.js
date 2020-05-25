@@ -6,7 +6,6 @@ import ComingSoon from './ComingSoon.vue';
 const ComingSoonStories = {
   component: ComingSoon,
   title: 'Components/ComingSoon',
-  // Not sure if this is necessary:
   decorators: [withKnobs],
 };
 
@@ -30,7 +29,7 @@ const defaultExample = () => ({
     <h2><strong>ComingSoon:</strong>&nbsp;This can be used to inform the user that a functionality will be available soon.</h2>
     <hr>
     <div style="display: flex; flex-direction: column; width: 100%;">
-      <div style="width: 500px">
+      <div style="width: 360px">
         <ComingSoon :title="title"
                     :description="description"
                     @click="onClose"
