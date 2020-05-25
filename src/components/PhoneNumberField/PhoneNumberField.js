@@ -1,4 +1,5 @@
 import { AsYouType, getCountryCallingCode, getCountries } from 'libphonenumber-js/custom';
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 
 import FormField from '../FormField/FormField.vue';
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
@@ -67,6 +68,14 @@ const methods = {
   },
   focus() {
     this.$refs.field.focus();
+  },
+  isPhoneNumberValid() {
+    try {
+      const parsedNumber = parsePhoneNumberFromString(this.formattedPhoneNumber, this.countryCode);
+      return parsedNumber.isValid();
+    } catch (parsingError) {
+      return false;
+    }
   },
 };
 
