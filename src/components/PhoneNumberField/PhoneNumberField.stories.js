@@ -39,12 +39,18 @@ const defaultExample = () => ({
   data() {
     return {
       value: '',
+      isValid: false,
     };
   },
   methods: {
     onBlur: action('Blur!'),
     onFocus: action('Focus!'),
     onInput: action('Changed!'),
+  },
+  watch: {
+    value() {
+      this.isValid = this.$refs.field.isPhoneNumberValid();
+    },
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
@@ -66,6 +72,7 @@ const defaultExample = () => ({
       <div style="display: flex; flex-direction: column; width: 100%;">
         <div style="width: 500px">
           <PhoneNumberField v-model="value"
+                            ref="field"
                             :country-code="countryCode"
                             :hide-country-code="hideCountryCode"
                             :disabled="disabled"
@@ -77,9 +84,9 @@ const defaultExample = () => ({
                             @input="onInput"
           />
           <br>
-          <div>
-            Bound value: {{ value }}
-          </div>
+          <div>Bound value: {{ value }}</div>
+          <br>
+          <div>Is Valid?: {{ isValid }}</div>
         </div>
       </div>
     </div>
