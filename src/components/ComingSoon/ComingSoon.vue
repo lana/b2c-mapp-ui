@@ -5,11 +5,9 @@
       <TextParagraph class="description" size="medium"> {{ description }}</TextParagraph>
     </div>
     <div class="image-wrapper">
-      <img :src="image" alt="Sheep working" width="360" height="264">
+      <WorkInProgress/>
     </div>
-    <Button :data-testid="dataTestId" @click="onClose">
-      Aceptar
-    </Button>
+    <Button :data-testid="dataTestId" @click="onClose"> {{ closeButtonText }} </Button>
   </section>
 </template>
 

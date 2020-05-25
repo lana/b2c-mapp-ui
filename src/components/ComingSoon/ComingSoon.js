@@ -1,18 +1,14 @@
+import { WorkInProgress } from '@lana/b2c-mapp-ui-assets';
+
 import Button from '../Button/Button.vue';
 import Heading from '../Heading/Heading.vue';
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
-import comingSoonImage from '../../assets/img_wip.svg';
 
 const components = {
   Button,
   Heading,
   TextParagraph,
-};
-
-const data = function () {
-  return {
-    image: comingSoonImage,
-  };
+  WorkInProgress,
 };
 
 const props = {
@@ -20,13 +16,15 @@ const props = {
     type: String,
     default: 'coming-soon',
   },
-
   title: {
     type: String,
     default: '',
   },
-
   description: {
+    type: String,
+    default: '',
+  },
+  closeButtonText: {
     type: String,
     default: '',
   },
@@ -40,7 +38,6 @@ const methods = {
 
 const ComingSoon = {
   components,
-  data,
   props,
   methods,
 };
