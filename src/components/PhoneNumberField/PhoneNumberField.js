@@ -26,6 +26,7 @@ const props = {
     validator(value) { return availableCountryCodes.includes(value); },
   },
   hideCountryCode: Boolean,
+  startFocused: Boolean,
   label: String,
   errorLabel: String,
   id: String,
@@ -63,6 +64,9 @@ const methods = {
   },
   onBlur(event) {
     this.$emit('blur', event);
+  },
+  focus() {
+    this.$refs.field.focus();
   },
 };
 

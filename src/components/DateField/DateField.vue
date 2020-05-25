@@ -1,6 +1,7 @@
 <template>
   <div data-testid="date-field-wrapper" class="calendar-wrapper">
     <FormField :id="formFieldId"
+               ref="field"
                v-model="inputValue"
                :name="formFieldName"
                :data-test-id="dataTestId"
@@ -10,6 +11,7 @@
                :readonly="readonly"
                :disabled="disabled"
                :max-length="maxLength"
+               :start-focused="startFocused"
                @blur="onBlur"
                @focus="onFocus"
     />

@@ -35,6 +35,7 @@ const props = {
   autoformat: Boolean,
   datePicker: Boolean,
   readonly: Boolean,
+  startFocused: Boolean,
   disabled: Boolean,
 };
 
@@ -98,6 +99,9 @@ const methods = {
     this.$emit('input', this.inputValue);
     this.$emit('change', this.formFieldFormattedDateText);
     this.$emit('validate', validationPayload);
+  },
+  focus() {
+    this.$refs.field.focus();
   },
   onFocus(event) {
     this.$emit('focus', event);

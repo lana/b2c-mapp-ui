@@ -1,5 +1,6 @@
 <template>
   <FormField :id="id"
+             ref="field"
              v-model="inputValue"
              class="field"
              :class="{ filled: !hideCountryCode }"
@@ -10,6 +11,7 @@
              :show-prefix="!hideCountryCode"
              :disabled="disabled"
              :readonly="readonly"
+             :start-focused="startFocused"
              :data-test-id="dataTestId"
              @blur="onBlur"
              @focus="onFocus"

@@ -47,6 +47,9 @@ const methods = {
   emitInputEvent() {
     this.$emit('input', this.inputValue);
   },
+  focus() {
+    this.$refs.field.focus();
+  },
   onFocus(event) {
     this.$emit('focus', event);
   },
