@@ -64,6 +64,9 @@ const methods = {
     this.toggleFocus();
     this.$emit('blur', event);
   },
+  focus() {
+    this.$refs.input.focus();
+  },
 };
 
 const watch = {

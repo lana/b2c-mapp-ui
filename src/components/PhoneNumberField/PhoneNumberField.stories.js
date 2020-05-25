@@ -18,7 +18,7 @@ const defaultExample = () => ({
   },
   props: {
     label: {
-      default: text('Label', 'Example Text Field'),
+      default: text('Label', 'Example Phone Field'),
     },
     errorLabel: {
       default: text('Error Label', ''),
