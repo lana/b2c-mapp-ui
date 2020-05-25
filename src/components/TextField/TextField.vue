@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
-    <FormField v-model="inputValue"
+    <FormField ref="field"
+               v-model="inputValue"
                :data-test-id="dataTestId"
                :label="label"
                :type="type"

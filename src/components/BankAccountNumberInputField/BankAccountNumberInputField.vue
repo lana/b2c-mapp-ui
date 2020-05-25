@@ -1,10 +1,12 @@
 <template>
-  <FormField v-model="inputValue"
+  <FormField ref="field"
+             v-model="inputValue"
              :data-test-id="dataTestId"
              :label="label"
              :error-label="errorLabelToShow"
              :disabled="disabled"
              :readonly="readonly"
+             :start-focused="startFocused"
              type="tel"
              :name="name"
              :max-length="maxLength"

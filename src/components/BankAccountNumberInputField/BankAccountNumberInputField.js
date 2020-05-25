@@ -26,6 +26,7 @@ const props = {
   name: String,
   disabled: Boolean,
   readonly: Boolean,
+  startFocused: Boolean,
 };
 
 const data = function () {
@@ -89,6 +90,9 @@ const methods = {
     };
     this.$emit('input', this.inputValue);
     this.$emit('change', payload);
+  },
+  focus() {
+    this.$refs.field.focus();
   },
   onFocus(event) {
     this.$emit('focus', event);
