@@ -20,6 +20,9 @@ const defaultExample = () => ({
     description: {
       default: text('Description', 'Estamos trabajando en esta funcionalidad y pronto podrás acceder a ella.'),
     },
+    closeButtonText: {
+      default: text('CloseButtonText', 'Aceptar'),
+    },
   },
   methods: {
     onClose: action('Close!'),
@@ -32,10 +35,10 @@ const defaultExample = () => ({
       <div style="width: 360px">
         <ComingSoon :title="title"
                     :description="description"
+                    :closeButtonText="closeButtonText"
                     @click="onClose"
         >
         </ComingSoon>
-        
       </div>
     </div>
   </div>

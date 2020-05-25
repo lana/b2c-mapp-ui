@@ -3,11 +3,6 @@ import { mount } from '@vue/test-utils';
 import ComingSoon from './ComingSoon.vue';
 
 describe('ComingSoon unit test ', () => {
-  // beforeAll(() => {
-  //   // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
-  //   console.error = jest.fn(); // eslint-disable-line no-console
-  // });
-
   const defaultProps = {
     title: 'Title',
     description: 'Description',
