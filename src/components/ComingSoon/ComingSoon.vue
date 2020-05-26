@@ -1,6 +1,6 @@
 <template>
   <section>
-    <Heading class="title" size="large" weight="medium">{{ title }}</Heading>
+    <Heading class="title" size="xl" weight="medium">{{ title }}</Heading>
     <div class="text-info">
       <TextParagraph class="description" size="medium"> {{ description }}</TextParagraph>
     </div>
