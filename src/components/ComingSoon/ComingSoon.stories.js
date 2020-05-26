@@ -36,7 +36,7 @@ const defaultExample = () => ({
         <ComingSoon :title="title"
                     :description="description"
                     :closeButtonText="closeButtonText"
-                    @click="onClose"
+                    @close="onClose"
         >
         </ComingSoon>
       </div>
