@@ -64,6 +64,9 @@ const methods = {
     this.toggleFocus();
     this.$emit('blur', event);
   },
+  onPaste(event) {
+    this.$emit('paste', event);
+  },
   focus() {
     this.$refs.input.focus();
   },

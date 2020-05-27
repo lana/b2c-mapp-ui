@@ -12,6 +12,7 @@
              :max-length="maxLength"
              @blur="onBlur"
              @focus="onFocus"
+             @paste="onPaste"
   />
 </template>
 

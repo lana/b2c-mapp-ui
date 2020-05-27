@@ -18,6 +18,7 @@
            :disabled="disabled"
            @focus="onFocus"
            @blur="onBlur"
+           @paste="onPaste"
     >
   </label>
 </template>
