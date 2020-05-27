@@ -43,6 +43,11 @@ export default class Field extends Component {
 		if (onChange) onChange(e)
 	}
 
+	onPaste(event) {
+		const { onPaste } = this.props
+		if (onPaste) { onPaste(event); }
+	}
+
 	setValue(value) {
 		this.setState({
 			value: value,
@@ -91,6 +96,7 @@ export default class Field extends Component {
 					ref={elem => (this.ref = elem)}
 					onFocus={e => this.onFocus(e)}
 					onBlur={e => this.onBlur(e)}
+					onPaste={(event) => { this.onPaste(event); }}
 					onInput={e => this.onChange(e)}
 					autoComplete="off"
 					className={CSS.input}
@@ -120,4 +126,5 @@ Field.propTypes = {
 	onBlur: PropTypes.func,
 	onChange: PropTypes.func,
 	onFocus: PropTypes.func,
+	onPaste: PropTypes.func,
 }

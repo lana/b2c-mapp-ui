@@ -64,6 +64,11 @@ export default class BankAccountField extends Component {
 		if (this.props.onChange) this.props.onChange(value, validation)
 	}
 
+	onPaste(event) {
+		const { onPaste } = this.props
+		if (onPaste) { onPaste(event); }
+	}
+
 	onBlur(ev) {
 		if (this.props.onBlur) this.props.onBlur(ev.target.value)
 	}
@@ -82,6 +87,7 @@ export default class BankAccountField extends Component {
 				maxLength={props.maxLength}
 				onChange={ev => this.onChange(ev)}
 				onBlur={ev => this.onBlur(ev)}
+				onPaste={(event) => { this.onPaste(event); }}
 			/>
 		)
 	}
