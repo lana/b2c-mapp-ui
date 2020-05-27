@@ -100,6 +100,12 @@ const methods = {
   onBlur(event) {
     this.$emit('blur', event);
   },
+  onPaste(event) {
+    const rawPasteValue = (event.clipboardData || window.clipboardData).getData('text');
+    const sanitizedValue = (rawPasteValue && rawPasteValue.replace(allSpacesRegexp, ''));
+    this.inputValue = sanitizedValue;
+    event.preventDefault();
+  },
   updateInputValueWithFormatting() {
     if (this.accountNumberWithoutSpaces.length > this.bankAccountTemplate.length) { return; }
     this.inputValue = this.parsedAccountNumber;
