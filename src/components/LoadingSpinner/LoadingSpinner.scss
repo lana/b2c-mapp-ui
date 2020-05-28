@@ -1,6 +1,8 @@
 @import '../../styles/colors';
 
 .spinner {
+  height: 40px;
+  width: 40px;
   margin: -2px 8px 0 0;
   animation: SpinnerSpin 1.5s infinite linear;
 
