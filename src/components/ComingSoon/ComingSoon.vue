@@ -5,7 +5,7 @@
       <TextParagraph class="description" size="medium"> {{ description }}</TextParagraph>
     </div>
     <div class="image-wrapper">
-      <WorkInProgress/>
+      <WorkInProgress class="wip"/>
     </div>
     <Button :data-testid="dataTestId" @click="onClose"> {{ closeButtonText }} </Button>
   </section>
