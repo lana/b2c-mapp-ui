@@ -1,6 +1,8 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 
+import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
+import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import BankAccountNumberInputField from './BankAccountNumberInputField.vue';
 
 const BankAccountNumberInputFieldStories = {
@@ -12,8 +14,12 @@ const BankAccountNumberInputFieldStories = {
 const defaultExample = () => ({
   components: {
     BankAccountNumberInputField,
+    StorybookMobileDeviceSimulator,
   },
   props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
     disabled: {
       default: boolean('Is Disabled?', false),
     },
@@ -44,8 +50,8 @@ const defaultExample = () => ({
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>BankAccountNumberInputField:</strong>&nbsp;An international bank account formatting and validation field.</h2>
       <hr>
-      <div style="display: flex; flex-direction: column; width: 100%;">
-        <div style="width: 500px">
+      <StorybookMobileDeviceSimulator :device="device">
+        <div>
           <BankAccountNumberInputField :disabled="disabled"
                                        :readonly="readonly"
                                        :label="label"
@@ -56,11 +62,11 @@ const defaultExample = () => ({
                                        @change="onChange"
           />
           <br>
-          <div>
+          <div style="margin-left: 10px">
             Bound value: {{ value }}
           </div>
         </div>
-      </div>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });

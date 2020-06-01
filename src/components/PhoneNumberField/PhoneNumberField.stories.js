@@ -1,6 +1,8 @@
 import { action } from '@storybook/addon-actions';
 import { withKnobs, boolean, text, select } from '@storybook/addon-knobs';
 
+import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
+import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import PhoneNumberField from './PhoneNumberField.vue';
 import { availableCountryCodes } from './PhoneNumberField';
 
@@ -15,8 +17,12 @@ const PhoneNumberFieldStories = {
 const defaultExample = () => ({
   components: {
     PhoneNumberField,
+    StorybookMobileDeviceSimulator,
   },
   props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
     label: {
       default: text('Label', 'Example Phone Field'),
     },
@@ -69,26 +75,26 @@ const defaultExample = () => ({
         This approach allows us to have a minimal impact in the final build size when using <code>libphonenumber-js</code>.
       </p>
       <hr>
-      <div style="display: flex; flex-direction: column; width: 100%;">
-        <div style="width: 500px">
-          <PhoneNumberField v-model="value"
-                            ref="field"
-                            :country-code="countryCode"
-                            :hide-country-code="hideCountryCode"
-                            :disabled="disabled"
-                            :readonly="readonly"
-                            :label="label"
-                            :error-label="errorLabel"
-                            @blur="onBlur"
-                            @focus="onFocus"
-                            @input="onInput"
-          />
-          <br>
+      <StorybookMobileDeviceSimulator :device="device">
+        <PhoneNumberField v-model="value"
+                          ref="field"
+                          :country-code="countryCode"
+                          :hide-country-code="hideCountryCode"
+                          :disabled="disabled"
+                          :readonly="readonly"
+                          :label="label"
+                          :error-label="errorLabel"
+                          @blur="onBlur"
+                          @focus="onFocus"
+                          @input="onInput"
+        />
+        <br>
+        <div style="margin: 20px;">
           <div>Bound value: {{ value }}</div>
           <br>
           <div>Is Valid?: {{ isValid }}</div>
         </div>
-      </div>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });

@@ -1,6 +1,8 @@
-import { withKnobs, boolean, text } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 import { InfoIcon, DocumentFilledIcon } from '@lana/b2c-mapp-ui-assets/dist/index';
 
+import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
+import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import CopyableListItem from './CopyableListItem.vue';
 
 const CopyableListItemStories = {
@@ -13,8 +15,12 @@ const defaultExample = () => ({
   components: {
     CopyableListItem,
     InfoIcon,
+    StorybookMobileDeviceSimulator,
   },
   props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
     disabled: {
       default: boolean('Is Disabled?', false),
     },
@@ -32,18 +38,16 @@ const defaultExample = () => ({
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>CopyableListItem:</strong>&nbsp;A list item with a convenient copy button.</h2>
       <hr>
-      <div style="display: flex; flex-direction: column; width: 100%;">
-        <div style="width: 500px">
-          <CopyableListItem :title="title"
-                            :text="text"
-                            :hide-button="hideButton"
-                            :disabled="disabled"
+      <StorybookMobileDeviceSimulator :device="device">
+        <CopyableListItem :title="title"
+                          :text="text"
+                          :hide-button="hideButton"
+                          :disabled="disabled"
 
-          >
-            <InfoIcon/>
-          </CopyableListItem>
-        </div>
-      </div>
+        >
+          <InfoIcon/>
+        </CopyableListItem>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });
@@ -53,13 +57,19 @@ const moreExampleStates = () => ({
     CopyableListItem,
     InfoIcon,
     DocumentFilledIcon,
+    StorybookMobileDeviceSimulator,
+  },
+  props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>CopyableListItem:</strong>&nbsp;More example states.</h2>
       <hr>
-      <div style="display: flex; flex-direction: column; width: 100%;">
-        <ul style="width: 500px">
+      <StorybookMobileDeviceSimulator :device="device">
+        <ul>
           <CopyableListItem title="An info example"
                             text="Text to be copied"
           >
@@ -82,7 +92,7 @@ const moreExampleStates = () => ({
             <InfoIcon/>
           </CopyableListItem>
         </ul>
-      </div>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });

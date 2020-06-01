@@ -19,7 +19,10 @@ import RadioList from './components/RadioList/RadioList.vue';
 import Screen from './components/Screen/Screen.vue';
 import ScrollWrapper from './components/ScrollWrapper/ScrollWrapper.vue';
 import SelectBox from './components/SelectBox/SelectBox.vue';
+import SelfieWebCam from './components/SelfieWebCam/SelfieWebCam.vue';
 import Stepper from './components/Stepper/Stepper.vue';
+import StorybookMobileDeviceSimulator from './components/StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
+import { availableDevices as availableSimulatedMobileDevices } from './components/StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import TextField from './components/TextField/TextField.vue';
 import TextParagraph from './components/TextParagraph/TextParagraph.vue';
 import ToggleSwitch from './components/ToggleSwitch/ToggleSwitch.vue';
@@ -50,7 +53,10 @@ export {
   Screen,
   ScrollWrapper,
   SelectBox,
+  SelfieWebCam,
   Stepper,
+  StorybookMobileDeviceSimulator,
+  availableSimulatedMobileDevices,
   TextField,
   TextParagraph,
   ToggleSwitch,

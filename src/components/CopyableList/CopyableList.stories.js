@@ -1,6 +1,8 @@
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, select, text } from '@storybook/addon-knobs';
 import { InfoIcon, DocumentFilledIcon } from '@lana/b2c-mapp-ui-assets/dist/index';
 
+import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
+import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import CopyableList from './CopyableList.vue';
 import CopyableListItem from '../CopyableListItem/CopyableListItem.vue';
 
@@ -16,8 +18,12 @@ const defaultExample = () => ({
     CopyableListItem,
     InfoIcon,
     DocumentFilledIcon,
+    StorybookMobileDeviceSimulator,
   },
   props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
     title: {
       default: text('Title', 'Example Title'),
     },
@@ -26,7 +32,7 @@ const defaultExample = () => ({
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>CopyableList:</strong>&nbsp;A list of items with a copy to clipboard button.</h2>
       <hr>
-      <div style="width: 500px;">
+      <StorybookMobileDeviceSimulator :device="device">
         <CopyableList :title="title">
           <CopyableListItem title="An info example"
                             text="Text to be copied"
@@ -53,7 +59,7 @@ const defaultExample = () => ({
             <p style="margin: 20px">Some example extra content</p>
           </div>
         </CopyableList>
-      </div>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });

@@ -15,6 +15,7 @@
              :data-test-id="dataTestId"
              @blur="onBlur"
              @focus="onFocus"
+             @keypress="supressNonDigitCharacterEntry"
   >
     <TextParagraph v-if="!hideCountryCode"
                    class="prefix"

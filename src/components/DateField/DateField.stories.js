@@ -1,6 +1,8 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text, number } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean, text, number } from '@storybook/addon-knobs';
 
+import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
+import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import DateField from './DateField.vue';
 
 const DateFieldStories = {
@@ -12,8 +14,12 @@ const DateFieldStories = {
 const defaultExample = () => ({
   components: {
     DateField,
+    StorybookMobileDeviceSimulator,
   },
   props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
     autoformat: {
       default: boolean('Enable autoformatting?', false),
     },
@@ -51,27 +57,25 @@ const defaultExample = () => ({
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>DateField:</strong>&nbsp;A simple date input field.</h2>
       <hr>
-      <div style="display: flex; flex-direction: column; width: 100%;">
-        <div style="width: 500px">
-          <DateField :autoformat="autoformat"
-                     :disabled="disabled"
-                     :readonly="readonly"
-                     :date-picker="datePicker"
-                     :label="label"
-                     :error-label="errorLabel"
-                     :max-length="maxLength"
-                     v-model="value"
-                     @blur="onBlur"
-                     @focus="onFocus"
-                     @change="onChange"
-                     @validate="onValidate"
-          />
-          <br>
-          <div>
-            Bound value: {{ value }}
-          </div>
+      <StorybookMobileDeviceSimulator :device="device">
+        <DateField :autoformat="autoformat"
+                   :disabled="disabled"
+                   :readonly="readonly"
+                   :date-picker="datePicker"
+                   :label="label"
+                   :error-label="errorLabel"
+                   :max-length="maxLength"
+                   v-model="value"
+                   @blur="onBlur"
+                   @focus="onFocus"
+                   @change="onChange"
+                   @validate="onValidate"
+        />
+        <br>
+        <div style="margin-left: 20px;">
+          Bound value: {{ value }}
         </div>
-      </div>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });
@@ -79,22 +83,28 @@ const defaultExample = () => ({
 const validation = () => ({
   components: {
     DateField,
+    StorybookMobileDeviceSimulator,
+  },
+  props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>DateField:</strong>&nbsp;Validations.</h2>
       <hr>
-      <div style="display: flex; flex-direction: column; width: 100%;">
-        <div style="width: 500px">
+      <StorybookMobileDeviceSimulator :device="device">
+        <div style="margin: 10px;">
           <label>With Valid Date:</label>
           <DateField value="01/12/1990" label='Enter your DOB' date-picker/>
         </div>
         <br>
-        <div style="width: 500px">
+        <div style="margin: 10px;">
           <label>With Invalid Date:</label>
           <DateField value="01/20/1990" label='Enter your DOB' date-picker/>
         </div>
-      </div>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });

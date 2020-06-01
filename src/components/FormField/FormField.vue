@@ -19,6 +19,7 @@
            @focus="onFocus"
            @blur="onBlur"
            @paste="onPaste"
+           @keypress="onKeypress"
     >
   </label>
 </template>

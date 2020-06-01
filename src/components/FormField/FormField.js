@@ -64,6 +64,9 @@ const methods = {
     this.toggleFocus();
     this.$emit('blur', event);
   },
+  onKeypress(event) {
+    this.$emit('keypress', event);
+  },
   onPaste(event) {
     this.$emit('paste', event);
   },
