@@ -1,5 +1,13 @@
 // NOTE: This is a customized fork from the `vue-web-cam` NPM package (see: https://github.com/VinceG/vue-web-cam) which was required in order to add support for selfie constraints
 
+const getGetUserMediaFromBrowser = () => (
+  navigator.getUserMedia
+  || navigator.webkitGetUserMedia
+  || navigator.mozGetUserMedia
+  || navigator.msGetUserMedia
+  || navigator.oGetUserMedia
+);
+
 const props = {
   width: {
     type: [Number, String],
@@ -55,11 +63,7 @@ const computed = {
 const methods = {
   legacyGetUserMediaSupport() {
     const result = (constraints) => {
-      const getUserMedia = (navigator.getUserMedia
-        || navigator.webkitGetUserMedia
-        || navigator.mozGetUserMedia
-        || navigator.msGetUserMedia
-        || navigator.oGetUserMedia);
+      const getUserMedia = getGetUserMediaFromBrowser();
       if (!getUserMedia) { return Promise.reject(new Error('getUserMedia is not implemented in this browser')); }
       return new Promise(((resolve, reject) => { getUserMedia.call(navigator, constraints, resolve, reject); }));
     };
