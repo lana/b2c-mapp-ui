@@ -40,6 +40,9 @@ const defaultExample = () => ({
     contents: {
       default: text('Button Contents', 'Example Button'),
     },
+    loadingText: {
+      default: text('Loading Text', 'Cargando...'),
+    },
   },
   methods: {
     onClick: action('Clicked!'),
@@ -53,6 +56,7 @@ const defaultExample = () => ({
           <Button :type="type"
                   :href="href"
                   :loading="loading"
+                  :loading-text="loadingText"
                   :drop-shadow="dropShadow"
                   :disabled="disabled"
                   @click="onClick"

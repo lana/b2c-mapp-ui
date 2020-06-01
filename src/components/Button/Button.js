@@ -14,6 +14,10 @@ const props = {
     default: '',
     validator(value) { return (!value || availableTypes.includes(value)); },
   },
+  loadingText: {
+    type: String,
+    default: 'Cargando...',
+  },
   href: String,
   link: Boolean,
   loading: Boolean,
