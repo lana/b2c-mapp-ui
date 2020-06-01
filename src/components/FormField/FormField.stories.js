@@ -1,6 +1,8 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text, number } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean, text, number } from '@storybook/addon-knobs';
 
+import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
+import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import FormField from './FormField.vue';
 
 const FormFieldStories = {
@@ -12,8 +14,12 @@ const FormFieldStories = {
 const defaultExample = () => ({
   components: {
     FormField,
+    StorybookMobileDeviceSimulator,
   },
   props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
     type: {
       default: text('Type', ''),
     },
@@ -49,25 +55,23 @@ const defaultExample = () => ({
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>FormField:</strong>&nbsp;A simple text field.</h2>
       <hr>
-      <div style="display: flex; flex-direction: column; width: 100%;">
-        <div style="width: 500px">
-          <FormField :type="type"
-                     :disabled="disabled"
-                     :readonly="readonly"
-                     :label="label"
-                     :error-label="errorLabel"
-                     :max-length="maxLength"
-                     :show-prefix="showPrefix"
-                     v-model="value"
-                     @blur="onBlur"
-                     @focus="onFocus"
-          />
-          <br>
-          <div>
-            Bound value: {{ value }}
-          </div>
+      <StorybookMobileDeviceSimulator :device="device">
+        <FormField :type="type"
+                   :disabled="disabled"
+                   :readonly="readonly"
+                   :label="label"
+                   :error-label="errorLabel"
+                   :max-length="maxLength"
+                   :show-prefix="showPrefix"
+                   v-model="value"
+                   @blur="onBlur"
+                   @focus="onFocus"
+        />
+        <br>
+        <div style="margin: 20px;">
+          Bound value: {{ value }}
         </div>
-      </div>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });

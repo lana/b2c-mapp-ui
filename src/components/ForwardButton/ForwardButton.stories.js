@@ -1,6 +1,8 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 
+import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
+import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import ForwardButton from './ForwardButton.vue';
 
 const ForwardButtonStories = {
@@ -12,8 +14,12 @@ const ForwardButtonStories = {
 const defaultExample = () => ({
   components: {
     ForwardButton,
+    StorybookMobileDeviceSimulator,
   },
   props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
     disabled: {
       default: boolean('Is Disabled?', false),
     },
@@ -25,13 +31,13 @@ const defaultExample = () => ({
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>ForwardButton:</strong>&nbsp;Wraps a Button component with extra padding to be placed at the bottom of the screen.</h2>
       <hr>
-      <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
-        <div style="width: 500px">
+      <StorybookMobileDeviceSimulator :device="device">
+        <div style="height: 100%;">
           <ForwardButton :disabled="disabled"
                          @click="onClick"
           />
         </div>
-      </div>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });

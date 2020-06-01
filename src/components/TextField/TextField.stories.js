@@ -1,6 +1,8 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text, number } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean, text, number } from '@storybook/addon-knobs';
 
+import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
+import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import TextField from './TextField.vue';
 
 const TextFieldStories = {
@@ -12,8 +14,12 @@ const TextFieldStories = {
 const defaultExample = () => ({
   components: {
     TextField,
+    StorybookMobileDeviceSimulator,
   },
   props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
     type: {
       default: text('Type', ''),
     },
@@ -49,25 +55,23 @@ const defaultExample = () => ({
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>TextField:</strong>&nbsp;A simple text field.</h2> <!-- TODO: Improve this description so that it makes it clear how this is different from the FormField component -->
       <hr>
-      <div style="display: flex; flex-direction: column; width: 100%;">
-        <div style="width: 500px">
-          <TextField v-model="value"
-                     :type="type"
-                     :disabled="disabled"
-                     :readonly="readonly"
-                     :label="label"
-                     :error-label="errorLabel"
-                     :max-length="maxLength"
-                     :length-hint="lengthHint"
-                     @blur="onBlur"
-                     @focus="onFocus"
-          />
-          <br>
-          <div>
-            Bound value: {{ value }}
-          </div>
+      <StorybookMobileDeviceSimulator :device="device">
+        <TextField v-model="value"
+                   :type="type"
+                   :disabled="disabled"
+                   :readonly="readonly"
+                   :label="label"
+                   :error-label="errorLabel"
+                   :max-length="maxLength"
+                   :length-hint="lengthHint"
+                   @blur="onBlur"
+                   @focus="onFocus"
+        />
+        <br>
+        <div style="margin: 20px;">
+          Bound value: {{ value }}
         </div>
-      </div>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });

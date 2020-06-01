@@ -1,6 +1,8 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text, number } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean, text, number } from '@storybook/addon-knobs';
 
+import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
+import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import CopyToClipboardButton from './CopyToClipboardButton.vue';
 
 const CopyToClipboardButtonStories = {
@@ -12,8 +14,12 @@ const CopyToClipboardButtonStories = {
 const defaultExample = () => ({
   components: {
     CopyToClipboardButton,
+    StorybookMobileDeviceSimulator,
   },
   props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
     disabled: {
       default: boolean('Is Disabled?', false),
     },
@@ -52,17 +58,19 @@ const defaultExample = () => ({
       </p>
       <hr>
       <div style="display: flex; flex-direction: column; align-items: start; width: 100%;">
-        <div style="margin-top: 20px">
-          <CopyToClipboardButton :value-to-copy="valueToCopy"
-                                 :to-copy-label="toCopyLabel"
-                                 :copying-label="copyingLabel"
-                                 :copied-label="copiedLabel"
-                                 :copying-feedback-delay="copyingFeedbackDelay"
-                                 :copied-feedback-delay="copiedFeedbackDelay"
-                                 :disabled="disabled"
-                                 @click="onClick"
-          />
-        </div>
+        <StorybookMobileDeviceSimulator :device="device">
+          <div style="margin: 20px">
+            <CopyToClipboardButton :value-to-copy="valueToCopy"
+                                   :to-copy-label="toCopyLabel"
+                                   :copying-label="copyingLabel"
+                                   :copied-label="copiedLabel"
+                                   :copying-feedback-delay="copyingFeedbackDelay"
+                                   :copied-feedback-delay="copiedFeedbackDelay"
+                                   :disabled="disabled"
+                                   @click="onClick"
+            />
+          </div>
+        </StorybookMobileDeviceSimulator>
       </div>
     </div>
   `,

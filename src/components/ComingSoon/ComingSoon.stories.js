@@ -1,6 +1,8 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, select, text } from '@storybook/addon-knobs';
 
+import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
+import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import ComingSoon from './ComingSoon.vue';
 
 const ComingSoonStories = {
@@ -12,8 +14,12 @@ const ComingSoonStories = {
 const defaultExample = () => ({
   components: {
     ComingSoon,
+    StorybookMobileDeviceSimulator,
   },
   props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
     title: {
       default: text('Title', 'Próximamente...'),
     },
@@ -31,16 +37,14 @@ const defaultExample = () => ({
   <div style="margin: 10px 50px 10px 50px;">
     <h2><strong>ComingSoon:</strong>&nbsp;This can be used to inform the user that a functionality will be available soon.</h2>
     <hr>
-    <div style="display: flex; flex-direction: column; width: 100%;">
-      <div style="width: 360px">
-        <ComingSoon :title="title"
-                    :description="description"
-                    :closeButtonText="closeButtonText"
-                    @close="onClose"
-        >
-        </ComingSoon>
-      </div>
-    </div>
+    <StorybookMobileDeviceSimulator :device="device">
+      <ComingSoon :title="title"
+                  :description="description"
+                  :closeButtonText="closeButtonText"
+                  @close="onClose"
+      >
+      </ComingSoon>
+    </StorybookMobileDeviceSimulator>
   </div>
 `,
 
