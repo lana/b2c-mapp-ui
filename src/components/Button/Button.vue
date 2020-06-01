@@ -19,7 +19,7 @@
           :data-testid="`${baseDataTestIdToUse}-loading`"
       >
         <!-- TODO: Implement progress filling the background (See: https://www.figma.com/file/7qn2DSkgoUT5i9hIt4FL1C/Storybook?node-id=1%3A2) once we've discussed further with the design team -->
-        Cargando...
+        {{ loadingText }}
       </em>
       <span v-if="!loading"
             class="default-wrapper"
