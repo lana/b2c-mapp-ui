@@ -1,3 +1,12 @@
-html {
+body {
   overflow-y: scroll !important;
+}
+
+.screen {
+  height: 100% !important;
+}
+
+section[data-testid="forward-section"],
+section[data-testid="verify-phone-cta-section"] {
+  position: unset !important;
 }
