@@ -1,7 +1,9 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 import { DocumentFilledIcon } from '@lana/b2c-mapp-ui-assets';
 
+import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
+import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import ContentItem from './ContentItem.vue';
 
 const ContentItemStories = {
@@ -14,8 +16,12 @@ const defaultExample = () => ({
   components: {
     ContentItem,
     DocumentFilledIcon,
+    StorybookMobileDeviceSimulator,
   },
   props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
     disabled: {
       default: boolean('Is Disabled?', false),
     },
@@ -36,18 +42,16 @@ const defaultExample = () => ({
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>ContentItem:</strong>&nbsp;A list item which usually transitions the user to content in another screen.</h2>
       <hr>
-      <div style="display: flex; flex-direction: column; width: 100%;">
-        <div style="width: 500px">
-          <ContentItem :title="title"
-                       :meta-text="metaText"
-                       :has-forward-button="hasForwardButton"
-                       :disabled="disabled"
-                       @click="onClick"
-          >
-            <DocumentFilledIcon/>
-          </ContentItem>
-        </div>
-      </div>
+      <StorybookMobileDeviceSimulator :device="device">
+        <ContentItem :title="title"
+                     :meta-text="metaText"
+                     :has-forward-button="hasForwardButton"
+                     :disabled="disabled"
+                     @click="onClick"
+        >
+          <DocumentFilledIcon/>
+        </ContentItem>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });
@@ -55,18 +59,24 @@ const defaultExample = () => ({
 const withImage = () => ({
   components: {
     ContentItem,
+    StorybookMobileDeviceSimulator,
+  },
+  props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>ContentItem:</strong>&nbsp;Example With Image</h2>
       <hr>
-      <div style="width: 500px;">
+      <StorybookMobileDeviceSimulator :device="device">
         <ContentItem title="Example with Image"
                      meta-text="Example metatext"
         >
           <img src="https://source.unsplash.com/random/48x48"/>
         </ContentItem>
-      </div>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });
@@ -75,18 +85,24 @@ const withIcon = () => ({
   components: {
     ContentItem,
     DocumentFilledIcon,
+    StorybookMobileDeviceSimulator,
+  },
+  props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>ContentItem:</strong>&nbsp;Example With Icon</h2>
       <hr>
-      <div style="width: 500px;">
+      <StorybookMobileDeviceSimulator :device="device">
         <ContentItem title="Example with Image"
                      meta-text="Example metatext"
         >
           <DocumentFilledIcon/>
         </ContentItem>
-      </div>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });

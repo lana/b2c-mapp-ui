@@ -1,7 +1,9 @@
 import { withKnobs, select } from '@storybook/addon-knobs';
 
-import { availableSizes, availableWeights } from './Heading';
+import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
+import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import Heading from './Heading.vue';
+import { availableSizes, availableWeights } from './Heading';
 import { capitalizeFirstLetter } from '../../lib/textHelper';
 
 const HeadingStories = {
@@ -13,8 +15,12 @@ const HeadingStories = {
 const defaultExample = () => ({
   components: {
     Heading,
+    StorybookMobileDeviceSimulator,
   },
   props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
     size: {
       default: select('Size', [...availableSizes, ''], 'xl'),
     },
@@ -26,15 +32,15 @@ const defaultExample = () => ({
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>Heading:</strong>&nbsp;A text view that represents a heading/title.</h2>
       <hr>
-      <div style="display: flex; flex-direction: column; width: 100%;">
-        <div style="width: 500px">
+      <StorybookMobileDeviceSimulator :device="device">
+        <div style="margin: 20px;">
           <Heading :size="size"
                    :weight="weight"
           >
             Example Heading
           </Heading>
         </div>
-      </div>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });
@@ -42,6 +48,12 @@ const defaultExample = () => ({
 const weights = () => ({
   components: {
     Heading,
+    StorybookMobileDeviceSimulator,
+  },
+  props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
   },
   data() {
     return {
@@ -55,13 +67,17 @@ const weights = () => ({
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>Heading:</strong>&nbsp;Available Weights</h2>
       <hr>
-      <Heading>Default weight example</Heading>
-      <Heading v-for="(weight, index) in availableWeights"
-                     :key="index"
-                     :weight="weight"
-      >
-        {{ capitalizeFirstLetter(weight) }} weight example
-      </Heading>
+      <StorybookMobileDeviceSimulator :device="device">
+        <div style="margin: 20px;">
+          <Heading>Default weight example</Heading>
+          <Heading v-for="(weight, index) in availableWeights"
+                   :key="index"
+                   :weight="weight"
+          >
+            {{ capitalizeFirstLetter(weight) }} weight example
+          </Heading>
+        </div>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });
@@ -69,6 +85,12 @@ const weights = () => ({
 const sizes = () => ({
   components: {
     Heading,
+    StorybookMobileDeviceSimulator,
+  },
+  props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
   },
   data() {
     return {
@@ -82,13 +104,17 @@ const sizes = () => ({
     <div style="margin: 50px">
       <h2><strong>Heading:</strong>&nbsp;Available Sizes</h2>
       <hr>
-      <Heading>Default size example</Heading>
-      <Heading v-for="(size, index) in availableSizes"
-               :key="index"
-               :size="size"
-      >
-        {{ capitalizeFirstLetter(size) }} size example
-      </Heading>
+      <StorybookMobileDeviceSimulator :device="device">
+        <div style="margin: 20px;">
+          <Heading>Default size example</Heading>
+          <Heading v-for="(size, index) in availableSizes"
+                   :key="index"
+                   :size="size"
+          >
+            {{ capitalizeFirstLetter(size) }} size example
+          </Heading>
+        </div>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });

@@ -1,5 +1,7 @@
-import { withKnobs, text } from '@storybook/addon-knobs';
+import { withKnobs, select, text } from '@storybook/addon-knobs';
 
+import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
+import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import TopBar from './TopBar.vue';
 
 const TopBarStories = {
@@ -11,8 +13,12 @@ const TopBarStories = {
 const defaultExample = () => ({
   components: {
     TopBar,
+    StorybookMobileDeviceSimulator,
   },
   props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
     title: {
       default: text('Title', 'Example custom title'),
     },
@@ -22,9 +28,9 @@ const defaultExample = () => ({
       <h2><strong>TopBar:</strong>&nbsp;A custom native AppBar replacement.</h2>
       <p style="margin-top: 10px;">It only renders the title, all actions should be placed by the Android native bridge.</p>
       <hr>
-      <div style="margin-top: 20px;">
+      <StorybookMobileDeviceSimulator :device="device">
         <TopBar :title="title"/>
-      </div>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });

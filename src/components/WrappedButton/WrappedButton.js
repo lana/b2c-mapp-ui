@@ -5,7 +5,6 @@ const components = {
 };
 
 const availableTypes = [
-  'dismiss',
   'secondary',
 ];
 

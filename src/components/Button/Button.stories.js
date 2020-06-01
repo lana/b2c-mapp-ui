@@ -1,6 +1,8 @@
 import { action } from '@storybook/addon-actions';
 import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 
+import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
+import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import Button from './Button.vue';
 import { availableTypes } from './Button';
 import { capitalizeFirstLetter } from '../../lib/textHelper';
@@ -14,8 +16,12 @@ const ButtonStories = {
 const defaultExample = () => ({
   components: {
     Button,
+    StorybookMobileDeviceSimulator,
   },
   props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
     type: {
       default: select('Type', [...availableTypes, ''], ''),
     },
@@ -42,8 +48,8 @@ const defaultExample = () => ({
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>Button:</strong>&nbsp;A simple call to action button.</h2>
       <hr>
-      <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
-        <div style="width: 500px">
+      <StorybookMobileDeviceSimulator :device="device">
+        <div style="margin: 20px;">
           <Button :type="type"
                   :href="href"
                   :loading="loading"
@@ -54,7 +60,7 @@ const defaultExample = () => ({
             {{ contents }}
           </Button>
         </div>
-      </div>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });
@@ -62,6 +68,12 @@ const defaultExample = () => ({
 const types = () => ({
   components: {
     Button,
+    StorybookMobileDeviceSimulator,
+  },
+  props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
   },
   data() {
     return {
@@ -74,8 +86,8 @@ const types = () => ({
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
-      <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
-        <div style="width: 500px; display: flex; flex-direction: column;">
+      <StorybookMobileDeviceSimulator :device="device">
+        <div style="display: flex; flex-direction: column; margin-top: 10px; margin-left: 5px; margin-right: 5px;">
           <Button @click="onClick('Default')">Default type example</Button>
           <br>
           <Button disabled @click="onClick('Disabled')">Disabled Example</Button>
@@ -98,7 +110,7 @@ const types = () => ({
             <br>
           </template>
         </div>
-      </div>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });

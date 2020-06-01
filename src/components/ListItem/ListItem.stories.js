@@ -1,7 +1,9 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 import { DocumentFilledIcon } from '@lana/b2c-mapp-ui-assets';
 
+import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
+import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import ListItem from './ListItem.vue';
 
 const ListItemStories = {
@@ -14,8 +16,12 @@ const defaultExample = () => ({
   components: {
     ListItem,
     DocumentFilledIcon,
+    StorybookMobileDeviceSimulator,
   },
   props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
     title: {
       default: text('Title', 'Example Title'),
     },
@@ -26,7 +32,7 @@ const defaultExample = () => ({
       default: text('Link Title', 'Example Link Title'),
     },
     hasToggle: {
-      default: boolean('Has Toggle Switch?', false),
+      default: boolean('Has Toggle Switch?', true),
     },
     transparent: {
       default: boolean('Is transparent?', false),
@@ -56,7 +62,7 @@ const defaultExample = () => ({
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>ListItem:</strong>&nbsp;A list item which usually takes the user to content in another screen.</h2>
       <hr>
-      <div style="width: 400px;">
+      <StorybookMobileDeviceSimulator :device="device">
         <ListItem v-model="isChecked"
                   :transparent="transparent"
                   :title="title"
@@ -69,12 +75,11 @@ const defaultExample = () => ({
           <img v-if="hasImage" src="https://source.unsplash.com/random/48x48"/>
           <p v-if="!hasImage"><DocumentFilledIcon/></p>
         </ListItem>
-      </div>
-      <br>
-      <br>
-      <div>
-        Bound value: {{ isChecked }}
-      </div>
+        <br>
+        <div style="margin: 20px;">
+          Bound value: {{ isChecked }}
+        </div>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });

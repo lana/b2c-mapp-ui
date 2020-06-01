@@ -1,5 +1,7 @@
 import { withKnobs, select } from '@storybook/addon-knobs';
 
+import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
+import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import TextParagraph from './TextParagraph.vue';
 import { availableSizes, availableColors, availableWeights } from './TextParagraph';
 import { capitalizeFirstLetter } from '../../lib/textHelper';
@@ -13,8 +15,12 @@ const TextParagraphStories = {
 const defaultExample = () => ({
   components: {
     TextParagraph,
+    StorybookMobileDeviceSimulator,
   },
   props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
     color: {
       default: select('Color', [...availableColors, ''], ''),
     },
@@ -29,25 +35,27 @@ const defaultExample = () => ({
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>TextParagraph:</strong>&nbsp;A text view that represents a paragraph.</h2>
       <hr>
-      <TextParagraph :weight="weight"
-                     :color="color"
-                     :size="size"
-      >
-        Example Text
-      </TextParagraph>
-      <TextParagraph :weight="weight"
-                     :color="color"
-                     :size="size"
-      >
-        Example with emoji: 🍒
-      </TextParagraph>
-      <TextParagraph class="foo"
-                     :weight="weight"
-                     :color="color"
-                     :size="size"
-      >
-        Example Text with a custom class
-      </TextParagraph>
+      <StorybookMobileDeviceSimulator :device="device">
+        <TextParagraph :weight="weight"
+                       :color="color"
+                       :size="size"
+        >
+          Example Text
+        </TextParagraph>
+        <TextParagraph :weight="weight"
+                       :color="color"
+                       :size="size"
+        >
+          Example with emoji: 🍒
+        </TextParagraph>
+        <TextParagraph class="foo"
+                       :weight="weight"
+                       :color="color"
+                       :size="size"
+        >
+          Example Text with a custom class
+        </TextParagraph>
+      </StorybookMobileDeviceSimulator>
     </div>
   `,
 });
