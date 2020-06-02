@@ -2,16 +2,16 @@
 
 const deviceNameLookup = {
   default: 'default',
+  small: 'Small',
+  medium: 'Medium',
+  large: 'Large',
+  extraLarge: 'Extra Large',
   pixel2: 'Pixel 2',
   galaxyS5: 'Galaxy S5',
   iphone5: 'iPhone 5',
   samsungA30: 'Samsung A30',
   samsungA50: 'Samsung A50',
   huaweiMate20Lite: 'Huawei Mate 20 Lite',
-  small: 'Small',
-  medium: 'Medium',
-  large: 'Large',
-  extraLarge: 'Extra Large',
 };
 
 const availableDevices = Object.values(deviceNameLookup);
@@ -20,6 +20,22 @@ const deviceNameToResolutionLookup = {
   [deviceNameLookup.default]: {
     width: '420px',
     height: '640px',
+  },
+  [deviceNameLookup.small]: {
+    width: '320px',
+    height: '568px',
+  },
+  [deviceNameLookup.medium]: {
+    width: '360px',
+    height: '640px',
+  },
+  [deviceNameLookup.large]: {
+    width: '360px',
+    height: '780px',
+  },
+  [deviceNameLookup.extraLarge]: {
+    width: '412px',
+    height: '892px',
   },
   [deviceNameLookup.pixel2]: {
     width: '411px',
@@ -44,22 +60,6 @@ const deviceNameToResolutionLookup = {
   [deviceNameLookup.huaweiMate20Lite]: {
     width: '360px',
     height: '780px',
-  },
-  [deviceNameLookup.small]: {
-    width: '320px',
-    height: '568px',
-  },
-  [deviceNameLookup.medium]: {
-    width: '360px',
-    height: '640px',
-  },
-  [deviceNameLookup.large]: {
-    width: '360px',
-    height: '780px',
-  },
-  [deviceNameLookup.extraLarge]: {
-    width: '412px',
-    height: '892px',
   },
 };
 
