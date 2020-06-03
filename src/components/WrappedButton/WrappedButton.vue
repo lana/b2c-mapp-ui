@@ -5,6 +5,7 @@
             :href="href"
             :type="type"
             :loading="loading"
+            :loading-text="loadingText"
             :disabled="disabled"
             @click="onClick"
     >

@@ -30,6 +30,9 @@ const defaultExample = () => ({
     loading: {
       default: boolean('Is Loading?', false),
     },
+    loadingText: {
+      default: text('Loading Text', 'Cargando...'),
+    },
     href: {
       default: text('href', ''),
     },
@@ -48,6 +51,7 @@ const defaultExample = () => ({
         <WrappedButton :type="type"
                        :href="href"
                        :loading="loading"
+                       :loading-text="loadingText"
                        :disabled="disabled"
                        @click="onClick"
         >

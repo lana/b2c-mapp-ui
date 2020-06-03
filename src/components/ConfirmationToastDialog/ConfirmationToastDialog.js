@@ -23,6 +23,10 @@ const props = {
   secondaryButtonText: String,
   value: Boolean,
   loading: Boolean,
+  loadingText: {
+    type: String,
+    default: 'Cargando...',
+  },
   disabled: Boolean,
 };
 
