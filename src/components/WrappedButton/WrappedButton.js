@@ -20,6 +20,10 @@ const props = {
   },
   href: String,
   loading: Boolean,
+  loadingText: {
+    type: String,
+    default: 'Cargando...',
+  },
   disabled: Boolean,
   id: String,
   name: String,
