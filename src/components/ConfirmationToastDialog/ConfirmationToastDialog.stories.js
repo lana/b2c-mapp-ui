@@ -20,6 +20,9 @@ const defaultExample = () => ({
     description: {
       default: text('Description', 'Example Description'),
     },
+    loadingText: {
+      default: text('Loading Text', 'Cargando...'),
+    },
     confirmButtonText: {
       default: text('Confirm Button Text', 'Confirm'),
     },
@@ -63,6 +66,7 @@ const defaultExample = () => ({
                                  :confirm-button-text="confirmButtonText"
                                  :secondary-button-text="secondaryButtonText"
                                  :loading="loading"
+                                 :loading-text="loadingText"
                                  :disabled="disabled"
                                  @dismiss="onDismiss"
                                  @confirm="onConfirm"

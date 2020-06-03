@@ -27,6 +27,7 @@
         <Button v-if="confirmButtonText"
                 class="confirm"
                 :loading="loading"
+                :loading-text="loadingText"
                 :disabled="disabled"
                 :data-test-id="`${dataTestId}-action-confirm`"
                 @click="onConfirm"
