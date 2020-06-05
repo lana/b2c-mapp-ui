@@ -26,6 +26,9 @@ const defaultExample = () => ({
     readonly: {
       default: boolean('Is Readonly?', false),
     },
+    autoformat: {
+      default: boolean('Is Autoformatting Enabled?', false),
+    },
     label: {
       default: text('Label', 'Example BankAccount Field'),
     },
@@ -54,6 +57,7 @@ const defaultExample = () => ({
         <div>
           <BankAccountNumberInputField :disabled="disabled"
                                        :readonly="readonly"
+                                       :autoformat="autoformat"
                                        :label="label"
                                        :error-label="errorLabel"
                                        v-model="value"
@@ -91,6 +95,16 @@ const examples = () => ({
         <div style="width: 500px">
           <label>With a valid value:</label>
           <BankAccountNumberInputField country-code="MX"
+                                       label="Introduce un CLABE"
+                                       error-label="Invalid CLABE number"
+                                       value="138211000000000127"
+          />
+        </div>
+        <br>
+        <div style="width: 500px">
+          <label>With a autoformatting enabled:</label>
+          <BankAccountNumberInputField country-code="MX"
+                                       autoformat
                                        label="Introduce un CLABE"
                                        error-label="Invalid CLABE number"
                                        value="138211000000000127"
