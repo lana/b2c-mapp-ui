@@ -51,8 +51,8 @@ describe('BankAccountNumberInputField unit test:', () => {
     expect(isBlurEmitted).toBeTruthy();
   });
 
-  it('Should apply right format for given value: ', () => new Promise((resolve) => {
-    const wrapper = mount(BankAccountNumberInputField, { propsData: { ...defaultProps, value: '138211000000000127' } });
+  it('Should apply the correct format when autoformat is enabled, for the given value: ', () => new Promise((resolve) => {
+    const wrapper = mount(BankAccountNumberInputField, { propsData: { ...defaultProps, autoformat: true, value: '138211000000000127' } });
     setTimeout(() => {
       const input = wrapper.find('input');
       expect(input.element.value).toEqual('138 211 00000000012 7');
@@ -60,8 +60,18 @@ describe('BankAccountNumberInputField unit test:', () => {
     });
   }));
 
+  it('Should apply the correct format when autoformat is disabled, for the given value: ', () => new Promise((resolve) => {
+    const inputValue = '138211000000000127';
+    const wrapper = mount(BankAccountNumberInputField, { propsData: { ...defaultProps, value: inputValue } });
+    setTimeout(() => {
+      const input = wrapper.find('input');
+      expect(input.element.value).toEqual(inputValue);
+      resolve();
+    });
+  }));
+
   it('Should take given input value: ', () => new Promise((resolve) => {
-    const newValue = '138 21';
+    const newValue = '13821';
     const wrapper = mount(BankAccountNumberInputField, { propsData: { ...defaultProps, value: '138211000000000127' } });
     const input = wrapper.find('input');
     input.setValue('13821');
@@ -75,7 +85,7 @@ describe('BankAccountNumberInputField unit test:', () => {
 
   it('Should not allow value with a length greater than its max-length: ', async () => {
     const newValue = '138 211 00000000012 79';
-    const initialValue = '138 211 00000000012 7';
+    const initialValue = '138211000000000127';
     const wrapper = mount(BankAccountNumberInputField, { propsData: { ...defaultProps, value: '138211000000000127' } });
     wrapper.vm.$options.watch.inputValue.call(wrapper.vm, newValue);
     await wrapper.vm.$nextTick();
@@ -83,7 +93,7 @@ describe('BankAccountNumberInputField unit test:', () => {
   });
 
   it('Should apply right format even if max-length of the field is not reached', () => new Promise((resolve) => {
-    const wrapper = mount(BankAccountNumberInputField, { propsData: { ...defaultProps, value: '138211000000000127' } });
+    const wrapper = mount(BankAccountNumberInputField, { propsData: { ...defaultProps, autoformat: true, value: '138211000000000127' } });
     const input = wrapper.find('input');
     input.setValue('13821');
     input.trigger('change');

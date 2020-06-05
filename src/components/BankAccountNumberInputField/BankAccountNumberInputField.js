@@ -27,6 +27,7 @@ const props = {
   disabled: Boolean,
   readonly: Boolean,
   startFocused: Boolean,
+  autoformat: Boolean,
 };
 
 const data = function () {
@@ -107,7 +108,7 @@ const methods = {
     event.preventDefault();
   },
   updateInputValueWithFormatting() {
-    if (this.accountNumberWithoutSpaces.length > this.bankAccountTemplate.length) { return; }
+    if (!this.autoformat || (this.accountNumberWithoutSpaces.length > this.bankAccountTemplate.length)) { return; }
     this.inputValue = this.parsedAccountNumber;
   },
 };
