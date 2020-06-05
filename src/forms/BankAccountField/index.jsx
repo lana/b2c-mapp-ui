@@ -59,9 +59,10 @@ export default class BankAccountField extends Component {
 	}
 
 	onChange(e) {
-		let value = this.parseAccountNumber(e.target.value, this.props.countryCode)
-		let validation = this.validateAccountNumber(value, this.props.countryCode)
-		if (this.props.onChange) this.props.onChange(value, validation)
+		const newValue = e.target.value;
+		const value = this.parseAccountNumber(newValue, this.props.countryCode)
+		const validation = this.validateAccountNumber(value, this.props.countryCode)
+		if (this.props.onChange) this.props.onChange(newValue, validation)
 	}
 
 	onPaste(event) {
