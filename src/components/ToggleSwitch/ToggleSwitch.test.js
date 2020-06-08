@@ -15,7 +15,7 @@ describe('UI/forms/ToggleSwitch', () => {
     expect(inputIsChecked).toBeTruthy();
   });
 
-  it('Should be unchecked if given checked prop is set to true', () => {
+  it('Should be unchecked if given checked prop is set to false', () => {
     const { getByTestId } = render(ToggleSwitch, { propsData: { value: false } });
     const inputIsNotChecked = !getByTestId('toggle-wrapper').className.includes('checked');
     expect(inputIsNotChecked).toBeTruthy();
