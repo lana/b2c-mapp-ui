@@ -25,6 +25,12 @@ const defaultExample = () => ({
     title: {
       default: text('Title', 'Example ActionItem'),
     },
+    description: {
+      default: text('Description', ''),
+    },
+    status: {
+      default: text('Status', ''),
+    },
     highlight: {
       default: boolean('Highlight', false),
     },
@@ -39,19 +45,25 @@ const defaultExample = () => ({
       <StorybookMobileDeviceSimulator :device="device">
         <ul>
           <ActionItem :title="title"
+                      :description="description"
                       :highlight="highlight"
+                      :status="status"
                       @click="onClick"
           >
             1st
           </ActionItem>
           <ActionItem :title="title"
+                      :description="description"
                       :highlight="highlight"
+                      :status="status"
                       @click="onClick"
           >
             2nd
           </ActionItem>
           <ActionItem :title="title"
+                      :description="description"
                       :highlight="highlight"
+                      :status="status"
                       @click="onClick"
           >
             <div>
@@ -59,7 +71,9 @@ const defaultExample = () => ({
             </div>
           </ActionItem>
           <ActionItem :title="title"
+                      :description="description"
                       :highlight="highlight"
+                      :status="status"
                       @click="onClick"
           >
             <div>

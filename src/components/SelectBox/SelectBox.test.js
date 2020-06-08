@@ -3,7 +3,6 @@ import { mount } from '@vue/test-utils';
 
 import SelectBox from './SelectBox.vue';
 
-// TODO: Uncomment the below test cases after refactoring to work with Vue
 describe('SelectBox unit test', () => {
   beforeAll(() => {
     // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:

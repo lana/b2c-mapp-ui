@@ -1,0 +1,26 @@
+<template>
+  <div :data-testid="`${dataTestId}-wrapper`"
+       class="checkbox-wrapper"
+       :class="{ checked: isChecked }"
+  >
+    <input :id="idToUse"
+           v-model="isChecked"
+           :data-testid="`${dataTestId}-input`"
+           class="checkbox-input"
+           type="checkbox"
+           :disabled="disabled"
+           :name="idToUse"
+    >
+    <CheckboxChecked v-if="isChecked"/>
+    <CheckboxUnchecked v-if="!isChecked"/>
+    <label class="checkbox-label"
+           :data-testid="`${dataTestId}-label`"
+           :for="idToUse"
+    >
+      {{ label }}
+    </label>
+  </div>
+</template>
+
+<script src="./Checkbox.js"/>
+<style lang="scss" scoped src="./Checkbox.scss"/>
