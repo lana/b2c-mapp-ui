@@ -1,0 +1,31 @@
+@import '../../styles/colors';
+@import '../../styles/typography';
+
+.checkbox-wrapper {
+  display: flex;
+  position: relative;
+  padding: 0 16px;
+  background: $black-100;
+  cursor: text;
+  touch-action: manipulation;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.checkbox-input {
+  height: 24px;
+  width: 24px;
+  box-sizing: border-box;
+  border: none;
+  font: $default-m;
+  color: $black-700;
+  opacity: 0;
+  position: absolute;
+}
+
+.checkbox-label {
+  padding-left: 16px;
+  font: $default-m;
+  color: $black-700;
+}

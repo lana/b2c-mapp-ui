@@ -2,7 +2,6 @@ import { mount } from '@vue/test-utils';
 
 import Stepper from './Stepper.vue';
 
-// TODO: Uncomment the below test cases after refactoring to work with Vue
 describe('Stepper unit test', () => {
   beforeAll(() => {
     // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:

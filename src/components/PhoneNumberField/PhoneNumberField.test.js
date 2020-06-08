@@ -3,7 +3,6 @@ import { render } from '@testing-library/vue';
 
 import PhoneNumberField from './PhoneNumberField.vue';
 
-// TODO: Uncomment the below test cases after refactoring to work with Vue
 describe('UI/forms/PhoneNumberField', () => {
   beforeAll(() => {
     // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:

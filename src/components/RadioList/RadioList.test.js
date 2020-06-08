@@ -3,7 +3,6 @@ import { render } from '@testing-library/vue';
 
 import RadioList from './RadioList.vue';
 
-// TODO: Uncomment the below test cases after refactoring to work with Vue
 jest.useFakeTimers();
 describe('UI/forms/RadioList', () => {
   beforeAll(() => {

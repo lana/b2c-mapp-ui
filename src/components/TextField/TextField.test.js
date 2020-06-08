@@ -2,9 +2,6 @@ import { mount } from '@vue/test-utils';
 
 import TextField from './TextField.vue';
 
-// TODO: Consolidate and refactor any tests from the old `TextFieldWithValidation` component into this file too
-
-// TODO: Uncomment the below test cases after refactoring to work with Vue
 describe('UI/forms/TextField', () => {
   beforeAll(() => {
     // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
