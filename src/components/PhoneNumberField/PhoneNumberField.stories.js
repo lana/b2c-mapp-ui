@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text, select } from '@storybook/addon-knobs';
+import { withKnobs, boolean, text, select, number } from '@storybook/addon-knobs';
 
 import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
 import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
@@ -40,6 +40,15 @@ const defaultExample = () => ({
     },
     readonly: {
       default: boolean('Is Readonly?', false),
+    },
+    maxLength: {
+      default: number('Max Lenth'),
+    },
+    lengthHint: {
+      default: number('Length Hint'),
+    },
+    lengthHintLabel: {
+      default: text('Length Hint Label'),
     },
   },
   data() {
@@ -84,6 +93,9 @@ const defaultExample = () => ({
                           :readonly="readonly"
                           :label="label"
                           :error-label="errorLabel"
+                          :max-length="maxLength"
+                          :length-hint="lengthHint"
+                          :length-hint-label="lengthHintLabel"
                           @blur="onBlur"
                           @focus="onFocus"
                           @input="onInput"

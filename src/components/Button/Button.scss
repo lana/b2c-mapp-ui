@@ -38,6 +38,18 @@
     border-color: transparent;
     pointer-events: none;
   }
+
+  &:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: $blue-600;
+    opacity: 0.4;
+    transform: skew(-17deg);
+  }
 }
 
 .secondary {
@@ -110,4 +122,21 @@
 
 .drop-shadow {
   box-shadow: 0 2px 4px rgba(18, 30, 49, 0.16);
+}
+
+.loading:after {
+  animation-duration: 2s;
+  animation-name: loadingAnimation;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes loadingAnimation {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 101%;
+  }
 }

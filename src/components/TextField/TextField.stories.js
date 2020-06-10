@@ -41,6 +41,9 @@ const defaultExample = () => ({
     lengthHint: {
       default: number('Length Hint'),
     },
+    lengthHintLabel: {
+      default: text('Length Hint Label'),
+    },
   },
   data() {
     return {
@@ -64,6 +67,7 @@ const defaultExample = () => ({
                    :error-label="errorLabel"
                    :max-length="maxLength"
                    :length-hint="lengthHint"
+                   :length-hint-label="lengthHintLabel"
                    @blur="onBlur"
                    @focus="onFocus"
         />

@@ -13,7 +13,7 @@
            class="input"
            autocomplete="off"
            :name="name"
-           :maxlength="maxLength"
+           :maxlength="maxLengthToUse"
            :readonly="readonly"
            :disabled="disabled"
            @focus="onFocus"
@@ -21,6 +21,13 @@
            @paste="onPaste"
            @keypress="onKeypress"
     >
+    <TextParagraph v-if="lengthHint"
+                   class="hint"
+                   :class="{ 'align-top': inputValue }"
+                   :data-test-id="`${dataTestId}-rule`"
+    >
+      {{ lengthHint }} {{ lengthHintLabel }}
+    </TextParagraph>
   </label>
 </template>
 

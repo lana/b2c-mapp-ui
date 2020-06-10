@@ -1,3 +1,9 @@
+import TextParagraph from '../TextParagraph/TextParagraph.vue';
+
+const components = {
+  TextParagraph,
+};
+
 const props = {
   dataTestId: {
     type: String,
@@ -20,6 +26,8 @@ const props = {
   readonly: Boolean,
   startFocused: Boolean,
   showPrefix: Boolean,
+  lengthHint: Number,
+  lengthHintLabel: String,
 };
 
 const data = function () {
@@ -30,6 +38,10 @@ const data = function () {
 };
 
 const computed = {
+  maxLengthToUse() {
+    const result = (this.maxLength || this.lengthHint);
+    return result;
+  },
   hasLabel() {
     const result = (this.showPrefix || !!this.inputValue || this.readonly || this.isFocused);
     return result;
@@ -89,6 +101,7 @@ const mounted = function () {
 };
 
 const FormField = {
+  components,
   props,
   data,
   computed,

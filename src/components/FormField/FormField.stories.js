@@ -41,6 +41,12 @@ const defaultExample = () => ({
     showPrefix: {
       default: boolean('Show Prefix?', false),
     },
+    lengthHint: {
+      default: number('Length Hint'),
+    },
+    lengthHintLabel: {
+      default: text('Length Hint Label'),
+    },
   },
   data() {
     return {
@@ -56,14 +62,16 @@ const defaultExample = () => ({
       <h2><strong>FormField:</strong>&nbsp;A simple text field.</h2>
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <FormField :type="type"
+        <FormField v-model="value"
+                   :type="type"
                    :disabled="disabled"
                    :readonly="readonly"
                    :label="label"
                    :error-label="errorLabel"
                    :max-length="maxLength"
                    :show-prefix="showPrefix"
-                   v-model="value"
+                   :length-hint="lengthHint"
+                   :length-hint-label="lengthHintLabel"
                    @blur="onBlur"
                    @focus="onFocus"
         />
