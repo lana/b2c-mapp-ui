@@ -11,16 +11,11 @@
                :readonly="readonly"
                :start-focused="startFocused"
                :max-length="maxLengthToUse"
+               :length-hint="lengthHint"
+               :length-hint-label="lengthHintLabel"
                @focus="onFocus"
                @blur="onBlur"
     />
-    <TextParagraph v-if="lengthHint"
-                   class="hint"
-                   :class="{ 'align-top': inputValue }"
-                   :data-test-id="`${dataTestId}-rule`"
-    >
-      {{ lengthHint }}
-    </TextParagraph>
   </div>
 </template>
 

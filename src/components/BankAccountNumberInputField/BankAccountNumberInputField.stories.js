@@ -29,6 +29,12 @@ const defaultExample = () => ({
     autoformat: {
       default: boolean('Is Autoformatting Enabled?', false),
     },
+    showLengthHint: {
+      default: boolean('Show length hint?', false),
+    },
+    lengthHintLabel: {
+      default: text('Length Hint Label', ''),
+    },
     label: {
       default: text('Label', 'Example BankAccount Field'),
     },
@@ -60,6 +66,8 @@ const defaultExample = () => ({
                                        :autoformat="autoformat"
                                        :label="label"
                                        :error-label="errorLabel"
+                                       :show-length-hint="showLengthHint"
+                                       :length-hint-label="lengthHintLabel"
                                        v-model="value"
                                        @blur="onBlur"
                                        @focus="onFocus"

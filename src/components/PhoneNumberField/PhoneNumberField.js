@@ -34,6 +34,9 @@ const props = {
   name: String,
   disabled: Boolean,
   readonly: Boolean,
+  maxLength: Number,
+  lengthHint: Number,
+  lengthHintLabel: String,
 };
 
 const data = function () {

@@ -28,6 +28,7 @@ const props = {
   readonly: Boolean,
   startFocused: Boolean,
   lengthHint: Number,
+  lengthHintLabel: String,
 };
 
 const data = function () {
