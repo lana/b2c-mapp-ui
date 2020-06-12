@@ -30,6 +30,7 @@ export default class Selector extends Component {
 				<ExpandSmallIcon className={CSS.Icon} />
 				<select
 					data-testId={`select-${dataTestId}`}
+					disabled={this.props.disabled}
 					className={CSS.select}
 					onFocus={e => this.onFocus(e)}
 					onBlur={e => this.onBlur(e)}
