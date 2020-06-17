@@ -32,8 +32,8 @@ const defaultExample = () => ({
     countryCode: {
       default: select('Country Code', [...availableCountryCodes], defaultCountryCode),
     },
-    hideCountryCode: {
-      default: boolean('Hide Country Code?', false),
+    hideCountryCodeUntilFocus: {
+      default: boolean('Hide Country Code until focus?', false),
     },
     disabled: {
       default: boolean('Is Disabled?', false),
@@ -88,7 +88,7 @@ const defaultExample = () => ({
         <PhoneNumberField v-model="value"
                           ref="field"
                           :country-code="countryCode"
-                          :hide-country-code="hideCountryCode"
+                          :hide-country-code-until-focus="hideCountryCodeUntilFocus"
                           :disabled="disabled"
                           :readonly="readonly"
                           :label="label"
@@ -157,10 +157,10 @@ const moreExamples = () => ({
           />
         </div>
         <div style="width: 500px">
-          <p>With Hidden Country Code</p>
+          <p>With Hidden Country Code (until focused)</p>
           <PhoneNumberField :country-code="defaultCountryCode"
-                            hide-country-code
-                            label="With hidden Country Code"
+                            hide-country-code-until-focus
+                            label="With hidden Country Code (until focused)"
           />
         </div>
         <div style="width: 500px">
