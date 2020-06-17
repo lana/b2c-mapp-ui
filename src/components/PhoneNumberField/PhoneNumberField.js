@@ -26,7 +26,7 @@ const props = {
     required: true,
     validator(value) { return availableCountryCodes.includes(value); },
   },
-  hideCountryCode: Boolean,
+  hideCountryCodeUntilFocus: Boolean,
   startFocused: Boolean,
   label: String,
   errorLabel: String,
@@ -41,6 +41,7 @@ const props = {
 
 const data = function () {
   return {
+    isFocused: false,
     inputValue: this.value,
   };
 };
@@ -57,6 +58,11 @@ const computed = {
     const result = `+${getCountryCallingCode(this.countryCode, phoneNumberMetadata)}`;
     return result;
   },
+  hideCountryCode() {
+    if (!this.hideCountryCodeUntilFocus) { return; }
+    const result = (!this.isFocused && !this.inputValue);
+    return result;
+  },
 };
 
 const methods = {
@@ -64,9 +70,11 @@ const methods = {
     this.$emit('input', this.inputValue);
   },
   onFocus(event) {
+    this.isFocused = true;
     this.$emit('focus', event);
   },
   onBlur(event) {
+    this.isFocused = false;
     this.$emit('blur', event);
   },
   supressNonDigitCharacterEntry(event) {
