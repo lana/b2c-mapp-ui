@@ -59,16 +59,22 @@ describe('UI/forms/PhoneNumberField', () => {
     expect(errorLabel).toBeTruthy();
   });
 
-  it('Should show country code if hideCountryCode is false', () => {
-    const { getByTestId } = render(PhoneNumberField, { propsData: { ...defaultProps, hideCountryCode: false, value: '551234123234324' } });
+  it('Should show country code if hideCountryCodeUntilFocus is false', () => {
+    const { getByTestId } = render(PhoneNumberField, { propsData: { ...defaultProps, hideCountryCodeUntilFocus: false, value: '551234123234324' } });
     const prefixIsShown = getByTestId('phone-field-prefix').textContent.includes('+52');
     expect(prefixIsShown).toBeTruthy();
   });
 
-  it('Should NOT show country code if given hideCountryCode is true', () => {
-    const { queryAllByTestId } = render(PhoneNumberField, { propsData: { ...defaultProps, hideCountryCode: true, value: '551234123234324' } });
+  it('Should NOT show country code if given hideCountryCodeUntilFocus is true and there is no value', () => {
+    const { queryAllByTestId } = render(PhoneNumberField, { propsData: { ...defaultProps, hideCountryCodeUntilFocus: true } });
     const prefixIsNotShown = !queryAllByTestId('phone-field-prefix').length;
     expect(prefixIsNotShown).toBeTruthy();
+  });
+
+  it('Should show country code if given hideCountryCodeUntilFocus is true and there is a value', () => {
+    const { getByTestId } = render(PhoneNumberField, { propsData: { ...defaultProps, hideCountryCodeUntilFocus: true, value: '551234123234324' } });
+    const prefixIsShown = getByTestId('phone-field-prefix').textContent.includes('+52');
+    expect(prefixIsShown).toBeTruthy();
   });
 
   it('Should NOT show country code if is not given', () => {
