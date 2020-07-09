@@ -134,7 +134,6 @@ const mounted = function () {
   this.updateInputValueWithFormatting();
 };
 
-
 const BankAccountNumberInputField = {
   components,
   props,

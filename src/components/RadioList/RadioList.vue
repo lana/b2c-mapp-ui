@@ -2,7 +2,7 @@
   <section class="wrapper">
     <Heading v-if="title" class="title">{{ title }}</Heading>
     <ul :data-testid="`${dataTestId}-select`">
-      <li v-for="({ label, value: optionValue }, index) in options"
+      <li v-for="({ label, htmlLabel, value: optionValue }, index) in options"
           :key="`${optionValue}-${index}`"
           class="item"
           :class="{ checked: (selectedValue === optionValue) }"
@@ -25,6 +25,12 @@
           >
             {{ label }}
           </label>
+          <label v-if="htmlLabel"
+                 class="label"
+                 :data-testid="`${dataTestId}-option-label`"
+                 :for="`${id}-${index}`"
+                 v-html="htmlLabel"
+          />
         </div>
       </li>
     </ul>
