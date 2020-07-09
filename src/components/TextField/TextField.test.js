@@ -64,7 +64,6 @@ describe('UI/forms/TextField', () => {
     expect(focusEventEmitted).toBeTruthy();
   });
 
-
   //
   // it('Should NOT be empty if given value is provided', async () => {
   //   const wrapper = mount(TextField, { propsData: { ...defaultProps, value: 'Text value' } });

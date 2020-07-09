@@ -75,7 +75,6 @@ const defaultExample = () => ({
   `,
 });
 
-
 const withCustomContent = () => ({
   components: {
     ConfirmationModalDialog,
