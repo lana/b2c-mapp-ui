@@ -12,6 +12,7 @@ import FigureCard from './components/FigureCard/FigureCard.vue';
 import FormField from './components/FormField/FormField.vue';
 import ForwardButton from './components/ForwardButton/ForwardButton.vue';
 import Heading from './components/Heading/Heading.vue';
+import Infobox from './components/Infobox/Infobox.vue';
 import ListItem from './components/ListItem/ListItem.vue';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner.vue';
 import PhoneNumberField from './components/PhoneNumberField/PhoneNumberField.vue';
@@ -46,6 +47,7 @@ export {
   FormField,
   ForwardButton,
   Heading,
+  Infobox,
   ListItem,
   LoadingSpinner,
   PhoneNumberField,
