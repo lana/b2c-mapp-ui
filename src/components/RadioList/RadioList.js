@@ -17,7 +17,7 @@ const props = {
     type: String,
     required: true,
   },
-  value: String,
+  value: [String, Number],
   title: String,
   disabled: Boolean,
 };
