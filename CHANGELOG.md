@@ -1,5 +1,8 @@
 # Lana B2C MicroApp Libs Changelog
 
+## v.7.7.0 - 21-07-2020
+ - New assets version with faq icons
+
 ## v.6.0.0 - 18-05-2020
  - Re-wrote everything in Vue
  - Added Storybook stories for each component to showcase their possible props and states

@@ -1,6 +1,6 @@
 {
   "name": "@lana/b2c-mapp-ui",
-  "version": "7.6.0",
+  "version": "7.7.0",
   "description": "Shared custom libraries for building µapps.",
   "bugs": {
     "url": "https://github.com/lana/b2c-mapp-ui/issues"
@@ -38,7 +38,7 @@
   ],
   "dependencies": {
     "@babel/runtime": "^7.9.6",
-    "@lana/b2c-mapp-ui-assets": "^4.4.0",
+    "@lana/b2c-mapp-ui-assets": "^4.5.0",
     "core-js": "^3.6.4",
     "fast-async": "^6.3.8",
     "libphonenumber-js": "^1.7.44",
