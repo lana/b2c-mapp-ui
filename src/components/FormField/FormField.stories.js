@@ -56,6 +56,9 @@ const defaultExample = () => ({
   methods: {
     onBlur: action('Blur!'),
     onFocus: action('Focus!'),
+    onPaste: action('Paste!'),
+    onKeyup: action('KeyUp!'),
+    onKeypress: action('KeyPress!'),
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
@@ -74,6 +77,9 @@ const defaultExample = () => ({
                    :length-hint-label="lengthHintLabel"
                    @blur="onBlur"
                    @focus="onFocus"
+                   @keypress="onKeypress"
+                   @keyup="onKeyup"
+                   @paste="onPaste"
         />
         <br>
         <div style="margin: 20px;">

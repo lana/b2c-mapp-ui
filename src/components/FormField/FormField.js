@@ -65,6 +65,10 @@ const methods = {
     this.toggleFocus();
     this.$refs.input.focus();
   },
+  blur() {
+    if (!this.$refs.input) { return; }
+    this.$refs.input.blur();
+  },
   emitInputEvent() {
     this.$emit('input', this.inputValue);
   },
@@ -78,6 +82,9 @@ const methods = {
   },
   onKeypress(event) {
     this.$emit('keypress', event);
+  },
+  onKeyup(event) {
+    this.$emit('keyup', event);
   },
   onPaste(event) {
     this.$emit('paste', event);
