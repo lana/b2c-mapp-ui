@@ -20,6 +20,7 @@
            @blur="onBlur"
            @paste="onPaste"
            @keypress="onKeypress"
+           @keyup="onKeyup"
     >
     <TextParagraph v-if="lengthHint"
                    class="hint"

@@ -49,13 +49,27 @@ const methods = {
     this.$emit('input', this.inputValue);
   },
   focus() {
+    if (!this.$refs.field) { return; }
     this.$refs.field.focus();
+  },
+  blur() {
+    if (!this.$refs.field) { return; }
+    this.$refs.field.blur();
   },
   onFocus(event) {
     this.$emit('focus', event);
   },
   onBlur(event) {
     this.$emit('blur', event);
+  },
+  onKeypress(event) {
+    this.$emit('keypress', event);
+  },
+  onKeyup(event) {
+    this.$emit('keyup', event);
+  },
+  onPaste(event) {
+    this.$emit('paste', event);
   },
 };
 

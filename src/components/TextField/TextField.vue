@@ -15,6 +15,9 @@
                :length-hint-label="lengthHintLabel"
                @focus="onFocus"
                @blur="onBlur"
+               @keypress="onKeypress"
+               @keyup="onKeyup"
+               @paste="onPaste"
     />
   </div>
 </template>
