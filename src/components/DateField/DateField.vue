@@ -12,8 +12,11 @@
                :disabled="disabled"
                :max-length="maxLength"
                :start-focused="startFocused"
-               @blur="onBlur"
                @focus="onFocus"
+               @blur="onBlur"
+               @paste="onPaste"
+               @keypress="onKeypress"
+               @keyup="onKeyup"
     />
     <label v-if="datePicker"
            class="calendar-icon"

@@ -18,6 +18,7 @@ const props = {
   id: String,
   name: String,
   disabled: Boolean,
+  errorLabel: String,
 };
 
 const data = function () {
@@ -27,12 +28,44 @@ const data = function () {
   };
 };
 
+const computed = {
+  labelToShow() {
+    const result = (this.errorLabel || this.label);
+    return result;
+  },
+};
+
 const methods = {
   emitInputEvent() {
     this.$emit('input', this.selectedValue);
   },
   toggleFocus() {
     this.isFocused = !this.isFocused;
+  },
+  onFocus(event) {
+    this.toggleFocus();
+    this.$emit('focus', event);
+  },
+  onBlur(event) {
+    this.toggleFocus();
+    this.$emit('blur', event);
+  },
+  onKeypress(event) {
+    this.$emit('keypress', event);
+  },
+  onKeyup(event) {
+    this.$emit('keyup', event);
+  },
+  onPaste(event) {
+    this.$emit('paste', event);
+  },
+  focus() {
+    if (!this.$refs.input) { return; }
+    this.$refs.input.focus();
+  },
+  blur() {
+    if (!this.$refs.input) { return; }
+    this.$refs.input.blur();
   },
 };
 
@@ -48,6 +81,7 @@ const watch = {
 const SelectBox = {
   components,
   props,
+  computed,
   data,
   methods,
   watch,

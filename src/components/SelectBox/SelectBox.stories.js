@@ -23,6 +23,9 @@ const defaultExample = () => ({
     label: {
       default: text('Label', 'Example label'),
     },
+    errorLabel: {
+      default: text('Error Label', ''),
+    },
     disabled: {
       default: boolean('Is Disabled?', false),
     },
@@ -64,6 +67,11 @@ const defaultExample = () => ({
   },
   methods: {
     onInput: action('Changed!'),
+    onBlur: action('Blur!'),
+    onFocus: action('Focus!'),
+    onPaste: action('Paste!'),
+    onKeyup: action('KeyUp!'),
+    onKeypress: action('KeyPress!'),
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
@@ -73,9 +81,15 @@ const defaultExample = () => ({
       <StorybookMobileDeviceSimulator :device="device">
         <SelectBox v-model="selectedValue"
                    :label="label"
+                   :error-label="errorLabel"
                    :options="options"
                    :disabled="disabled"
                    @input="onInput"
+                   @blur="onBlur"
+                   @focus="onFocus"
+                   @keypress="onKeypress"
+                   @keyup="onKeyup"
+                   @paste="onPaste"
         />
         <div style="margin: 20px;">
           Bound value: {{ selectedValue }}
@@ -85,9 +99,15 @@ const defaultExample = () => ({
         <p style="margin-left: 10px;">With a pre-selected value (specified by the consumer)</p>
         <SelectBox v-model="preSelectedValue"
                    :label="label"
+                   :error-label="errorLabel"
                    :options="preSelectedOptions"
                    :disabled="disabled"
                    @input="onInput"
+                   @blur="onBlur"
+                   @focus="onFocus"
+                   @keypress="onKeypress"
+                   @keyup="onKeyup"
+                   @paste="onPaste"
         />
         <div style="margin: 20px;">
           Bound value: {{ preSelectedValue }}

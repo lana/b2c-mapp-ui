@@ -91,3 +91,11 @@
   height: 2px;
   background-color: $blue-500;
 }
+
+.error:before {
+  background: $red-500;
+}
+
+.error .label {
+  color: $red-500;
+}
