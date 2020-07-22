@@ -41,6 +41,9 @@ const defaultExample = () => ({
     maxLength: {
       default: number('Max Length', 10),
     },
+    customValidation: {
+      default: boolean('Custom Validation?', false),
+    },
   },
   data() {
     return {
@@ -50,6 +53,9 @@ const defaultExample = () => ({
   methods: {
     onBlur: action('Blur!'),
     onFocus: action('Focus!'),
+    onPaste: action('Paste!'),
+    onKeyup: action('KeyUp!'),
+    onKeypress: action('KeyPress!'),
     onChange: action('Change!'),
     onValidate: action('Validate!'),
   },
@@ -65,9 +71,13 @@ const defaultExample = () => ({
                    :label="label"
                    :error-label="errorLabel"
                    :max-length="maxLength"
+                   :custom-validation="customValidation"
                    v-model="value"
                    @blur="onBlur"
                    @focus="onFocus"
+                   @keypress="onKeypress"
+                   @keyup="onKeyup"
+                   @paste="onPaste"
                    @change="onChange"
                    @validate="onValidate"
         />

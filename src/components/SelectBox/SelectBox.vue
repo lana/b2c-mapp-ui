@@ -1,18 +1,22 @@
 <template>
   <label class="select-box-container"
-         :class="{ focus: isFocused, disabled, 'no-value': !value }"
+         :class="{ focus: isFocused, disabled, 'no-value': !value, error: errorLabel }"
          :data-testid="`${dataTestId}-label`"
   >
-    <strong class="label">{{ label }}</strong>
+    <strong class="label">{{ labelToShow }}</strong>
     <ExpandSmallIcon/>
     <select :id="id"
+            ref="input"
             v-model="selectedValue"
             class="select"
             :name="name"
             :data-testid="`${dataTestId}-select`"
             :disabled="disabled"
-            @focus="toggleFocus"
-            @blur="toggleFocus"
+            @focus="onFocus"
+            @blur="onBlur"
+            @paste="onPaste"
+            @keypress="onKeypress"
+            @keyup="onKeyup"
     >
       <option v-for="({ value: optionValue, disabled: isOptionDisabled, selected, label: optionLabel }, index) in options"
               :key="`${optionValue}-${index}`"

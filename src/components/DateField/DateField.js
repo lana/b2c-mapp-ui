@@ -37,6 +37,7 @@ const props = {
   readonly: Boolean,
   startFocused: Boolean,
   disabled: Boolean,
+  customValidation: Boolean,
 };
 
 const data = function () {
@@ -65,8 +66,7 @@ const computed = {
     return result;
   },
   errorLabelToShow() {
-    if (this.isValid) { return; }
-    return this.errorLabel;
+    if (this.customValidation || !this.isValid) { return this.errorLabel; }
   },
   formFieldFormattedDateText() {
     if (!this.datePickerValue) { return ''; }
@@ -100,15 +100,6 @@ const methods = {
     this.$emit('change', this.formFieldFormattedDateText);
     this.$emit('validate', validationPayload);
   },
-  focus() {
-    this.$refs.field.focus();
-  },
-  onFocus(event) {
-    this.$emit('focus', event);
-  },
-  onBlur(event) {
-    this.$emit('blur', event);
-  },
   updateInputValueWithFormatting() {
     if (!(this.autoformat && this.inputValue)) { return; }
     this.inputValue = this.autoformattedDate;
@@ -119,6 +110,29 @@ const methods = {
   updateCalendarValueIfNeeded() {
     if (!(this.inputValue && this.isValid)) { return; }
     this.datePickerValue = this.datePickerValueToUse;
+  },
+  onFocus(event) {
+    this.$emit('focus', event);
+  },
+  onBlur(event) {
+    this.$emit('blur', event);
+  },
+  onKeypress(event) {
+    this.$emit('keypress', event);
+  },
+  onKeyup(event) {
+    this.$emit('keyup', event);
+  },
+  onPaste(event) {
+    this.$emit('paste', event);
+  },
+  focus() {
+    if (!this.$refs.field) { return; }
+    this.$refs.field.focus();
+  },
+  blur() {
+    if (!this.$refs.field) { return; }
+    this.$refs.field.blur();
   },
 };
 
