@@ -126,9 +126,114 @@ const withCustomContent = () => ({
   `,
 });
 
+const withDismissButtonDisabled = () => ({
+  components: {
+    ConfirmationModalDialog,
+  },
+  data() {
+    return {
+      isShowing: false,
+    };
+  },
+  computed: {
+    showHideTitle() {
+      if (this.isShowing) { return 'Hide'; }
+      return 'Show';
+    },
+  },
+  methods: {
+    onDismiss: action('Dismissed!'),
+    onConfirm: action('Confirmed!'),
+    onClose: action('Closed!'),
+    toggleIsShowing() {
+      this.isShowing = !this.isShowing;
+    },
+  },
+  template: `
+    <div style="margin: 10px 50px 10px 50px;">
+      <h2><strong>ConfirmationModalDialog:</strong>&nbsp;Custom Content with disabled Dismiss Button.</h2>
+      <hr>
+      <div style="margin-top: 20px; width: 100px">
+        <ConfirmationModalDialog v-model="isShowing"
+                                 title="Custom Content with disabled Dismiss Button Example"
+                                 confirm-button-text="Got it"
+                                 dismiss-button-text="Never mind"
+                                 @dismiss="onDismiss"
+                                 @confirm="onConfirm"
+                                 @close="onClose"
+                                 dismissButtonDisabled
+        >
+          <div style="color: deeppink; margin: 20px">
+            This is some <strong>custom</strong> content
+          </div>
+        </ConfirmationModalDialog>
+      </div>
+      <div style="margin-top: 20px;">
+        Bound value: {{ isShowing }}
+      </div>
+      <div style="margin-top: 20px; display: flex; flex-direction: row; width: 100%; justify-content: center">
+        <button style="font-size: 20px; color: blue;" @click="toggleIsShowing">{{ showHideTitle }} Dialog</button>
+      </div>
+    </div>
+  `,
+});
+
+const withConfirmButtonDisabled = () => ({
+  components: {
+    ConfirmationModalDialog,
+  },
+  data() {
+    return {
+      isShowing: false,
+    };
+  },
+  computed: {
+    showHideTitle() {
+      if (this.isShowing) { return 'Hide'; }
+      return 'Show';
+    },
+  },
+  methods: {
+    onDismiss: action('Dismissed!'),
+    onConfirm: action('Confirmed!'),
+    onClose: action('Closed!'),
+    toggleIsShowing() {
+      this.isShowing = !this.isShowing;
+    },
+  },
+  template: `
+    <div style="margin: 10px 50px 10px 50px;">
+      <h2><strong>ConfirmationModalDialog:</strong>&nbsp;Custom Content with disabled Confirm Button.</h2>
+      <hr>
+      <div style="margin-top: 20px; width: 100px">
+        <ConfirmationModalDialog v-model="isShowing"
+                                 title="Custom Content with disabled Confirm Button Example"
+                                 confirm-button-text="Got it"
+                                 dismiss-button-text="Never mind"
+                                 @dismiss="onDismiss"
+                                 @confirm="onConfirm"
+                                 confirmButtonDisabled
+                                 @close="onClose"
+        >
+          <div style="color: deeppink; margin: 20px">
+            This is some <strong>custom</strong> content
+          </div>
+        </ConfirmationModalDialog>
+      </div>
+      <div style="margin-top: 20px;">
+        Bound value: {{ isShowing }}
+      </div>
+      <div style="margin-top: 20px; display: flex; flex-direction: row; width: 100%; justify-content: center">
+        <button style="font-size: 20px; color: blue;" @click="toggleIsShowing">{{ showHideTitle }} Dialog</button>
+      </div>
+    </div>
+  `,
+});
 export {
   defaultExample,
   withCustomContent,
+  withDismissButtonDisabled,
+  withConfirmButtonDisabled,
 };
 
 export default ConfirmationModalDialogStories;
