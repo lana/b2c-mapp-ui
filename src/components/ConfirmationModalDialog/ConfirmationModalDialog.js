@@ -19,7 +19,14 @@ const props = {
   dismissButtonText: String,
   value: Boolean,
   loading: Boolean,
-  disabled: Boolean,
+  confirmButtonDisabled: {
+    type: Boolean,
+    default: false,
+  },
+  dismissButtonDisabled: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 const data = function () {

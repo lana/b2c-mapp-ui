@@ -15,7 +15,6 @@ describe('ConfirmationmodalDialog unit test', () => {
     description: 'description',
     confirmButtonText: 'confirm',
     dismissButtonText: 'dismiss',
-    disabled: false,
   };
 
   it('Should be intially visible if given value is set to true', () => {
@@ -75,6 +74,24 @@ describe('ConfirmationmodalDialog unit test', () => {
       expect(confirmIsShown).toBeTruthy();
     });
 
+    it('Should be disabled if given confirmButtonDisabled is set to true', () => {
+      const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps, confirmButtonDisabled: true } });
+      const confirmIsDisabled = getByTestId('dialog-action-confirm-button').getAttribute('disabled') === 'disabled';
+      expect(confirmIsDisabled).toBeTruthy();
+    });
+
+    it('Should be NOT disabled if given confirmButtonDisabled is set to false', () => {
+      const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps, confirmButtonDisabled: false } });
+      const confirmIsNotDisabled = !getByTestId('dialog-action-confirm-button').getAttribute('disabled');
+      expect(confirmIsNotDisabled).toBeTruthy();
+    });
+
+    it('Should be NOT disabled if given confirmButtonDisabled by default', () => {
+      const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps } });
+      const confirmIsNotDisabled = !getByTestId('dialog-action-confirm-button').getAttribute('disabled');
+      expect(confirmIsNotDisabled).toBeTruthy();
+    });
+
     it('Should NOT show action-confirm button when confirm is NOT given', () => {
       const { queryAllByTestId } = render(ConfirmationModalDialog, { propsData: {
         ...defaultProps,
@@ -98,6 +115,24 @@ describe('ConfirmationmodalDialog unit test', () => {
       const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps } });
       const dismissIsShown = getByTestId('dialog-action-dismiss-button').textContent.includes('dismiss');
       expect(dismissIsShown).toBeTruthy();
+    });
+
+    it('Should be disabled if given dismissButtonDisabled is set to true', () => {
+      const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps, dismissButtonDisabled: true } });
+      const dismissIsDisabled = getByTestId('dialog-action-dismiss-button').getAttribute('disabled') === 'disabled';
+      expect(dismissIsDisabled).toBeTruthy();
+    });
+
+    it('Should be NOT disabled if given dismissButtonDisabled is set to false', () => {
+      const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps, dismissButtonDisabled: false } });
+      const dismissIsNotDisabled = !getByTestId('dialog-action-dismiss-button').getAttribute('disabled');
+      expect(dismissIsNotDisabled).toBeTruthy();
+    });
+
+    it('Should be NOT disabled if given dismissButtonDisabled by default', () => {
+      const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps } });
+      const dismissIsNotDisabled = !getByTestId('dialog-action-dismiss-button').getAttribute('disabled');
+      expect(dismissIsNotDisabled).toBeTruthy();
     });
 
     it('Should NOT show action-dismiss button when dismiss is NOT given', () => {

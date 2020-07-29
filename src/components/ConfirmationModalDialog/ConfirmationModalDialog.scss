@@ -68,4 +68,7 @@
   &.dismiss {
     color: $black-500;
   }
+  &.disabled {
+    color: $black-400;
+  }
 }
