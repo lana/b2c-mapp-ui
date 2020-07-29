@@ -25,7 +25,7 @@
       <div class="actions" :data-testid="`${dataTestId}-actions`">
         <button v-if="dismissButtonText"
                 class="action dismiss"
-                :disabled="disabled"
+                :disabled="dismissButtonDisabled"
                 :data-testid="`${dataTestId}-action-dismiss-button`"
                 @click="onDismiss"
         >
@@ -33,7 +33,7 @@
         </button>
         <button v-if="confirmButtonText"
                 class="action"
-                :disabled="disabled"
+                :disabled="confirmButtonDisabled"
                 :data-testid="`${dataTestId}-action-confirm-button`"
                 @click="onConfirm"
         >
