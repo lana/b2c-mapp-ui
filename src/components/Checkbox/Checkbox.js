@@ -1,8 +1,8 @@
-import { CheckboxChecked, CheckboxUnchecked } from '@lana/b2c-mapp-ui-assets';
+import { CheckboxCheckedIcon, CheckboxUncheckedIcon } from '@lana/b2c-mapp-ui-assets';
 
 const components = {
-  CheckboxChecked,
-  CheckboxUnchecked,
+  CheckboxCheckedIcon,
+  CheckboxUncheckedIcon,
 };
 
 const props = {

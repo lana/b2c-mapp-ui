@@ -28,6 +28,7 @@
                   :data-test-id="`${dataTestId}-toggle`"
                   :disabled="disabled"
     />
+    <strong v-if="isRightLabelShowing" class="right-label">{{ rightLabel }}</strong>
   </li>
 </template>
 

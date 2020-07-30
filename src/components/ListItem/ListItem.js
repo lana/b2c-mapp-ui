@@ -20,6 +20,7 @@ const props = {
   linkTitle: String,
   hasToggle: Boolean,
   disabled: Boolean,
+  rightLabel: String,
 };
 
 const data = function () {
@@ -47,12 +48,20 @@ const watch = {
   },
 };
 
+const computed = {
+  isRightLabelShowing() {
+    const result = (!this.hasToggle && this.rightLabel);
+    return result;
+  },
+};
+
 const ListItem = {
   components,
   props,
   data,
   methods,
   watch,
+  computed,
 };
 
 export default ListItem;
