@@ -20,6 +20,7 @@ const props = {
   linkTitle: String,
   hasToggle: Boolean,
   disabled: Boolean,
+  itemValue: String,
 };
 
 const data = function () {

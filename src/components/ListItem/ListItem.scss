@@ -51,3 +51,9 @@ $item-box-size: 48px;
 .description {
   font-size: 14px;
 }
+
+.item-value {
+  font: $laptop-m;
+  font-weight: 500;
+  align-self: center;
+}
