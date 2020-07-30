@@ -1,15 +1,8 @@
 <template>
   <div class="wrapper">
     <div class="slider-wrapper">
-      <div
-        ref="slider"
-        :class="`slider-track ${sliderClass}`"
-      >
-        <div
-          ref="overlay"
-          class="overlay"
-          :style="[overlayStyle]"
-        />
+      <div ref="slider" class="slider-track" :class="{ started: (isStarted && !isCompleted), completed: isCompleted }">
+        <div ref="overlay" class="overlay" :style="[overlayStyle]"/>
         <div
           ref="slideButton"
           class="slide-button"
@@ -21,11 +14,9 @@
           @touchmove="continueSlide"
           @touchend="endSlide"
         >
-          <ChevronsRight class="button-icon"/>
+          <ChevronsRightIcon class="button-icon"/>
         </div>
-        <div class="slide-text">
-          {{ instructionText }}
-        </div>
+        <div class="slide-label">{{ instructionLabel }}</div>
       </div>
     </div>
   </div>

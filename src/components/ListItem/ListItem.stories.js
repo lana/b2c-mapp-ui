@@ -43,8 +43,8 @@ const defaultExample = () => ({
     hasImage: {
       default: boolean('Show image?', false),
     },
-    itemValue: {
-      default: text('Value (If any)', ''),
+    rightLabel: {
+      default: text('Right label', ''),
     },
   },
   methods: {
@@ -72,7 +72,7 @@ const defaultExample = () => ({
                   :description="description"
                   :link-title="linkTitle"
                   :has-toggle="hasToggle"
-                  :item-value="itemValue"
+                  :right-label="rightLabel"
                   :disabled="disabled"
                   @linkClick="onLinkClick"
         >

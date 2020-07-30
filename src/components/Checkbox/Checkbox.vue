@@ -11,8 +11,8 @@
            :disabled="disabled"
            :name="idToUse"
     >
-    <CheckboxChecked v-if="isChecked"/>
-    <CheckboxUnchecked v-if="!isChecked"/>
+    <CheckboxCheckedIcon v-if="isChecked"/>
+    <CheckboxUncheckedIcon v-if="!isChecked"/>
     <label class="checkbox-label"
            :data-testid="`${dataTestId}-label`"
            :for="idToUse"

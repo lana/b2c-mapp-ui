@@ -1,4 +1,4 @@
-import { WorkInProgress } from '@lana/b2c-mapp-ui-assets';
+import { WorkInProgressIcon } from '@lana/b2c-mapp-ui-assets';
 
 import Button from '../Button/Button.vue';
 import Heading from '../Heading/Heading.vue';
@@ -8,7 +8,7 @@ const components = {
   Button,
   Heading,
   TextParagraph,
-  WorkInProgress,
+  WorkInProgressIcon,
 };
 
 const props = {
