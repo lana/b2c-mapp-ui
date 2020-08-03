@@ -117,8 +117,76 @@ const defaultExample = () => ({
   `,
 });
 
+const withNoValueInitiallySelected = () => ({
+  components: {
+    SelectBox,
+    StorybookMobileDeviceSimulator,
+  },
+  props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
+  },
+  data() {
+    return {
+      selectedValue: '',
+      options: [
+        {
+          label: 'Choose an option',
+          value: '',
+          disabled: true,
+        },
+        {
+          label: 'Option 1',
+          value: 'option1',
+        },
+        {
+          label: 'Option 2',
+          value: 'option2',
+        },
+        {
+          label: 'Option 3',
+          value: 'option3',
+        },
+      ],
+    };
+  },
+  methods: {
+    onInput: action('Changed!'),
+    onBlur: action('Blur!'),
+    onFocus: action('Focus!'),
+    onPaste: action('Paste!'),
+    onKeyup: action('KeyUp!'),
+    onKeypress: action('KeyPress!'),
+  },
+  template: `
+    <div style="margin: 10px 50px 10px 50px;">
+      <h2><strong>SelectBox:</strong>&nbsp;With no value initially selected.</h2>
+      <hr>
+      <StorybookMobileDeviceSimulator :device="device">
+        <SelectBox v-model="selectedValue"
+                   label="With no value selected"
+                   :error-label="errorLabel"
+                   :options="options"
+                   :disabled="disabled"
+                   @input="onInput"
+                   @blur="onBlur"
+                   @focus="onFocus"
+                   @keypress="onKeypress"
+                   @keyup="onKeyup"
+                   @paste="onPaste"
+        />
+        <div style="margin: 20px;">
+          Bound value: {{ selectedValue }}
+        </div>
+      </StorybookMobileDeviceSimulator>
+    </div>
+  `,
+});
+
 export {
   defaultExample,
+  withNoValueInitiallySelected,
 };
 
 export default SelectBoxStories;

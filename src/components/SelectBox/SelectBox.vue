@@ -1,6 +1,6 @@
 <template>
   <label class="select-box-container"
-         :class="{ focus: isFocused, disabled, 'no-value': !value, error: errorLabel }"
+         :class="{ focus: isFocused, disabled, 'no-value': (!hasEmptyOption && !value), error: errorLabel }"
          :data-testid="`${dataTestId}-label`"
   >
     <strong class="label">{{ labelToShow }}</strong>
