@@ -33,6 +33,12 @@ const computed = {
     const result = (this.errorLabel || this.label);
     return result;
   },
+  hasEmptyOption() {
+    if (!(this.options && this.options.length)) { return; }
+    const hasEmptyValue = ({ value }) => !value;
+    const result = this.options.some(hasEmptyValue);
+    return result;
+  },
 };
 
 const methods = {
