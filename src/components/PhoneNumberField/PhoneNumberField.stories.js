@@ -44,6 +44,9 @@ const defaultExample = () => ({
     maxLength: {
       default: number('Max Lenth'),
     },
+    maxPhoneNumberLength: {
+      default: number('Max Phone Number Length', 10),
+    },
     lengthHint: {
       default: number('Length Hint'),
     },
@@ -94,6 +97,7 @@ const defaultExample = () => ({
                           :label="label"
                           :error-label="errorLabel"
                           :max-length="maxLength"
+                          :max-phone-number-length="maxPhoneNumberLength"
                           :length-hint="lengthHint"
                           :length-hint-label="lengthHintLabel"
                           @blur="onBlur"

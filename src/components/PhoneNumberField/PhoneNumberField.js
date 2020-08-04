@@ -3,7 +3,7 @@ import { AsYouType, getCountryCallingCode, getCountries } from 'libphonenumber-j
 import FormField from '../FormField/FormField.vue';
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
 import phoneNumberMetadata from '../../../data/libphonenumber-metadata.min.json';
-import { onlyDigitsRegexp } from '../../lib/regexHelper';
+import { onlyDigitsRegexp, allSpacesRegexp } from '../../lib/regexHelper';
 
 const availableCountryCodes = getCountries(phoneNumberMetadata);
 
@@ -37,6 +37,7 @@ const props = {
   maxLength: Number,
   lengthHint: Number,
   lengthHintLabel: String,
+  maxPhoneNumberLength: Number,
 };
 
 const data = function () {
@@ -85,6 +86,8 @@ const methods = {
     this.$refs.field.focus();
   },
   isPhoneNumberValid() {
+    const inputValueWithoutSpaces = this.inputValue.replace(allSpacesRegexp, '');
+    if (this.maxPhoneNumberLength && (inputValueWithoutSpaces.length > this.maxPhoneNumberLength)) { return false; }
     const asYouType = new AsYouType(this.countryCode, phoneNumberMetadata);
     asYouType.input((this.inputValue || ''));
     const result = asYouType.isPossible();
