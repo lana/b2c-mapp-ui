@@ -37,7 +37,10 @@ const props = {
   maxLength: Number,
   lengthHint: Number,
   lengthHintLabel: String,
-  maxPhoneNumberLength: Number,
+  maxPhoneNumberLength: {
+    type: Number,
+    default: 10,
+  },
 };
 
 const data = function () {
