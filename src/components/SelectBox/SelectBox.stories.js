@@ -166,9 +166,7 @@ const withNoValueInitiallySelected = () => ({
       <StorybookMobileDeviceSimulator :device="device">
         <SelectBox v-model="selectedValue"
                    label="With no value selected"
-                   :error-label="errorLabel"
                    :options="options"
-                   :disabled="disabled"
                    @input="onInput"
                    @blur="onBlur"
                    @focus="onFocus"
