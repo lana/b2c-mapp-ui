@@ -1,6 +1,6 @@
 {
   "name": "@lana/b2c-mapp-ui",
-  "version": "7.10.7",
+  "version": "7.10.8",
   "description": "Shared custom libraries for building µapps.",
   "bugs": {
     "url": "https://github.com/lana/b2c-mapp-ui/issues"
@@ -49,9 +49,9 @@
     "@babel/plugin-proposal-export-namespace-from": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.11.0",
     "@rollup/plugin-babel": "^5.0.0",
-    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-json": "^4.0.3",
-    "@rollup/plugin-node-resolve": "^8.0.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
     "@spothero/eslint-plugin-spothero": "^0.2.2",
     "@storybook/addon-actions": "^6.0.0",
     "@storybook/addon-docs": "^6.0.0",
@@ -67,7 +67,7 @@
     "@vue/cli-plugin-unit-jest": "~4.5.2",
     "@vue/cli-service": "~4.5.2",
     "@vue/eslint-config-airbnb": "^5.0.2",
-    "@vue/test-utils": "1.0.3",
+    "@vue/test-utils": "1.0.4",
     "autoprefixer": "^9.8.6",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.6.0",
