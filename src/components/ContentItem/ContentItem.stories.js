@@ -28,6 +28,9 @@ const defaultExample = () => ({
     hasForwardButton: {
       default: boolean('Has Forward Button?', true),
     },
+    noBorder: {
+      default: boolean('Hide Border?', false),
+    },
     title: {
       default: text('Title', 'Example Title'),
     },
@@ -46,6 +49,7 @@ const defaultExample = () => ({
         <ContentItem :title="title"
                      :meta-text="metaText"
                      :has-forward-button="hasForwardButton"
+                     :no-border="noBorder"
                      :disabled="disabled"
                      @click="onClick"
         >
@@ -97,8 +101,9 @@ const withIcon = () => ({
       <h2><strong>ContentItem:</strong>&nbsp;Example With Icon</h2>
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <ContentItem title="Example with Image"
+        <ContentItem title="Example with Icon"
                      meta-text="Example metatext"
+                     no-border
         >
           <DocumentFilledIcon/>
         </ContentItem>

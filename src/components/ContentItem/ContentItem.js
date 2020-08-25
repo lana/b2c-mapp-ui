@@ -28,6 +28,7 @@ const props = {
     default: true,
   },
   disabled: Boolean,
+  noBorder: Boolean,
 };
 
 const methods = {

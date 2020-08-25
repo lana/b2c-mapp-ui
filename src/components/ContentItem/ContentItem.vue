@@ -5,8 +5,9 @@
       @click="emitClickEvent"
   >
     <div v-if="$slots.default"
-         :data-testid="`${dataTestId}-media-icon`"
          class="media"
+         :class="{ 'no-border': noBorder }"
+         :data-testid="`${dataTestId}-media-icon`"
     >
       <slot/>
     </div>
