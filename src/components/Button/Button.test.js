@@ -43,7 +43,9 @@ describe('Button unit test', () => {
     it('Should render a button if href is not provided', () => {
       const { getByTestId } = render(Button, { propsData: { ...defaultButtonProps } });
       const itsAButton = getByTestId('button-button');
+      const hasNoHrefAttribute = !itsAButton.getAttribute('href');
       expect(itsAButton).toBeTruthy();
+      expect(hasNoHrefAttribute).toBeTruthy();
     });
 
     it('Should NOT render an anchor if href is not provided', () => {
@@ -126,7 +128,9 @@ describe('Button unit test', () => {
     it('Should render a link if href is provided', () => {
       const { getByTestId } = render(Button, { propsData: { ...defaultLinkProps } });
       const itsALink = getByTestId('button-link');
+      const hasHrefAttribute = itsALink.getAttribute('href');
       expect(itsALink).toBeTruthy();
+      expect(hasHrefAttribute).toBeTruthy();
     });
 
     it('Should NOT render a button if href is provided', () => {

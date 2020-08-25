@@ -4,6 +4,7 @@
              class="button"
              :class="[{ loading, pressed: (!isLinkButton && isPressed), 'link-button': isLinkButton, 'drop-shadow': dropShadow }, type]"
              :type="buttonTypeAttribute"
+             :href="href"
              :disabled="disabled"
              :data-testid="dataTestIdToUse"
              @click="onClick"
