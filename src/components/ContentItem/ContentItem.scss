@@ -27,6 +27,10 @@ $item-box-size: 48px;
   border: solid 1px $black-300;
 }
 
+.no-border {
+  border: none;
+}
+
 .body {
   height: 100%;
   display: flex;
