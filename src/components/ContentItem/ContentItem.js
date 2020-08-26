@@ -1,10 +1,10 @@
-import { ForwardIcon } from '@lana/b2c-mapp-ui-assets';
+import { ChevronRightIcon } from '@lana/b2c-mapp-ui-assets';
 
 import Heading from '../Heading/Heading.vue';
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
 
 const components = {
-  ForwardIcon,
+  ChevronRightIcon,
   Heading,
   TextParagraph,
 };

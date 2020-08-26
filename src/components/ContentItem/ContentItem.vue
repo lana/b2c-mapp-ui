@@ -20,9 +20,9 @@
         {{ metaText }}
       </TextParagraph>
     </div>
-    <ForwardIcon v-if="hasForwardButton"
-                 class="forward-icon"
-                 :data-testid="`${dataTestId}-forward-icon`"
+    <ChevronRightIcon v-if="hasForwardButton"
+                      class="forward-icon"
+                      :data-testid="`${dataTestId}-forward-icon`"
     />
   </li>
 </template>
