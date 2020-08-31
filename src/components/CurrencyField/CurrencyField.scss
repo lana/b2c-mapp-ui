@@ -1,0 +1,102 @@
+@import '../../styles/colors';
+@import '../../styles/typography';
+
+.field {
+  display: block;
+  position: relative;
+  padding: 32px 16px 12px;
+  background: $white;
+  cursor: text;
+  touch-action: manipulation;
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 12px;
+    left: 16px;
+    right: 16px;
+    height: 1px;
+    background: $black-400;
+    pointer-events: none;
+    transition: all 0.15s ease-out;
+  }
+}
+
+.label {
+  position: absolute;
+  top: 21px;
+  left: 16px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: Graphik, Roboto, sans-serif;
+  color: $black-500;
+  transition: all 0.15s ease-out;
+}
+
+.labeled .label {
+  top: 9px;
+  font: 500 14px/24px Graphik, Roboto, sans-serif;
+  color: $blue-600;
+}
+
+.input {
+  width: 100%;
+  height: 24px;
+  box-sizing: border-box;
+  padding: 0 0 2px;
+  border: none;
+  font: $default-m;
+  color: $black-700;
+}
+
+.focus {
+  .label {
+    font-weight: 500;
+  }
+
+  &:before {
+    height: 2px;
+    background-color: $blue-500;
+  }
+}
+
+.error:before {
+  background: $red-500;
+}
+
+.error .label {
+  color: $red-500;
+}
+
+.readonly {
+  .label {
+    color: $black-500;
+  }
+
+  input[readonly] {
+    color: $black-700;
+  }
+
+  &:before {
+    background-color: transparent !important;
+  }
+}
+
+.hint {
+  position: absolute;
+  top: 24px;
+  right: 16px;
+  z-index: 10;
+  font-size: 14px;
+  line-height: 24px;
+  transition: transform 0.15s ease
+}
+
+.align-top {
+  transform: translateY(-13px);
+}
+
+.labeled ~ .hint {
+  top: 33px;
+}
