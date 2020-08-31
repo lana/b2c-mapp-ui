@@ -49,15 +49,13 @@
   .label {
     color: $black-500;
   }
-
-  .icon ::v-deep path {
-    fill: $black-500;
-  }
 }
 
-.icon {
-  height: 16px;
-  width: 16px;
+.select-icon {
+  height: 20px;
+  min-height: 20px;
+  width: 20px;
+  min-width: 20px;
   position: absolute;
   right: 12px;
   top: 20px;
