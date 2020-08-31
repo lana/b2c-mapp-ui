@@ -7,6 +7,7 @@ import ContentItem from './components/ContentItem/ContentItem.vue';
 import CopyableList from './components/CopyableList/CopyableList.vue';
 import CopyableListItem from './components/CopyableListItem/CopyableListItem.vue';
 import CopyToClipboardButton from './components/CopyToClipboardButton/CopyToClipboardButton.vue';
+import CurrencyField from './components/CurrencyField/CurrencyField.vue';
 import DateField from './components/DateField/DateField.vue';
 import FigureCard from './components/FigureCard/FigureCard.vue';
 import FormField from './components/FormField/FormField.vue';
@@ -43,6 +44,7 @@ export {
   CopyableList,
   CopyableListItem,
   CopyToClipboardButton,
+  CurrencyField,
   DateField,
   FigureCard,
   FormField,
