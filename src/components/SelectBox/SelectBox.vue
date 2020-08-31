@@ -4,7 +4,7 @@
          :data-testid="`${dataTestId}-label`"
   >
     <strong class="label">{{ labelToShow }}</strong>
-    <ExpandSmallIcon/>
+    <ExpandSmallIcon v-if="!disabled" class="select-icon"/>
     <select :id="id"
             ref="input"
             v-model="selectedValue"
