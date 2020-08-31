@@ -1,4 +1,4 @@
-import { CurrencyDirective } from 'vue-currency-input';
+import { CurrencyDirective, getValue } from 'vue-currency-input';
 
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
 
@@ -113,6 +113,10 @@ const methods = {
   },
   focus() {
     this.$refs.input.focus();
+  },
+  getUnformattedValue() {
+    const result = getValue(this.$refs.input);
+    return result;
   },
 };
 
