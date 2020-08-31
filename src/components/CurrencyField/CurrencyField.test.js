@@ -106,15 +106,14 @@ describe('CurrencyField unit test', () => {
   });
 
   it('Should provide current input value in the input event when value changed', async () => {
-    const givenValue = '1234';
-    const expectedValue = '$1234';
+    const givenValue = '123';
     const wrapper = mount(CurrencyField, { propsData: { ...defaultProps, value: '' } });
     await wrapper.vm.$nextTick();
     wrapper.find('input').element.value = givenValue;
     wrapper.find('input').trigger('input');
     await wrapper.vm.$nextTick();
     const inputEventValue = wrapper.emitted().input[0][0];
-    const inputEmittedValueIsCurrent = (inputEventValue === expectedValue);
+    const inputEmittedValueIsCurrent = (inputEventValue.includes(givenValue));
     expect(inputEmittedValueIsCurrent).toBeTruthy();
   });
 
