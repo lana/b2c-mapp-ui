@@ -1,4 +1,4 @@
-import { CurrencyDirective, getValue } from 'vue-currency-input';
+import { CurrencyDirective, getValue, setValue } from 'vue-currency-input';
 
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
 
@@ -20,7 +20,7 @@ const props = {
     default: 100,
   },
   value: {
-    type: String,
+    type: [String, Number],
     default: '',
   },
   id: String,
@@ -122,6 +122,10 @@ const methods = {
 
 const watch = {
   inputValue() {
+    if (!this.getUnformattedValue()) { // NOTE: This logic is required in order to force-set the initial value (whenever it starts off as undefined and is later programatically changed) for the vue-currency-input directive that we are using.
+      setValue(this.$refs.input, this.inputValue);
+      return;
+    }
     this.emitInputEvent();
   },
   value() {
