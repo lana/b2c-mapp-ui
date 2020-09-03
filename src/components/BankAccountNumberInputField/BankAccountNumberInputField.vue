@@ -10,7 +10,7 @@
              type="tel"
              :name="name"
              :max-length="maxLength"
-             :length-hint="lengthHint"
+             :length-hint="lengthHintToUse"
              :length-hint-label="lengthHintLabel"
              @blur="onBlur"
              @focus="onFocus"
