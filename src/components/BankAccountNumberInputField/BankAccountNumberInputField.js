@@ -29,6 +29,7 @@ const props = {
   startFocused: Boolean,
   autoformat: Boolean,
   showLengthHint: Boolean,
+  lengthHint: Number,
   lengthHintLabel: String,
 };
 
@@ -83,9 +84,9 @@ const computed = {
     const result = this.bankAccountTemplate.length;
     return result;
   },
-  lengthHint() {
+  lengthHintToUse() {
     if (!this.showLengthHint) { return; }
-    const result = this.maxLength;
+    const result = (this.lengthHint || this.maxLength);
     return result;
   },
 };

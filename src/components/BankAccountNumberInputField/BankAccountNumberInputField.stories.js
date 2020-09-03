@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean, text, number } from '@storybook/addon-knobs';
 
 import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
 import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
@@ -31,6 +31,9 @@ const defaultExample = () => ({
     },
     showLengthHint: {
       default: boolean('Show length hint?', false),
+    },
+    lengthHint: {
+      default: number('Length Hint Number'),
     },
     lengthHintLabel: {
       default: text('Length Hint Label', ''),
@@ -68,6 +71,7 @@ const defaultExample = () => ({
                                        :error-label="errorLabel"
                                        :show-length-hint="showLengthHint"
                                        :length-hint-label="lengthHintLabel"
+                                       :length-hint="lengthHint"
                                        v-model="value"
                                        @blur="onBlur"
                                        @focus="onFocus"
