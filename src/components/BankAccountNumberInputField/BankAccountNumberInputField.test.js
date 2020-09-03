@@ -92,6 +92,24 @@ describe('BankAccountNumberInputField unit test:', () => {
     expect(wrapper.vm.$data.inputValue).toEqual(initialValue);
   });
 
+  it('Should allow showing the length hint value independently of the max-length: ', async () => {
+    const newValue = '138211000000000127';
+    const wrapper = mount(BankAccountNumberInputField, {
+      propsData: {
+        ...defaultProps,
+        value: newValue,
+        lengthHint: 10,
+        lengthHintLabel: 'foo',
+        showLengthHint: true,
+      },
+    });
+    const lengthHint = wrapper.find('.hint');
+    await wrapper.vm.$nextTick();
+    const hasLengthHint = lengthHint.element.textContent.includes('10 foo');
+    expect(hasLengthHint).toBeTruthy();
+    expect(wrapper.vm.$data.inputValue).toEqual(newValue);
+  });
+
   it('Should apply right format even if max-length of the field is not reached', () => new Promise((resolve) => {
     const wrapper = mount(BankAccountNumberInputField, { propsData: { ...defaultProps, autoformat: true, value: '138211000000000127' } });
     const input = wrapper.find('input');
