@@ -1,5 +1,7 @@
 import { ChevronsRightIcon } from '@lana/b2c-mapp-ui-assets';
 
+const gapWidth = -25;
+
 const components = {
   ChevronsRightIcon,
 };
@@ -11,7 +13,7 @@ const props = {
   },
   completedLabel: {
     type: String,
-    default: 'Confirmado',
+    default: '',
   },
 };
 
@@ -24,11 +26,12 @@ const data = function () {
     endPoint: 500,
     initialSliderWidth: 0,
     initialSlideButtonPosition: 0,
+    buttonCenterPoint: 0,
     overlayStyle: {
-      width: '0px',
+      width: '0',
     },
     slideButtonStyle: {
-      left: '0px',
+      left: '0',
     },
   };
 };
@@ -48,7 +51,7 @@ const methods = {
     this.calculateSliderInitialWidth();
     this.calculateSlideButtonInitialPosition();
     this.updateSlideButton(0);
-    this.updateSlider(0);
+    this.updateSlider();
     this.isStarted = true;
   },
   getEndingPoint() {
@@ -58,9 +61,7 @@ const methods = {
   calculateSliderInitialWidth() {
     const [{ x: leftSliderPosition }] = this.$refs.slider.getClientRects();
     this.initialSliderWidth = this.initialMouseX - leftSliderPosition;
-    if (this.initialSliderWidth < 0) {
-      this.initialSliderWidth = 0;
-    }
+    if (this.initialSliderWidth < 0) { this.initialSliderWidth = 0; }
   },
   calculateSlideButtonInitialPosition() {
     const [{ x: sliderPosition }] = this.$refs.slider.getClientRects();
@@ -70,31 +71,31 @@ const methods = {
     if (!this.isStarted) { return; }
     this.currentMouseX = this.getMouseXPositionFromEvent(event);
     const delta = this.currentMouseX - this.initialMouseX;
-    this.updateSlider(delta);
+    this.updateSlider();
     this.updateSlideButton(delta);
-    if (this.sliderReachedEndPoint()) { this.endSlide(); }
+    if (this.hasSliderReachedEndPoint()) { this.endSlide(); }
   },
   endSlide() {
     this.isStarted = false;
-    if (this.sliderReachedEndPoint()) {
-      const [{ width: overlayWidth }] = this.$refs.slider.getClientRects();
+    if (this.hasSliderReachedEndPoint()) {
+      const overlayWidth = (this.buttonCenterPoint - gapWidth);
       this.overlayStyle.width = `${overlayWidth}px`;
       this.actionConfirmed();
       return;
     }
     this.sliderClass = '';
-    this.overlayStyle.width = '0px';
-    this.slideButtonStyle.left = '0px';
+    this.overlayStyle.width = '0';
+    this.slideButtonStyle.left = '0';
   },
   getMouseXPositionFromEvent(event) {
-    return event.clientX || event.touches[0].pageX;
+    this.buttonCenterPoint = (this.$refs.slideButton.offsetLeft + (this.$refs.slideButton.offsetWidth / 2));
+    const result = (event.clientX || event.touches[0].pageX);
+    return result;
   },
-  updateSlider(delta) {
+  updateSlider() {
     const sliderWidth = this.getSliderWidth();
-    let newWidth = this.initialSliderWidth + delta;
-    if (newWidth > sliderWidth) {
-      newWidth = sliderWidth;
-    }
+    let newWidth = (this.buttonCenterPoint - gapWidth);
+    if (newWidth > sliderWidth) { newWidth = sliderWidth; }
     this.overlayStyle.width = `${newWidth}px`;
   },
   getSliderWidth() {
@@ -104,18 +105,18 @@ const methods = {
   updateSlideButton(delta) {
     if (delta < 0) { return; }
     this.slideButtonStyle.left = `${delta}px`;
-    if (this.sliderReachedEndPoint()) {
-      const buttonLeftPos = this.getSliderWidth() - this.getButtonWidth();
-      this.slideButtonStyle.left = `${buttonLeftPos}px`;
-    }
+    if (!this.hasSliderReachedEndPoint()) { return; }
+    const buttonLeftPosition = (this.getSliderWidth() - this.getButtonWidth());
+    this.slideButtonStyle.left = `${buttonLeftPosition}px`;
   },
   getButtonWidth() {
     const [{ width }] = this.$refs.slideButton.getClientRects();
     return width;
   },
-  sliderReachedEndPoint() {
+  hasSliderReachedEndPoint() {
     const [{ right }] = this.$refs.slideButton.getClientRects();
-    return right >= this.endPoint;
+    const result = (right >= this.endPoint);
+    return result;
   },
   actionConfirmed() {
     if (this.isCompleted) { return; }
