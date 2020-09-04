@@ -24,7 +24,7 @@ const defaultExample = () => ({
       default: text('Initial instruction label', 'Desliza para confirmar'),
     },
     completedLabel: {
-      default: text('Label after completion', 'Confirmado'),
+      default: text('Label after completion', ''),
     },
   },
   methods: {
