@@ -3,7 +3,7 @@ import { nonDigitSlashRegexp, nonDigitRegexp } from './regexHelper';
 const getFormattedStringFromDate = (date) => {
   const datePart = `0${date.getUTCDate()}`.slice(-2);
   const monthPart = `0${date.getUTCMonth() + 1}`.slice(-2);
-  const yearPart = date.getFullYear();
+  const yearPart = date.getUTCFullYear();
   const result = `${datePart}/${monthPart}/${yearPart}`;
   return result;
 };
