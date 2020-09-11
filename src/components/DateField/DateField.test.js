@@ -54,6 +54,17 @@ describe('DateField unit test', () => {
     expect(labelHasError).toBeTruthy();
   });
 
+  it('Should show error label if value seems to be valid but is not', async () => {
+    const wrongDate = '29-02-2019';
+    const wrapper = mount(DateField, { propsData: { ...defaultProps } });
+    const dateInput = wrapper.find('input[data-testid="date-field-input"');
+    dateInput.element.setAttribute('value', wrongDate);
+    dateInput.trigger('input');
+    await wrapper.vm.$nextTick();
+    const labelHasError = wrapper.find('label[data-testid="date-field-label"]').classes().includes('error');
+    expect(labelHasError).toBeTruthy();
+  });
+
   it('Should not display error label if field value is valid', async () => {
     const goodDate = '20/10/2018';
     const wrapper = mount(DateField, { propsData: { ...defaultProps } });
