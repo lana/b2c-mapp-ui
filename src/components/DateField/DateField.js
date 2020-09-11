@@ -4,6 +4,9 @@ import FormField from '../FormField/FormField.vue';
 import { getDateFromDateString, getFormattedStringFromDate, autoformatDate } from '../../lib/dateHelper';
 import { validDateRegexp } from '../../lib/regexHelper';
 
+const expectedDateInputLength = 10;
+const invalidDatePart = 'aN';
+
 const components = {
   CalendarIcon,
   FormField,
@@ -83,9 +86,13 @@ const computed = {
     const result = getDateFromDateString(this.autoformattedDate);
     return result;
   },
+  isExpectedInputValueLength() {
+    const result = (this.inputValue.length >= expectedDateInputLength);
+    return result;
+  },
   isValid() {
     if (!this.inputValue) { return true; }
-    const result = validDateRegexp.test(this.autoformattedDate);
+    const result = (this.isExpectedInputValueLength && validDateRegexp.test(this.autoformattedDate));
     return result;
   },
 };
@@ -105,6 +112,7 @@ const methods = {
     this.inputValue = this.autoformattedDate;
   },
   updateInputValueFromDatePicker() {
+    if (this.formFieldFormattedDateText.includes(invalidDatePart)) { return; }
     this.inputValue = this.formFieldFormattedDateText;
   },
   updateCalendarValueIfNeeded() {
@@ -134,13 +142,16 @@ const methods = {
     if (!this.$refs.field) { return; }
     this.$refs.field.blur();
   },
+  updateInputAndCalendarValuesAsNeeded() {
+    this.updateInputValueWithFormatting();
+    this.updateCalendarValueIfNeeded();
+  },
 };
 
 const watch = {
   inputValue() {
     this.emitInputChangeAndValidationEvents();
-    this.updateInputValueWithFormatting();
-    this.updateCalendarValueIfNeeded();
+    this.updateInputAndCalendarValuesAsNeeded();
   },
   datePickerValue() {
     this.updateInputValueFromDatePicker();
@@ -150,11 +161,16 @@ const watch = {
   },
 };
 
+const mounted = function () {
+  if (this.inputValue) { this.updateInputAndCalendarValuesAsNeeded(); }
+};
+
 const DateField = {
   components,
   props,
   data,
   computed,
+  mounted,
   methods,
   watch,
 };
