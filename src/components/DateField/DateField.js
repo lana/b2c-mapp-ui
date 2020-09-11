@@ -1,7 +1,7 @@
 import { CalendarIcon } from '@lana/b2c-mapp-ui-assets';
 
 import FormField from '../FormField/FormField.vue';
-import { getDateFromDateString, getFormattedStringFromDate, autoformatDate } from '../../lib/dateHelper';
+import { getDateFromDateString, getFormattedStringFromDate, autoformatDate, isDateTextInputValid } from '../../lib/dateHelper';
 import { validDateRegexp } from '../../lib/regexHelper';
 
 const expectedDateInputLength = 10;
@@ -92,7 +92,7 @@ const computed = {
   },
   isValid() {
     if (!this.inputValue) { return true; }
-    const result = (this.isExpectedInputValueLength && validDateRegexp.test(this.autoformattedDate));
+    const result = (this.isExpectedInputValueLength && validDateRegexp.test(this.autoformattedDate) && isDateTextInputValid(this.autoformattedDate));
     return result;
   },
 };

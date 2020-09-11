@@ -29,8 +29,21 @@ const autoformatDate = (input) => {
   return result;
 };
 
+const isDateTextInputValid = (input) => {
+  const day = Number(input.slice(0, 2));
+  const month = (Number(input.slice(3, 5)) - 1);
+  const year = Number(input.slice(6));
+  const date = new Date(Date.UTC(year, month, day));
+  const isYearMatching = (date.getUTCFullYear() === year);
+  const isMonthMatching = (date.getUTCMonth() === month);
+  const isDayMatching = (date.getUTCDate() === day);
+  const result = (isYearMatching && isMonthMatching && isDayMatching);
+  return result;
+};
+
 export {
   getFormattedStringFromDate,
   getDateFromDateString,
   autoformatDate,
+  isDateTextInputValid,
 };

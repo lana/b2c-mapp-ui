@@ -112,7 +112,7 @@ const validation = () => ({
         <br>
         <div style="margin: 10px;">
           <label>With Invalid Date:</label>
-          <DateField value="01/20/1990" label='Enter your DOB' date-picker/>
+          <DateField value="29/02/1990" label='Enter your DOB' date-picker/>
         </div>
       </StorybookMobileDeviceSimulator>
     </div>
