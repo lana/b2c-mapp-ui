@@ -1,20 +1,21 @@
-import { WorkInProgressIcon } from '@lana/b2c-mapp-ui-assets';
-
-import Button from '../Button/Button.vue';
+import WrappedButton from '../WrappedButton/WrappedButton.vue';
 import Heading from '../Heading/Heading.vue';
+import Wrapper from '../Wrapper/Wrapper.vue';
+import Screen from '../Screen/Screen.vue';
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
 
 const components = {
-  Button,
+  WrappedButton,
   Heading,
+  Wrapper,
+  Screen,
   TextParagraph,
-  WorkInProgressIcon,
 };
 
 const props = {
   dataTestId: {
     type: String,
-    default: 'coming-soon',
+    default: 'call-to-action',
   },
   title: {
     type: String,
@@ -24,22 +25,22 @@ const props = {
     type: String,
     default: '',
   },
-  closeButtonText: {
+  ButtonText: {
     type: String,
     default: '',
   },
 };
 
 const methods = {
-  onClose() {
-    this.$emit('close');
+  onClick() {
+    this.$emit('click');
   },
 };
 
-const ComingSoon = {
+const CallToActionScreen = {
   components,
   props,
   methods,
 };
 
-export default ComingSoon;
+export default CallToActionScreen;
