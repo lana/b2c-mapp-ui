@@ -6,8 +6,8 @@
            :style="backgroundStyle"
       />
     </div>
-    <figcaption>
-      <TextParagraph :data-test-id="`${dataTestId}-title`" size="small" color="black-700">{{ title }}</TextParagraph>
+    <figcaption v-if="title" :data-test-id="`${dataTestId}-title`">
+      <TextParagraph size="small" color="black-700">{{ title }}</TextParagraph>
     </figcaption>
   </figure>
 </template>
