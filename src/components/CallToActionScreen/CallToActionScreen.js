@@ -3,6 +3,7 @@ import Heading from '../Heading/Heading.vue';
 import Wrapper from '../Wrapper/Wrapper.vue';
 import Screen from '../Screen/Screen.vue';
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
+import ScrollWrapper from '../ScrollWrapper/ScrollWrapper.vue';
 
 const components = {
   WrappedButton,
@@ -10,6 +11,7 @@ const components = {
   Wrapper,
   Screen,
   TextParagraph,
+  ScrollWrapper,
 };
 
 const props = {
@@ -25,7 +27,7 @@ const props = {
     type: String,
     default: '',
   },
-  ButtonText: {
+  buttonText: {
     type: String,
     default: '',
   },

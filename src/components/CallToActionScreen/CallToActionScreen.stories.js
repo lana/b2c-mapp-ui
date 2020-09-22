@@ -28,7 +28,7 @@ const defaultExample = () => ({
     description: {
       default: text('Description', 'Some description'),
     },
-    ButtonText: {
+    buttonText: {
       default: text('ButtonText', 'Example Button Text'),
     },
   },
@@ -42,7 +42,7 @@ const defaultExample = () => ({
     <StorybookMobileDeviceSimulator :device="device">
       <CallToActionScreen :title="title"
                           :description="description"
-                          :ButtonText="ButtonText"
+                          :button-text="buttonText"
                           @click="onClick"
       >
         <WorkInProgressIcon/>

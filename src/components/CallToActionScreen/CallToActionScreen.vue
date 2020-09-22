@@ -1,15 +1,15 @@
 <template>
   <Screen>
-    <Wrapper modal>
-      <Heading class="title">{{ title }}</Heading>
-      <TextParagraph> {{ description }}</TextParagraph>
-    </Wrapper>
-    <Wrapper>
-      <slot/>
-    </Wrapper>
-    <div class="button-container">
-      <WrappedButton :data-testid="dataTestId" @click="onClick"> {{ ButtonText }} </WrappedButton>
-    </div>
+    <ScrollWrapper>
+      <Wrapper modal>
+        <Heading class="title">{{ title }}</Heading>
+        <TextParagraph> {{ description }}</TextParagraph>
+      </Wrapper>
+      <Wrapper>
+        <slot/>
+      </Wrapper>
+    </ScrollWrapper>
+    <WrappedButton :data-testid="dataTestId" @click="onClick"> {{ buttonText }} </WrappedButton>
   </Screen>
 </template>
 
