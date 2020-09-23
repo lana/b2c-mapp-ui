@@ -41,7 +41,7 @@
     "@lana/b2c-mapp-ui-assets": "^4.8.5",
     "core-js": "^3.6.4",
     "fast-async": "^6.3.8",
-    "libphonenumber-js": "^1.7.58",
+    "libphonenumber-js": "^1.8.1",
     "vue": "^2.6.12",
     "vue-currency-input": "^1.22.3"
   },
