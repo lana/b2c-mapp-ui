@@ -1,6 +1,7 @@
 import ActionItem from './components/ActionItem/ActionItem.vue';
 import BankAccountNumberInputField from './components/BankAccountNumberInputField/BankAccountNumberInputField.vue';
 import Button from './components/Button/Button.vue';
+import CallToActionScreen from './components/CallToActionScreen/CallToActionScreen.vue';
 import ConfirmationModalDialog from './components/ConfirmationModalDialog/ConfirmationModalDialog.vue';
 import ConfirmationToastDialog from './components/ConfirmationToastDialog/ConfirmationToastDialog.vue';
 import ContentItem from './components/ContentItem/ContentItem.vue';
@@ -38,6 +39,7 @@ export {
   ActionItem,
   BankAccountNumberInputField,
   Button,
+  CallToActionScreen,
   ConfirmationModalDialog,
   ConfirmationToastDialog,
   ContentItem,
