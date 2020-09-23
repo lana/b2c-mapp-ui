@@ -3,6 +3,7 @@
     <FormField :id="formFieldId"
                ref="field"
                v-model="inputValue"
+               hide-clear-button
                :name="formFieldName"
                :data-test-id="dataTestId"
                :label="label"
@@ -12,18 +13,19 @@
                :disabled="disabled"
                :max-length="maxLength"
                :start-focused="startFocused"
+               :help-text="helpText"
                @focus="onFocus"
                @blur="onBlur"
                @paste="onPaste"
                @keypress="onKeypress"
                @keyup="onKeyup"
     />
-    <label v-if="datePicker"
+    <label v-if="datePicker && !readonly"
            class="calendar-icon"
            :data-testid="`${dataTestId}-datepicker-label`"
            :htmlFor="`input-date-${_uid}`"
     >
-      <CalendarIcon class="icon"/>
+      <CalendarIcon class="icon" :class="{ 'grey-icon': disabled, 'red-icon': hasError }"/>
       <input :id="`input-date-${_uid}`"
              v-model="datePickerValue"
              class="hidden-input"

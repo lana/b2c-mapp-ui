@@ -1,63 +1,72 @@
 @import '../../styles/colors';
 @import '../../styles/typography';
 
+.field-container {
+  background: $white;
+  border: 1px solid $black-300;
+  border-radius: 8px;
+
+  &.disabled {
+    background-color: $black-200;
+  }
+
+  &.error {
+    border-color: $red-500;
+  }
+}
+
 .field {
   display: block;
   position: relative;
-  padding: 32px 16px 12px;
-  background: $white;
+  padding: 28px 20px 8px 16px;
+  box-sizing: border-box;
   cursor: text;
   touch-action: manipulation;
-
-  &:before {
-    content: "";
-    position: absolute;
-    bottom: 12px;
-    left: 16px;
-    right: 16px;
-    height: 1px;
-    background: $black-400;
-    pointer-events: none;
-    transition: all 0.15s ease-out;
-  }
+  min-height: 56px;
 }
 
 .label {
   position: absolute;
   top: 21px;
   left: 16px;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
   font-family: Graphik, Roboto, sans-serif;
-  color: $black-500;
+  color: $blue-600;
   transition: all 0.15s ease-out;
 }
 
 .labeled .label {
   top: 9px;
-  font: 500 14px/24px Graphik, Roboto, sans-serif;
+  font: 500 12px/16px Graphik, Roboto, sans-serif;
   color: $blue-600;
 }
 
 .input {
-  width: 100%;
-  height: 24px;
   box-sizing: border-box;
-  padding: 0 0 2px;
   border: none;
-  font: $default-m;
   color: $black-700;
+  font: $default-m;
+  height: 24px;
+  line-height: 20px;
+  padding-right: 18px;
+  width: 100%;
 }
 
 .focus {
+  border-color: $blue-600;
+
+  &.readonly {
+    border-color: $black-300;
+  }
+
   .label {
     font-weight: 500;
   }
 
-  &:before {
-    height: 2px;
-    background-color: $blue-500;
+  .clear-icon-container {
+    display: initial;
   }
 }
 
@@ -65,10 +74,19 @@
   background: $red-500;
 }
 
-.error .label {
-  color: $red-500;
+.error {
+  .label {
+    color: $red-500;
+  }
 }
 
+.disabled {
+ input {
+   color: $black-500;
+ }
+}
+
+.disabled,
 .readonly {
   .label {
     color: $black-500;
@@ -83,20 +101,46 @@
   }
 }
 
-.hint {
-  position: absolute;
-  top: 24px;
-  right: 16px;
-  z-index: 10;
+.extra-text-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  padding: 6px 0 8px 16px;
+}
+
+.error-icon {
+  height: 16px;
+  min-height: 16px;
+  width: 16px;
+  min-width: 16px;
+  margin-right: 8px;
+
+  ::v-deep path {
+    fill: $red-500;
+  }
+}
+
+.help-text {
   font-size: 14px;
+  font-weight: 400;
   line-height: 24px;
-  transition: transform 0.15s ease
 }
 
-.align-top {
-  transform: translateY(-13px);
+.clear-icon-container {
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
 
-.labeled ~ .hint {
-  top: 33px;
+.clear-icon {
+  height: 16px;
+  min-height: 16px;
+  width: 16px;
+  min-width: 16px;
+
+  ::v-deep path {
+    fill: $black-500;
+  }
 }

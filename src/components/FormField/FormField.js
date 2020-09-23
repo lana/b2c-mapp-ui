@@ -1,7 +1,11 @@
+import { CloseBoldIcon, WarningBoldIcon } from '@lana/b2c-mapp-ui-assets';
+
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
 
 const components = {
   TextParagraph,
+  CloseBoldIcon,
+  WarningBoldIcon,
 };
 
 const props = {
@@ -28,6 +32,8 @@ const props = {
   showPrefix: Boolean,
   lengthHint: Number,
   lengthHintLabel: String,
+  helpText: String,
+  hideClearButton: Boolean,
 };
 
 const data = function () {
@@ -50,8 +56,16 @@ const computed = {
     const result = (this.id || this.name);
     return result;
   },
-  errorLabelOrPlaceholder() {
-    const result = (this.errorLabel || this.label || '');
+  formattedLengthHint() {
+    const result = `${(this.lengthHint || '')} ${(this.lengthHintLabel || '')}`;
+    return result;
+  },
+  errorLabelOrHelpText() {
+    const result = (this.errorLabel || this.helpText || this.formattedLengthHint || '');
+    return result;
+  },
+  isClearIconShowing() {
+    const result = (this.inputValue && !(this.hideClearButton || this.readonly || this.disabled));
     return result;
   },
 };
@@ -91,6 +105,9 @@ const methods = {
   },
   focus() {
     this.$refs.input.focus();
+  },
+  clearValue() {
+    this.inputValue = '';
   },
 };
 

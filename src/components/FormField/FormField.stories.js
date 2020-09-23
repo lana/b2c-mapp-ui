@@ -41,11 +41,17 @@ const defaultExample = () => ({
     showPrefix: {
       default: boolean('Show Prefix?', false),
     },
+    hideClearButton: {
+      default: boolean('Hide Clear Button?', false),
+    },
     lengthHint: {
       default: number('Length Hint'),
     },
     lengthHintLabel: {
       default: text('Length Hint Label'),
+    },
+    helpText: {
+      default: text('Help Text'),
     },
   },
   data() {
@@ -65,23 +71,26 @@ const defaultExample = () => ({
       <h2><strong>FormField:</strong>&nbsp;A simple text field.</h2>
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <FormField v-model="value"
-                   :type="type"
-                   :disabled="disabled"
-                   :readonly="readonly"
-                   :label="label"
-                   :error-label="errorLabel"
-                   :max-length="maxLength"
-                   :show-prefix="showPrefix"
-                   :length-hint="lengthHint"
-                   :length-hint-label="lengthHintLabel"
-                   @blur="onBlur"
-                   @focus="onFocus"
-                   @keypress="onKeypress"
-                   @keyup="onKeyup"
-                   @paste="onPaste"
-        />
-        <br>
+        <div style="padding: 16px;">
+          <FormField v-model="value"
+                     :type="type"
+                     :disabled="disabled"
+                     :readonly="readonly"
+                     :label="label"
+                     :error-label="errorLabel"
+                     :max-length="maxLength"
+                     :show-prefix="showPrefix"
+                     :length-hint="lengthHint"
+                     :length-hint-label="lengthHintLabel"
+                     :help-text="helpText"
+                     :hide-clear-button="hideClearButton"
+                     @blur="onBlur"
+                     @focus="onFocus"
+                     @keypress="onKeypress"
+                     @keyup="onKeyup"
+                     @paste="onPaste"
+          />
+        </div>
         <div style="margin: 20px;">
           Bound value: {{ value }}
         </div>
@@ -111,12 +120,27 @@ const examples = () => ({
         <br>
         <div style="width: 500px">
           <label>Unfocused with error:</label>
-          <FormField value="foo" errorLabel="Invalid value"/>
+          <FormField value="foo" label="Foo" error-label="Invalid value"/>
+        </div>
+        <br>
+        <div style="width: 500px">
+          <label>With help text:</label>
+          <FormField label="With help text" help-text="Example help text" />
+        </div>
+        <br>
+        <div style="width: 500px">
+          <label>With hidden clear button:</label>
+          <FormField label="With help text" value="Example" hide-clear-button/>
         </div>
         <br>
         <div style="width: 500px">
           <label>Readonly:</label>
           <FormField label="Enter your name" value="Locked Value" readonly/>
+        </div>
+        <br>
+        <div style="width: 500px">
+          <label>Disabled:</label>
+          <FormField label="Enter your name" value="Locked Value" disabled/>
         </div>
       </div>
     </div>

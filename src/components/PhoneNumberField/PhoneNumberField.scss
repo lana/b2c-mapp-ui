@@ -1,18 +1,27 @@
-.prefix {
+.prefix-container {
   position: absolute;
-  left: 16px;
-  top: 31px;
+  left: 0;
+  top: 0;
+  padding: 28px 0 0 16px;
   z-index: 5;
   opacity: 0;
   transition: all 0.15s ease-out;
+  display: flex;
+  flex-direction: row;
+  min-width: 54px;
 }
 
 .filled {
   ::v-deep input {
-    text-indent: 36px;
+    text-indent: 60px;
   }
 
-  .prefix {
+  .prefix-container {
     opacity: 1;
   }
+}
+
+.flag {
+  margin-right: 10px;
+  margin-top: -2px;
 }

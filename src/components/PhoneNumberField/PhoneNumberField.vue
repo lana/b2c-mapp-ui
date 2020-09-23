@@ -16,16 +16,16 @@
              :length-hint="lengthHint"
              :length-hint-label="lengthHintLabel"
              :data-test-id="dataTestId"
+             :help-text="helpText"
+             :hide-clear-button="hideClearButton"
              @blur="onBlur"
              @focus="onFocus"
              @keypress="supressNonDigitCharacterEntry"
   >
-    <TextParagraph v-if="!hideCountryCode"
-                   class="prefix"
-                   :data-test-id="`${dataTestId}-prefix`"
-    >
-      {{ prefix }}
-    </TextParagraph>
+    <div v-if="!hideCountryCode" class="prefix-container">
+      <p class="flag">{{ flagEmoji }}</p>
+      <TextParagraph :data-test-id="`${dataTestId}-prefix`">{{ prefix }}</TextParagraph>
+    </div>
   </FormField>
 </template>
 
