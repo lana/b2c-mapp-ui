@@ -1,7 +1,11 @@
-import { ExpandSmallIcon } from '@lana/b2c-mapp-ui-assets';
+import { ExpandSmallIcon, WarningBoldIcon } from '@lana/b2c-mapp-ui-assets';
+
+import TextParagraph from '../TextParagraph/TextParagraph.vue';
 
 const components = {
+  TextParagraph,
   ExpandSmallIcon,
+  WarningBoldIcon,
 };
 
 const props = {
@@ -18,7 +22,9 @@ const props = {
   id: String,
   name: String,
   disabled: Boolean,
+  readonly: Boolean,
   errorLabel: String,
+  helpText: String,
 };
 
 const data = function () {
@@ -29,8 +35,8 @@ const data = function () {
 };
 
 const computed = {
-  labelToShow() {
-    const result = (this.errorLabel || this.label);
+  errorLabelOrHelpText() {
+    const result = (this.errorLabel || this.helpText);
     return result;
   },
   hasEmptyOption() {

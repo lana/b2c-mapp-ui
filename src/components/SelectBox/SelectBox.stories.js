@@ -26,8 +26,14 @@ const defaultExample = () => ({
     errorLabel: {
       default: text('Error Label', ''),
     },
+    readonly: {
+      default: boolean('Is Readonly?', false),
+    },
     disabled: {
       default: boolean('Is Disabled?', false),
+    },
+    helpText: {
+      default: text('Help Text', ''),
     },
   },
   data() {
@@ -79,36 +85,44 @@ const defaultExample = () => ({
       <p style="margin-top: 10px;"><em>NOTE</em>: The first option will be selected by default.</p>
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <SelectBox v-model="selectedValue"
-                   :label="label"
-                   :error-label="errorLabel"
-                   :options="options"
-                   :disabled="disabled"
-                   @input="onInput"
-                   @blur="onBlur"
-                   @focus="onFocus"
-                   @keypress="onKeypress"
-                   @keyup="onKeyup"
-                   @paste="onPaste"
-        />
+        <div style="margin: 20px;">
+          <SelectBox v-model="selectedValue"
+                     :label="label"
+                     :error-label="errorLabel"
+                     :options="options"
+                     :readonly="readonly"
+                     :disabled="disabled"
+                     :help-text="helpText"
+                     @input="onInput"
+                     @blur="onBlur"
+                     @focus="onFocus"
+                     @keypress="onKeypress"
+                     @keyup="onKeyup"
+                     @paste="onPaste"
+          />
+        </div>
         <div style="margin: 20px;">
           Bound value: {{ selectedValue }}
         </div>
         <br>
         <br>
         <p style="margin-left: 10px;">With a pre-selected value (specified by the consumer)</p>
-        <SelectBox v-model="preSelectedValue"
-                   :label="label"
-                   :error-label="errorLabel"
-                   :options="preSelectedOptions"
-                   :disabled="disabled"
-                   @input="onInput"
-                   @blur="onBlur"
-                   @focus="onFocus"
-                   @keypress="onKeypress"
-                   @keyup="onKeyup"
-                   @paste="onPaste"
-        />
+        <div style="margin: 20px;">
+          <SelectBox v-model="preSelectedValue"
+                     :label="label"
+                     :error-label="errorLabel"
+                     :options="preSelectedOptions"
+                     :disabled="disabled"
+                     :readonly="readonly"
+                     :help-text="helpText"
+                     @input="onInput"
+                     @blur="onBlur"
+                     @focus="onFocus"
+                     @keypress="onKeypress"
+                     @keyup="onKeyup"
+                     @paste="onPaste"
+          />
+        </div>
         <div style="margin: 20px;">
           Bound value: {{ preSelectedValue }}
         </div>
@@ -164,16 +178,18 @@ const withNoValueInitiallySelected = () => ({
       <h2><strong>SelectBox:</strong>&nbsp;With no value initially selected.</h2>
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <SelectBox v-model="selectedValue"
-                   label="With no value selected"
-                   :options="options"
-                   @input="onInput"
-                   @blur="onBlur"
-                   @focus="onFocus"
-                   @keypress="onKeypress"
-                   @keyup="onKeyup"
-                   @paste="onPaste"
-        />
+        <div style="margin: 20px;">
+          <SelectBox v-model="selectedValue"
+                     label="With no value selected"
+                     :options="options"
+                     @input="onInput"
+                     @blur="onBlur"
+                     @focus="onFocus"
+                     @keypress="onKeypress"
+                     @keyup="onKeyup"
+                     @paste="onPaste"
+          />
+        </div>
         <div style="margin: 20px;">
           Bound value: {{ selectedValue }}
         </div>
