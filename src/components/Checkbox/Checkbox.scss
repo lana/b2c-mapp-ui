@@ -29,3 +29,7 @@
   font: $default-m;
   color: $black-700;
 }
+
+.error svg.unchecked-icon ::v-deep rect {
+  stroke: $red-500;
+}
