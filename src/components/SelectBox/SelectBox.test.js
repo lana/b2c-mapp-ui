@@ -33,7 +33,7 @@ describe('SelectBox unit test', () => {
     const wrapper = mount(SelectBox, { propsData: { ...defaultProps, isFocused: true } });
     wrapper.find('select').trigger('focus');
     await wrapper.vm.$nextTick();
-    const focusClass = wrapper.find('label').classes().includes('focus');
+    const focusClass = wrapper.find('div.select-box-container').classes().includes('focus');
     expect(focusClass).toBeTruthy();
   });
 

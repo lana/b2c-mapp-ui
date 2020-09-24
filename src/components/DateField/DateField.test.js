@@ -50,7 +50,7 @@ describe('DateField unit test', () => {
     dateInput.element.setAttribute('value', wrongDate);
     dateInput.trigger('input');
     await wrapper.vm.$nextTick();
-    const labelHasError = wrapper.find('label[data-testid="date-field-label"]').classes().includes('error');
+    const labelHasError = wrapper.find('div[data-testid="date-field-container"]').classes().includes('error');
     expect(labelHasError).toBeTruthy();
   });
 
@@ -61,7 +61,7 @@ describe('DateField unit test', () => {
     dateInput.element.setAttribute('value', wrongDate);
     dateInput.trigger('input');
     await wrapper.vm.$nextTick();
-    const labelHasError = wrapper.find('label[data-testid="date-field-label"]').classes().includes('error');
+    const labelHasError = wrapper.find('div[data-testid="date-field-container"]').classes().includes('error');
     expect(labelHasError).toBeTruthy();
   });
 

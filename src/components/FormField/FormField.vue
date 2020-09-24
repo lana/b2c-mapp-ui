@@ -1,6 +1,9 @@
 <template>
   <div class="outer-field-container">
-    <div class="field-container" :class="{ disabled, readonly, focus: isFocused, error: errorLabel }">
+    <div class="field-container"
+         :class="{ disabled, readonly, focus: isFocused, error: errorLabel }"
+         :data-testid="`${dataTestId}-container`"
+    >
       <label :data-testid="`${dataTestId}-label`"
              class="field"
              :class="{ labeled: hasLabel }"
@@ -29,7 +32,7 @@
         </div>
       </label>
     </div>
-    <div class="extra-text-container" :class="{ error: errorLabel }">
+    <div class="extra-text-container" :class="{ error: errorLabel }" :data-testid="`${dataTestId}-extra-text`">
       <WarningBoldIcon v-if="errorLabel" class="error-icon"/>
       <TextParagraph v-if="errorLabelOrHelpText" class="help-text" :data-test-id="`${dataTestId}-helptext`">{{ errorLabelOrHelpText }}</TextParagraph>
     </div>

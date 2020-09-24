@@ -29,7 +29,7 @@
         </div>
       </label>
     </div>
-    <div class="extra-text-container" :class="{ error: errorLabel }">
+    <div class="extra-text-container" :class="{ error: errorLabel }" :data-testid="`${dataTestId}-extra-text`">
       <WarningBoldIcon v-if="errorLabel" class="error-icon"/>
       <TextParagraph v-if="errorLabelOrHelpText" class="help-text" :data-test-id="`${dataTestId}-helptext`">{{ errorLabelOrHelpText }}</TextParagraph>
     </div>

@@ -30,7 +30,7 @@ describe('BankAccountNumberInputField unit test:', () => {
 
   it('Should show errors if given value is NOT valid', () => {
     const { getByTestId } = render(BankAccountNumberInputField, { propsData: { ...defaultProps, value: '138211000000000' } });
-    const labelClass = getByTestId('bank-account-field-label').className;
+    const labelClass = getByTestId('bank-account-field-container').className;
     const hasError = labelClass.includes('error');
     expect(hasError).toBeTruthy();
   });
@@ -103,7 +103,7 @@ describe('BankAccountNumberInputField unit test:', () => {
         showLengthHint: true,
       },
     });
-    const lengthHint = wrapper.find('.hint');
+    const lengthHint = wrapper.find('.help-text');
     await wrapper.vm.$nextTick();
     const hasLengthHint = lengthHint.element.textContent.includes('10 foo');
     expect(hasLengthHint).toBeTruthy();
