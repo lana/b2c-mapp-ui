@@ -2,11 +2,11 @@ import { render } from '@testing-library/vue';
 import { mount } from '@vue/test-utils';
 
 import DateField from './DateField.vue';
+import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
 
 describe('DateField unit test', () => {
   beforeAll(() => {
-    // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
-    console.error = jest.fn(); // eslint-disable-line no-console
+    silenceDeprecationErrorsAndInnerComponentWarnings(jest);
   });
 
   const defaultProps = {

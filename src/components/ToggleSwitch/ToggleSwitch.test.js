@@ -2,11 +2,11 @@ import { render } from '@testing-library/vue';
 import { mount } from '@vue/test-utils';
 
 import ToggleSwitch from './ToggleSwitch.vue';
+import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
 
 describe('UI/forms/ToggleSwitch', () => {
   beforeAll(() => {
-    // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
-    console.error = jest.fn(); // eslint-disable-line no-console
+    silenceDeprecationErrorsAndInnerComponentWarnings(jest);
   });
 
   it('Should be checked if given checked prop is set to true', () => {

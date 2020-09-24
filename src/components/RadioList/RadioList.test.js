@@ -2,12 +2,12 @@ import { mount } from '@vue/test-utils';
 import { render } from '@testing-library/vue';
 
 import RadioList from './RadioList.vue';
+import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
 
 jest.useFakeTimers();
 describe('UI/forms/RadioList', () => {
   beforeAll(() => {
-    // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
-    console.error = jest.fn(); // eslint-disable-line no-console
+    silenceDeprecationErrorsAndInnerComponentWarnings(jest);
   });
 
   const defaultProps = {

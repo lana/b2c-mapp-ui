@@ -3,10 +3,11 @@ import { mount } from '@vue/test-utils';
 
 import ConfirmationToastDialog from './ConfirmationToastDialog.vue';
 import ConfirmationToastDialogWrapper from './UnitTestWrappers/ConfirmationToastDialogWrapper.vue';
+import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
 
 describe('ConfirmationToastDialog unit test', () => {
-  beforeAll(() => { // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
-    console.error = jest.fn(); // eslint-disable-line no-console
+  beforeAll(() => {
+    silenceDeprecationErrorsAndInnerComponentWarnings(jest);
   });
 
   const defaultProps = {

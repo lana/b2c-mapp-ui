@@ -2,11 +2,11 @@ import { mount } from '@vue/test-utils';
 
 import CurrencyField from './CurrencyField.vue';
 import WithErrorFormFieldWrapper from './UnitTestWrappers/WithErrorCurrencyFieldWrapper.vue';
+import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
 
 describe('CurrencyField unit test', () => {
   beforeAll(() => {
-    // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
-    console.error = jest.fn(); // eslint-disable-line no-console
+    silenceDeprecationErrorsAndInnerComponentWarnings(jest);
   });
   const defaultProps = {
     name: 'my-input',
