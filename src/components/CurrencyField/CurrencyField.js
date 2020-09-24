@@ -1,9 +1,12 @@
 import { CurrencyDirective, getValue, setValue } from 'vue-currency-input';
+import { CloseBoldIcon, WarningBoldIcon } from '@lana/b2c-mapp-ui-assets';
 
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
 
 const components = {
   TextParagraph,
+  CloseBoldIcon,
+  WarningBoldIcon,
 };
 
 const directives = {
@@ -41,6 +44,8 @@ const props = {
     type: String,
     default: 'es-CL',
   },
+  helpText: String,
+  hideClearButton: Boolean,
 };
 
 const data = function () {
@@ -63,8 +68,12 @@ const computed = {
     const result = (this.id || this.name);
     return result;
   },
-  errorLabelOrPlaceholder() {
-    const result = (this.errorLabel || this.label || '');
+  formattedLengthHint() {
+    const result = `${(this.lengthHint || '')} ${(this.lengthHintLabel || '')}`;
+    return result;
+  },
+  errorLabelOrHelpText() {
+    const result = (this.errorLabel || this.helpText || this.formattedLengthHint || '');
     return result;
   },
   currencyOptions() {
@@ -74,6 +83,10 @@ const computed = {
       distractionFree: false,
       allowNegative: false,
     };
+    return result;
+  },
+  isClearIconShowing() {
+    const result = (this.inputValue && !(this.hideClearButton || this.readonly || this.disabled));
     return result;
   },
 };
@@ -117,6 +130,11 @@ const methods = {
   getUnformattedValue() {
     const result = getValue(this.$refs.input);
     return result;
+  },
+  clearValue() {
+    this.inputValue = '';
+    setValue(this.$refs.input, this.inputValue);
+    this.emitInputEvent();
   },
 };
 

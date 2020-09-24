@@ -39,6 +39,9 @@ const defaultExample = () => ({
     showPrefix: {
       default: boolean('Show Prefix?', false),
     },
+    hideClearButton: {
+      default: boolean('Hide Clear Button?', false),
+    },
     lengthHint: {
       default: number('Length Hint'),
     },
@@ -50,6 +53,9 @@ const defaultExample = () => ({
     },
     locale: {
       default: text('Locale', 'es-CL'),
+    },
+    helpText: {
+      default: text('Help Text'),
     },
   },
   data() {
@@ -75,24 +81,28 @@ const defaultExample = () => ({
       <h2><strong>CurrencyField:</strong>&nbsp;An input field with currency formatting.</h2>
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <CurrencyField v-model="value"
-                       ref="field"
-                       :disabled="disabled"
-                       :readonly="readonly"
-                       :label="label"
-                       :currency="currency"
-                       :locale="locale"
-                       :error-label="errorLabel"
-                       :max-length="maxLength"
-                       :show-prefix="showPrefix"
-                       :length-hint="lengthHint"
-                       :length-hint-label="lengthHintLabel"
-                       @blur="onBlur"
-                       @focus="onFocus"
-                       @keypress="onKeypress"
-                       @keyup="onKeyup"
-                       @paste="onPaste"
-        />
+        <div style="margin: 20px;">
+          <CurrencyField v-model="value"
+                         ref="field"
+                         :disabled="disabled"
+                         :readonly="readonly"
+                         :label="label"
+                         :currency="currency"
+                         :locale="locale"
+                         :error-label="errorLabel"
+                         :max-length="maxLength"
+                         :show-prefix="showPrefix"
+                         :length-hint="lengthHint"
+                         :length-hint-label="lengthHintLabel"
+                         :hide-clear-button="hideClearButton"
+                         :help-text="helpText"
+                         @blur="onBlur"
+                         @focus="onFocus"
+                         @keypress="onKeypress"
+                         @keyup="onKeyup"
+                         @paste="onPaste"
+          />
+        </div>
         <br>
         <div style="margin: 20px;">
           Bound value: {{ value }}
@@ -143,15 +153,17 @@ const withPrefilledValue = () => ({
       <h2><strong>CurrencyField:</strong>&nbsp;Example with a pre-filled value. (it should appear with proper formatting)</h2>
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <CurrencyField v-model="value"
-                       ref="field"
-                       label="Example with Prefilled Value"
-                       @blur="onBlur"
-                       @focus="onFocus"
-                       @keypress="onKeypress"
-                       @keyup="onKeyup"
-                       @paste="onPaste"
-        />
+        <div style="margin: 20px;">
+          <CurrencyField v-model="value"
+                         ref="field"
+                         label="Example with Prefilled Value"
+                         @blur="onBlur"
+                         @focus="onFocus"
+                         @keypress="onKeypress"
+                         @keyup="onKeyup"
+                         @paste="onPaste"
+          />
+        </div>
         <br>
         <div style="margin: 20px;">
           Bound value: {{ value }}

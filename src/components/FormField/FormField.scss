@@ -91,10 +91,6 @@
   input[readonly] {
     color: $black-700;
   }
-
-  &:before {
-    background-color: transparent !important;
-  }
 }
 
 .extra-text-container {
