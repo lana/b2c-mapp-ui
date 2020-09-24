@@ -1,0 +1,106 @@
+@import '../../styles/colors';
+@import '../../styles/typography';
+
+.code-input-wrapper {
+  text-align: center;
+}
+
+.field {
+  position: absolute;
+  top: -1000px;
+}
+
+.code {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 8px 16px 0;
+}
+
+.code-item {
+  text-align: center;
+  width: 72px;
+  height: 60px;
+  margin-right: 8px;
+  font: $default-xl;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 60px;
+  border: solid 1px $black-300;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background-color: $black-200;
+  transition: background-color 75ms linear;
+
+  &:first-of-type,
+  &.filled {
+    background-color: $white;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.sms-code-item {
+  width: 44px;
+  height: 64px;
+}
+
+.slash-item {
+  width: 32px;
+  height: 60px;
+  margin: 0 0 0 -8px;
+  font: $default-xl;
+  font-weight: 500;
+  line-height: 60px;
+  text-align: center;
+}
+
+.code-error {
+  animation: bounceError 0.25s ease-out;
+
+  .code-item {
+    border-color: $red-500;
+  }
+}
+
+.txt.error {
+  color: $red-500;
+  padding: 20px 0;
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.error-icon {
+  height: 24px;
+  width: 24px;
+  margin-right: 8px;
+
+  ::v-deep path {
+    fill: $red-500;
+  }
+}
+
+.error-description {
+  padding: 0 64px;
+}
+
+@keyframes bounceError {
+  0% {
+    transform: translateX(-8px);
+  }
+  25% {
+    transform: translateX(6px);
+  }
+  50% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
