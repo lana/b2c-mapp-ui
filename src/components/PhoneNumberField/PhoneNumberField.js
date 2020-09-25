@@ -37,6 +37,8 @@ const props = {
   maxLength: Number,
   lengthHint: Number,
   lengthHintLabel: String,
+  helpText: String,
+  hideClearButton: Boolean,
   maxPhoneNumberLength: {
     type: Number,
     default: 10,
@@ -55,6 +57,13 @@ const computed = {
     if (!(this.inputValue && this.countryCode)) { return ''; }
     const asYouType = new AsYouType(this.countryCode, phoneNumberMetadata);
     const result = asYouType.input(this.inputValue);
+    return result;
+  },
+  flagEmoji() {
+    if (!this.countryCode) { return ''; }
+    const flagCharacterFinalCode = 0x1F1A5;
+    const mapFlagCharacter = (character) => (character.charCodeAt() + flagCharacterFinalCode);
+    const result = String.fromCodePoint(...[...this.countryCode.toUpperCase()].map(mapFlagCharacter));
     return result;
   },
   prefix() {

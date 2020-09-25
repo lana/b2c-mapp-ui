@@ -1,11 +1,11 @@
 import { render } from '@testing-library/vue';
 
 import CopyableListWrapper from './UnitTestWrappers/CopyableListWrapper.vue';
+import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
 
 describe('CopyableList unit test', () => {
   beforeAll(() => {
-    // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
-    console.error = jest.fn(); // eslint-disable-line no-console
+    silenceDeprecationErrorsAndInnerComponentWarnings(jest);
   });
 
   it('Should show given title', () => {

@@ -1,11 +1,11 @@
 import { mount } from '@vue/test-utils';
 
 import TextParagraph from './TextParagraph.vue';
+import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
 
 describe('TextPargraph unit test:', () => {
   beforeAll(() => {
-    // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
-    console.error = jest.fn(); // eslint-disable-line no-console
+    silenceDeprecationErrorsAndInnerComponentWarnings(jest);
   });
 
   it('Should apply allowed given size as a classname', async () => {

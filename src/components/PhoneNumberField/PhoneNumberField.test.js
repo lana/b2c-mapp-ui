@@ -2,11 +2,11 @@ import { mount } from '@vue/test-utils';
 import { render } from '@testing-library/vue';
 
 import PhoneNumberField from './PhoneNumberField.vue';
+import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
 
 describe('UI/forms/PhoneNumberField', () => {
   beforeAll(() => {
-    // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
-    console.error = jest.fn(); // eslint-disable-line no-console
+    silenceDeprecationErrorsAndInnerComponentWarnings(jest);
   });
 
   const defaultProps = {
@@ -49,13 +49,13 @@ describe('UI/forms/PhoneNumberField', () => {
 
   it('Should show error label if given value is NOT valid', () => {
     const { getByTestId } = render(PhoneNumberField, { propsData: { ...defaultProps, errorLabel: 'Error!', value: '551234123234324' } });
-    const errorLabel = getByTestId('phone-field-label').className.includes('error');
+    const errorLabel = getByTestId('phone-field-container').className.includes('error');
     expect(errorLabel).toBeTruthy();
   });
 
   it('Should show given errorLabel text content if given value is NOT valid', () => {
     const { getByTestId } = render(PhoneNumberField, { propsData: { ...defaultProps, errorLabel: 'Error!', value: '551234123234324' } });
-    const errorLabel = getByTestId('phone-field-label').textContent.includes('Error!');
+    const errorLabel = getByTestId('phone-field-helptext').textContent.includes('Error!');
     expect(errorLabel).toBeTruthy();
   });
 

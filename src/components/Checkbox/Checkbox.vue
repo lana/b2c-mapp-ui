@@ -1,7 +1,7 @@
 <template>
   <div :data-testid="`${dataTestId}-wrapper`"
        class="checkbox-wrapper"
-       :class="{ checked: isChecked }"
+       :class="{ checked: isChecked, error: hasError }"
   >
     <input :id="idToUse"
            v-model="isChecked"
@@ -12,7 +12,7 @@
            :name="idToUse"
     >
     <CheckboxCheckedIcon v-if="isChecked"/>
-    <CheckboxUncheckedIcon v-if="!isChecked"/>
+    <CheckboxUncheckedIcon v-if="!isChecked" class="unchecked-icon"/>
     <label class="checkbox-label"
            :data-testid="`${dataTestId}-label`"
            :for="idToUse"

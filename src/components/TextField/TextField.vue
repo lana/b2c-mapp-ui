@@ -13,6 +13,8 @@
                :max-length="maxLengthToUse"
                :length-hint="lengthHint"
                :length-hint-label="lengthHintLabel"
+               :help-text="helpText"
+               :hide-clear-button="hideClearButton"
                @focus="onFocus"
                @blur="onBlur"
                @keypress="onKeypress"

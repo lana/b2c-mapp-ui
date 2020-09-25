@@ -1,4 +1,4 @@
-import { withKnobs, select, text } from '@storybook/addon-knobs';
+import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
 
 import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
 import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
@@ -22,6 +22,9 @@ const defaultExample = () => ({
     label: {
       default: text('Label', 'Example label'),
     },
+    hasError: {
+      default: boolean('Has Error?', false),
+    },
   },
   data() {
     return {
@@ -35,14 +38,16 @@ const defaultExample = () => ({
       <StorybookMobileDeviceSimulator :device="device">
         <div style="margin: 20px">
           <label>
-            Enabled:
-            <Checkbox v-model="isChecked" :label="label"/>
+            <p>Enabled:</p>
+            <br>
+            <Checkbox v-model="isChecked" :label="label" :has-error="hasError"/>
           </label>
         </div>
         <div style="margin: 20px">
           <label>
-            Disabled:
-            <Checkbox v-model="isChecked" :label="label" disabled/>
+            <p>Disabled:</p>
+            <br>
+            <Checkbox v-model="isChecked" :label="label" :has-error="hasError" disabled/>
           </label>
         </div>
         <div style="margin: 20px;">

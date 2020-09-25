@@ -2,11 +2,11 @@ import { render, fireEvent } from '@testing-library/vue';
 import { mount } from '@vue/test-utils';
 
 import SelectBox from './SelectBox.vue';
+import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
 
 describe('SelectBox unit test', () => {
   beforeAll(() => {
-    // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
-    console.error = jest.fn(); // eslint-disable-line no-console
+    silenceDeprecationErrorsAndInnerComponentWarnings(jest);
   });
 
   const defaultProps = {
@@ -33,7 +33,7 @@ describe('SelectBox unit test', () => {
     const wrapper = mount(SelectBox, { propsData: { ...defaultProps, isFocused: true } });
     wrapper.find('select').trigger('focus');
     await wrapper.vm.$nextTick();
-    const focusClass = wrapper.find('label').classes().includes('focus');
+    const focusClass = wrapper.find('div.select-box-container').classes().includes('focus');
     expect(focusClass).toBeTruthy();
   });
 

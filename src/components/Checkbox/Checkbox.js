@@ -17,6 +17,7 @@ const props = {
   value: Boolean,
   id: String,
   disabled: Boolean,
+  hasError: Boolean,
 };
 
 const data = function () {

@@ -31,6 +31,8 @@ const props = {
   showLengthHint: Boolean,
   lengthHint: Number,
   lengthHintLabel: String,
+  helpText: String,
+  hideClearButton: Boolean,
 };
 
 const data = function () {

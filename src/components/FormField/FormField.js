@@ -1,7 +1,12 @@
+import { CloseBoldIcon, WarningBoldIcon } from '@lana/b2c-mapp-ui-assets';
+
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
+import { sleep } from '../../lib/sleepHelper';
 
 const components = {
   TextParagraph,
+  CloseBoldIcon,
+  WarningBoldIcon,
 };
 
 const props = {
@@ -28,6 +33,8 @@ const props = {
   showPrefix: Boolean,
   lengthHint: Number,
   lengthHintLabel: String,
+  helpText: String,
+  hideClearButton: Boolean,
 };
 
 const data = function () {
@@ -50,8 +57,16 @@ const computed = {
     const result = (this.id || this.name);
     return result;
   },
-  errorLabelOrPlaceholder() {
-    const result = (this.errorLabel || this.label || '');
+  formattedLengthHint() {
+    const result = `${(this.lengthHint || '')} ${(this.lengthHintLabel || '')}`;
+    return result;
+  },
+  errorLabelOrHelpText() {
+    const result = (this.errorLabel || this.helpText || this.formattedLengthHint || '');
+    return result;
+  },
+  isClearIconShowing() {
+    const result = (this.inputValue && !(this.hideClearButton || this.readonly || this.disabled));
     return result;
   },
 };
@@ -91,6 +106,12 @@ const methods = {
   },
   focus() {
     this.$refs.input.focus();
+  },
+  async clearValue() {
+    this.inputValue = '';
+    this.blur();
+    await sleep(50); // NOTE: sleep must be used here because `this.$nextTick()` is not waiting long enough in this case
+    this.focus();
   },
 };
 

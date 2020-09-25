@@ -53,6 +53,12 @@ const defaultExample = () => ({
     lengthHintLabel: {
       default: text('Length Hint Label'),
     },
+    helpText: {
+      default: text('Help Text', ''),
+    },
+    hideClearButton: {
+      default: boolean('Hide Clear Button?', false),
+    },
   },
   data() {
     return {
@@ -100,6 +106,8 @@ const defaultExample = () => ({
                           :max-phone-number-length="maxPhoneNumberLength"
                           :length-hint="lengthHint"
                           :length-hint-label="lengthHintLabel"
+                          :help-text="helpText"
+                          :hide-clear-button="hideClearButton"
                           @blur="onBlur"
                           @focus="onFocus"
                           @input="onInput"
@@ -168,10 +176,25 @@ const moreExamples = () => ({
           />
         </div>
         <div style="width: 500px">
+          <p>With Help Text</p>
+          <PhoneNumberField :country-code="defaultCountryCode"
+                            label="With Help Text"
+                            help-text="Example Help Text"
+          />
+        </div>
+        <div style="width: 500px">
+          <p>With Hidden Clear Button</p>
+          <PhoneNumberField :country-code="defaultCountryCode"
+                            label="With hidden clear button"
+                            hide-clear-button
+          />
+        </div>
+        <div style="width: 500px">
           <p>With Error</p>
           <PhoneNumberField :country-code="defaultCountryCode"
                             value="55 1234 1234"
                             error-label="Invalid phone number"
+                            label="Example"
           />
         </div>
         <div style="width: 500px">

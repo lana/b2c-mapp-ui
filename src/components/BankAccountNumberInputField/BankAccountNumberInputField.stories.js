@@ -47,6 +47,12 @@ const defaultExample = () => ({
     countryCode: {
       default: text('Country Code', 'MX'),
     },
+    helpText: {
+      default: text('Help Text', ''),
+    },
+    hideClearButton: {
+      default: boolean('Hide Clear Button?', false),
+    },
   },
   data() {
     return {
@@ -63,7 +69,7 @@ const defaultExample = () => ({
       <h2><strong>BankAccountNumberInputField:</strong>&nbsp;An international bank account formatting and validation field.</h2>
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <div>
+        <div style="padding: 16px;">
           <BankAccountNumberInputField :disabled="disabled"
                                        :readonly="readonly"
                                        :autoformat="autoformat"
@@ -72,6 +78,8 @@ const defaultExample = () => ({
                                        :show-length-hint="showLengthHint"
                                        :length-hint-label="lengthHintLabel"
                                        :length-hint="lengthHint"
+                                       :help-text="helpText"
+                                       :hide-clear-button="hideClearButton"
                                        v-model="value"
                                        @blur="onBlur"
                                        @focus="onFocus"
@@ -120,6 +128,24 @@ const examples = () => ({
                                        label="Introduce un CLABE"
                                        error-label="Invalid CLABE number"
                                        value="138211000000000127"
+          />
+        </div>
+        <br>
+        <div style="width: 500px">
+          <label>With a help text:</label>
+          <BankAccountNumberInputField country-code="MX"
+                                       label="Introduce un CLABE"
+                                       value=""
+                                       help-text="Example Help Text"
+          />
+        </div>
+        <br>
+        <div style="width: 500px">
+          <label>With hidden clear button:</label>
+          <BankAccountNumberInputField country-code="MX"
+                                       label="Introduce un CLABE"
+                                       value="138211000000000127"
+                                       hide-clear-button
           />
         </div>
         <br>

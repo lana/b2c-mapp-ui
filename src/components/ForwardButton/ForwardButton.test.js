@@ -1,10 +1,11 @@
 import { render, fireEvent } from '@testing-library/vue';
 
 import ForwardButton from './ForwardButton.vue';
+import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
 
 describe('ForwardButton unit test', () => {
-  beforeAll(() => { // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
-    console.error = jest.fn(); // eslint-disable-line no-console
+  beforeAll(() => {
+    silenceDeprecationErrorsAndInnerComponentWarnings(jest);
   });
 
   it('Should wrap a Button with a section', () => {

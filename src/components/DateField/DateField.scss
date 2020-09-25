@@ -1,3 +1,5 @@
+@import '../../styles/colors';
+
 .calendar-wrapper {
   position: relative;
 }
@@ -6,8 +8,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  height: 100%;
-  padding-right: 16px;
+  padding: 18px 16px 18px 0;
 
   .icon {
     height: 20px;
@@ -22,6 +23,14 @@
     height: 100%;
     vertical-align: middle;
   }
+}
+
+svg.icon.grey-icon ::v-deep path {
+  fill: $black-500;
+}
+
+svg.icon.red-icon ::v-deep path {
+  fill: $red-500;
 }
 
 .hidden-input {

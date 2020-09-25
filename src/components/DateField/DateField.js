@@ -41,6 +41,7 @@ const props = {
   startFocused: Boolean,
   disabled: Boolean,
   customValidation: Boolean,
+  helpText: String,
 };
 
 const data = function () {
@@ -70,6 +71,9 @@ const computed = {
   },
   errorLabelToShow() {
     if (this.customValidation || !this.isValid) { return this.errorLabel; }
+  },
+  hasError() {
+    return !!this.errorLabelToShow;
   },
   formFieldFormattedDateText() {
     if (!this.datePickerValue) { return ''; }

@@ -2,11 +2,11 @@ import { render } from '@testing-library/vue';
 import { mount } from '@vue/test-utils';
 
 import DateField from './DateField.vue';
+import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
 
 describe('DateField unit test', () => {
   beforeAll(() => {
-    // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
-    console.error = jest.fn(); // eslint-disable-line no-console
+    silenceDeprecationErrorsAndInnerComponentWarnings(jest);
   });
 
   const defaultProps = {
@@ -50,7 +50,7 @@ describe('DateField unit test', () => {
     dateInput.element.setAttribute('value', wrongDate);
     dateInput.trigger('input');
     await wrapper.vm.$nextTick();
-    const labelHasError = wrapper.find('label[data-testid="date-field-label"]').classes().includes('error');
+    const labelHasError = wrapper.find('div[data-testid="date-field-container"]').classes().includes('error');
     expect(labelHasError).toBeTruthy();
   });
 
@@ -61,7 +61,7 @@ describe('DateField unit test', () => {
     dateInput.element.setAttribute('value', wrongDate);
     dateInput.trigger('input');
     await wrapper.vm.$nextTick();
-    const labelHasError = wrapper.find('label[data-testid="date-field-label"]').classes().includes('error');
+    const labelHasError = wrapper.find('div[data-testid="date-field-container"]').classes().includes('error');
     expect(labelHasError).toBeTruthy();
   });
 

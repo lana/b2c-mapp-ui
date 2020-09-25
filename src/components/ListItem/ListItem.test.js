@@ -2,10 +2,11 @@ import { render, fireEvent } from '@testing-library/vue';
 import { mount } from '@vue/test-utils';
 
 import ListItem from './ListItem.vue';
+import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
 
 describe('ListItem', () => {
-  beforeAll(() => { // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
-    console.error = jest.fn(); // eslint-disable-line no-console
+  beforeAll(() => {
+    silenceDeprecationErrorsAndInnerComponentWarnings(jest);
   });
 
   const defaultProps = {

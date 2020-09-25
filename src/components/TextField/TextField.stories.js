@@ -44,6 +44,12 @@ const defaultExample = () => ({
     lengthHintLabel: {
       default: text('Length Hint Label'),
     },
+    helpText: {
+      default: text('Help Text', ''),
+    },
+    hideClearButton: {
+      default: boolean('Hide Clear Button?', false),
+    },
   },
   data() {
     return {
@@ -62,21 +68,25 @@ const defaultExample = () => ({
       <h2><strong>TextField:</strong>&nbsp;A simple text field.</h2> <!-- TODO: Improve this description so that it makes it clear how this is different from the FormField component -->
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <TextField v-model="value"
-                   :type="type"
-                   :disabled="disabled"
-                   :readonly="readonly"
-                   :label="label"
-                   :error-label="errorLabel"
-                   :max-length="maxLength"
-                   :length-hint="lengthHint"
-                   :length-hint-label="lengthHintLabel"
-                   @blur="onBlur"
-                   @focus="onFocus"
-                   @keypress="onKeypress"
-                   @keyup="onKeyup"
-                   @paste="onPaste"
-        />
+        <div style="padding: 16px;">
+          <TextField v-model="value"
+                     :type="type"
+                     :disabled="disabled"
+                     :readonly="readonly"
+                     :label="label"
+                     :error-label="errorLabel"
+                     :max-length="maxLength"
+                     :length-hint="lengthHint"
+                     :length-hint-label="lengthHintLabel"
+                     :help-text="helpText"
+                     :hide-clear-button="hideClearButton"
+                     @blur="onBlur"
+                     @focus="onFocus"
+                     @keypress="onKeypress"
+                     @keyup="onKeyup"
+                     @paste="onPaste"
+          />
+        </div>
         <br>
         <div style="margin: 20px;">
           Bound value: {{ value }}
@@ -102,7 +112,7 @@ const examples = () => ({
         <br>
         <div style="width: 500px">
           <label>No value with length hint:</label>
-          <TextField label='Credit Card Number' :length-hint="16"/>
+          <TextField label='Credit Card Number' :length-hint="16" length-hint-label="digits"/>
         </div>
         <br>
         <div style="width: 500px">
@@ -112,7 +122,7 @@ const examples = () => ({
         <br>
         <div style="width: 500px">
           <label>Unfocused with error:</label>
-          <TextField value="foo" error-label="Invalid value"/>
+          <TextField value="foo" label="foo" error-label="Invalid value"/>
         </div>
         <br>
         <div style="width: 500px">
@@ -121,8 +131,23 @@ const examples = () => ({
         </div>
         <br>
         <div style="width: 500px">
+          <label>With hidden clear button:</label>
+          <TextField label="Example" value="Example" hide-clear-button/>
+        </div>
+        <br>
+        <div style="width: 500px">
+          <label>With Help Text:</label>
+          <TextField label="With help text" value="Example" hide-clear-button help-text="Example Help Text"/>
+        </div>
+        <br>
+        <div style="width: 500px">
           <label>Readonly:</label>
           <TextField label="Enter your name" value="value locked" readonly/>
+        </div>
+        <br>
+        <div style="width: 500px">
+          <label>Disabled:</label>
+          <TextField label="Enter your name" value="value locked" disabled/>
         </div>
       </div>
     </div>

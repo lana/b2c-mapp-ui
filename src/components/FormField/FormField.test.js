@@ -2,11 +2,11 @@ import { mount } from '@vue/test-utils';
 
 import FormField from './FormField.vue';
 import WithErrorFormFieldWrapper from './UnitTestWrappers/WithErrorFormFieldWrapper.vue';
+import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
 
 describe('FormField unit test', () => {
   beforeAll(() => {
-    // Silence deprecation error logs from vue-test-utils. Remove this in future versions of this library:
-    console.error = jest.fn(); // eslint-disable-line no-console
+    silenceDeprecationErrorsAndInnerComponentWarnings(jest);
   });
   const defaultProps = {
     name: 'my-input',
@@ -27,10 +27,10 @@ describe('FormField unit test', () => {
   it('Should have focus class if focus is triggered', async () => {
     const wrapper = mount(FormField, { propsData: { ...defaultProps } });
     const inputField = wrapper.find('input');
-    const label = wrapper.find('label');
+    const fieldContainer = wrapper.find('.field-container');
     inputField.trigger('focus');
     await wrapper.vm.$forceUpdate();
-    const hasFocusClass = label.element.className.includes('focus');
+    const hasFocusClass = fieldContainer.element.className.includes('focus');
     expect(hasFocusClass).toBeTruthy();
   });
 
@@ -85,7 +85,7 @@ describe('FormField unit test', () => {
   it('Should show given errorLabel as label content', async () => {
     const wrapper = mount(WithErrorFormFieldWrapper);
     await wrapper.vm.$nextTick();
-    const hasError = wrapper.find('label[data-testid="field-label"]').element.className.includes('error');
+    const hasError = wrapper.find('div[data-testid="field-extra-text"]').element.className.includes('error');
     expect(hasError).toBeTruthy();
   });
 
