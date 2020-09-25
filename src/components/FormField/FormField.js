@@ -1,6 +1,7 @@
 import { CloseBoldIcon, WarningBoldIcon } from '@lana/b2c-mapp-ui-assets';
 
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
+import { sleep } from '../../lib/sleepHelper';
 
 const components = {
   TextParagraph,
@@ -106,8 +107,11 @@ const methods = {
   focus() {
     this.$refs.input.focus();
   },
-  clearValue() {
+  async clearValue() {
     this.inputValue = '';
+    this.blur();
+    await sleep(50); // NOTE: sleep must be used here because `this.$nextTick()` is not waiting long enough in this case
+    this.focus();
   },
 };
 

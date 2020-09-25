@@ -2,6 +2,7 @@ import { CurrencyDirective, getValue, setValue } from 'vue-currency-input';
 import { CloseBoldIcon, WarningBoldIcon } from '@lana/b2c-mapp-ui-assets';
 
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
+import { sleep } from '../../lib/sleepHelper';
 
 const components = {
   TextParagraph,
@@ -131,10 +132,13 @@ const methods = {
     const result = getValue(this.$refs.input);
     return result;
   },
-  clearValue() {
+  async clearValue() {
     this.inputValue = '';
     setValue(this.$refs.input, this.inputValue);
     this.emitInputEvent();
+    this.blur();
+    await sleep(50); // NOTE: sleep must be used here because `this.$nextTick()` is not waiting long enough in this case
+    this.focus();
   },
 };
 
