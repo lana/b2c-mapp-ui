@@ -1,10 +1,11 @@
 @import '../../styles/colors';
 @import '../../styles/typography';
 
-.clipboard {
+.clipboard-button {
   font: $default-m;
   font-size: 14px;
   font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .tocopy {

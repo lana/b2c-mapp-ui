@@ -21,6 +21,7 @@
   height: 56px;
   transition: background 100ms ease-out;
   touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 
   &:active,
   &.pressed {

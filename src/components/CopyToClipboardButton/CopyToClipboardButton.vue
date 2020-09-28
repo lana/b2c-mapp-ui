@@ -1,6 +1,6 @@
 <template>
   <button :id="id"
-          class="clipboard"
+          class="clipboard-button"
           :class="copyStatusClass"
           :data-testid="`${dataTestId}-button`"
           :name="name"
