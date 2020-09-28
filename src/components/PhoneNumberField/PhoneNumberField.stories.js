@@ -138,9 +138,10 @@ const countryCodes = () => ({
       <h2><strong>PhoneNumberField:</strong>&nbsp;Available Country Codes.</h2>
       <hr>
       <div style="display: flex; flex-direction: column; width: 100%;">
-        <div v-for="(countryCode, index) in availableCountryCodes" style="width: 500px">
+        <div v-for="(countryCode, index) in availableCountryCodes" style="width: 500px; margin-bottom: 20px;">
           <PhoneNumberField :country-code="countryCode"
                             :label="countryCode + ' Country Code Example'"
+
           />
         </div>
       </div>
