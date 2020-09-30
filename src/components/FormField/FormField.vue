@@ -1,7 +1,7 @@
 <template>
   <div class="outer-field-container">
     <div class="field-container"
-         :class="{ disabled, readonly, focus: isFocused, error: errorLabel }"
+         :class="{ disabled, readonly, focus: (isFocused || isClearing), error: errorLabel }"
          :data-testid="`${dataTestId}-container`"
     >
       <label :data-testid="`${dataTestId}-label`"

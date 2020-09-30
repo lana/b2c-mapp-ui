@@ -40,6 +40,7 @@ const props = {
 const data = function () {
   return {
     isFocused: false,
+    isClearing: false,
     inputValue: this.value,
   };
 };
@@ -50,7 +51,7 @@ const computed = {
     return result;
   },
   hasLabel() {
-    const result = (this.showPrefix || !!this.inputValue || this.readonly || this.isFocused);
+    const result = (this.isClearing || this.showPrefix || !!this.inputValue || this.readonly || this.isFocused);
     return result;
   },
   inputId() {
@@ -108,10 +109,11 @@ const methods = {
     this.$refs.input.focus();
   },
   async clearValue() {
+    this.isClearing = true;
     this.inputValue = '';
-    this.blur();
     await sleep(50); // NOTE: sleep must be used here because `this.$nextTick()` is not waiting long enough in this case
     this.focus();
+    this.isClearing = false;
   },
 };
 

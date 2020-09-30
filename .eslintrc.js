@@ -133,5 +133,6 @@ module.exports = {
     }],
     'vue/v-on-function-call': 'error',
     'vue/valid-v-slot': 'error',
+    'vue/custom-event-name-casing': 'off',
   },
 };

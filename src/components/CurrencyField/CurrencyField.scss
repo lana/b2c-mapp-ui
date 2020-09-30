@@ -3,7 +3,7 @@
 
 .field-container {
   background: $white;
-  border: 1px solid $black-300;
+  border: 1.5px solid $black-300;
   border-radius: 8px;
 
   &.disabled {
@@ -44,6 +44,7 @@
 }
 
 .input {
+  background-color: transparent;
   box-sizing: border-box;
   border: none;
   color: $black-700;
@@ -52,6 +53,7 @@
   line-height: 20px;
   padding-right: 18px;
   width: 100%;
+  vertical-align: top;
 }
 
 .focus {
@@ -66,7 +68,7 @@
   }
 
   .clear-icon-container {
-    display: initial;
+    display: flex;
   }
 }
 
@@ -119,9 +121,15 @@
 .clear-icon-container {
   cursor: pointer;
   display: none;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
-  right: 20px;
-  top: 19px;
+  right: 10px;
+  top: 0;
+  padding-top: 20px;
+  font-size: 16px;
+  width: 44px;
+  height: 38px;
 }
 
 .clear-icon {
