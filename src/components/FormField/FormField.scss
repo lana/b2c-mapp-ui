@@ -67,7 +67,7 @@
   }
 
   .clear-icon-container {
-    display: initial;
+    display: flex;
   }
 }
 
@@ -122,10 +122,15 @@
 .clear-icon-container {
   cursor: pointer;
   display: none;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
-  right: 20px;
-  top: 19px;
+  right: 10px;
+  top: 0;
+  padding-top: 20px;
   font-size: 16px;
+  width: 44px;
+  height: 38px;
 }
 
 .clear-icon {
