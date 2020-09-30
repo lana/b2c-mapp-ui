@@ -13,7 +13,7 @@
 
 .filled {
   ::v-deep input {
-    text-indent: 4em; // NOTE: em must be used here to prevent distortion caused by large browser font settings
+    text-indent: 60px;
   }
 
   .prefix-container {
