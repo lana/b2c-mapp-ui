@@ -1,5 +1,8 @@
 # Lana B2C MicroApp Libs Changelog
 
+## v.8.3.0 - 01-10-2020
+ - Awesome Confetti component.
+
 ## v.7.7.0 - 21-07-2020
  - New assets version with faq icons
 
