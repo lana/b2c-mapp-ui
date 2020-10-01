@@ -1,0 +1,42 @@
+@import '../../styles/colors';
+
+.wrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding:0;
+  overflow: hidden;
+}
+
+[class|="confetti"] {
+  position: absolute;
+}
+
+$colors: ($blue-600, $orange-500, $pink-600, $purple-400, $red-500, $yellow-500);
+
+@for $i from 0 through 150 {
+  $w: random(10);
+  $l: random(100);
+  .confetti-#{$i} {
+    visibility: hidden;
+    width: #{$w}px;
+    height: #{$w*0.8}px;
+    background-color: nth($colors, random(3));
+    top: -10%;
+    left: unquote($l+"%");
+    opacity: random() + 0.5;
+    transform: rotate(#{random()*360}deg);
+    animation: drop-#{$i} unquote(2+random()+"s") unquote(random()+"s") ease-in;
+  }
+
+  @keyframes drop-#{$i} {
+    10% {
+      visibility: visible;
+    }
+    100% {
+      top: 110%;
+      left: unquote($l+random(15)+"%");
+    }
+  }
+}
