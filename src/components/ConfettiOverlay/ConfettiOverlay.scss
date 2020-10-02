@@ -1,5 +1,7 @@
 @import '../../styles/colors';
 
+$colors: ($blue-600, $orange-500, $pink-600, $purple-400, $red-500, $yellow-500);
+
 .wrapper {
   position: absolute;
   height: 100%;
@@ -13,18 +15,16 @@
   position: absolute;
 }
 
-$colors: ($blue-600, $orange-500, $pink-600, $purple-400, $red-500, $yellow-500);
-
 @for $i from 0 through 150 {
-  $w: random(10);
-  $l: random(100);
+  $particleWidth: random(10);
+  $particleHeight: random(100);
   .confetti-#{$i} {
     visibility: hidden;
-    width: #{$w}px;
-    height: #{$w*0.8}px;
+    width: #{$particleWidth}px;
+    height: #{$particleWidth*0.8}px;
     background-color: nth($colors, random(3));
     top: -10%;
-    left: unquote($l+"%");
+    left: unquote($particleHeight+"%");
     opacity: random() + 0.5;
     transform: rotate(#{random()*360}deg);
     animation: drop-#{$i} unquote(2+random()+"s") unquote(random()+"s") ease-in;
@@ -36,7 +36,7 @@ $colors: ($blue-600, $orange-500, $pink-600, $purple-400, $red-500, $yellow-500)
     }
     100% {
       top: 110%;
-      left: unquote($l+random(15)+"%");
+      transform: translateX(unquote($particleHeight+random(15)+"%"));
     }
   }
 }

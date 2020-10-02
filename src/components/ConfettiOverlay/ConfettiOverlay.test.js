@@ -1,15 +1,15 @@
 import { shallowMount } from '@vue/test-utils';
 
-import Confetti from './Confetti.vue';
+import ConfettiOverlay from './ConfettiOverlay.vue';
 
-describe('Confetti unit test', () => {
+describe('ConfettiOverlay unit test', () => {
   const waitForDomUpdate = async (wrapper) => {
     await wrapper.vm.$nextTick();
     await wrapper.vm.$forceUpdate();
   };
 
   it('Should pass health-check test', async () => {
-    const wrapper = shallowMount(Confetti);
+    const wrapper = shallowMount(ConfettiOverlay);
     await waitForDomUpdate(wrapper);
     expect(wrapper).toMatchSnapshot();
   });
