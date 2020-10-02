@@ -13,17 +13,10 @@
 
 .filled {
   ::v-deep input {
-    text-indent: 60px;
+    text-indent: 35px;
   }
 
   .prefix-container {
     opacity: 1;
   }
-}
-
-.flag {
-  font-size: 16px;
-  line-height: 30px;
-  margin-right: 10px;
-  margin-top: -2px;
 }
