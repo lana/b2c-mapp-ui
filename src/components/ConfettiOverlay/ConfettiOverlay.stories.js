@@ -2,20 +2,20 @@ import { select, withKnobs } from '@storybook/addon-knobs';
 
 import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
 import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
-import Confetti from './Confetti.vue';
+import ConfettiOverlay from './ConfettiOverlay.vue';
 import ScrollWrapper from '../ScrollWrapper/ScrollWrapper.vue';
 import Screen from '../Screen/Screen.vue';
 import Heading from '../Heading/Heading.vue';
 
 const ConfettiStories = {
-  component: Confetti,
-  title: 'Components/Confetti',
+  component: ConfettiOverlay,
+  title: 'Components/ConfettiOverlay',
   decorators: [withKnobs],
 };
 
 const defaultExample = () => ({
   components: {
-    Confetti,
+    ConfettiOverlay,
     Heading,
     Screen,
     ScrollWrapper,
@@ -28,12 +28,12 @@ const defaultExample = () => ({
   },
   template: `
    <div style="margin: 10px 50px 10px 50px;">
-   <h2><strong>ContentItem:</strong>&nbsp;A list item which usually transitions the user to content in another screen.</h2>
+   <h2><strong>ConfettiOverlay:</strong>&nbsp</h2>
    <hr>
    <StorybookMobileDeviceSimulator :device="device">
      <Screen>
        <ScrollWrapper>
-         <Confetti :confetti-particles="300"/>
+         <ConfettiOverlay particles="50"/>
          <Heading style="text-align: center;" size="xxxl"
                   weight="semibold"
          >
