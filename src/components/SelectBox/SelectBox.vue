@@ -1,6 +1,9 @@
 <template>
   <div class="outer-select-box-container">
-    <div class="select-box-container" :class="{ focus: isFocused, disabled, readonly, 'no-value': (!hasEmptyOption && !value), error: errorLabel }">
+    <div class="select-box-container"
+         :class="{ focus: isFocused, disabled, readonly, 'no-value': (!hasEmptyOption && !value), error: errorLabel }"
+         :data-testid="`${dataTestId}-container`"
+    >
       <label class="select-box" :data-testid="`${dataTestId}-label`">
         <strong class="label">{{ label }}</strong>
         <ExpandSmallIcon v-if="!readonly" class="select-icon"/>
