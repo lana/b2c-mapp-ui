@@ -59,13 +59,6 @@ const computed = {
     const result = asYouType.input(this.inputValue);
     return result;
   },
-  flagEmoji() {
-    if (!this.countryCode) { return ''; }
-    const flagCharacterFinalCode = 0x1F1A5;
-    const mapFlagCharacter = (character) => (character.charCodeAt() + flagCharacterFinalCode);
-    const result = String.fromCodePoint(...[...this.countryCode.toUpperCase()].map(mapFlagCharacter));
-    return result;
-  },
   prefix() {
     if (!this.countryCode) { return; }
     const result = `+${getCountryCallingCode(this.countryCode, phoneNumberMetadata)}`;
