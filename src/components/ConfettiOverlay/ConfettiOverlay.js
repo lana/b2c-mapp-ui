@@ -8,7 +8,8 @@ const props = {
     validator: (value) => {
       const numericValue = Number.parseInt(value, 10);
       const isValid = !Number.isNaN(numericValue);
-      return (isValid && numericValue <= maximumCountOfParticlesForSmoothPerformance);
+      const result = (isValid && (numericValue <= maximumCountOfParticlesForSmoothPerformance));
+      return result;
     },
   },
 };
