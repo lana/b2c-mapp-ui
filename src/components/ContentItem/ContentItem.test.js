@@ -1,4 +1,4 @@
-import {render, fireEvent, waitFor} from '@testing-library/vue';
+import { render, fireEvent } from '@testing-library/vue';
 
 import ContentItem from './ContentItem.vue';
 import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
