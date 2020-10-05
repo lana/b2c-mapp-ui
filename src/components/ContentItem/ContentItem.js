@@ -41,11 +41,11 @@ const computed = {
     const result = (this.success || this.hasForwardButton);
     return result;
   },
-  icon() {
+  iconName() {
     const result = (this.hasForwardButton && !this.success) ? 'ChevronRightIcon' : 'Success';
     return result;
   },
-  dataTestIdValue() {
+  iconDataTestId() {
     const result = `${(this.success) ? 'success-' : ''}${this.dataTestId}-forward-icon`;
     return result;
   },

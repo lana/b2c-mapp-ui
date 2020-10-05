@@ -1,8 +1,8 @@
 <template>
   <li class="item"
+      :class="{ success }"
       :data-testid="dataTestId"
       :disabled="disabled"
-      :class="{ success }"
       @click="emitClickEvent"
   >
     <div v-if="$slots.default"
@@ -21,7 +21,7 @@
         {{ metaText }}
       </TextParagraph>
     </div>
-    <Component :is="icon" v-if="hasIcon" class="forward-icon" :data-testid="dataTestIdValue"/>
+    <Component :is="iconName" v-if="hasIcon" class="item-icon" :data-testid="iconDataTestId"/>
   </li>
 </template>
 

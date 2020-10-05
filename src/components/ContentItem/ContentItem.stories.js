@@ -99,7 +99,7 @@ const withIcon = () => ({
       default: boolean('Has Forward Button?', true),
     },
     success: {
-      default: boolean('Has Success forward icon?', true),
+      default: boolean('Is in Success state?', false),
     },
     title: {
       default: text('Title', 'Example Title'),

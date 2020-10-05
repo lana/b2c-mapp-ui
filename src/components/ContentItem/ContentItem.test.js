@@ -75,9 +75,9 @@ describe('ContentItem unit test', () => {
 
   it('Should show success state if success prop is provided', () => {
     const { queryAllByTestId } = render(ContentItem, { propsData: { ...defaultProps, success: true } });
-    const successIconExist = queryAllByTestId('success-content-item-forward-icon').length;
+    const successIconExists = queryAllByTestId('success-content-item-forward-icon').length;
     const successStateIsApplied = queryAllByTestId('content-item')[0].className.includes('success');
-    const isShowingSuccessState = successIconExist && successStateIsApplied;
+    const isShowingSuccessState = successIconExists && successStateIsApplied;
     expect(isShowingSuccessState).toBeTruthy();
   });
 
