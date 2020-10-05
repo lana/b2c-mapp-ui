@@ -80,4 +80,12 @@ describe('ContentItem unit test', () => {
     const isShowingSuccessState = successIconExist && successStateIsApplied;
     expect(isShowingSuccessState).toBeTruthy();
   });
+
+  it('Should NOT emit click event when content-item is clicked and it has success state', () => {
+    const { getByTestId, emitted } = render(ContentItem, { propsData: { ...defaultProps, success: true } });
+    const li = getByTestId('content-item');
+    fireEvent.click(li);
+    const clicked = emitted().click;
+    expect(clicked).not.toBeTruthy();
+  });
 });

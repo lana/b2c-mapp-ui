@@ -53,7 +53,7 @@ const computed = {
 
 const methods = {
   emitClickEvent(event) {
-    if (this.disabled) { return; }
+    if (this.disabled || this.success) { return; }
     this.$emit('click', event);
   },
 };
