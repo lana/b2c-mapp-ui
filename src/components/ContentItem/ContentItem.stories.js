@@ -95,6 +95,18 @@ const withIcon = () => ({
     device: {
       default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
     },
+    hasForwardButton: {
+      default: boolean('Has Forward Button?', true),
+    },
+    success: {
+      default: boolean('Is in Success state?', false),
+    },
+    title: {
+      default: text('Title', 'Example Title'),
+    },
+    metaText: {
+      default: text('Meta text', 'Example Metatext'),
+    },
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
@@ -104,6 +116,57 @@ const withIcon = () => ({
         <ContentItem title="Example with Icon"
                      meta-text="Example metatext"
                      no-border
+                     :success="success"
+                     :has-forward-button="hasForwardButton"
+        >
+          <DocumentFilledIcon/>
+        </ContentItem>
+      </StorybookMobileDeviceSimulator>
+    </div>
+  `,
+});
+
+const successState = () => ({
+  components: {
+    ContentItem,
+    DocumentFilledIcon,
+    StorybookMobileDeviceSimulator,
+  },
+  props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
+    disabled: {
+      default: boolean('Is Disabled?', false),
+    },
+    hasForwardButton: {
+      default: boolean('Has Forward Button?', true),
+    },
+    success: {
+      default: boolean('Has Success forward icon?', true),
+    },
+    title: {
+      default: text('Title', 'Example Title'),
+    },
+    metaText: {
+      default: text('Meta text', 'Example Metatext'),
+    },
+  },
+  methods: {
+    onClick: action('Click!'),
+  },
+  template: `
+    <div style="margin: 10px 50px 10px 50px;">
+      <h2><strong>ContentItem:</strong>&nbsp;A list item with success state, it does not redirect anywhere, it just provides success/completed information.</h2>
+      <hr>
+      <StorybookMobileDeviceSimulator :device="device">
+        <ContentItem :title="title"
+                     :meta-text="metaText"
+                     :has-forward-button="hasForwardButton"
+                     no-border
+                     :disabled="disabled"
+                     :success="success"
+                     @click="onClick"
         >
           <DocumentFilledIcon/>
         </ContentItem>
@@ -116,6 +179,7 @@ export {
   defaultExample,
   withImage,
   withIcon,
+  successState,
 };
 
 export default ContentItemStories;

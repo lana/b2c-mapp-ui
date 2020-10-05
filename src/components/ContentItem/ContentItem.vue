@@ -1,5 +1,6 @@
 <template>
   <li class="item"
+      :class="{ success }"
       :data-testid="dataTestId"
       :disabled="disabled"
       @click="emitClickEvent"
@@ -20,10 +21,7 @@
         {{ metaText }}
       </TextParagraph>
     </div>
-    <ChevronRightIcon v-if="hasForwardButton"
-                      class="forward-icon"
-                      :data-testid="`${dataTestId}-forward-icon`"
-    />
+    <Component :is="iconName" v-if="hasIcon" class="item-icon" :data-testid="iconDataTestId"/>
   </li>
 </template>
 

@@ -72,4 +72,20 @@ describe('ContentItem unit test', () => {
     const forwardIconExist = !queryAllByTestId('content-item-forward-icon').length;
     expect(forwardIconExist).toBeTruthy();
   });
+
+  it('Should show success state if success prop is provided', () => {
+    const { queryAllByTestId } = render(ContentItem, { propsData: { ...defaultProps, success: true } });
+    const successIconExists = queryAllByTestId('success-content-item-forward-icon').length;
+    const successStateIsApplied = queryAllByTestId('content-item')[0].className.includes('success');
+    const isShowingSuccessState = successIconExists && successStateIsApplied;
+    expect(isShowingSuccessState).toBeTruthy();
+  });
+
+  it('Should NOT emit click event when content-item is clicked and it has success state', () => {
+    const { getByTestId, emitted } = render(ContentItem, { propsData: { ...defaultProps, success: true } });
+    const li = getByTestId('content-item');
+    fireEvent.click(li);
+    const clicked = emitted().click;
+    expect(clicked).not.toBeTruthy();
+  });
 });
