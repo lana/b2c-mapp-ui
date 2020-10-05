@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/vue';
+import {render, fireEvent, waitFor} from '@testing-library/vue';
 
 import ContentItem from './ContentItem.vue';
 import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
@@ -71,5 +71,13 @@ describe('ContentItem unit test', () => {
     const { queryAllByTestId } = render(ContentItem, { propsData: { ...defaultProps, hasForwardButton: false } });
     const forwardIconExist = !queryAllByTestId('content-item-forward-icon').length;
     expect(forwardIconExist).toBeTruthy();
+  });
+
+  it('Should show success state if success prop is provided', () => {
+    const { queryAllByTestId } = render(ContentItem, { propsData: { ...defaultProps, success: true } });
+    const successIconExist = queryAllByTestId('success-content-item-forward-icon').length;
+    const successStateIsApplied = queryAllByTestId('content-item')[0].className.includes('success');
+    const isShowingSuccessState = successIconExist && successStateIsApplied;
+    expect(isShowingSuccessState).toBeTruthy();
   });
 });

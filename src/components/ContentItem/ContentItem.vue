@@ -2,6 +2,7 @@
   <li class="item"
       :data-testid="dataTestId"
       :disabled="disabled"
+      :class="{ success }"
       @click="emitClickEvent"
   >
     <div v-if="$slots.default"
@@ -20,10 +21,7 @@
         {{ metaText }}
       </TextParagraph>
     </div>
-    <ChevronRightIcon v-if="hasForwardButton"
-                      class="forward-icon"
-                      :data-testid="`${dataTestId}-forward-icon`"
-    />
+    <Component :is="icon" v-if="hasIcon" class="forward-icon" :data-testid="dataTestIdValue"/>
   </li>
 </template>
 

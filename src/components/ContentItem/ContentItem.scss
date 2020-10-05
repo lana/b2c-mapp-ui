@@ -1,4 +1,5 @@
 @import '../../styles/colors';
+@import '../../styles/typography';
 
 $item-box-size: 48px;
 
@@ -10,7 +11,18 @@ $item-box-size: 48px;
   overflow: hidden;
   position: relative;
   height: $item-box-size;
-  padding: 8px 16px;
+  padding: 11px 16px;
+
+  &.success {
+    background-color: $black-200;
+    border-radius: 16px;
+  }
+}
+
+.title {
+  font: $default-m;
+  font-weight: 500;
+  margin-bottom: 2px;
 }
 
 .media {
@@ -23,7 +35,6 @@ $item-box-size: 48px;
   width: $item-box-size;
   height: 100%;
   border-radius: 14px;
-  background-color: $black-100;
   border: solid 1px $black-300;
 }
 
@@ -45,5 +56,5 @@ $item-box-size: 48px;
 }
 
 .meta-text {
-  font-size: 14px;
+  font: $tablet-s;
 }
