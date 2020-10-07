@@ -1,4 +1,4 @@
-import { select, withKnobs } from '@storybook/addon-knobs';
+import { select, withKnobs, number } from '@storybook/addon-knobs';
 
 import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
 import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
@@ -6,6 +6,7 @@ import ConfettiOverlay from './ConfettiOverlay.vue';
 import ScrollWrapper from '../ScrollWrapper/ScrollWrapper.vue';
 import Screen from '../Screen/Screen.vue';
 import Heading from '../Heading/Heading.vue';
+import Button from '../Button/Button.vue';
 
 const ConfettiStories = {
   component: ConfettiOverlay,
@@ -16,6 +17,7 @@ const ConfettiStories = {
 const defaultExample = () => ({
   components: {
     ConfettiOverlay,
+    Button,
     Heading,
     Screen,
     ScrollWrapper,
@@ -25,6 +27,21 @@ const defaultExample = () => ({
     device: {
       default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
     },
+    particles: {
+      default: number('Count of Particles', 50),
+    },
+  },
+  data() {
+    return {
+      isConfettiShowing: true,
+    };
+  },
+  methods: {
+    async restartConfetti() {
+      this.isConfettiShowing = false;
+      await this.$nextTick();
+      this.isConfettiShowing = true;
+    },
   },
   template: `
    <div style="margin: 10px 50px 10px 50px;">
@@ -33,8 +50,12 @@ const defaultExample = () => ({
    <StorybookMobileDeviceSimulator :device="device">
      <Screen>
        <ScrollWrapper>
-         <ConfettiOverlay particles="50"/>
-         <Heading style="text-align: center;" size="xxxl"
+         <ConfettiOverlay v-if="isConfettiShowing" :particles="particles"/>
+         <Button style="margin-bottom: 10px;" @click="restartConfetti">
+           <p>Restart Confetti</p>
+         </Button>
+         <Heading style="text-align: center;"
+                  size="xxxl"
                   weight="semibold"
          >
            DEAL WITH IT
