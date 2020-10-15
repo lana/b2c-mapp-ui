@@ -36,6 +36,12 @@ const props = {
   noBorder: Boolean,
 };
 
+const data = function () {
+  return {
+    isPressed: false,
+  };
+};
+
 const computed = {
   hasIcon() {
     const result = (this.success || this.hasForwardButton);
@@ -52,16 +58,21 @@ const computed = {
 };
 
 const methods = {
+  toggleIsPressed() {
+    this.isPressed = !this.isPressed;
+  },
   emitClickEvent(event) {
     if (this.disabled || this.success) { return; }
+    this.isPressed = false;
     this.$emit('click', event);
   },
 };
 
 const ContentItem = {
-  computed,
   components,
   props,
+  data,
+  computed,
   methods,
 };
 

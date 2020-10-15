@@ -1,9 +1,11 @@
 <template>
   <li class="item"
-      :class="{ success }"
+      :class="{ success, pressed: isPressed }"
       :data-testid="dataTestId"
       :disabled="disabled"
       @click="emitClickEvent"
+      @touchStart="toggleIsPressed"
+      @touchEnd="toggleIsPressed"
   >
     <div v-if="$slots.default"
          class="media"
