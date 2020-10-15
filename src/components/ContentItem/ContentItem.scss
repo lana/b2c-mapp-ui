@@ -17,6 +17,11 @@ $item-box-size: 48px;
     background-color: $black-200;
     border-radius: 16px;
   }
+
+  &:active,
+  &.pressed {
+    background-color: $black-200;
+  }
 }
 
 .title {
