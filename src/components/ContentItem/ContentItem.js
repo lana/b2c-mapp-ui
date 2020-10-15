@@ -63,7 +63,7 @@ const methods = {
   },
   emitClickEvent(event) {
     if (this.disabled || this.success) { return; }
-    if (this.isPressed) { this.isPressed = false; }
+    this.isPressed = false;
     this.$emit('click', event);
   },
 };

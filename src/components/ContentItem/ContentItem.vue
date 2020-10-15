@@ -1,6 +1,6 @@
 <template>
   <li class="item"
-      :class="[{ success, pressed: isPressed }]"
+      :class="{ success, pressed: isPressed }"
       :data-testid="dataTestId"
       :disabled="disabled"
       @click="emitClickEvent"
