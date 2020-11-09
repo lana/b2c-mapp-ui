@@ -1,8 +1,10 @@
 import Heading from '../Heading/Heading.vue';
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch.vue';
+import Checkbox from '../Checkbox/Checkbox.vue';
 
 const components = {
+  Checkbox,
   Heading,
   TextParagraph,
   ToggleSwitch,
@@ -19,6 +21,7 @@ const props = {
   transparent: Boolean,
   linkTitle: String,
   hasToggle: Boolean,
+  hasCheckbox: Boolean,
   disabled: Boolean,
   rightLabel: String,
 };
