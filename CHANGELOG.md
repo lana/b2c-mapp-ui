@@ -1,5 +1,5 @@
 # Lana B2C MicroApp Libs Changelog
-## v.9.0.0 - 09-11-2020
+## v.8.8.0 - 09-11-2020
  - ListItem variant to provide Checkbox instead of a Toggle
 
 ## v.8.3.0 - 01-10-2020

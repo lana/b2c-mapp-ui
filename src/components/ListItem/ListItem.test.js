@@ -83,19 +83,19 @@ describe('ListItem', () => {
   });
 
   describe('Toggler behavior', () => {
-    it('Should not visible if hasToggle is not provided', () => {
+    it('Should not be visible if hasToggle is not provided', () => {
       const { queryAllByTestId } = render(ListItem, { propsData: { ...defaultProps } });
       const toggleNotExists = queryAllByTestId('list-item-toggle-input').length === 0;
       expect(toggleNotExists).toBeTruthy();
     });
 
-    it('Should not visible if hasCheckbox is provided', () => {
+    it('Should not be visible if hasCheckbox is provided', () => {
       const { queryAllByTestId } = render(ListItem, { propsData: { ...defaultProps, hasCheckbox: true } });
       const toggleNotExists = queryAllByTestId('list-item-toggle-input').length === 0;
       expect(toggleNotExists).toBeTruthy();
     });
 
-    it('Should not visible if hasCheckbox and hasToggle are provided', () => {
+    it('Should not be visible if hasCheckbox and hasToggle are provided', () => {
       const { queryAllByTestId } = render(ListItem, { propsData: { ...defaultProps, hasCheckbox: true, hasToggle: true } });
       const toggleNotExists = queryAllByTestId('list-item-toggle-input').length === 0;
       expect(toggleNotExists).toBeTruthy();
@@ -132,13 +132,13 @@ describe('ListItem', () => {
       hasToggle: false,
       hasCheckbox: true,
     };
-    it('Should not visible if hasCheckbox is not provided but hasToggle is provided', () => {
+    it('Should not be visible if hasCheckbox is not provided but hasToggle is provided', () => {
       const { queryAllByTestId } = render(ListItem, { propsData: { ...withCheckboxDefaultProps, hasCheckbox: false, hasToggle: true } });
       const checkboxNotExists = queryAllByTestId('list-item-checkbox-input').length === 0;
       expect(checkboxNotExists).toBeTruthy();
     });
 
-    it('Should not visible if hasToggle is provided', () => {
+    it('Should not be visible if hasToggle is provided', () => {
       const { queryAllByTestId } = render(ListItem, { propsData: { ...withCheckboxDefaultProps, hasToggle: true } });
       const checkboxNotExists = queryAllByTestId('list-item-checkbox-input').length === 0;
       expect(checkboxNotExists).toBeTruthy();
