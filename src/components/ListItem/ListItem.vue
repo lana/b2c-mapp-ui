@@ -23,10 +23,15 @@
         {{ linkTitle }}
       </span>
     </div>
-    <ToggleSwitch v-if="hasToggle"
+    <ToggleSwitch v-if="hasToggle && !hasCheckbox"
                   v-model="isChecked"
                   :data-test-id="`${dataTestId}-toggle`"
                   :disabled="disabled"
+    />
+    <Checkbox v-if="hasCheckbox && !hasToggle"
+              v-model="isChecked"
+              :data-test-id="`${dataTestId}-checkbox`"
+              :disabled="disabled"
     />
     <strong v-if="isRightLabelShowing" class="right-label">{{ rightLabel }}</strong>
   </li>

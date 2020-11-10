@@ -34,6 +34,9 @@ const defaultExample = () => ({
     hasToggle: {
       default: boolean('Has Toggle Switch?', true),
     },
+    hasCheckbox: {
+      default: boolean('Has Checkbox?', false),
+    },
     transparent: {
       default: boolean('Is transparent?', false),
     },
@@ -72,6 +75,7 @@ const defaultExample = () => ({
                   :description="description"
                   :link-title="linkTitle"
                   :has-toggle="hasToggle"
+                  :has-checkbox="hasCheckbox"
                   :right-label="rightLabel"
                   :disabled="disabled"
                   @linkClick="onLinkClick"

@@ -83,13 +83,25 @@ describe('ListItem', () => {
   });
 
   describe('Toggler behavior', () => {
-    it('Should not visible if hasToggle is not provided', () => {
+    it('Should not be visible if hasToggle is not provided', () => {
       const { queryAllByTestId } = render(ListItem, { propsData: { ...defaultProps } });
       const toggleNotExists = queryAllByTestId('list-item-toggle-input').length === 0;
       expect(toggleNotExists).toBeTruthy();
     });
 
-    it('Should be visible if hasToggle is  provided', () => {
+    it('Should not be visible if hasCheckbox is provided', () => {
+      const { queryAllByTestId } = render(ListItem, { propsData: { ...defaultProps, hasCheckbox: true } });
+      const toggleNotExists = queryAllByTestId('list-item-toggle-input').length === 0;
+      expect(toggleNotExists).toBeTruthy();
+    });
+
+    it('Should not be visible if hasCheckbox and hasToggle are provided', () => {
+      const { queryAllByTestId } = render(ListItem, { propsData: { ...defaultProps, hasCheckbox: true, hasToggle: true } });
+      const toggleNotExists = queryAllByTestId('list-item-toggle-input').length === 0;
+      expect(toggleNotExists).toBeTruthy();
+    });
+
+    it('Should be visible if hasToggle is  provided but hasCheckbox is not provided', () => {
       const { getByTestId } = render(ListItem, { propsData: { ...defaultProps, hasToggle: true } });
       const toggleExists = getByTestId('list-item-toggle-input');
       expect(toggleExists).toBeTruthy();
@@ -106,6 +118,49 @@ describe('ListItem', () => {
 
     it('Should apply given value when its checked', async () => {
       const wrapper = mount(ListItem, { propsData: { ...defaultProps, hasToggle: true, value: true } });
+      await wrapper.vm.$nextTick();
+      wrapper.vm.$options.watch.value.call(wrapper.vm, true);
+      await wrapper.vm.$nextTick();
+      const givenValueIsTaken = wrapper.vm.$data.isChecked;
+      expect(givenValueIsTaken).toBeTruthy();
+    });
+  });
+
+  describe('Checkbox behavior', () => {
+    const withCheckboxDefaultProps = {
+      ...defaultProps,
+      hasToggle: false,
+      hasCheckbox: true,
+    };
+    it('Should not be visible if hasCheckbox is not provided but hasToggle is provided', () => {
+      const { queryAllByTestId } = render(ListItem, { propsData: { ...withCheckboxDefaultProps, hasCheckbox: false, hasToggle: true } });
+      const checkboxNotExists = queryAllByTestId('list-item-checkbox-input').length === 0;
+      expect(checkboxNotExists).toBeTruthy();
+    });
+
+    it('Should not be visible if hasToggle is provided', () => {
+      const { queryAllByTestId } = render(ListItem, { propsData: { ...withCheckboxDefaultProps, hasToggle: true } });
+      const checkboxNotExists = queryAllByTestId('list-item-checkbox-input').length === 0;
+      expect(checkboxNotExists).toBeTruthy();
+    });
+
+    it('Should be visible if hasCheckbox is  provided', () => {
+      const { getByTestId } = render(ListItem, { propsData: { ...withCheckboxDefaultProps } });
+      const checkboxExists = getByTestId('list-item-checkbox-input');
+      expect(checkboxExists).toBeTruthy();
+    });
+
+    it('Should emit input event when its checked', async () => {
+      const wrapper = mount(ListItem, { propsData: { ...withCheckboxDefaultProps } });
+      await wrapper.vm.$nextTick();
+      wrapper.vm.$options.watch.isChecked.call(wrapper.vm, false);
+      await wrapper.vm.$nextTick();
+      const inputEventEmitted = wrapper.emitted().input;
+      expect(inputEventEmitted).toBeTruthy();
+    });
+
+    it('Should apply given value when its checked', async () => {
+      const wrapper = mount(ListItem, { propsData: { ...withCheckboxDefaultProps, value: true } });
       await wrapper.vm.$nextTick();
       wrapper.vm.$options.watch.value.call(wrapper.vm, true);
       await wrapper.vm.$nextTick();
