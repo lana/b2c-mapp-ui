@@ -1,3 +1,9 @@
+import Button from '../Button/Button.vue';
+
+const components = {
+  Button,
+};
+
 const props = {
   dataTestId: {
     type: String,
@@ -5,6 +11,15 @@ const props = {
   },
   value: Boolean,
   disabled: Boolean,
+  buttons: Boolean,
+  trueButtonLabel: {
+    type: String,
+    default: '',
+  },
+  falseButtonLabel: {
+    type: String,
+    default: '',
+  },
 };
 
 const data = function () {
@@ -16,6 +31,12 @@ const data = function () {
 const methods = {
   emitInputEvent() {
     this.$emit('input', this.isChecked);
+  },
+  uncheck() {
+    this.isChecked = false;
+  },
+  check() {
+    this.isChecked = true;
   },
 };
 
@@ -29,6 +50,7 @@ const watch = {
 };
 
 const ToggleSwitch = {
+  components,
   props,
   data,
   methods,

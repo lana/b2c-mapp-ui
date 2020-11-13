@@ -51,3 +51,20 @@
   margin-left: 0;
   margin-right: 6px;
 }
+
+.true-button {
+  margin-right: 16px;
+}
+
+.toggle-button ::v-deep {
+  color: $black-700;
+  font-weight: 500;
+  font-size: 16px;
+  border: 1px solid $black-300;
+  border-radius: 8px;
+}
+
+.focused ::v-deep {
+  border: 1px solid $blue-600;
+}
+
