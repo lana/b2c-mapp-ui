@@ -1,4 +1,4 @@
-import { withKnobs, select } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 
 import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
 import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
@@ -19,6 +19,15 @@ const defaultExample = () => ({
     device: {
       default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
     },
+    buttons: {
+      default: boolean('Buttons mode?', false),
+    },
+    trueButtonLabel: {
+      default: text('True button label', 'True button'),
+    },
+    falseButtonLabel: {
+      default: text('False button label', 'False button'),
+    },
   },
   data() {
     return {
@@ -33,13 +42,22 @@ const defaultExample = () => ({
         <div style="margin: 20px">
           <label>
             Enabled:
-            <ToggleSwitch v-model="isChecked"/>
+            <ToggleSwitch v-model="isChecked"
+                          :buttons="buttons"
+                          :true-button-label="trueButtonLabel"
+                          :false-button-label="falseButtonLabel"
+            />
           </label>
         </div>
         <div style="margin: 20px">
           <label>
             Disabled:
-            <ToggleSwitch v-model="isChecked" disabled/>
+            <ToggleSwitch v-model="isChecked"
+                          :buttons="buttons"
+                          :true-button-label="trueButtonLabel"
+                          :false-button-label="falseButtonLabel"
+                          disabled
+            />
           </label>
         </div>
         <div style="margin: 20px;">
