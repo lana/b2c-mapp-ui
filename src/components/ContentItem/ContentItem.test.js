@@ -88,4 +88,17 @@ describe('ContentItem unit test', () => {
     const clicked = emitted().click;
     expect(clicked).not.toBeTruthy();
   });
+
+  it('Should show custom forward icon', () => {
+    const { getByTestId } = render(
+      ContentItem,
+      {
+        slots: { 'forward-icon': '<ClockColorIcon data-testid="custom-forward-icon" />' },
+        propsData: { ...defaultProps },
+        stubs: ['ClockColorIcon'],
+      },
+    );
+    const customForwardIconVisible = getByTestId('custom-forward-icon');
+    expect(customForwardIconVisible).toBeTruthy();
+  });
 });

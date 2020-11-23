@@ -23,7 +23,9 @@
         {{ metaText }}
       </TextParagraph>
     </div>
-    <Component :is="iconName" v-if="hasIcon" class="item-icon" :data-testid="iconDataTestId"/>
+    <slot name="forward-icon">
+      <Component :is="iconName" v-if="hasIcon" class="item-icon" :data-testid="iconDataTestId"/>
+    </slot>
   </li>
 </template>
 
