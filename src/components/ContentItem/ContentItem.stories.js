@@ -219,7 +219,9 @@ const withCustomForwardIcon = () => ({
                      @click="onClick"
         >
           <DocumentFilledIcon/>
-          <ClockIcon v-slot:forward-icon />
+          <template v-slot:forward-icon>
+            <ClockIcon/>
+          </template>
         </ContentItem>
       </StorybookMobileDeviceSimulator>
     </div>
@@ -269,7 +271,9 @@ const noImageAndCustomForwardIcon = () => ({
                      :success="success"
                      @click="onClick"
         >
-          <CheckCircleIcon v-slot:forward-icon />
+          <template v-slot:forward-icon>
+            <CheckCircleIcon/>
+          </template>
         </ContentItem>
       </StorybookMobileDeviceSimulator>
     </div>
