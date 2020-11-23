@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
-import { DocumentFilledIcon } from '@lana/b2c-mapp-ui-assets';
+import { DocumentFilledIcon, CheckCircleIcon, ClockIcon } from '@lana/b2c-mapp-ui-assets';
 
 import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
 import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
@@ -175,11 +175,114 @@ const successState = () => ({
   `,
 });
 
+const withCustomForwardIcon = () => ({
+  components: {
+    ContentItem,
+    DocumentFilledIcon,
+    StorybookMobileDeviceSimulator,
+    ClockIcon,
+  },
+  props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
+    disabled: {
+      default: boolean('Is Disabled?', false),
+    },
+    hasForwardButton: {
+      default: boolean('Has Forward Button?', true),
+    },
+    success: {
+      default: boolean('Has Success forward icon?', true),
+    },
+    title: {
+      default: text('Title', 'Example Title'),
+    },
+    metaText: {
+      default: text('Meta text', 'Example Metatext'),
+    },
+  },
+  methods: {
+    onClick: action('Click!'),
+  },
+  template: `
+    <div style="margin: 10px 50px 10px 50px;">
+      <h2><strong>ContentItem:</strong>&nbsp;A list item with success state, it does not redirect anywhere, it just provides success/completed information.</h2>
+      <hr>
+      <StorybookMobileDeviceSimulator :device="device">
+        <ContentItem :title="title"
+                     :meta-text="metaText"
+                     :has-forward-button="hasForwardButton"
+                     no-border
+                     :disabled="disabled"
+                     :success="success"
+                     @click="onClick"
+        >
+          <DocumentFilledIcon/>
+          <ClockIcon v-slot:forward-icon />
+        </ContentItem>
+      </StorybookMobileDeviceSimulator>
+    </div>
+  `,
+});
+
+const noImageAndCustomForwardIcon = () => ({
+  components: {
+    ContentItem,
+    DocumentFilledIcon,
+    StorybookMobileDeviceSimulator,
+    CheckCircleIcon,
+  },
+  props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
+    disabled: {
+      default: boolean('Is Disabled?', false),
+    },
+    hasForwardButton: {
+      default: boolean('Has Forward Button?', true),
+    },
+    success: {
+      default: boolean('Has Success forward icon?', true),
+    },
+    title: {
+      default: text('Title', 'Example Title'),
+    },
+    metaText: {
+      default: text('Meta text', 'Example Metatext'),
+    },
+  },
+  methods: {
+    onClick: action('Click!'),
+  },
+  template: `
+    <div style="margin: 10px 50px 10px 50px;">
+      <h2><strong>ContentItem:</strong>&nbsp;A list item with success state, it does not redirect anywhere, it just provides success/completed information.</h2>
+      <hr>
+      <StorybookMobileDeviceSimulator :device="device">
+        <ContentItem :title="title"
+                     :meta-text="metaText"
+                     :has-forward-button="hasForwardButton"
+                     no-border
+                     :disabled="disabled"
+                     :success="success"
+                     @click="onClick"
+        >
+          <CheckCircleIcon v-slot:forward-icon />
+        </ContentItem>
+      </StorybookMobileDeviceSimulator>
+    </div>
+  `,
+});
+
 export {
   defaultExample,
   withImage,
   withIcon,
   successState,
+  withCustomForwardIcon,
+  noImageAndCustomForwardIcon,
 };
 
 export default ContentItemStories;
