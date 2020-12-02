@@ -1,4 +1,4 @@
-import { withKnobs, select, text } from '@storybook/addon-knobs';
+import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
 
 import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
 import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
@@ -19,6 +19,9 @@ const defaultExample = () => ({
     device: {
       default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
     },
+    titleAbove: {
+      default: boolean('Title Above', false),
+    },
     title: {
       default: text('Title', 'Example Title'),
     },
@@ -32,7 +35,8 @@ const defaultExample = () => ({
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
         <div style="margin-top: 20px;">
-          <FigureCard :title="title"
+          <FigureCard :title-above="titleAbove"
+                      :title="title"
                       :image-source="imageSource"
           />
         </div>

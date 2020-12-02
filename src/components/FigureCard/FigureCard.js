@@ -17,6 +17,7 @@ const props = {
     type: String,
     default: '',
   },
+  titleAbove: Boolean,
 };
 
 const computed = {

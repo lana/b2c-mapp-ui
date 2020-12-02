@@ -1,12 +1,16 @@
 <template>
   <figure class="figure-card">
-    <div class="image-wrapper">
+    <figcaption v-if="titleAbove && title" :data-test-id="`${dataTestId}-title`">
+      <TextParagraph size="small" color="black-700">{{ title }}</TextParagraph>
+    </figcaption>
+    <div v-if="imageSource" class="image-wrapper">
       <div class="image"
            :data-testid="`${dataTestId}-image`"
            :style="backgroundStyle"
       />
     </div>
-    <figcaption v-if="title" :data-test-id="`${dataTestId}-title`">
+    <slot/>
+    <figcaption v-if="!titleAbove && title" :data-test-id="`${dataTestId}-title`">
       <TextParagraph size="small" color="black-700">{{ title }}</TextParagraph>
     </figcaption>
   </figure>
