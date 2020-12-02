@@ -17,10 +17,7 @@ const props = {
     type: String,
     default: '',
   },
-  isTitleUp: {
-    type: Boolean,
-    default: true,
-  },
+  isTitleUp: Boolean,
 };
 
 const computed = {
