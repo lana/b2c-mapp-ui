@@ -17,6 +17,10 @@ const props = {
     type: String,
     default: '',
   },
+  isTitleUp: {
+    type: Boolean,
+    default: true,
+  },
 };
 
 const computed = {
