@@ -19,8 +19,8 @@ const defaultExample = () => ({
     device: {
       default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
     },
-    isTitleUp: {
-      default: boolean('Is Title Up?', false),
+    titleAbove: {
+      default: boolean('Title Above', false),
     },
     title: {
       default: text('Title', 'Example Title'),
@@ -35,7 +35,7 @@ const defaultExample = () => ({
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
         <div style="margin-top: 20px;">
-          <FigureCard :is-title-up="isTitleUp"
+          <FigureCard :title-above="titleAbove"
                       :title="title"
                       :image-source="imageSource"
           />
