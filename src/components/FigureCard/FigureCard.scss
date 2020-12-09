@@ -61,3 +61,9 @@ $corner-radius: 16px;
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
 }
+
+.figure-card .title-above {
+  border-radius: 16px 16px 0 0;
+  border-bottom: 1px solid $black-300;
+  border-top: unset;
+}
