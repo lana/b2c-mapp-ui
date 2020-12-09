@@ -1,6 +1,6 @@
 {
   "name": "@lana/b2c-mapp-ui",
-  "version": "8.10.2",
+  "version": "8.10.3",
   "description": "Shared custom libraries for building µapps.",
   "bugs": {
     "url": "https://github.com/lana/b2c-mapp-ui/issues"
