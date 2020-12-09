@@ -1,6 +1,6 @@
 <template>
   <figure class="figure-card">
-    <figcaption v-if="titleAbove && title" :data-test-id="`${dataTestId}-title`">
+    <figcaption v-if="titleAbove && title" :data-test-id="`${dataTestId}-title`" class="title-above">
       <TextParagraph size="small" color="black-700">{{ title }}</TextParagraph>
     </figcaption>
     <div v-if="imageSource" class="image-wrapper">
