@@ -101,4 +101,28 @@ describe('ContentItem unit test', () => {
     const customForwardIconVisible = getByTestId('custom-forward-icon');
     expect(customForwardIconVisible).toBeTruthy();
   });
+
+  it('Should show custom title', () => {
+    const { getByTestId } = render(
+      ContentItem,
+      {
+        slots: { 'custom-title': '<b data-testid="custom-title">Bold text</b>' },
+        propsData: { ...defaultProps },
+      },
+    );
+    const customTitleVisible = getByTestId('custom-title');
+    expect(customTitleVisible).toBeTruthy();
+  });
+
+  it('Should show custom metaText', () => {
+    const { getByTestId } = render(
+      ContentItem,
+      {
+        slots: { 'custom-meta-text': '<span data-testid="custom-meta-text">Text <br />newline</span>' },
+        propsData: { ...defaultProps },
+      },
+    );
+    const customMetaTextVisible = getByTestId('custom-meta-text');
+    expect(customMetaTextVisible).toBeTruthy();
+  });
 });
