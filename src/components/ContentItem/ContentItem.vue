@@ -15,12 +15,14 @@
       <slot/>
     </div>
     <div :data-testid="`${dataTestId}-heading`" class="body">
-      <Heading class="title" size="medium">{{ title }}</Heading>
-      <TextParagraph v-if="metaText"
+      <Heading class="title" size="medium">
+        <slot name="custom-title">{{ title }}</slot>
+      </Heading>
+      <TextParagraph v-if="hasMetaText"
                      class="meta-text"
                      :data-test-id="`${dataTestId}-meta-text`"
       >
-        {{ metaText }}
+        <slot name="custom-meta-text">{{ metaText }}</slot>
       </TextParagraph>
     </div>
     <slot name="forward-icon">

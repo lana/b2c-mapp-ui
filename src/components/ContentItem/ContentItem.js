@@ -47,6 +47,10 @@ const computed = {
     const result = (this.success || this.hasForwardButton);
     return result;
   },
+  hasMetaText() {
+    const result = (this.metaText || this.$slots['custom-meta-text']);
+    return result;
+  },
   iconName() {
     const result = (this.hasForwardButton && !this.success) ? 'ChevronRightIcon' : 'Success';
     return result;

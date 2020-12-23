@@ -5,6 +5,7 @@ import { DocumentFilledIcon, CheckCircleIcon, ClockIcon } from '@lana/b2c-mapp-u
 import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
 import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import ContentItem from './ContentItem.vue';
+import TextField from '../TextField/TextField.vue';
 
 const ContentItemStories = {
   component: ContentItem,
@@ -239,15 +240,6 @@ const noImageAndCustomForwardIcon = () => ({
     device: {
       default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
     },
-    disabled: {
-      default: boolean('Is Disabled?', false),
-    },
-    hasForwardButton: {
-      default: boolean('Has Forward Button?', true),
-    },
-    success: {
-      default: boolean('Has Success forward icon?', true),
-    },
     title: {
       default: text('Title', 'Example Title'),
     },
@@ -280,6 +272,57 @@ const noImageAndCustomForwardIcon = () => ({
   `,
 });
 
+const customTitleAndCustomMetaText = () => ({
+  components: {
+    ContentItem,
+    DocumentFilledIcon,
+    StorybookMobileDeviceSimulator,
+    TextField,
+  },
+  data() {
+    return {
+      title: 'Example <b>Title</b>',
+      metaText: 'Example <br /> Metatext',
+    };
+  },
+  props: {
+    device: {
+      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+    },
+  },
+  methods: {
+    onClick: action('Click!'),
+  },
+  template: `
+    <div style="margin: 10px 50px 10px 50px;">
+      <h2><strong>ContentItem:</strong>&nbsp;A list item with success state, it does not redirect anywhere, it just provides success/completed information.</h2>
+      <hr>
+      <StorybookMobileDeviceSimulator :device="device">
+        <div style="padding: 16px;">
+          <ContentItem no-border
+                      @click="onClick"
+          >
+            <template v-slot:custom-title>
+              <span v-if="title" v-html="title" />
+            </template>
+            <template v-slot:custom-meta-text>
+              <span v-if="metaText" v-html="metaText" />
+            </template>
+          </ContentItem>
+          <hr />
+          <h2> Content values </h2>
+          <TextField v-model="title"
+                    label="Title"
+          />
+          <TextField v-model="metaText"
+                    label="MetaText"
+          />
+        </div>
+      </StorybookMobileDeviceSimulator>
+    </div>
+  `,
+});
+
 export {
   defaultExample,
   withImage,
@@ -287,6 +330,7 @@ export {
   successState,
   withCustomForwardIcon,
   noImageAndCustomForwardIcon,
+  customTitleAndCustomMetaText,
 };
 
 export default ContentItemStories;
