@@ -2,6 +2,7 @@ import ActionItem from './components/ActionItem/ActionItem.vue';
 import BankAccountNumberInputField from './components/BankAccountNumberInputField/BankAccountNumberInputField.vue';
 import Button from './components/Button/Button.vue';
 import CallToActionScreen from './components/CallToActionScreen/CallToActionScreen.vue';
+import Checkbox from './components/Checkbox/Checkbox.vue';
 import CodeInputField from './components/CodeInputField/CodeInputField.vue';
 import ConfettiOverlay from './components/ConfettiOverlay/ConfettiOverlay.vue';
 import ConfirmationModalDialog from './components/ConfirmationModalDialog/ConfirmationModalDialog.vue';
@@ -43,6 +44,7 @@ export {
   Button,
   ConfettiOverlay,
   CallToActionScreen,
+  Checkbox,
   CodeInputField,
   ConfirmationModalDialog,
   ConfirmationToastDialog,
