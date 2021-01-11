@@ -257,10 +257,7 @@ const noImageAndCustomForwardIcon = () => ({
       <StorybookMobileDeviceSimulator :device="device">
         <ContentItem :title="title"
                      :meta-text="metaText"
-                     :has-forward-button="hasForwardButton"
                      no-border
-                     :disabled="disabled"
-                     :success="success"
                      @click="onClick"
         >
           <template v-slot:forward-icon>

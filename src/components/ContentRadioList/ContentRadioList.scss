@@ -1,0 +1,138 @@
+@import '../../styles/colors';
+@import '../../styles/typography';
+
+$item-box-size: 48px;
+
+.wrapper {
+  background: $white;
+  padding-bottom: 16px;
+  flex-grow: 1;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  touch-action: manipulation;
+  min-height: 56px;
+}
+
+.hidden {
+  display: none;
+}
+
+.checked {
+  .radio {
+    border-color: $blue-500;
+    background-color: $blue-500;
+
+    &:before {
+      background: $white;
+      width: 10px;
+      height: 10px;
+      transform: scale(1);
+    }
+  }
+}
+
+.radio {
+  position: relative;
+  flex-shrink: 0;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: solid 1px $black-400;
+  border-radius: 104px;
+  box-sizing: border-box;
+  transition: all 0.15s ease-out;
+
+  &:before {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -5px 0 0 -5px;
+    content: "";
+    width: 5px;
+    height: 5px;
+    background: $black-400;
+    border-radius: 104px;
+    transform: scale(0);
+    transition: all 0.15s ease-out;
+  }
+}
+
+.label {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: Graphik, Roboto, sans-serif;
+  color: $black-700;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  height: $item-box-size;
+  padding: 16px;
+  width: 100%;
+  height: 100%;
+
+  border: 1px solid $black-300;
+  border-radius: 14px;
+
+  &.checked {
+    border-color: $blue-500;
+  }
+
+  &.success {
+    background-color: $black-200;
+    border-radius: 16px;
+  }
+
+  &:active,
+  &.pressed {
+    background-color: $black-200;
+  }
+}
+
+.title {
+  font: $default-m;
+  margin-bottom: 2px;
+}
+
+.media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  margin-right: 16px;
+  width: $item-box-size;
+  height: 100%;
+  border-radius: 14px;
+  border: solid 1px $black-300;
+}
+
+.no-border {
+  border: none;
+}
+
+.body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.item-icon {
+  flex-shrink: 0;
+}
+
+.meta-text {
+  font: $tablet-s;
+}
+
