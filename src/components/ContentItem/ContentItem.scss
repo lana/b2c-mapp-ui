@@ -22,6 +22,10 @@ $item-box-size: 48px;
   &.pressed {
     background-color: $black-200;
   }
+
+  .icon {
+    width: 24px;
+  }
 }
 
 .title {
@@ -40,6 +44,9 @@ $item-box-size: 48px;
   height: 100%;
   border-radius: 14px;
   border: solid 1px $black-300;
+  .icon {
+    width: 24px;
+  }
 }
 
 .no-border {
