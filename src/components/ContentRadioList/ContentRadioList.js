@@ -24,8 +24,6 @@ const props = {
     required: true,
   },
   value: [String, Number],
-  title: String,
-  disabled: Boolean,
 };
 
 const data = function () {
