@@ -18,7 +18,6 @@ const props = {
   title: {
     type: String,
     default: '',
-    required: true,
   },
   metaText: {
     type: String,

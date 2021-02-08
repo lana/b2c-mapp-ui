@@ -1,6 +1,5 @@
 import { action } from '@storybook/addon-actions';
 import { withKnobs, select } from '@storybook/addon-knobs';
-import * as AllIcons from '@lana/b2c-mapp-ui-assets/dist/index';
 
 import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
 import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
@@ -68,7 +67,6 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: {
     ContentRadioList,
-    ...AllIcons,
     RenderString,
   },
   data() {
