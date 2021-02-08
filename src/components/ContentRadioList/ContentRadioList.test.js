@@ -57,7 +57,7 @@ describe('UI/forms/ContentRadioList', () => {
     const wrapper = mount(
       ContentRadioList,
       {
-        slots: { 'checked-icon': '<span data-testid="custom-checked-icon">check</span>' },
+        slots: { checkedIcon: '<span data-testid="custom-checked-icon">check</span>' },
         propsData: { ...defaultProps, value: 'option_2' },
       },
     );
@@ -71,7 +71,7 @@ describe('UI/forms/ContentRadioList', () => {
     const wrapper = mount(
       ContentRadioList,
       {
-        slots: { 'unchecked-icon': '<span data-testid="custom-unchecked-icon">check</span>' },
+        slots: { uncheckedIcon: '<span data-testid="custom-unchecked-icon">check</span>' },
         propsData: { ...defaultProps, value: 'option_2' },
       },
     );

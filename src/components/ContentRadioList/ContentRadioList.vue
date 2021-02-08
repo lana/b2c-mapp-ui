@@ -31,13 +31,15 @@
                            v-html="metaText"
             />
           </div>
+          <!-- @slot Custom checked icon, default to radio div -->
           <slot v-if="(selectedValue === optionValue)"
-                name="checked-icon"
+                name="checkedIcon"
           >
             <div class="radio"/>
           </slot>
+          <!-- @slot Custom unchecked icon, default to radio div -->
           <slot v-if="(selectedValue !== optionValue)"
-                name="unchecked-icon"
+                name="uncheckedIcon"
           >
             <div class="radio"/>
           </slot>

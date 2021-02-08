@@ -8,6 +8,7 @@ import ConfettiOverlay from './components/ConfettiOverlay/ConfettiOverlay.vue';
 import ConfirmationModalDialog from './components/ConfirmationModalDialog/ConfirmationModalDialog.vue';
 import ConfirmationToastDialog from './components/ConfirmationToastDialog/ConfirmationToastDialog.vue';
 import ContentItem from './components/ContentItem/ContentItem.vue';
+import ContentRadioList from './components/ContentRadioList/ContentRadioList.vue';
 import CopyableList from './components/CopyableList/CopyableList.vue';
 import CopyableListItem from './components/CopyableListItem/CopyableListItem.vue';
 import CopyToClipboardButton from './components/CopyToClipboardButton/CopyToClipboardButton.vue';
@@ -49,6 +50,7 @@ export {
   ConfirmationModalDialog,
   ConfirmationToastDialog,
   ContentItem,
+  ContentRadioList,
   CopyableList,
   CopyableListItem,
   CopyToClipboardButton,

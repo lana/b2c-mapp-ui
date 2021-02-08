@@ -1,3 +1,4 @@
+import { number } from '@storybook/addon-knobs';
 import * as AllIcons from '@lana/b2c-mapp-ui-assets/dist/index';
 
 const IconStories = {
@@ -7,6 +8,11 @@ const IconStories = {
 const defaultExample = () => ({
   components: {
     ...AllIcons,
+  },
+  props: {
+    size: {
+      default: number('Size', '24', { min: 12, max: 72 }),
+    },
   },
   data() {
     return {
@@ -23,6 +29,7 @@ const defaultExample = () => ({
           <div style="margin: 10px; display: flex; flex-direction: row; justify-content: space-between">
             <label>{{ icon }}</label>
             <component :is="icon"
+                       :width="size"
                        :key="'icon-' + index"
             />
           </div>

@@ -3,6 +3,7 @@ module.exports = {
   addons: [
     '@storybook/addon-knobs',
     '@storybook/addon-actions',
+    '@storybook/addon-controls',
     {
       name: '@storybook/addon-docs',
       options: {
