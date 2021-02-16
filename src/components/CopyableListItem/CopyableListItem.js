@@ -24,9 +24,16 @@ const props = {
   disabled: Boolean,
 };
 
+const methods = {
+  onClick(event) {
+    this.$emit('click', event);
+  },
+};
+
 const CopyableListItem = {
   components,
   props,
+  methods,
 };
 
 export default CopyableListItem;

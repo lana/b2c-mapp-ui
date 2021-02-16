@@ -24,6 +24,7 @@
       <CopyToClipboardButton :value-to-copy="text"
                              :disabled="disabled"
                              :data-test-id="`${dataTestId}-copy-to-clipboard-button`"
+                             @click="onClick"
       />
     </TextParagraph>
   </li>
