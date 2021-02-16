@@ -1,4 +1,4 @@
-import { render } from '@testing-library/vue';
+import { render, fireEvent } from '@testing-library/vue';
 
 import CopyableListItem from './CopyableListItem.vue';
 import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
@@ -43,5 +43,13 @@ describe('CopyableListItem unit test', () => {
     const { queryAllByTestId } = render(CopyableListItem, { stubs: { default: defaultSlot }, propsData: { ...defaultProps } });
     const buttonExists = queryAllByTestId('copyable-list-item-copy-to-clipboard-button-button').length;
     expect(buttonExists).toBeTruthy();
+  });
+
+  it('should emit an event when is clicked', () => {
+    const { getByTestId, emitted } = render(CopyableListItem, { stubs: { default: defaultSlot }, propsData: { ...defaultProps } });
+    const element = getByTestId('copyable-list-item-copy-to-clipboard-button-button');
+    fireEvent.click(element);
+    const isEmitted = emitted();
+    expect(isEmitted).toBeTruthy();
   });
 });
