@@ -65,15 +65,3 @@ $item-box-size: 40px;
   align-self: center;
 }
 
-.container {
-  display: flex;
-  width: auto;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 16px;
-
-  > li {
-    flex-basis: 35%;
-  }
-}

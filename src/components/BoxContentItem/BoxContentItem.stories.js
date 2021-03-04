@@ -37,16 +37,19 @@ const defaultExample = () => ({
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>BoxContentItem:</strong>&nbsp;A list item which usually transitions the user to content in another screen.</h2>
+      <h2><strong>BoxContentItem:</strong>&nbsp;A list item which usually transitions the user to content in another screen. <strong>IMPORTANT: </strong> Please note that in order to have the display in boxes, we'll need to use flexbox</h2>
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <BoxContentItem :title="title"
-                     :meta-text="metaText"
-                     :disabled="disabled"
-                     @click="onClick"
-        >
-          <DocumentFilledIcon/>
-        </BoxContentItem>
+        <div style="display: flex; flex-flow: row wrap; width: auto; justify-content: space-between; align-items: center; padding: 16px;">
+          <BoxContentItem style="flex-basis: 35%"
+                          :title="title"
+                          :meta-text="metaText"
+                          :disabled="disabled"
+                          @click="onClick"
+          >
+            <DocumentFilledIcon/>
+          </BoxContentItem>
+        </div>
       </StorybookMobileDeviceSimulator>
     </div>
   `,
@@ -62,16 +65,23 @@ const withImage = () => ({
       default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
     },
   },
+  methods: {
+    onClick: action('Click!'),
+  },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>BoxContentItem:</strong>&nbsp;Example With Image</h2>
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <BoxContentItem title="Example with Image"
-                     meta-text="Example metatext"
-        >
-          <img src="https://source.unsplash.com/random/48x48"/>
-        </BoxContentItem>
+        <div style="display: flex; flex-flow: row wrap; width: auto; justify-content: space-between; align-items: center; padding: 16px;">
+          <BoxContentItem style="flex-basis: 35%"
+                          title="Example with Image"
+                          meta-text="Example metatext"
+                          @click="onClick"
+          >
+            <img src="https://source.unsplash.com/random/48x48"/>        
+          </BoxContentItem>
+        </div>
       </StorybookMobileDeviceSimulator>
     </div>
   `,
@@ -96,19 +106,24 @@ const withIcon = () => ({
     metaText: {
       default: text('Meta text', 'Example Metatext'),
     },
+    methods: {
+      onClick: action('Click!'),
+    },
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>BoxContentItem:</strong>&nbsp;Example With Icon</h2>
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <BoxContentItem title="Example with Icon"
-                     meta-text="Example metatext"
-                     no-border
-                     :success="success"
-        >
-          <DocumentFilledIcon/>
-        </BoxContentItem>
+        <div style="display: flex; flex-flow: row wrap; width: auto; justify-content: space-between; align-items: center; padding: 16px;">
+          <BoxContentItem style="flex-basis: 35%"
+                          title="Example with Icon"
+                          meta-text="Example metatext"
+                          @click="onClick"
+          >         
+            <DocumentFilledIcon/>
+          </BoxContentItem>
+        </div>
       </StorybookMobileDeviceSimulator>
     </div>
   `,
@@ -128,7 +143,7 @@ const successState = () => ({
       default: boolean('Is Disabled?', false),
     },
     success: {
-      default: boolean('Has Success forward icon?', true),
+      default: boolean('Is in Success state?', true),
     },
     title: {
       default: text('Title', 'Example Title'),
@@ -145,14 +160,17 @@ const successState = () => ({
       <h2><strong>BoxContentItem:</strong>&nbsp;A list item with success state, it does not redirect anywhere, it just provides success/completed information.</h2>
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <BoxContentItem :title="title"
-                     :meta-text="metaText"
-                     :disabled="disabled"
-                     :success="success"
-                     @click="onClick"
+       <div style="display: flex; flex-flow: row wrap; width: auto; justify-content: space-between; align-items: center; padding: 16px;">
+         <BoxContentItem style="flex-basis: 35%"
+                         :title="title"
+                         :meta-text="metaText"
+                         :disabled="disabled"
+                         :success="success"
+                         @click="onClick"
         >
           <DocumentFilledIcon/>
         </BoxContentItem>
+       </div>
       </StorybookMobileDeviceSimulator>
     </div>
   `,
@@ -179,36 +197,45 @@ const listExample = () => ({
     metaText: {
       default: text('Meta text', 'Example Metatext'),
     },
+    success: {
+      default: boolean('Is in Success state?', true),
+    },
   },
   methods: {
     onClick: action('Click!'),
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>BoxContentItem:</strong>&nbsp;A list item which usually transitions the user to content in another screen.</h2>
+      <h2><strong>BoxContentItem:</strong>&nbsp;A list item which usually transitions the user to content in another screen. In order to have the display in boxes, we'll need to use flex</h2>
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <BoxContentItem :title="title"
-                     :meta-text="metaText"
-                     :disabled="disabled"
-                     @click="onClick"
-        >
-          <PaymentsIcon/>
-        </BoxContentItem>
-        <BoxContentItem :title="title"
-                     :meta-text="metaText"
-                     :disabled="disabled"
-                     @click="onClick"
-        >
-          <ColorWalletIcon/>
-        </BoxContentItem>
-        <BoxContentItem :title="title"
-                     :meta-text="metaText"
-                     :disabled="disabled"
-                     @click="onClick"
-        >
-          <DiscountIcon/>
-        </BoxContentItem>
+        <div style="display: flex; flex-flow: row wrap; width: auto; justify-content: space-between; align-items: center; padding: 16px;">
+          <BoxContentItem style="flex-basis: 35%" 
+                          title="With success state"
+                          :meta-text="metaText"
+                          :disabled="disabled"
+                          :success="success"
+                          @click="onClick"
+          >
+            <PaymentsIcon/>
+          </BoxContentItem>
+          <BoxContentItem style="flex-basis: 35%" 
+                          :title="title"
+                          :meta-text="metaText"
+                          :disabled="disabled"
+                          @click="onClick"
+          >
+            <ColorWalletIcon/>
+          </BoxContentItem>
+          <BoxContentItem style="flex-basis: 35%"
+                          :title="title"
+                          :meta-text="metaText"
+                          :disabled="disabled"
+                          @click="onClick"
+          >
+            <DiscountIcon/>
+          </BoxContentItem>
+        </div>
       </StorybookMobileDeviceSimulator>
     </div>
   `,
