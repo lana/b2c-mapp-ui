@@ -1,0 +1,67 @@
+@import '../../styles/colors';
+@import '../../styles/typography';
+
+$item-box-size: 40px;
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  padding: 11px 16px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  border: 1px solid $black-300;
+
+  &.success {
+    background-color: $black-200;
+    border: none;
+  }
+
+  &:active,
+  &.pressed {
+    background-color: $black-200;
+  }
+}
+
+.title {
+  font: $default-m;
+  margin-bottom: 2px;
+  font-weight: 500;
+
+  &.success {
+    color: $black-500;
+  }
+}
+
+.media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  margin-bottom: 12px;
+  width: $item-box-size;
+}
+
+.no-border {
+  border: none;
+}
+
+.body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.meta-text {
+  font: $default-s;
+  align-self: center;
+}
+
