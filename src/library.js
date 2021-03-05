@@ -1,5 +1,6 @@
 import ActionItem from './components/ActionItem/ActionItem.vue';
 import BankAccountNumberInputField from './components/BankAccountNumberInputField/BankAccountNumberInputField.vue';
+import BoxContentItem from './components/BoxContentItem/BoxContentItem.vue';
 import Button from './components/Button/Button.vue';
 import CallToActionScreen from './components/CallToActionScreen/CallToActionScreen.vue';
 import Checkbox from './components/Checkbox/Checkbox.vue';
@@ -42,6 +43,7 @@ import './styles/normalize.scss';
 export {
   ActionItem,
   BankAccountNumberInputField,
+  BoxContentItem,
   Button,
   ConfettiOverlay,
   CallToActionScreen,

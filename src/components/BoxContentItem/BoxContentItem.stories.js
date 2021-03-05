@@ -40,7 +40,7 @@ const defaultExample = () => ({
       <h2><strong>BoxContentItem:</strong>&nbsp;A list item which usually transitions the user to content in another screen. <strong>IMPORTANT: </strong> Please note that in order to have the display in boxes, we'll need to use flexbox</h2>
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <div style="display: flex; flex-flow: row wrap; width: auto; justify-content: space-between; align-items: center; padding: 16px;">
+        <ul style="display: flex; flex-flow: row wrap; width: auto; justify-content: space-between; align-items: center; padding: 16px;">
           <BoxContentItem style="flex-basis: 35%"
                           :title="title"
                           :meta-text="metaText"
@@ -49,7 +49,7 @@ const defaultExample = () => ({
           >
             <DocumentFilledIcon/>
           </BoxContentItem>
-        </div>
+        </ul>
       </StorybookMobileDeviceSimulator>
     </div>
   `,
@@ -73,7 +73,7 @@ const withImage = () => ({
       <h2><strong>BoxContentItem:</strong>&nbsp;Example With Image</h2>
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <div style="display: flex; flex-flow: row wrap; width: auto; justify-content: space-between; align-items: center; padding: 16px;">
+        <ul style="display: flex; flex-flow: row wrap; width: auto; justify-content: space-between; align-items: center; padding: 16px;">
           <BoxContentItem style="flex-basis: 35%"
                           title="Example with Image"
                           meta-text="Example metatext"
@@ -81,7 +81,7 @@ const withImage = () => ({
           >
             <img src="https://source.unsplash.com/random/48x48"/>        
           </BoxContentItem>
-        </div>
+        </ul>
       </StorybookMobileDeviceSimulator>
     </div>
   `,
@@ -115,7 +115,7 @@ const withIcon = () => ({
       <h2><strong>BoxContentItem:</strong>&nbsp;Example With Icon</h2>
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <div style="display: flex; flex-flow: row wrap; width: auto; justify-content: space-between; align-items: center; padding: 16px;">
+        <ul style="display: flex; flex-flow: row wrap; width: auto; justify-content: space-between; align-items: center; padding: 16px;">
           <BoxContentItem style="flex-basis: 35%"
                           title="Example with Icon"
                           meta-text="Example metatext"
@@ -123,7 +123,7 @@ const withIcon = () => ({
           >         
             <DocumentFilledIcon/>
           </BoxContentItem>
-        </div>
+        </ul>
       </StorybookMobileDeviceSimulator>
     </div>
   `,
@@ -160,7 +160,7 @@ const successState = () => ({
       <h2><strong>BoxContentItem:</strong>&nbsp;A list item with success state, it does not redirect anywhere, it just provides success/completed information.</h2>
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-       <div style="display: flex; flex-flow: row wrap; width: auto; justify-content: space-between; align-items: center; padding: 16px;">
+       <ul style="display: flex; flex-flow: row wrap; width: auto; justify-content: space-between; align-items: center; padding: 16px;">
          <BoxContentItem style="flex-basis: 35%"
                          :title="title"
                          :meta-text="metaText"
@@ -170,7 +170,7 @@ const successState = () => ({
         >
           <DocumentFilledIcon/>
         </BoxContentItem>
-       </div>
+       </ul>
       </StorybookMobileDeviceSimulator>
     </div>
   `,
@@ -209,7 +209,7 @@ const listExample = () => ({
       <h2><strong>BoxContentItem:</strong>&nbsp;A list item which usually transitions the user to content in another screen. In order to have the display in boxes, we'll need to use flex</h2>
       <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <div style="display: flex; flex-flow: row wrap; width: auto; justify-content: space-between; align-items: center; padding: 16px;">
+        <ul style="display: flex; flex-flow: row wrap; width: auto; justify-content: space-between; align-items: center; padding: 16px;">
           <BoxContentItem style="flex-basis: 35%" 
                           title="With success state"
                           :meta-text="metaText"
@@ -235,7 +235,7 @@ const listExample = () => ({
           >
             <DiscountIcon/>
           </BoxContentItem>
-        </div>
+        </ul>
       </StorybookMobileDeviceSimulator>
     </div>
   `,
