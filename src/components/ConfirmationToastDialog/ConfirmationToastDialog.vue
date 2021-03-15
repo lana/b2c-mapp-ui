@@ -24,6 +24,7 @@
         </ScrollWrapper>
       </Wrapper>
       <div class="actions" :data-testid="`${dataTestId}-actions`">
+        <slot name="actions"/>
         <Button v-if="confirmButtonText"
                 class="confirm"
                 :loading="loading"
