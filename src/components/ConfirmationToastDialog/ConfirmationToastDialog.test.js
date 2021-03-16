@@ -125,4 +125,16 @@ describe('ConfirmationToastDialog unit test', () => {
       expect(clickEvent).toBeTruthy();
     });
   });
+
+  it('Should show custom actions', () => {
+    const { getByTestId } = render(
+      ConfirmationToastDialog,
+      {
+        slots: { actions: '<span data-testid="custom-actions">Text <br />newline</span>' },
+        propsData: { ...defaultProps },
+      },
+    );
+    const customMetaTextVisible = getByTestId('custom-actions');
+    expect(customMetaTextVisible).toBeTruthy();
+  });
 });
