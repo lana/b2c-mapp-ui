@@ -1,0 +1,39 @@
+@import '../../styles/typography';
+@import '../../styles/colors';
+
+.wrapper-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+
+  .input-container {
+    align-self: center;
+    position: relative;
+    max-width: calc(100% - 40px);
+
+    .input {
+      font: $title0;
+      color: $purple-500;
+      display: inline-block;
+      min-width: 27px;
+      white-space: nowrap;
+
+      &:empty:before{
+        content: '0';
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .symbol {
+      font: $default-xxl;
+      color: $black-500;
+      position: absolute;
+      right: 100%;
+      margin-right: 2px;
+    }
+  }
+}
