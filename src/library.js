@@ -1,4 +1,5 @@
 import ActionItem from './components/ActionItem/ActionItem.vue';
+import AmountInput from './components/AmountInput/AmountInput.vue';
 import BankAccountNumberInputField from './components/BankAccountNumberInputField/BankAccountNumberInputField.vue';
 import BoxContentItem from './components/BoxContentItem/BoxContentItem.vue';
 import Button from './components/Button/Button.vue';
@@ -42,6 +43,7 @@ import './styles/normalize.scss';
 
 export {
   ActionItem,
+  AmountInput,
   BankAccountNumberInputField,
   BoxContentItem,
   Button,

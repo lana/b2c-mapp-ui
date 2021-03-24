@@ -1,3 +1,4 @@
+const esModules = ['vue-contenteditable'].join('|');
 module.exports = {
   preset: '@vue/cli-plugin-unit-jest',
   setupFiles: ['<rootDir>/setupTests.js'],
@@ -10,4 +11,5 @@ module.exports = {
     '!src/main.js',
   ],
   verbose: true,
+  transformIgnorePatterns: [`/node_modules/(?!${esModules})`],
 };

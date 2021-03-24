@@ -13,7 +13,7 @@ import (
 const (
 	name        = "mapplibs"
 	port        = "3000"
-	nodeVerison = "11.7"
+	nodeVersion = "12"
 )
 
 // Install makes sure we have all the modules we need are installed.
@@ -48,9 +48,8 @@ func frontDockerCmd(cmd ...string) error {
 		"-v", fmt.Sprintf("%v:/front:cached", p),
 		"-w", "/front",
 		"-it", // Interactve!
-		"node:"+nodeVersion,
+		"node:" + nodeVersion,
 	}
 	args = append(args, cmd...)
 	return sh.Run("docker", args...)
 }
-
