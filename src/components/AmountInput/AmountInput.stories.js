@@ -30,11 +30,10 @@ const AmountInputStories = {
   title: 'Components/AmountInput',
   decorators: [withKnobs, deviceDecorator],
   args: {
-    symbol: '$',
     value: '0',
     dataTestId: '',
     locale: 'es-MX',
-    decimal: 2,
+    currency: 'MXN',
     disabled: false,
     readonly: false,
     startFocused: false,
@@ -42,12 +41,12 @@ const AmountInputStories = {
     name: 'amount-name',
   },
   argTypes: {
-    symbol: { name: 'Symbol', control: 'text' },
     value: { name: 'Value', control: { type: 'number' } },
     locale: { name: 'Locale', control: { type: 'select', options: ['es-CL', 'es-MX'] } },
-    decimal: { name: 'Decimal', control: { type: 'number', min: 0, max: 2 } },
+    currency: { name: 'Currency', control: { type: 'select', options: ['CLP', 'MXN'] } },
     dataTestId: { control: { type: 'text' } },
     id: { control: { type: 'text' } },
+    name: { control: { type: 'text' } },
     disabled: { name: 'Is disabled?', control: 'boolean' },
     readonly: { name: 'Is read only?', control: 'boolean' },
     startFocused: { name: 'Start focused?', control: 'boolean' },
@@ -62,7 +61,7 @@ const defaultExample = (args, { argTypes }) => ({
   data() {
     return {
       boundValue: `${this.value || ''}`,
-      unformattedValue: '',
+      unformattedValue: `${this.value || ''}`,
     };
   },
   watch: {
@@ -70,7 +69,7 @@ const defaultExample = (args, { argTypes }) => ({
       this.boundValue = `${this.value || 0}`;
     },
     boundValue() {
-      this.unformattedValue = this.$refs.field.getUnformattedValue() || '';
+      this.unformattedValue = this.$refs.field.getUnformattedValue();
     },
   },
   template: `
@@ -78,9 +77,7 @@ const defaultExample = (args, { argTypes }) => ({
       <AmountInput v-model="boundValue"
                    :key="startFocused"
                    ref="field"
-                   :symbol="symbol"
-                   :locale="locale"
-                   :decimal="decimal"
+                   :currency="currency"
                    :disabled="disabled"
                    :readonly="readonly"
                    :start-focused="startFocused"
