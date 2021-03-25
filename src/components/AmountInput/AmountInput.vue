@@ -3,7 +3,7 @@
     <div class="input-container"
          :data-testid="`${dataTestId}-container`"
     >
-      <span class="symbol">{{ symbol }}</span>
+      <span class="symbol">{{ currencySymbol }}</span>
       <ContentEditable :id="inputId"
                        ref="content"
                        v-model="inputValue"

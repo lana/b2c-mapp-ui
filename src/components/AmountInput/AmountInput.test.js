@@ -29,8 +29,8 @@ describe('AmountInput unit test', () => {
     expect(inputEventIsEmitted).toBeTruthy();
   });
 
-  it('Should show given symbol', async () => {
-    const wrapper = mount(AmountInput, { propsData: { ...defaultProps, symbol: '€' } });
+  it('Should show € symbol for EUR currency', async () => {
+    const wrapper = mount(AmountInput, { propsData: { ...defaultProps, currency: 'EUR', locale: 'es-ES' } });
     await wrapper.vm.$nextTick();
     const symbolText = wrapper.find('div[data-testid="amount-input-container"] .symbol').text();
     expect(symbolText).toBe('€');
