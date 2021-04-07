@@ -1,6 +1,8 @@
 import { CurrencyDirective, getValue, setValue, parse } from 'vue-currency-input';
 import ContentEditable from 'vue-contenteditable/src/contenteditable.vue';
 
+import { escapeRegExp } from '../../lib/regexHelper';
+
 const components = {
   ContentEditable,
 };
@@ -74,7 +76,9 @@ const computed = {
   },
   truncatedInputValue() {
     if (!this.inputValue) { return '0'; }
-    const result = this.inputValue.replace(this.currencySymbol, '').replaceAll(this.currencyGroup, '');
+    const symbolRegex = new RegExp(escapeRegExp(this.currencySymbol));
+    const groupRegex = new RegExp(escapeRegExp(this.currencyGroup), 'g');
+    const result = this.inputValue.replace(symbolRegex, '').replace(groupRegex, '');
     return result;
   },
   numericInputValue() {
