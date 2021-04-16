@@ -1,6 +1,6 @@
 {
   "name": "@lana/b2c-mapp-ui",
-  "version": "8.15.3",
+  "version": "8.16.0",
   "description": "Shared custom libraries for building µapps.",
   "bugs": {
     "url": "https://github.com/lana/b2c-mapp-ui/issues"
@@ -8,7 +8,6 @@
   "homepage": "https://lana.github.io/b2c-mapp-ui",
   "license": "ISC",
   "publishConfig": {
-    "cache": "~/.npm",
     "registry": "https://npm.pkg.github.com/"
   },
   "repository": {
