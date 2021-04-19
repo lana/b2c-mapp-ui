@@ -46,6 +46,7 @@ $colors: "blue" $blue-400 $blue-500 $blue-600,
             $black-200 0%,
             $black-200 var(--progression-color-position),
             $blue-400 var(--progression-color-position),
+            $blue-400 calc(var(--progression-color-position) + 1%),
             $blue-500 100%
           );
         background-origin: border-box;
@@ -56,8 +57,8 @@ $colors: "blue" $blue-400 $blue-500 $blue-600,
         border-radius: 50%;
         box-sizing: border-box;
         border: 1px solid $black-300;
-        border-bottom-color: $blue-500;
-        border-right-color: $blue-500;
+        border-bottom-color: transparent;
+        border-right-color: transparent;
         &.outside {
           top: 0;
           left: 0;
@@ -109,8 +110,6 @@ $colors: "blue" $blue-400 $blue-500 $blue-600,
           $blue-500 100%
         );
         border-color: transparent;
-        border-bottom-color: $blue-500;
-        border-right-color: $blue-500;
         background-clip: content-box, border-box;
 
         &::after {
@@ -170,14 +169,11 @@ $colors: "blue" $blue-400 $blue-500 $blue-600,
                 $black-200 0%,
                 $black-200 var(--progression-color-position),
                 $color-400 var(--progression-color-position),
+                $color-400 calc(var(--progression-color-position) + 1%),
                 $color-500 100%
               );
             background-origin: border-box;
             background-clip: content-box, border-box;
-          }
-          .progress-border {
-            border-bottom-color: $color-500;
-            border-right-color: $color-500;
           }
         }
         .bar-circle {
@@ -208,6 +204,8 @@ $colors: "blue" $blue-400 $blue-500 $blue-600,
                 $color-400 50%,
                 $color-400 100%
               );
+              border-bottom-color: $color-400;
+              border-right-color: $color-400;
               background-clip: content-box, border-box;
             }
           }
