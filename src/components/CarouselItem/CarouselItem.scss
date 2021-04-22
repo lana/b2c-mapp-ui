@@ -1,0 +1,10 @@
+.carousel-item {
+  flex: 0 0 100%;
+  height: 100%;
+  scroll-snap-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  outline: none;
+}

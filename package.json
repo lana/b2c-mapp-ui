@@ -1,6 +1,6 @@
 {
   "name": "@lana/b2c-mapp-ui",
-  "version": "8.16.1",
+  "version": "8.17.0",
   "description": "Shared custom libraries for building µapps.",
   "bugs": {
     "url": "https://github.com/lana/b2c-mapp-ui/issues"
@@ -42,9 +42,11 @@
     "core-js": "^3.7.0",
     "fast-async": "^6.3.8",
     "libphonenumber-js": "^1.9.4",
+    "lodash.debounce": "^4.0.8",
     "vue": "^2.6.12",
     "vue-contenteditable": "^1.0.2",
-    "vue-currency-input": "^1.22.3"
+    "vue-currency-input": "^1.22.3",
+    "vue-frag": "1.1.5"
   },
   "devDependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.12.1",
