@@ -107,14 +107,17 @@ const methods = {
     this.isScrolling = false;
   },
   handleScroll(event) {
-    const { scrollLeft, offsetWidth } = event.target;
-    if (scrollLeft % offsetWidth !== 0) { return; }
-    const currentIndex = Number.parseInt(scrollLeft / offsetWidth, 10);
-    this.currentIndex = currentIndex;
+    const { scrollLeft } = event.target;
+    const index = this.items.findIndex(({ offsetLeft: itemOffsetLeft }) => (itemOffsetLeft === scrollLeft));
+    if (index < 0) { return; }
+    this.currentIndex = index;
   },
 };
 
 const watch = {
+  value() {
+    this.setCurrentIndex(this.value || 0);
+  },
   currentIndex() {
     this.$emit('input', this.currentIndex);
   },

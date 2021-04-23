@@ -3,6 +3,10 @@ const props = {
     type: String,
     default: 'carousel-item',
   },
+  inline: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 const CarouselItem = {

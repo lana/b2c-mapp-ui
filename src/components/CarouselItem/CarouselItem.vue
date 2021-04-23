@@ -1,5 +1,5 @@
 <template>
-  <li ref="carouselItem" class="carousel-item" :data-testid="dataTestId">
+  <li ref="carouselItem" class="carousel-item" :class="{ inline }" :data-testid="dataTestId">
     <slot/>
   </li>
 </template>
