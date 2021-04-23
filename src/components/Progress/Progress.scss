@@ -109,7 +109,8 @@ $colors: "blue" $blue-400 $blue-500 $blue-600,
           $blue-500 50%,
           $blue-500 100%
         );
-        border-color: transparent;
+        border-bottom-color: $blue-500;
+        border-right-color: $blue-500;
         background-clip: content-box, border-box;
 
         &::after {
@@ -130,6 +131,9 @@ $colors: "blue" $blue-400 $blue-500 $blue-600,
             $blue-400 50%,
             $blue-400 100%
           );
+          border-bottom-color: $blue-400;
+          border-right-color: $blue-400;
+          background-clip: content-box, border-box;
         }
       }
     }
