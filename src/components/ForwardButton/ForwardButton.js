@@ -15,6 +15,10 @@ const props = {
   disabled: Boolean,
   id: String,
   name: String,
+  debounce: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 const methods = {

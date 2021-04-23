@@ -9,7 +9,8 @@
         <slot/>
       </Wrapper>
     </ScrollWrapper>
-    <WrappedButton :data-testid="dataTestId" @click="onClick"> {{ buttonText }} </WrappedButton>
+    <slot name="secondaryAction"/>
+    <WrappedButton :data-testid="dataTestId" :debounce="debounce" @click="onClick"> {{ buttonText }} </WrappedButton>
   </Screen>
 </template>
 

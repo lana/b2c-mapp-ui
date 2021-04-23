@@ -1,9 +1,14 @@
+/* eslint-disable import/first */
 import { render, fireEvent } from '@testing-library/vue';
 import { mount } from '@vue/test-utils';
+
+jest.mock('lodash.debounce', () => jest.fn((fn) => fn));
 
 import Button from './Button.vue';
 import ButtonTestWrapper from './UnitTestWrappers/ButtonTestWrapper.vue';
 import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
+
+const debounce = require('lodash.debounce');
 
 describe('Button unit test', () => {
   beforeAll(() => {
@@ -72,6 +77,13 @@ describe('Button unit test', () => {
       fireEvent.click(button);
       const clicked = emitted().click;
       expect(clicked).toBeTruthy();
+    });
+
+    it('Should call debounce when its clicked', () => {
+      const { getByTestId } = render(Button, { propsData: { type: 'primary', loading: false, debounce: true } });
+      const button = getByTestId('button-button');
+      fireEvent.click(button);
+      expect(debounce).toHaveBeenCalled();
     });
   });
 

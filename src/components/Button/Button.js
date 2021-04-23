@@ -1,5 +1,10 @@
 import { MopIcon } from '@lana/b2c-mapp-ui-assets';
 
+const debounce = require('lodash.debounce');
+
+const DEBOUNCE_DELAY = 400;
+const DEBOUNCE_SETTINGS = { leading: true, trailing: false };
+
 const components = {
   MopIcon,
 };
@@ -25,6 +30,10 @@ const props = {
   disabled: Boolean,
   dropShadow: Boolean,
   id: String,
+  debounce: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 const data = function () {
@@ -53,6 +62,10 @@ const computed = {
   },
   isLinkButton() {
     const result = (!!this.href || this.link);
+    return result;
+  },
+  clickMethod() {
+    const result = (this.debounce) ? debounce(this.onClick, DEBOUNCE_DELAY, DEBOUNCE_SETTINGS) : this.onClick;
     return result;
   },
 };

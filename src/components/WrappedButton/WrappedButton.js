@@ -25,6 +25,10 @@ const props = {
     default: 'Cargando...',
   },
   disabled: Boolean,
+  debounce: {
+    type: Boolean,
+    default: false,
+  },
   id: String,
   name: String,
 };
