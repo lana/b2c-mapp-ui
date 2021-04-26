@@ -31,6 +31,10 @@ const props = {
     type: String,
     default: '',
   },
+  debounce: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 const methods = {

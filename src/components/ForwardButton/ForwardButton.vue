@@ -5,6 +5,7 @@
             :name="name"
             :disabled="disabled"
             drop-shadow
+            :debounce="debounce"
             @click="onClick"
     >
       <ChevronRightIcon class="forward-icon"/>

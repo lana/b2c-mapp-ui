@@ -34,6 +34,9 @@ const defaultExample = () => ({
     dropShadow: {
       default: boolean('Has Drop Shadow?', false),
     },
+    debounce: {
+      default: boolean('Has debounce?', false),
+    },
     href: {
       default: text('href', ''),
     },
@@ -59,6 +62,7 @@ const defaultExample = () => ({
                   :loading-text="loadingText"
                   :drop-shadow="dropShadow"
                   :disabled="disabled"
+                  :debounce="debounce"
                   @click="onClick"
           >
             {{ contents }}

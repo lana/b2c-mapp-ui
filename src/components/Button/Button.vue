@@ -7,7 +7,7 @@
              :href="href"
              :disabled="disabled"
              :data-testid="dataTestIdToUse"
-             @click="onClick"
+             @click="clickMethod"
              @touchStart="toggleIsPressed"
              @touchEnd="toggleIsPressed"
   >
