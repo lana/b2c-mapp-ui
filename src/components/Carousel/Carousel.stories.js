@@ -115,77 +115,7 @@ const CarouselStories = {
   },
 };
 
-const simpleExample = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: {
-    Carousel,
-    CarouselItem,
-  },
-  data() {
-    return {
-      slide: this.value,
-    };
-  },
-  watch: {
-    value() {
-      this.slide = this.value;
-    },
-  },
-  template: `
-    <div>
-      <Carousel v-model="slide"
-                :hide-arrows="hideArrows"
-                :arrow-icons="arrowIcons"
-                :hide-navigation="hideNavigation"
-                :key="value"
-      >
-        <CarouselItem key="green"><div style="height: 110px; width: 85%; background-color: green" /></CarouselItem>
-        <CarouselItem key="blue"><div style="height: 130px; width: 90%; background-color: blue" /></CarouselItem>
-        <CarouselItem key="red"><div style="height: 120px; width: 100%; background-color: red" /></CarouselItem>
-        <CarouselItem key="yellow"><div style="height: 100px; width: 95%; background-color: yellow" /></CarouselItem>
-      </Carousel>
-      <p>Bound value: {{ slide }}</p>
-    </div>
-  `,
-});
-simpleExample.argTypes = {
-  ...CarouselStories.argTypes,
-  default: { table: { disable: true } },
-  arrows: { table: { disable: true } },
-  leftArrowIcon: { table: { disable: true } },
-  rightArrowIcon: { table: { disable: true } },
-  navigation: { table: { disable: true } },
-  navigationItem: { table: { disable: true } },
-  navigationItemActive: { table: { disable: true } },
-};
-simpleExample.parameters = {
-  docs: {
-    source: {
-      code: `
-<Carousel v-model="slide"
-          :hide-arrows="hideArrows"
-          :arrow-icons="arrowIcons"
-          :hide-navigation="hideNavigation"
->
-  <CarouselItem key="green">
-    <div style="height: 110px; width: 85%; background-color: green" />
-  </CarouselItem>
-  <CarouselItem key="blue">
-    <div style="height: 130px; width: 90%; background-color: blue" />
-  </CarouselItem>
-  <CarouselItem key="red">
-    <div style="height: 120px; width: 100%; background-color: red" />
-  </CarouselItem>
-  <CarouselItem key="yellow">
-    <div style="height: 100px; width: 95%; background-color: yellow" />
-  </CarouselItem>
-</Carousel>
-      `,
-    },
-  },
-};
-
-const customizedExample = (args, { argTypes }) => ({
+const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: {
     Carousel,
@@ -238,7 +168,7 @@ const customizedExample = (args, { argTypes }) => ({
     </div>
   `,
 });
-customizedExample.args = {
+defaultExample.args = {
   arrowIcons: true,
   default: `<CarouselItem key="1"><Progress :percentage="20" /></CarouselItem>
 <CarouselItem key="2"><Progress :percentage="50" /></CarouselItem>
@@ -248,7 +178,7 @@ customizedExample.args = {
   navigationItem: '<span style="margin: 4px;" v-html="index" />',
   navigationItemActive: '<span style="margin: 4px; background-color: #00a0df" v-html="index" />',
 };
-customizedExample.parameters = {
+defaultExample.parameters = {
   docs: {
     source: {
       code: `
@@ -279,9 +209,156 @@ customizedExample.parameters = {
   },
 };
 
+const simpleExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {
+    Carousel,
+    CarouselItem,
+  },
+  data() {
+    return {
+      slide: this.value,
+    };
+  },
+  watch: {
+    value() {
+      this.slide = this.value;
+    },
+  },
+  template: `
+    <div>
+      <Carousel v-model="slide"
+                :hide-arrows="hideArrows"
+                :arrow-icons="arrowIcons"
+                :hide-navigation="hideNavigation"
+      >
+        <CarouselItem key="green"><div style="height: 110px; width: 85%; background-color: green" /></CarouselItem>
+        <CarouselItem key="blue"><div style="height: 130px; width: 90%; background-color: blue" /></CarouselItem>
+        <CarouselItem key="red"><div style="height: 120px; width: 100%; background-color: red" /></CarouselItem>
+        <CarouselItem key="yellow"><div style="height: 100px; width: 95%; background-color: yellow" /></CarouselItem>
+      </Carousel>
+      <p>Bound value: {{ slide }}</p>
+    </div>
+  `,
+});
+simpleExample.argTypes = {
+  ...CarouselStories.argTypes,
+  default: { table: { disable: true } },
+  arrows: { table: { disable: true } },
+  leftArrowIcon: { table: { disable: true } },
+  rightArrowIcon: { table: { disable: true } },
+  navigation: { table: { disable: true } },
+  navigationItem: { table: { disable: true } },
+  navigationItemActive: { table: { disable: true } },
+};
+simpleExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<Carousel v-model="slide"
+          :hide-arrows="hideArrows"
+          :arrow-icons="arrowIcons"
+          :hide-navigation="hideNavigation"
+>
+  <CarouselItem key="green">
+    <div style="height: 110px; width: 85%; background-color: green" />
+  </CarouselItem>
+  <CarouselItem key="blue">
+    <div style="height: 130px; width: 90%; background-color: blue" />
+  </CarouselItem>
+  <CarouselItem key="red">
+    <div style="height: 120px; width: 100%; background-color: red" />
+  </CarouselItem>
+  <CarouselItem key="yellow">
+    <div style="height: 100px; width: 95%; background-color: yellow" />
+  </CarouselItem>
+</Carousel>
+      `,
+    },
+  },
+};
+
+const innerWidthItemExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {
+    Carousel,
+    CarouselItem,
+  },
+  data() {
+    return {
+      slide: this.value,
+    };
+  },
+  watch: {
+    value() {
+      this.slide = this.value;
+    },
+  },
+  template: `
+    <div>
+      <Carousel v-model="slide"
+                :hide-arrows="hideArrows"
+                :arrow-icons="arrowIcons"
+                :hide-navigation="hideNavigation"
+      >
+        <CarouselItem key="green" inline>
+          <div style="height: 110px; width: 200px; background-color: green; margin: 0 5px" />
+        </CarouselItem>
+        <CarouselItem key="blue" inline>
+          <div style="height: 130px; width: 300px; background-color: blue; margin: 0 5px" />
+        </CarouselItem>
+        <CarouselItem key="red" inline>
+          <div style="height: 120px; width: 250px; background-color: red; margin: 0 5px" />
+        </CarouselItem>
+        <CarouselItem key="yellow" inline>
+          <div style="height: 100px; width: 450px; background-color: yellow; margin: 0 5px" />
+        </CarouselItem>
+      </Carousel>
+      <p>Bound value: {{ slide }}</p>
+    </div>
+  `,
+});
+innerWidthItemExample.argTypes = {
+  ...CarouselStories.argTypes,
+  default: { table: { disable: true } },
+  arrows: { table: { disable: true } },
+  leftArrowIcon: { table: { disable: true } },
+  rightArrowIcon: { table: { disable: true } },
+  navigation: { table: { disable: true } },
+  navigationItem: { table: { disable: true } },
+  navigationItemActive: { table: { disable: true } },
+};
+innerWidthItemExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<Carousel v-model="slide"
+          :hide-arrows="hideArrows"
+          :arrow-icons="arrowIcons"
+          :hide-navigation="hideNavigation"
+>
+  <CarouselItem key="green">
+    <div style="height: 110px; width: 85%; background-color: green" />
+  </CarouselItem>
+  <CarouselItem key="blue">
+    <div style="height: 130px; width: 90%; background-color: blue" />
+  </CarouselItem>
+  <CarouselItem key="red">
+    <div style="height: 120px; width: 100%; background-color: red" />
+  </CarouselItem>
+  <CarouselItem key="yellow">
+    <div style="height: 100px; width: 95%; background-color: yellow" />
+  </CarouselItem>
+</Carousel>
+      `,
+    },
+  },
+};
+
 export {
-  customizedExample,
+  defaultExample,
   simpleExample,
+  innerWidthItemExample,
 };
 
 export default CarouselStories;
