@@ -65,7 +65,7 @@ const methods = {
       }
       return accumulator;
     }, []);
-    const result = (items.length) ? items : this.$refs.carousel.children;
+    const result = (items.length) ? items : [...this.$refs.carousel.children];
     return result;
   },
   async setItems() {
@@ -108,7 +108,8 @@ const methods = {
   },
   handleScroll(event) {
     const { scrollLeft } = event.target;
-    const index = this.items.findIndex(({ offsetLeft: itemOffsetLeft }) => (itemOffsetLeft === scrollLeft));
+    const roundedScrollLeft = Math.round(scrollLeft);
+    const index = this.items.findIndex(({ offsetLeft: itemOffsetLeft }) => (itemOffsetLeft === roundedScrollLeft));
     if (index < 0) { return; }
     this.currentIndex = index;
   },
