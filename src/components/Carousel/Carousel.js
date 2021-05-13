@@ -39,6 +39,7 @@ const data = function () {
     currentIndex: this.value,
     initialX: 0,
     scrollLeft: 0,
+    destinationScrollLeft: null,
     isScrolling: false,
   };
 };
@@ -78,9 +79,10 @@ const methods = {
     this.setCurrentIndex(this.currentIndex + direction);
   }, SCROLL_DEBOUNCE),
   setCurrentIndex(index) {
-    if (!this.items[index]) {
+    if (!this.items[index] || index === this.currentIndex) {
       return;
     }
+    this.destinationScrollLeft = this.items[index].offsetLeft;
     this.currentIndex = index;
     this.$refs.carousel.scrollTo({
       left: this.items[index].offsetLeft,
@@ -111,6 +113,7 @@ const methods = {
     const roundedScrollLeft = Math.round(scrollLeft);
     const index = this.items.findIndex(({ offsetLeft: itemOffsetLeft }) => (itemOffsetLeft === roundedScrollLeft));
     if (index < 0) { return; }
+    if (this.destinationScrollLeft !== null && this.items[index].offsetLeft !== this.destinationScrollLeft) { return; }
     this.currentIndex = index;
   },
 };
@@ -121,6 +124,7 @@ const watch = {
   },
   currentIndex() {
     this.$emit('input', this.currentIndex);
+    this.destinationScrollLeft = null;
   },
 };
 

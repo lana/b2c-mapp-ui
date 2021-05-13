@@ -56,7 +56,7 @@
         <button v-for="index in items.length"
                 :key="index"
                 :data-testid="`${dataTestId}-navigation-item`"
-                @click="setCurrentIndex(index -1)"
+                @click="setCurrentIndex(index - 1)"
         >
           <slot v-if="(index - 1) !== currentIndex"
                 name="navigationItem"
