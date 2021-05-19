@@ -170,6 +170,7 @@ const defaultExample = (args, { argTypes }) => ({
 });
 defaultExample.args = {
   arrowIcons: true,
+  value: 1,
   default: `<CarouselItem key="1"><Progress :percentage="20" /></CarouselItem>
 <CarouselItem key="2"><Progress :percentage="50" /></CarouselItem>
 <CarouselItem key="3"><Progress :percentage="100" color="green" /></CarouselItem>`,
