@@ -73,7 +73,15 @@ const methods = {
     await this.$nextTick();
     if (!this.$refs.carousel) { return; }
     this.items = this.getItems();
-    this.setCurrentIndex(this.currentIndex);
+    this.updateScroll(this.currentIndex);
+  },
+  updateScroll(index) {
+    if (!this.items[index]) { return; }
+    this.$refs.carousel.style.scrollBehavior = 'auto';
+    this.$refs.carousel.scrollTo({
+      left: this.items[index].offsetLeft,
+    });
+    this.$refs.carousel.style.scrollBehavior = '';
   },
   changeRenderedItem: debounce(function changeRenderedItem(direction) {
     this.setCurrentIndex(this.currentIndex + direction);
@@ -97,6 +105,7 @@ const methods = {
     this.initialX = this.getMouseXPositionFromEvent(event) - this.$refs.carousel.offsetLeft;
     this.scrollLeft = this.$refs.carousel.scrollLeft;
     this.isScrolling = true;
+    this.$refs.carousel.style.scrollSnapType = 'none';
   },
   handleGestureMove(event) {
     if (!this.isScrolling) { return; }
@@ -104,9 +113,13 @@ const methods = {
     const walk = (currentX - this.initialX) * 3;
     this.$refs.carousel.scrollLeft = this.scrollLeft - walk;
   },
-  handleGestureEnd() {
+  handleGestureEnd(event) {
     if (!this.isScrolling) { return; }
     this.isScrolling = false;
+    this.$refs.carousel.style.scrollSnapType = '';
+    const currentX = this.getMouseXPositionFromEvent(event) - this.$refs.carousel.offsetLeft;
+    const walk = (currentX - this.initialX) * 3;
+    this.$refs.carousel.scrollLeft = this.scrollLeft - walk;
   },
   handleScroll(event) {
     const { scrollLeft } = event.target;
