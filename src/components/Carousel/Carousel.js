@@ -41,6 +41,7 @@ const data = function () {
     scrollLeft: 0,
     destinationScrollLeft: null,
     isScrolling: false,
+    resizeObserver: null,
   };
 };
 
@@ -130,6 +131,14 @@ const methods = {
     this.destinationScrollLeft = null;
     this.currentIndex = index;
   },
+  onObserverEvent() {
+    this.updateScroll(this.currentIndex);
+  },
+  initObserver() {
+    const resizeObserver = new ResizeObserver(this.onObserverEvent);
+    resizeObserver.observe(this.$refs.carousel);
+    this.resizeObserver = resizeObserver;
+  },
 };
 
 const watch = {
@@ -145,11 +154,13 @@ const mounted = function () {
   this.setItems();
   document.addEventListener('mousemove', this.handleGestureMove);
   document.addEventListener('mouseup', this.handleGestureEnd);
+  this.initObserver();
 };
 
 const beforeDestroy = function () {
   document.removeEventListener('mousemove', this.handleGestureMove);
   document.removeEventListener('mouseup', this.handleGestureEnd);
+  if (this.resizeObserver) { this.resizeObserver.unobserve(this.$refs.carousel); }
 };
 
 const Carousel = {

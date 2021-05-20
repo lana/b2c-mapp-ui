@@ -11,6 +11,12 @@ const waitForDomUpdate = async (wrapper) => {
   await wrapper.vm.$forceUpdate();
 };
 
+window.ResizeObserver = window.ResizeObserver || jest.fn().mockImplementation(() => ({
+  disconnect: jest.fn(),
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+}));
+
 describe('Carousel unit test', () => {
   beforeAll(() => {
     silenceDeprecationErrorsAndInnerComponentWarnings(jest);
