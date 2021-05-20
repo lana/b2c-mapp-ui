@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean, text, number } from '@storybook/addon-knobs';
 
 import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
 import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
@@ -30,6 +30,12 @@ const defaultExample = () => ({
     loading: {
       default: boolean('Is Loading?', false),
     },
+    debounce: {
+      default: boolean('Has debounce?', false),
+    },
+    debounceDelay: {
+      default: number('Debounce Delay', 400, { step: 100 }),
+    },
     loadingText: {
       default: text('Loading Text', 'Cargando...'),
     },
@@ -53,6 +59,7 @@ const defaultExample = () => ({
                        :loading="loading"
                        :loading-text="loadingText"
                        :disabled="disabled"
+                       :debounce="debounce"
                        @click="onClick"
         >
           {{ label }}

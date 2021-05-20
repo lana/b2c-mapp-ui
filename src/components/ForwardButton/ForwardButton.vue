@@ -6,6 +6,7 @@
             :disabled="disabled"
             drop-shadow
             :debounce="debounce"
+            :debounce-delay="debounceDelay"
             @click="onClick"
     >
       <ChevronRightIcon class="forward-icon"/>

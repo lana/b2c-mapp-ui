@@ -127,6 +127,7 @@ const methods = {
     const index = this.items.findIndex(({ offsetLeft: itemOffsetLeft }) => (itemOffsetLeft === roundedScrollLeft));
     if (index < 0) { return; }
     if (this.destinationScrollLeft !== null && this.items[index].offsetLeft !== this.destinationScrollLeft) { return; }
+    this.destinationScrollLeft = null;
     this.currentIndex = index;
   },
 };
@@ -137,7 +138,6 @@ const watch = {
   },
   currentIndex() {
     this.$emit('input', this.currentIndex);
-    this.destinationScrollLeft = null;
   },
 };
 

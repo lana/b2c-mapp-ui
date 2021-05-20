@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean, number } from '@storybook/addon-knobs';
 
 import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
 import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
@@ -23,6 +23,12 @@ const defaultExample = () => ({
     disabled: {
       default: boolean('Is Disabled?', false),
     },
+    debounce: {
+      default: boolean('Has debounce?', false),
+    },
+    debounceDelay: {
+      default: number('Debounce Delay', 400, { step: 100 }),
+    },
   },
   methods: {
     onClick: action('Clicked!'),
@@ -34,6 +40,8 @@ const defaultExample = () => ({
       <StorybookMobileDeviceSimulator :device="device">
         <div style="height: 100%;">
           <ForwardButton :disabled="disabled"
+                         :debounce="debounce"
+                         :debounce-delay="debounceDelay"
                          @click="onClick"
           />
         </div>
