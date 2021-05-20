@@ -8,6 +8,7 @@
             :loading-text="loadingText"
             :disabled="disabled"
             :debounce="debounce"
+            :debounce-delay="debounceDelay"
             @click="onClick"
     >
       <slot/>

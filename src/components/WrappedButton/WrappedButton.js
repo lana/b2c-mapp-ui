@@ -29,6 +29,7 @@ const props = {
     type: Boolean,
     default: false,
   },
+  debounceDelay: Number,
   id: String,
   name: String,
 };

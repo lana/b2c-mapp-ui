@@ -19,6 +19,7 @@ const props = {
     type: Boolean,
     default: false,
   },
+  debounceDelay: Number,
 };
 
 const methods = {
