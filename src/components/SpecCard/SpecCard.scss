@@ -1,0 +1,37 @@
+@import '../../styles/colors';
+@import '../../styles/typography';
+
+$corner-radius: 16px;
+
+.spec-card {
+  background: $white;
+  border: 1px solid $black-300;
+  position: relative;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+  }
+
+  figcaption {
+    background: $black-200;
+    padding: 12px;
+    border-top: 1px solid $black-300;
+    border-radius: 0 0 $corner-radius $corner-radius;
+    text-align: left;
+
+    &.title {
+      border-radius: 16px 16px 0 0;
+      border-bottom: 1px solid $black-300;
+      border-top: unset;
+      font: $default-xs;
+      color: $black-500;
+    }
+  }
+}
+
+.spec-card,
+.spec-card figure {
+  border-radius: $corner-radius;
+  color: $black-700;
+}
