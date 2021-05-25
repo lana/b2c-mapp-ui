@@ -33,6 +33,7 @@ import ScrollWrapper from './components/ScrollWrapper/ScrollWrapper.vue';
 import SelectBox from './components/SelectBox/SelectBox.vue';
 import SelfieWebCam from './components/SelfieWebCam/SelfieWebCam.vue';
 import SlideButton from './components/SlideButton/SlideButton.vue';
+import SpecCard from './components/SpecCard/SpecCard.vue';
 import Stepper from './components/Stepper/Stepper.vue';
 import StorybookMobileDeviceSimulator from './components/StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
 import { availableDevices as availableSimulatedMobileDevices } from './components/StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
@@ -80,6 +81,7 @@ export {
   SelectBox,
   SelfieWebCam,
   SlideButton,
+  SpecCard,
   Stepper,
   StorybookMobileDeviceSimulator,
   availableSimulatedMobileDevices,
