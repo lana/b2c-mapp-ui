@@ -40,6 +40,11 @@ $item-box-size: 48px;
   height: 100%;
   border-radius: 14px;
   border: solid 1px $black-300;
+
+  .icon {
+    max-width: 40px;
+    max-height: 40px;
+  }
 }
 
 .no-border {
@@ -57,6 +62,7 @@ $item-box-size: 48px;
 
 .item-icon {
   flex-shrink: 0;
+  max-width: 40px;
 }
 
 .meta-text {
