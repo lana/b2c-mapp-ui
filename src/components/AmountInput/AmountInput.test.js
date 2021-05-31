@@ -13,7 +13,7 @@ describe('AmountInput unit test', () => {
 
   it('Should apply given value', async () => {
     const newValue = '123';
-    const wrapper = mount(AmountInput, { propsData: { ...defaultProps, value: newValue, decimal: 0 } });
+    const wrapper = mount(AmountInput, { propsData: { ...defaultProps, value: newValue } });
     await wrapper.vm.$nextTick();
     wrapper.vm.$options.watch.currencyValue.call(wrapper.vm, newValue);
     await wrapper.vm.$nextTick();
@@ -38,12 +38,23 @@ describe('AmountInput unit test', () => {
 
   it('Should provide current input value in the input event when value changed', async () => {
     const givenValue = '123';
-    const wrapper = mount(AmountInput, { propsData: { ...defaultProps, value: '', decimal: 0 } });
+    const wrapper = mount(AmountInput, { propsData: { ...defaultProps, value: '' } });
     await wrapper.vm.$nextTick();
     wrapper.find('input').setValue(givenValue);
     await wrapper.vm.$nextTick();
     const inputEventValue = wrapper.emitted().input[0][0];
     const inputEmittedValueIsCurrent = (inputEventValue.includes(givenValue));
+    expect(inputEmittedValueIsCurrent).toBeTruthy();
+  });
+
+  it('Should provide correct value in the input event with thousands value with CLP currency', async () => {
+    const givenValue = '10000';
+    const wrapper = mount(AmountInput, { propsData: { ...defaultProps, value: '', currency: 'CLP', locale: 'es-CL' } });
+    await wrapper.vm.$nextTick();
+    wrapper.find('input').setValue(givenValue);
+    await wrapper.vm.$nextTick();
+    const inputEventValue = wrapper.emitted().input[0][0];
+    const inputEmittedValueIsCurrent = (inputEventValue.includes('10,000'));
     expect(inputEmittedValueIsCurrent).toBeTruthy();
   });
 
