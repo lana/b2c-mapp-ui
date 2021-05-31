@@ -28,10 +28,6 @@ const props = {
     type: [String],
     default: 'es-MX',
   },
-  decimal: {
-    type: Number,
-    default: 2,
-  },
   id: {
     type: String,
     default: 'amount-input-id',
@@ -46,8 +42,8 @@ const props = {
 const data = function () {
   return {
     isFocused: false,
-    inputValue: `${this.value || 0}`,
-    currencyValue: `${this.value || 0}`,
+    inputValue: `${this.value || '0'}`,
+    currencyValue: `${this.value || '0'}`,
   };
 };
 
@@ -158,30 +154,32 @@ const watch = {
   inputValue() {
     this.fitTextContainer();
     if (!this.isFocused) { return; }
-    setValue(this.$refs.input, parse(this.numericInputValue));
+    const newValue = parse(this.numericInputValue, { ...this.currencyOptions, currency: this.currency });
+    setValue(this.$refs.input, newValue);
   },
   currencyValue() {
     this.emitInputEvent();
-    if (!this.isFocused) {
-      this.inputValue = this.currencyValue;
-    }
+    if (this.isFocused) { return; }
+    this.inputValue = `${this.currencyValue}`;
   },
   value() {
     if (!this.value) { return; }
-    setValue(this.$refs.input, parse(this.value || '0'));
+    const newValue = parse(this.value || '0', { ...this.currencyOptions, currency: this.currency });
+    setValue(this.$refs.input, newValue);
     if (this.isFocused) { return; }
     this.inputValue = this.currencyValue;
   },
   isFocused() {
     if (this.disabled || this.readonly) { return; }
+    const newValue = parse(this.numericInputValue, { ...this.currencyOptions, currency: this.currency });
     if (!this.isFocused) {
-      if (!parse(this.numericInputValue)) {
+      if (!newValue) {
         this.currencyValue = '0';
       }
-      this.inputValue = this.currencyValue;
+      this.inputValue = `${this.currencyValue}`;
       return;
     }
-    this.inputValue = `${parse(this.numericInputValue)}`;
+    this.inputValue = `${newValue}`;
   },
 };
 

@@ -78,6 +78,7 @@ const defaultExample = (args, { argTypes }) => ({
                    :key="startFocused"
                    ref="field"
                    :currency="currency"
+                   :locale="locale"
                    :disabled="disabled"
                    :readonly="readonly"
                    :start-focused="startFocused"
