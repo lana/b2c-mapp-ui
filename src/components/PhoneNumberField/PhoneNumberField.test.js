@@ -47,6 +47,12 @@ describe('UI/forms/PhoneNumberField', () => {
     expect(noErrorLabel).toBeTruthy();
   });
 
+  it('Should not show error label if given value is valid and has parenthesis', () => {
+    const { getByTestId } = render(PhoneNumberField, { propsData: { ...defaultProps, countryCode: 'CL', value: '223344556' } });
+    const noErrorLabel = !getByTestId('phone-field-label').className.includes('error');
+    expect(noErrorLabel).toBeTruthy();
+  });
+
   it('Should show error label if given value is NOT valid', () => {
     const { getByTestId } = render(PhoneNumberField, { propsData: { ...defaultProps, errorLabel: 'Error!', value: '551234123234324' } });
     const errorLabel = getByTestId('phone-field-container').className.includes('error');
