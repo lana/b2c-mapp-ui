@@ -25,6 +25,11 @@ $item-box-size: 48px;
   border-radius: 14px;
   background-color: $black-100;
   border: solid 1px $black-300;
+
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .body {

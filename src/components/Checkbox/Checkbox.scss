@@ -11,6 +11,11 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+
+  .icon {
+    max-width: 24px;
+    max-height: 24px;
+  }
 }
 
 .checkbox-input {
