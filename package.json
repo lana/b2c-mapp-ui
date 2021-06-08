@@ -38,7 +38,7 @@
   ],
   "dependencies": {
     "@babel/runtime": "^7.14.0",
-    "@lana/b2c-mapp-ui-assets": "^4.29.0",
+    "@lana/b2c-mapp-ui-assets": "^4.32.0",
     "core-js": "^3.12.1",
     "fast-async": "^6.3.8",
     "libphonenumber-js": "^1.9.18",
