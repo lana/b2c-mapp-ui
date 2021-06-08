@@ -1,3 +1,4 @@
+const nonDigitsRegexp = /(\D\s+)/g;
 const allSpacesRegexp = / /g;
 const nonDigitSlashRegexp = /\D\/$/;
 const nonDigitRegexp = /\D/g;
@@ -8,6 +9,7 @@ const singleDigitRegexp = /^\d+$/;
 const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 export {
+  nonDigitsRegexp,
   allSpacesRegexp,
   nonDigitSlashRegexp,
   nonDigitRegexp,

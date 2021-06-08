@@ -1,5 +1,5 @@
 import FormField from '../FormField/FormField.vue';
-import { allSpacesRegexp } from '../../lib/regexHelper';
+import { allSpacesRegexp, nonDigitsRegexp } from '../../lib/regexHelper';
 import { bankAccountNumberTemplateLookup, bankAccountNumberFormatter, validateBankAccountNumber } from '../../lib/bankAccountNumberValidator';
 
 const defaultCountryCode = 'MX';
@@ -113,7 +113,7 @@ const methods = {
   },
   onPaste(event) {
     const rawPasteValue = (event.clipboardData || window.clipboardData).getData('text');
-    const sanitizedValue = (rawPasteValue && rawPasteValue.replace(allSpacesRegexp, ''));
+    const sanitizedValue = (rawPasteValue && rawPasteValue.replace(nonDigitsRegexp, ''));
     this.inputValue = sanitizedValue;
     event.preventDefault();
   },
