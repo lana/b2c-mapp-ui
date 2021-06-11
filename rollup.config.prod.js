@@ -20,6 +20,7 @@ const config = {
     format: 'cjs',
     name: 'b2cMappUI',
     sourcemap: false,
+    inlineDynamicImports: true,
   },
   external: [
     '@babel/runtime',
