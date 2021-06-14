@@ -54,7 +54,7 @@ describe('AmountInput unit test', () => {
     wrapper.find('input').setValue(givenValue);
     await wrapper.vm.$nextTick();
     const inputEventValue = wrapper.emitted().input[0][0];
-    const inputEmittedValueIsCurrent = (inputEventValue.includes('10.000'));
+    const inputEmittedValueIsCurrent = (inputEventValue.includes('10,000'));
     expect(inputEmittedValueIsCurrent).toBeTruthy();
   });
 
