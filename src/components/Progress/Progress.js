@@ -26,9 +26,15 @@ const props = {
   percentage: Number,
   color: {
     type: String,
-    default: '',
+    default: 'blue',
     validator(value) { return (!value || availableColors.includes(value)); },
   },
+  animate: Boolean,
+  animationDuration: {
+    type: Number,
+    default: 1000,
+  },
+  circularAnimation: Boolean,
 };
 
 const computed = {
@@ -64,10 +70,39 @@ const computed = {
   },
 };
 
+const methods = {
+  startAnimation() {
+    const { bar, circle, outsideBorder, insideBorder } = this.$refs;
+    const barAnimation = [
+      { transform: 'rotate(45deg)' },
+      { transform: `rotate(${45 + (this.progressPercentage * 1.8)}deg)` },
+    ];
+    const circleAnimation = [
+      { transform: 'rotate(0deg)' },
+      { transform: `rotate(${(this.progressPercentage * 1.8)}deg)` },
+    ];
+    const animation = bar.animate(barAnimation, { duration: this.animationDuration, iterations: (this.circularAnimation) ? Infinity : 1 });
+    outsideBorder.animate(barAnimation, { duration: this.animationDuration, iterations: (this.circularAnimation) ? Infinity : 1 });
+    insideBorder.animate(barAnimation, { duration: this.animationDuration, iterations: (this.circularAnimation) ? Infinity : 1 });
+    circle.animate(circleAnimation, { duration: this.animationDuration, iterations: (this.circularAnimation) ? Infinity : 1 });
+    animation.onfinish = this.emitEventFinish;
+  },
+  emitEventFinish(event) {
+    this.$emit('animationend', event);
+  },
+};
+
+const mounted = function () {
+  if (!this.animate) { return; }
+  this.startAnimation();
+};
+
 const Progress = {
   components,
   props,
   computed,
+  methods,
+  mounted,
 };
 
 export default Progress;

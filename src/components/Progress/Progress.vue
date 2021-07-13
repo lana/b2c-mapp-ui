@@ -3,21 +3,21 @@
     <div class="progress-bar-wrapper" :class="color">
       <div class="bar-container">
         <div class="progress-bar"
+             ref="bar"
              :data-testid="`${dataTestId}-progress`"
              :style="progressStyle"
         />
-        <div class="progress-border outside" :style="progressStyle"/>
-        <div class="progress-border inside" :style="progressStyle"/>
+        <div class="progress-border outside" ref="outsideBorder" :style="progressStyle"/>
+        <div class="progress-border inside" ref="insideBorder" :style="progressStyle"/>
       </div>
       <div class="bar-circle left"
            :class="{ filled: (progressPercentage > 0) }"
       />
-      <div class="bar-circle right"
-           :class="{ filled: (progressPercentage >= 100) }"
-      />
+      <div class="bar-circle right"/>
       <div class="progress-circle-container"
+           v-show="progressPercentage !== 0"
+           ref="circle"
            :data-testid="`${dataTestId}-circle`"
-           :class="{ hidden: (progressPercentage === 0) }"
            :style="progressCircle"
       >
         <div class="progress-circle"/>

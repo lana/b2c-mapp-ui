@@ -1,4 +1,5 @@
 import { withKnobs, select } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
 import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
@@ -39,7 +40,10 @@ const ProgressStories = {
     percentage: null,
     title: 'Level 1',
     description: '10 out of 100 points',
-    color: 'blue',
+    color: availableColors[0],
+    animate: false,
+    animationDuration: 1000,
+    circularAnimation: false,
   },
   argTypes: {
     progress: { name: 'Progress', control: { type: 'number' } },
@@ -48,7 +52,10 @@ const ProgressStories = {
     title: { name: 'Title', control: { type: 'text' } },
     description: { name: 'Description', control: { type: 'text' } },
     dataTestId: { control: { type: 'text' } },
-    color: { control: { type: 'select', options: availableColors, default: availableColors[0] } },
+    color: { options: availableColors, control: { type: 'select' } },
+    animate: { name: 'Animate?', control: { type: 'boolean' } },
+    animationDuration: { name: 'Animate duration', control: { type: 'number' } },
+    circularAnimation: { name: 'Infinite animation?', control: { type: 'boolean' } },
     customTitle: {
       control: {
         type: 'text',
@@ -78,14 +85,28 @@ const defaultExample = (args, { argTypes }) => ({
     Progress,
     RenderString,
   },
+  computed: {
+    computedKey() {
+      const result = `${this.animate}-${this.animationDuration}-${this.circularAnimation}`;
+      return result;
+    },
+  },
+  methods: {
+    onAnimationEnd: action('Animation ended!'),
+  },
   template: `
       <Progress :progress="progress"
+                :key="computedKey"
                 :total="total"
                 :percentage="percentage"
                 :data-test-id="dataTestId"
                 :title="title"
                 :description="description"
                 :color="color"
+                :animate="animate"
+                :animation-duration="animationDuration"
+                :circular-animation="circularAnimation"
+                @animationend="onAnimationEnd"
       >
         <template v-if="customTitle" #customTitle>
           <RenderString :string="customTitle" />
@@ -107,6 +128,10 @@ defaultExample.parameters = {
           :title="title"
           :description="description"
           :color="color"
+          :animate="animate"
+          :animation-duration="animationDuration"
+          :circular-animation="circularAnimation"
+          @animationend="onAnimationEnd"
 >
   <template #customTitle>
     {{ customTitle }}

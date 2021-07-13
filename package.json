@@ -1,6 +1,6 @@
 {
   "name": "@lana/b2c-mapp-ui",
-  "version": "8.25.0",
+  "version": "8.26.0",
   "description": "Shared custom libraries for building µapps.",
   "bugs": {
     "url": "https://github.com/lana/b2c-mapp-ui/issues"
@@ -57,14 +57,14 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^10.0.0",
     "@spothero/eslint-plugin-spothero": "^0.2.2",
-    "@storybook/addon-actions": "^6.2.9",
-    "@storybook/addon-controls": "^6.2.9",
-    "@storybook/addon-docs": "^6.2.9",
-    "@storybook/addon-knobs": "^6.2.9",
-    "@storybook/addon-links": "^6.2.9",
+    "@storybook/addon-actions": "^6.3.4",
+    "@storybook/addon-controls": "^6.3.4",
+    "@storybook/addon-docs": "^6.3.4",
+    "@storybook/addon-knobs": "^6.3.0",
+    "@storybook/addon-links": "^6.3.4",
     "@storybook/addon-notes": "^5.3.21",
     "@storybook/storybook-deployer": "^2.8.8",
-    "@storybook/vue": "^6.2.9",
+    "@storybook/vue": "^6.3.4",
     "@testing-library/dom": "^7.31.0",
     "@testing-library/vue": "^5.4.0",
     "@vue/cli-plugin-babel": "^4.5.13",
