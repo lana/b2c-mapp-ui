@@ -1,0 +1,104 @@
+@import "../../styles/colors";
+
+$colors: "blue" $blue-400 $blue-500 $blue-600,
+  "brown" $brown-400 $brown-500 $brown-600,
+  "green" $green-400 $green-500 $green-600,
+  "orange" $orange-400 $orange-500 $orange-600,
+  "pink" $pink-400 $pink-500 $pink-600,
+  "purple" $purple-400 $purple-500 $purple-600,
+  "red" $red-400 $red-500 $red-600,
+  "yellow" $yellow-400 $yellow-500 $yellow-600;
+
+.progress-container {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+
+  .progress-bar-wrapper {
+    position: relative;
+    display: block;
+    height: 16px;
+
+    background-color: $black-200;
+    border: 1px solid $black-300;
+    box-sizing: content-box;
+    border-radius: 104px;
+    overflow: hidden;
+
+    .bar-dot {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      top: calc(50% - 2px);
+      border-radius: 50%;
+
+      background-color: $black-400;
+      z-index: 5;
+
+      &.left {
+        left: 6px;
+      }
+
+      &.right {
+        right: 6px;
+      }
+    }
+
+    .progress-bar {
+      position: relative;
+      height: 100%;
+      width: var(--progression-percentage);
+    }
+
+    .circle-container {
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      top: 0;
+      bottom: 0;
+    }
+
+    .circle-filler {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 8px;
+    }
+
+    .circle-bar {
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      border-radius: 50%;
+      top: 0;
+      box-sizing: border-box;
+      z-index: 10;
+      left: var(--progression-percentage);
+
+      transform: translateX(-50%);
+    }
+
+    @each $color, $color-400, $color-500, $color-600 in $colors {
+      &.#{$color} {
+        .progress-bar {
+          background-image: linear-gradient(to left, $color-400, $color-500);
+          background-origin: border-box;
+          background-clip: content-box, border-box;
+        }
+        .bar-dot {
+          &.filled {
+            background-color: $color-600;
+          }
+        }
+        .circle-bar {
+          background-color: $color-600;
+        }
+        .circle-filler {
+          background-color: $color-500;
+        }
+      }
+    }
+  }
+}

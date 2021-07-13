@@ -64,10 +64,10 @@ const computed = {
   },
 };
 
-const Stepper = {
+const Progress = {
   components,
   props,
   computed,
 };
 
-export default Stepper;
+export default Progress;
