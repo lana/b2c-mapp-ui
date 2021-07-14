@@ -47,7 +47,7 @@ describe('Progress unit test', () => {
     const wrapper = mount(Progress, { propsData: { ...defaultProps, progress: 0 } });
     await wrapper.vm.$nextTick();
     const circle = wrapper.find('div[data-testid="progress-circle"]');
-    expect(circle.classes()).toContain('hidden');
+    expect(circle.element.style.display).toContain('none');
   });
 
   it('Should show custom title', async () => {

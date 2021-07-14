@@ -13,6 +13,12 @@ const props = {
     default: 'blue',
     validator(value) { return (!value || availableColors.includes(value)); },
   },
+  animate: Boolean,
+  animationDuration: {
+    type: Number,
+    default: 1000,
+  },
+  circularAnimation: Boolean,
 };
 
 const computed = {
@@ -41,9 +47,36 @@ const computed = {
   },
 };
 
+const methods = {
+  startAnimation() {
+    const { bar, circle } = this.$refs;
+    const barAnimation = [
+      { width: 0 },
+      { width: `${this.progressPercentage}%` },
+    ];
+    const circleAnimation = [
+      { left: 0 },
+      { left: `${this.progressPercentage}%` },
+    ];
+    const animation = bar.animate(barAnimation, { duration: this.animationDuration, iterations: (this.circularAnimation) ? Infinity : 1 });
+    circle.animate(circleAnimation, { duration: this.animationDuration, iterations: (this.circularAnimation) ? Infinity : 1 });
+    animation.onfinish = this.emitEventFinish;
+  },
+  emitEventFinish(event) {
+    this.$emit('animationend', event);
+  },
+};
+
+const mounted = function () {
+  if (!this.animate) { return; }
+  this.startAnimation();
+};
+
 const LinearProgress = {
   props,
   computed,
+  methods,
+  mounted,
 };
 
 export default LinearProgress;

@@ -148,10 +148,6 @@ $colors: "blue" $blue-400 $blue-500 $blue-600,
       z-index: 5;
       transform-origin: center bottom;
 
-      &.hidden {
-        display: none;
-      }
-
       .progress-circle {
         position: absolute;
         left: 0;

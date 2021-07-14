@@ -1,4 +1,5 @@
 import { withKnobs, select } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 import { MedalLevel0Icon } from '@lana/b2c-mapp-ui-assets/dist/index';
 
 import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
@@ -42,6 +43,9 @@ const LinearProgressStories = {
     total: 100,
     percentage: null,
     color: 'blue',
+    animate: false,
+    animationDuration: 1000,
+    circularAnimation: false,
   },
   argTypes: {
     progress: { name: 'Progress', control: { type: 'number' } },
@@ -49,6 +53,9 @@ const LinearProgressStories = {
     percentage: { name: 'Percentage', control: { type: 'number', min: 0, max: 100 } },
     dataTestId: { control: { type: 'text' } },
     color: { control: { type: 'select', options: availableColors, default: availableColors[0] } },
+    animate: { name: 'Animate?', control: { type: 'boolean' } },
+    animationDuration: { name: 'Animate duration', control: { type: 'number' } },
+    circularAnimation: { name: 'Infinite animation?', control: { type: 'boolean' } },
   },
 };
 
@@ -57,13 +64,27 @@ const defaultExample = (args, { argTypes }) => ({
   components: {
     LinearProgress,
   },
+  computed: {
+    computedKey() {
+      const result = `${this.animate}-${this.animationDuration}-${this.circularAnimation}`;
+      return result;
+    },
+  },
+  methods: {
+    onAnimationEnd: action('Animation ended!'),
+  },
   template: `
-      <LinearProgress :progress="progress"
-                :total="total"
-                :percentage="percentage"
-                :data-test-id="dataTestId"
-                :color="color"
-                style="padding: 16px"
+      <LinearProgress style="padding: 16px"
+                      :key="computedKey"
+                      :progress="progress"
+                      :total="total"
+                      :percentage="percentage"
+                      :data-test-id="dataTestId"
+                      :color="color"
+                      :animate="animate"
+                      :animation-duration="animationDuration"
+                      :circular-animation="circularAnimation"
+                      @animationend="onAnimationEnd"
       >
       </LinearProgress>
   `,
@@ -77,6 +98,10 @@ defaultExample.parameters = {
                 :percentage="percentage"
                 :data-test-id="field"
                 :color="color"
+                :animate="animate"
+                :animation-duration="animationDuration"
+                :circular-animation="circularAnimation"
+                @animationend="onAnimationEnd"
 />`,
     },
   },
