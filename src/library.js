@@ -39,6 +39,7 @@ import StorybookMobileDeviceSimulator from './components/StorybookMobileDeviceSi
 import { availableDevices as availableSimulatedMobileDevices } from './components/StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import TextField from './components/TextField/TextField.vue';
 import TextParagraph from './components/TextParagraph/TextParagraph.vue';
+import Timeline from './components/Timeline/Timeline.vue';
 import ToggleSwitch from './components/ToggleSwitch/ToggleSwitch.vue';
 import TopBar from './components/TopBar/TopBar.vue';
 import WrappedButton from './components/WrappedButton/WrappedButton.vue';
@@ -87,6 +88,7 @@ export {
   availableSimulatedMobileDevices,
   TextField,
   TextParagraph,
+  Timeline,
   ToggleSwitch,
   TopBar,
   WrappedButton,
