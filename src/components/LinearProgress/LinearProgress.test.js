@@ -28,4 +28,10 @@ describe('LinearProgress unit test', () => {
     const circle = wrapper.find('div[data-testid="linear-progress-circle-bar"]');
     expect(circle.element.style.display).toContain('none');
   });
+
+  it('Should send error for test animation', async () => {
+    const wrapper = mount(LinearProgress, { propsData: { ...defaultProps, progress: 100, animate: true, animationDuration: 1 } });
+    await wrapper.vm.$nextTick();
+    expect(wrapper.emitted().error).toBeTruthy();
+  });
 });

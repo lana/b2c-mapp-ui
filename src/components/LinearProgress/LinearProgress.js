@@ -49,18 +49,22 @@ const computed = {
 
 const methods = {
   startAnimation() {
-    const { bar, circle } = this.$refs;
-    const barAnimation = [
-      { width: 0 },
-      { width: `${this.progressPercentage}%` },
-    ];
-    const circleAnimation = [
-      { left: 0 },
-      { left: `${this.progressPercentage}%` },
-    ];
-    const animation = bar.animate(barAnimation, { duration: this.animationDuration, iterations: (this.circularAnimation) ? Infinity : 1 });
-    circle.animate(circleAnimation, { duration: this.animationDuration, iterations: (this.circularAnimation) ? Infinity : 1 });
-    animation.onfinish = this.emitEventFinish;
+    try {
+      const { bar, circle } = this.$refs;
+      const barAnimation = [
+        { width: 0 },
+        { width: `${this.progressPercentage}%` },
+      ];
+      const circleAnimation = [
+        { left: 0 },
+        { left: `${this.progressPercentage}%` },
+      ];
+      const animation = bar.animate(barAnimation, { duration: this.animationDuration, iterations: (this.circularAnimation) ? Infinity : 1 });
+      circle.animate(circleAnimation, { duration: this.animationDuration, iterations: (this.circularAnimation) ? Infinity : 1 });
+      animation.onfinish = this.emitEventFinish;
+    } catch (error) {
+      this.$emit('error', error);
+    }
   },
   emitEventFinish(event) {
     this.$emit('animationend', event);

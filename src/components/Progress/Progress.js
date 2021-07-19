@@ -72,20 +72,24 @@ const computed = {
 
 const methods = {
   startAnimation() {
-    const { bar, circle, outsideBorder, insideBorder } = this.$refs;
-    const barAnimation = [
-      { transform: 'rotate(45deg)' },
-      { transform: `rotate(${45 + (this.progressPercentage * 1.8)}deg)` },
-    ];
-    const circleAnimation = [
-      { transform: 'rotate(0deg)' },
-      { transform: `rotate(${(this.progressPercentage * 1.8)}deg)` },
-    ];
-    const animation = bar.animate(barAnimation, { duration: this.animationDuration, iterations: (this.circularAnimation) ? Infinity : 1 });
-    outsideBorder.animate(barAnimation, { duration: this.animationDuration, iterations: (this.circularAnimation) ? Infinity : 1 });
-    insideBorder.animate(barAnimation, { duration: this.animationDuration, iterations: (this.circularAnimation) ? Infinity : 1 });
-    circle.animate(circleAnimation, { duration: this.animationDuration, iterations: (this.circularAnimation) ? Infinity : 1 });
-    animation.onfinish = this.emitEventFinish;
+    try {
+      const { bar, circle, outsideBorder, insideBorder } = this.$refs;
+      const barAnimation = [
+        { transform: 'rotate(45deg)' },
+        { transform: `rotate(${45 + (this.progressPercentage * 1.8)}deg)` },
+      ];
+      const circleAnimation = [
+        { transform: 'rotate(0deg)' },
+        { transform: `rotate(${(this.progressPercentage * 1.8)}deg)` },
+      ];
+      const animation = bar.animate(barAnimation, { duration: this.animationDuration, iterations: (this.circularAnimation) ? Infinity : 1 });
+      outsideBorder.animate(barAnimation, { duration: this.animationDuration, iterations: (this.circularAnimation) ? Infinity : 1 });
+      insideBorder.animate(barAnimation, { duration: this.animationDuration, iterations: (this.circularAnimation) ? Infinity : 1 });
+      circle.animate(circleAnimation, { duration: this.animationDuration, iterations: (this.circularAnimation) ? Infinity : 1 });
+      animation.onfinish = this.emitEventFinish;
+    } catch (error) {
+      this.$emit('error', error);
+    }
   },
   emitEventFinish(event) {
     this.$emit('animationend', event);

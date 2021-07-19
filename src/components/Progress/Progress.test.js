@@ -75,4 +75,10 @@ describe('Progress unit test', () => {
     const customDescription = wrapper.find('p[data-testid="custom-description"]');
     expect(customDescription).toBeTruthy();
   });
+
+  it('Should send error for test animation', async () => {
+    const wrapper = mount(Progress, { propsData: { ...defaultProps, progress: 100, animate: true, animationDuration: 1 } });
+    await wrapper.vm.$nextTick();
+    expect(wrapper.emitted().error).toBeTruthy();
+  });
 });
