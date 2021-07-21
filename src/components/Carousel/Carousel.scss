@@ -18,6 +18,13 @@
     &::-webkit-scrollbar {
       display: none;
     }
+
+    &::v-deep > * {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      display: inline-flex;
+    }
   }
 }
 

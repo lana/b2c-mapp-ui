@@ -3,7 +3,6 @@ import { withKnobs, select } from '@storybook/addon-knobs';
 import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
 import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import Carousel from './Carousel.vue';
-import CarouselItem from '../CarouselItem/CarouselItem.vue';
 import RenderString from '../../lib/renderString';
 
 const deviceDecorator = () => ({
@@ -171,9 +170,9 @@ const defaultExample = (args, { argTypes }) => ({
 defaultExample.args = {
   arrowIcons: true,
   value: 1,
-  default: `<CarouselItem key="1"><Progress :percentage="20" /></CarouselItem>
-<CarouselItem key="2"><Progress :percentage="50" /></CarouselItem>
-<CarouselItem key="3"><Progress :percentage="100" color="green" /></CarouselItem>`,
+  default: `<div key="1"><Progress :percentage="20" /></div>
+<div key="2"><Progress :percentage="50" /></div>
+<div key="3"><Progress :percentage="100" color="green" /></div>`,
   leftArrowIcon: '<BackIcon class="icon" width="18" />',
   rightArrowIcon: '<ForwardIcon class="icon" width="18" />',
   navigationItem: '<span style="margin: 4px;" v-html="index" />',
@@ -189,9 +188,9 @@ defaultExample.parameters = {
             :hide-navigation="hideNavigation"
             :key="value"
   >
-    <CarouselItem key="1"><Progress :percentage="20" /></CarouselItem>
-    <CarouselItem key="2"><Progress :percentage="50" /></CarouselItem>
-    <CarouselItem key="3"><Progress :percentage="100" color="green" /></CarouselItem>
+    <div key="1"><Progress :percentage="20" /></div>
+    <div key="2"><Progress :percentage="50" /></div>
+    <div key="3"><Progress :percentage="100" color="green" /></div>
     <template #leftArrowIcon>
       <BackIcon class="icon" width="18" />
     </template>
@@ -214,7 +213,6 @@ const simpleExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: {
     Carousel,
-    CarouselItem,
   },
   data() {
     return {
@@ -233,10 +231,10 @@ const simpleExample = (args, { argTypes }) => ({
                 :arrow-icons="arrowIcons"
                 :hide-navigation="hideNavigation"
       >
-        <CarouselItem key="green"><div style="height: 110px; width: 85%; background-color: green" /></CarouselItem>
-        <CarouselItem key="blue"><div style="height: 130px; width: 90%; background-color: blue" /></CarouselItem>
-        <CarouselItem key="red"><div style="height: 120px; width: 100%; background-color: red" /></CarouselItem>
-        <CarouselItem key="yellow"><div style="height: 100px; width: 95%; background-color: yellow" /></CarouselItem>
+        <div key="green" style="align-items: center; justify-content: center"><div style="height: 110px; width: 85%; background-color: green" /></div>
+        <div key="blue" style="align-items: center; justify-content: center"><div style="height: 130px; width: 90%; background-color: blue" /></div>
+        <div key="red" style="align-items: center; justify-content: center"><div style="height: 120px; width: 100%; background-color: red" /></div>
+        <div key="yellow" style="align-items: center; justify-content: center"><div style="height: 100px; width: 95%; background-color: yellow" /></div>
       </Carousel>
       <p>Bound value: {{ slide }}</p>
     </div>
@@ -261,18 +259,18 @@ simpleExample.parameters = {
           :arrow-icons="arrowIcons"
           :hide-navigation="hideNavigation"
 >
-  <CarouselItem key="green">
+  <div key="green" style="align-items: center; justify-content: center">
     <div style="height: 110px; width: 85%; background-color: green" />
-  </CarouselItem>
-  <CarouselItem key="blue">
+  </div>
+  <div key="blue" style="align-items: center; justify-content: center">
     <div style="height: 130px; width: 90%; background-color: blue" />
-  </CarouselItem>
-  <CarouselItem key="red">
+  </div>
+  <div key="red" style="align-items: center; justify-content: center">
     <div style="height: 120px; width: 100%; background-color: red" />
-  </CarouselItem>
-  <CarouselItem key="yellow">
+  </div>
+  <div key="yellow" style="align-items: center; justify-content: center">
     <div style="height: 100px; width: 95%; background-color: yellow" />
-  </CarouselItem>
+  </div>
 </Carousel>
       `,
     },
@@ -283,7 +281,6 @@ const innerWidthItemExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: {
     Carousel,
-    CarouselItem,
   },
   data() {
     return {
@@ -302,18 +299,18 @@ const innerWidthItemExample = (args, { argTypes }) => ({
                 :arrow-icons="arrowIcons"
                 :hide-navigation="hideNavigation"
       >
-        <CarouselItem key="green" inline>
+        <div key="green" style="flex-basis: auto">
           <div style="height: 110px; width: 200px; background-color: green; margin: 0 5px" />
-        </CarouselItem>
-        <CarouselItem key="blue" inline>
+        </div>
+        <div key="blue" style="flex-basis: auto">
           <div style="height: 130px; width: 300px; background-color: blue; margin: 0 5px" />
-        </CarouselItem>
-        <CarouselItem key="red" inline>
+        </div>
+        <div key="red" style="flex-basis: auto">
           <div style="height: 120px; width: 250px; background-color: red; margin: 0 5px" />
-        </CarouselItem>
-        <CarouselItem key="yellow" inline>
+        </div>
+        <div key="yellow" style="flex-basis: auto">
           <div style="height: 100px; width: 450px; background-color: yellow; margin: 0 5px" />
-        </CarouselItem>
+        </div>
       </Carousel>
       <p>Bound value: {{ slide }}</p>
     </div>
@@ -338,18 +335,18 @@ innerWidthItemExample.parameters = {
           :arrow-icons="arrowIcons"
           :hide-navigation="hideNavigation"
 >
-  <CarouselItem key="green">
-    <div style="height: 110px; width: 85%; background-color: green" />
-  </CarouselItem>
-  <CarouselItem key="blue">
-    <div style="height: 130px; width: 90%; background-color: blue" />
-  </CarouselItem>
-  <CarouselItem key="red">
-    <div style="height: 120px; width: 100%; background-color: red" />
-  </CarouselItem>
-  <CarouselItem key="yellow">
-    <div style="height: 100px; width: 95%; background-color: yellow" />
-  </CarouselItem>
+  <div key="green" style="flex-basis: auto">
+    <div style="height: 110px; width: 200px; background-color: green; margin: 0 5px" />
+  </div>
+  <div key="blue" style="flex-basis: auto">
+    <div style="height: 130px; width: 300px; background-color: blue; margin: 0 5px" />
+  </div>
+  <div key="red" style="flex-basis: auto">
+    <div style="height: 120px; width: 250px; background-color: red; margin: 0 5px" />
+  </div>
+  <div key="yellow" style="flex-basis: auto">
+    <div style="height: 100px; width: 450px; background-color: yellow; margin: 0 5px" />
+  </div>
 </Carousel>
       `,
     },

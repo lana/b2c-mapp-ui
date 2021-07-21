@@ -1,17 +1,15 @@
 <template>
   <Carousel v-model="slide" :hide-arrows="hideArrows" :arrow-icons="arrowIcons" :hide-navigation="hideNavigation">
-    <CarouselItem v-for="n in childAmount" :key="n"><div style="width: 10px"/></CarouselItem>
+    <div v-for="n in childAmount" :key="n" style="width: 10px"/>
   </Carousel>
 </template>
 <script>
 import Carousel from '../Carousel.vue';
-import CarouselItem from '../../CarouselItem/CarouselItem.vue';
 
 export default {
   name: 'CarouselTestWrapper',
   components: {
     Carousel,
-    CarouselItem,
   },
   data() {
     return {
