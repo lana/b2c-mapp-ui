@@ -1,13 +1,13 @@
 @import "../../styles/colors";
 
 $colors: "blue" $blue-400 $blue-500 $blue-600,
-  "brown" $brown-400 $brown-500 $brown-600,
-  "green" $green-400 $green-500 $green-600,
+  "brown" $brown-500 $brown-600 $brown-600,
+  "green" $green-500 $green-600 $green-600,
   "orange" $orange-400 $orange-500 $orange-600,
   "pink" $pink-400 $pink-500 $pink-600,
-  "purple" $purple-400 $purple-500 $purple-600,
+  "purple" $purple-300 $purple-500 $purple-600,
   "red" $red-400 $red-500 $red-600,
-  "yellow" $yellow-400 $yellow-500 $yellow-600;
+  "yellow" $yellow-400 $yellow-500 $yellow-500;
 
 .progress-container {
   position: relative;
@@ -80,23 +80,23 @@ $colors: "blue" $blue-400 $blue-500 $blue-600,
       transform: translateX(-50%);
     }
 
-    @each $color, $color-400, $color-500, $color-600 in $colors {
+    @each $color, $color1, $color2, $color3 in $colors {
       &.#{$color} {
         .progress-bar {
-          background-image: linear-gradient(to left, $color-400, $color-500);
+          background-image: linear-gradient(to left, $color1, $color2);
           background-origin: border-box;
           background-clip: content-box, border-box;
         }
         .bar-dot {
           &.filled {
-            background-color: $color-600;
+            background-color: $color3;
           }
         }
         .circle-bar {
-          background-color: $color-600;
+          background-color: $color3;
         }
         .circle-filler {
-          background-color: $color-500;
+          background-color: $color2;
         }
       }
     }

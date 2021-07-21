@@ -2,21 +2,21 @@
   <div :data-testid="`${dataTestId}-container`" class="progress-container" :style="cssVars">
     <div class="progress-bar-wrapper" :class="color">
       <div class="bar-container">
-        <div class="progress-bar"
-             ref="bar"
+        <div ref="bar"
+             class="progress-bar"
              :data-testid="`${dataTestId}-progress`"
              :style="progressStyle"
         />
-        <div class="progress-border outside" ref="outsideBorder" :style="progressStyle"/>
-        <div class="progress-border inside" ref="insideBorder" :style="progressStyle"/>
+        <div ref="outsideBorder" class="progress-border outside" :style="progressStyle"/>
+        <div ref="insideBorder" class="progress-border inside" :style="progressStyle"/>
       </div>
       <div class="bar-circle left"
            :class="{ filled: (progressPercentage > 0) }"
       />
       <div class="bar-circle right"/>
-      <div class="progress-circle-container"
-           v-show="progressPercentage !== 0"
+      <div v-show="progressPercentage !== 0"
            ref="circle"
+           class="progress-circle-container"
            :data-testid="`${dataTestId}-circle`"
            :style="progressCircle"
       >

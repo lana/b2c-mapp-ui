@@ -1,10 +1,10 @@
 <template>
   <div class="timeline-container" :data-testid="`${dataTestId}-container`">
-    <div class="timeline-begin"  :data-testid="`${dataTestId}-begin`">
-      <slot name="startPoint"></slot>
+    <div class="timeline-begin" :data-testid="`${dataTestId}-begin`">
+      <slot name="startPoint"/>
     </div>
-    <div class="timeline"  :data-testid="`${dataTestId}`">
-      <slot></slot>
+    <div class="timeline" :data-testid="`${dataTestId}`">
+      <slot/>
     </div>
   </div>
 </template>
