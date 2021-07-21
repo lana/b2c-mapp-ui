@@ -1,16 +1,15 @@
 <template>
   <div class="carousel" :data-testid="dataTestId">
-    <component :is="`ul`"
-               ref="carousel"
-               class="carousel-wrapper"
-               :data-testid="`${dataTestId}-wrapper`"
-               @mousedown="handleGestureStart"
-               @mousemove="handleGestureMove"
-               @mouseup="handleGestureEnd"
-               @scroll.passive="handleScroll"
+    <div ref="carousel"
+         class="carousel-wrapper"
+         :data-testid="`${dataTestId}-wrapper`"
+         @mousedown="handleGestureStart"
+         @mousemove="handleGestureMove"
+         @mouseup="handleGestureEnd"
+         @scroll.passive="handleScroll"
     >
       <slot/>
-    </component>
+    </div>
     <slot v-if="!hideArrows"
           name="arrows"
           :data-testid="`${dataTestId}-arrows`"

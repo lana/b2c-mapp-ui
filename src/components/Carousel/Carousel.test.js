@@ -32,7 +32,7 @@ describe('Carousel unit test', () => {
   it('Should find given child', async () => {
     const wrapper = mount(CarouselTestWrapper, { propsData: { ...defaultProps } });
     await wrapper.vm.$nextTick();
-    const child = wrapper.findAll('li[data-testid="carousel-item"]');
+    const child = wrapper.findAll('[data-testid="carousel-wrapper"] > *');
     expect(child.length).toEqual(4);
   });
 

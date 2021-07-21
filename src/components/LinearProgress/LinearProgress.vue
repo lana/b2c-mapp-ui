@@ -9,14 +9,14 @@
            class="circle-filler"
       />
       <div class="circle-container">
-        <div class="progress-bar"
-             ref="bar"
+        <div ref="bar"
+             class="progress-bar"
              :data-testid="`${dataTestId}-progress-bar`"
              :style="progressStyle"
         />
         <div v-show="progressPercentage > 0"
-             class="circle-bar"
              ref="circle"
+             class="circle-bar"
              :data-testid="`${dataTestId}-circle-bar`"
              :style="circleStyle"
         />
