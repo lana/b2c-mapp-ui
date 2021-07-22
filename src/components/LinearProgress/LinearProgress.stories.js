@@ -117,6 +117,12 @@ const withCardExample = (args, { argTypes }) => ({
     SpecCard,
     MedalLevel0Icon,
   },
+  computed: {
+    computedKey() {
+      const result = `${this.animate}-${this.animationDuration}-${this.circularAnimation}`;
+      return result;
+    },
+  },
   template: `
     <SpecCard style="margin: 16px">
       <div style="display: flex; padding: 16px">
@@ -138,11 +144,15 @@ const withCardExample = (args, { argTypes }) => ({
           </TextParagraph>
         </div>
       </div>
-      <LinearProgress :progress="progress"
+      <LinearProgress :key="computedKey"
+                      :progress="progress"
                       :total="total"
                       :percentage="percentage"
                       :data-test-id="dataTestId"
                       :color="color"
+                      :animate="animate"
+                      :animation-duration="animationDuration"
+                      :circular-animation="circularAnimation"
                       style="padding: 16px;"
       >
       </LinearProgress>
@@ -179,6 +189,9 @@ withCardExample.parameters = {
                   :percentage="percentage"
                   :data-test-id="field"
                   :color="color"
+                  :animate="animate"
+                  :animation-duration="animationDuration"
+                  :circular-animation="circularAnimation"
   />
 </SpecCard>
       `,

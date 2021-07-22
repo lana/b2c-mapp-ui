@@ -1,6 +1,7 @@
 <template>
   <div :data-testid="`${dataTestId}-container`" class="progress-container">
     <div class="progress-bar-wrapper" :class="color">
+      <div class="progress-background"/>
       <div class="bar-dot left"
            :class="{ filled: (progressPercentage > 0) }"
       />
