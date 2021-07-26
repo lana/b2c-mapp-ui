@@ -67,6 +67,18 @@ describe('ConfirmationmodalDialog unit test', () => {
     expect(childrenIsShown).toBeTruthy();
   });
 
+  it('Should show custom action', () => {
+    const { getByTestId } = render(
+      ConfirmationModalDialog,
+      {
+        slots: { extraActions: '<a data-testid="custom-action">x</a>' },
+        propsData: { ...defaultProps },
+      },
+    );
+    const customTitleVisible = getByTestId('custom-action');
+    expect(customTitleVisible).toBeTruthy();
+  });
+
   describe('Confirm actions behavior', () => {
     it('Should show action-confirm button when confirm is given', () => {
       const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps } });
@@ -158,6 +170,20 @@ describe('ConfirmationmodalDialog unit test', () => {
       await wrapper.vm.$nextTick();
       const closeEventEmitted = wrapper.emitted().close;
       expect(closeEventEmitted).toBeTruthy();
+    });
+
+    it('Should emit an event when dismiss is given by extra slot and action-dismiss is clicked', () => {
+      const { getByTestId, emitted } = render(
+        ConfirmationModalDialog,
+        {
+          scopedSlots: { extraActions: '<a data-testid="custom-action" @click="props.onDismiss">x</a>' },
+          propsData: { ...defaultProps },
+        },
+      );
+      const dismissCTA = getByTestId('custom-action');
+      fireEvent.click(dismissCTA);
+      const clickEvent = emitted().dismiss;
+      expect(clickEvent).toBeTruthy();
     });
   });
 });
