@@ -164,7 +164,7 @@ const watch = {
   },
   value() {
     if (!this.value) { return; }
-    const newValue = parse(this.value || '0', { ...this.currencyOptions, currency: this.currency });
+    const newValue = parse(`${this.value}` || '0', { ...this.currencyOptions, currency: this.currency });
     setValue(this.$refs.input, newValue);
     if (this.isFocused) { return; }
     this.inputValue = this.currencyValue;

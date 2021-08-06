@@ -104,6 +104,7 @@ module.exports = {
     'vue/mustache-interpolation-spacing': 'error',
     'vue/no-multi-spaces': 'error',
     'vue/prop-name-casing': 'error',
+    'vue/script-setup-uses-vars': 'warn',
     'vue/v-bind-style': 'error',
     'vue/v-on-style': 'error',
     'vue/attributes-order': ['error', {

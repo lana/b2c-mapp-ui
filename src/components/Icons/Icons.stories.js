@@ -1,5 +1,5 @@
 import { number } from '@storybook/addon-knobs';
-import * as AllIcons from '@lana/b2c-mapp-ui-assets/dist/index';
+import * as AllIcons from '@lana/b2c-mapp-ui-assets';
 
 const IconStories = {
   title: 'Components/Icons',

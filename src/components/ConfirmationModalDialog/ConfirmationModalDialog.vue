@@ -3,7 +3,7 @@
            :class="{ visible: isShowing }"
            :data-testid="`${dataTestId}-section`"
   >
-    <slot v-bind="{ onDismiss, onConfirm }" name="extraActions" />
+    <slot v-bind="{ onDismiss, onConfirm }" name="extraActions"/>
     <div class="dialog" :data-testid="`${dataTestId}-content`">
       <Heading v-if="title"
                class="title"
