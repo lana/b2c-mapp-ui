@@ -24,6 +24,9 @@ const config = {
     '@babel/runtime',
     '@lana/b2c-mapp-ui-assets',
     'libphonenumber-js/custom',
+    'lodash.debounce',
+    'vue-contenteditable',
+    'vue-currency-input',
   ],
   plugins: [
     commonjs({
