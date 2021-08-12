@@ -1,6 +1,5 @@
 import { MopIcon } from '@lana/b2c-mapp-ui-assets';
-
-const debounce = require('lodash.debounce');
+import debounce from 'lodash.debounce';
 
 const debounceSettings = { leading: true, trailing: false };
 

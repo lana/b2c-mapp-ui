@@ -9,7 +9,7 @@ module.exports = {
   ],
   plugins: [
     'fp',
-    '@spothero/eslint-plugin-spothero',
+    '@getify/proper-ternary',
   ],
   ignorePatterns: [
     'build/**/*',
@@ -66,7 +66,7 @@ module.exports = {
     'fp/no-class': 'error',
     'fp/no-delete': 'error',
     'fp/no-get-set': 'error',
-    '@spothero/spothero/ternary-parentheses': 'error',
+    '@getify/proper-ternary/parens': ['error', { call: false, object: false }],
     'vue/no-shared-component-data': 'error',
     'vue/no-side-effects-in-computed-properties': 'error',
     'vue/no-unused-components': 'error',

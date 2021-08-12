@@ -4,7 +4,7 @@
          :data-testid="`${dataTestId}-container`"
     >
       <span class="symbol">{{ currencySymbol }}</span>
-      <ContentEditable :id="inputId"
+      <contenteditable :id="inputId"
                        ref="content"
                        v-model="inputValue"
                        tag="div"
