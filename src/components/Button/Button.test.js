@@ -1,14 +1,14 @@
+/* eslint-disable import/order */
 /* eslint-disable import/first */
 import { render, fireEvent } from '@testing-library/vue';
 import { mount } from '@vue/test-utils';
 
 jest.mock('lodash.debounce', () => jest.fn((fn) => fn));
 
+import debounce from 'lodash.debounce';
 import Button from './Button.vue';
 import ButtonTestWrapper from './UnitTestWrappers/ButtonTestWrapper.vue';
 import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
-
-const debounce = require('lodash.debounce');
 
 describe('Button unit test', () => {
   beforeAll(() => {

@@ -1,6 +1,5 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@lana/b2c-mapp-ui-assets';
-
-const debounce = require('lodash.debounce');
+import debounce from 'lodash.debounce';
 
 const SCROLL_DEBOUNCE = 200;
 
@@ -123,8 +122,8 @@ const methods = {
     this.$refs.carousel.scrollLeft = this.scrollLeft - walk;
   },
   handleScroll(event) {
-    const { scrollLeft } = event.target;
-    const roundedScrollLeft = Math.round(scrollLeft);
+    const { scrollLeft, clientLeft } = event.target;
+    const roundedScrollLeft = Math.round(scrollLeft) + clientLeft;
     const index = this.items.findIndex(({ offsetLeft: itemOffsetLeft }) => (itemOffsetLeft === roundedScrollLeft));
     if (index < 0) { return; }
     if (this.destinationScrollLeft !== null && this.items[index].offsetLeft !== this.destinationScrollLeft) { return; }
