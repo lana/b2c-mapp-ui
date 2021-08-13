@@ -1,10 +1,11 @@
-import Vue from 'vue';
 import { CurrencyDirective, getValue, setValue, parse } from 'vue-currency-input';
-import contenteditable from 'vue-contenteditable';
+import ContentEditable from 'vue-contenteditable/src/contenteditable.vue';
 
 import { escapeRegExp } from '../../lib/regexHelper';
 
-Vue.use(contenteditable);
+const components = {
+  ContentEditable,
+};
 
 const directives = {
   currency: CurrencyDirective,
@@ -187,6 +188,7 @@ const mounted = function () {
 };
 
 const AmountInput = {
+  components,
   directives,
   props,
   computed,
