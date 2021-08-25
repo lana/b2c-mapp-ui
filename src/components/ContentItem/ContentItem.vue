@@ -28,6 +28,7 @@
     <slot name="forward-icon">
       <Component :is="iconName" v-if="hasIcon" class="item-icon" :data-testid="iconDataTestId"/>
     </slot>
+    <slot name="extra-item"/>
   </li>
 </template>
 
