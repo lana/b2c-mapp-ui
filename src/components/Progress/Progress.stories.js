@@ -1,39 +1,19 @@
-import { withKnobs, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import Progress from './Progress.vue';
 import RenderString from '../../lib/renderString';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
 
 const availableColors = ['blue', 'brown', 'green', 'orange', 'pink', 'purple', 'red', 'yellow'];
 
-const deviceDecorator = () => ({
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-  },
-  components: { StorybookMobileDeviceSimulator },
-  template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>Progress:</strong>&nbsp;A component that let user see a progress.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <story />
-      </StorybookMobileDeviceSimulator>
-    </div>
-  `,
-});
-deviceDecorator.argTypes = {
-  device: { control: { type: 'select', options: [...availableDevices] } },
-};
+const deviceDecorator = createDeviceDecorator('<strong>Progress:</strong>&nbsp;A component that let user see a progress.');
 
 const ProgressStories = {
   component: Progress,
   title: 'Components/Progress',
-  decorators: [withKnobs, deviceDecorator],
+  decorators: [deviceDecorator],
   args: {
+    ...deviceDecorator.args,
     dataTestId: 'progress',
     progress: 10,
     total: 100,
@@ -46,6 +26,7 @@ const ProgressStories = {
     circularAnimation: false,
   },
   argTypes: {
+    ...deviceDecorator.argTypes,
     progress: { name: 'Progress', control: { type: 'number' } },
     total: { name: 'Total', control: { type: 'number' } },
     percentage: { name: 'Percentage', control: { type: 'number', min: 0, max: 100 } },

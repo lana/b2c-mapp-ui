@@ -1,29 +1,40 @@
-import { withKnobs, select } from '@storybook/addon-knobs';
-
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import SelfieWebCam from './SelfieWebCam.vue';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+
+const deviceDecorator = createDeviceDecorator('<strong>SelfieWebCam:</strong>&nbsp;A customized WebCam component for taking Selfies');
 
 const SelfieWebCamStories = {
   component: SelfieWebCam,
   title: 'Components/SelfieWebCam',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    width: '480',
+    height: '640',
+    autoplay: true,
+    screenshotFormat: 'image/jpeg',
+    selectFirstDevice: false,
+    deviceId: '',
+    playsinline: true,
+    resolution: { height: 640, width: 480 },
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    width: { control: 'text', name: 'Width' },
+    height: { control: 'text', name: 'Height' },
+    autoplay: { control: 'boolean', name: 'Autoplay?' },
+    screenshotFormat: { control: 'text', name: 'Screenshot Format' },
+    selectFirstDevice: { control: 'boolean', name: 'Select First Device?' },
+    deviceId: { control: 'text', name: 'Device Id' },
+    playsinline: { control: 'boolean', name: 'Plays Inline?' },
+    resolution: { control: 'object', name: 'Resolution' },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     SelfieWebCam,
-    StorybookMobileDeviceSimulator,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-  },
-  data() {
-    return {
-      deviceId: '',
-    };
   },
   methods: {
     onCamerasReady() {
@@ -31,25 +42,39 @@ const defaultExample = () => ({
     },
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>SelfieWebCam:</strong>&nbsp;A customized WebCam component for taking Selfies</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <div style="margin-top: 40px; width: 100%; display: flex; justify-content: center">
-          <SelfieWebCam ref="webcam"
-                        style="width: 240px; height: 320px; border-radius: 24px"
-                        screenshot-format="image/jpeg"
-                        :device-id="deviceId"
-                        :height="640"
-                        :width="480"
-                        :resolution="{ height: 640, width: 480 }"
-                        @cameras="onCamerasReady"
-          />
-        </div>
-      </StorybookMobileDeviceSimulator>
-    </div>
+    <SelfieWebCam ref="webcam"
+                  style="width: 240px; height: 320px; border-radius: 24px"
+                  :screenshot-format="screenshotFormat"
+                  :device-id="deviceId"
+                  :height="height"
+                  :width="height"
+                  :resolution="resolution"
+                  :autoplay="autoplay"
+                  :playsinline="playsinline"
+                  :selectFirstDevice="selectFirstDevice"
+                  @cameras="onCamerasReady"
+    />
   `,
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<SelfieWebCam ref="webcam"
+              style="width: 240px; height: 320px; border-radius: 24px"
+              :screenshot-format="screenshotFormat"
+              :device-id="deviceId"
+              :height="height"
+              :width="height"
+              :resolution="resolution"
+              :autoplay="autoplay"
+              :playsinline="playsinline"
+              :select-first-device="selectFirstDevice"
+              @cameras="onCamerasReady"
+/>`,
+    },
+  },
+};
 
 export {
   defaultExample,

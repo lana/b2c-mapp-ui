@@ -1,73 +1,84 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select, boolean, text, number } from '@storybook/addon-knobs';
 
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import WrappedButton from './WrappedButton.vue';
 import { availableTypes } from './WrappedButton';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+import RenderString from '../../lib/renderString';
+
+const deviceDecorator = createDeviceDecorator('<strong>WrappedButton:</strong>&nbsp;Wraps a Button component with extra padding to be placed at the bottom of the screen.');
 
 const WrappedButtonStories = {
   component: WrappedButton,
   title: 'Components/WrappedButton',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    type: '',
+    disabled: false,
+    loading: false,
+    debounce: false,
+    debounceDelay: 400,
+    loadingText: 'Cargando...',
+    href: '',
+    default: 'Example Wrapped Button Content',
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    type: { control: 'select', name: 'Type', options: [...availableTypes, ''] },
+    disabled: { control: 'boolean', name: 'Is Disabled?' },
+    loading: { control: 'boolean', name: 'Is Loading?' },
+    debounce: { control: 'boolean', name: 'Has debounce?' },
+    debounceDelay: { control: { type: 'number', step: 100 }, name: 'Debounce Delay' },
+    loadingText: { control: 'text', name: 'Loading Text' },
+    href: { control: 'text', name: 'href' },
+    default: { control: { type: 'text' }, table: { type: { summary: null } } },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     WrappedButton,
-    StorybookMobileDeviceSimulator,
+    RenderString,
   },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    type: {
-      default: select('Type', [...availableTypes, ''], ''),
-    },
-    disabled: {
-      default: boolean('Is Disabled?', false),
-    },
-    loading: {
-      default: boolean('Is Loading?', false),
-    },
-    debounce: {
-      default: boolean('Has debounce?', false),
-    },
-    debounceDelay: {
-      default: number('Debounce Delay', 400, { step: 100 }),
-    },
-    loadingText: {
-      default: text('Loading Text', 'Cargando...'),
-    },
-    href: {
-      default: text('href', ''),
-    },
-    label: {
-      default: text('Button Label', 'Example Wrapped Button Content'),
+  computed: {
+    defaultSlot() {
+      return this.default;
     },
   },
   methods: {
     onClick: action('Clicked!'),
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>WrappedButton:</strong>&nbsp;Wraps a Button component with extra padding to be placed at the bottom of the screen.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <WrappedButton :type="type"
-                       :href="href"
-                       :loading="loading"
-                       :loading-text="loadingText"
-                       :disabled="disabled"
-                       :debounce="debounce"
-                       @click="onClick"
-        >
-          {{ label }}
-        </WrappedButton>
-      </StorybookMobileDeviceSimulator>
-    </div>
+    <WrappedButton :type="type"
+                   :href="href"
+                   :loading="loading"
+                   :loading-text="loadingText"
+                   :disabled="disabled"
+                   :debounce="debounce"
+                   @click="onClick"
+    >
+      <RenderString :string="defaultSlot" />
+    </WrappedButton>
   `,
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<WrappedButton :type="type"
+               :href="href"
+               :loading="loading"
+               :loading-text="loadingText"
+               :disabled="disabled"
+               :debounce="debounce"
+               @click="onClick"
+>
+  Example Wrapped Button Content
+</WrappedButton>`,
+    },
+  },
+};
 
 export {
   defaultExample,

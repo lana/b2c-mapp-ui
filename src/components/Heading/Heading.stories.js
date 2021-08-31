@@ -1,59 +1,68 @@
-import { withKnobs, select } from '@storybook/addon-knobs';
-
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import Heading from './Heading.vue';
 import { availableSizes, availableWeights } from './Heading';
 import { capitalizeFirstLetter } from '../../lib/textHelper';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+import RenderString from '../../lib/renderString';
+
+const deviceDecorator = createDeviceDecorator('<strong>Heading:</strong>&nbsp;A text view that represents a heading/title.');
 
 const HeadingStories = {
   component: Heading,
   title: 'Components/Heading',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    size: 'xl',
+    weight: 'normal',
+    default: 'Example Heading',
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    size: { control: 'select', name: 'Size', options: [...availableSizes, ''] },
+    weight: { control: 'select', name: 'Weight', options: [...availableWeights, ''] },
+    default: { control: { type: 'text' }, table: { type: { summary: null } } },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     Heading,
-    StorybookMobileDeviceSimulator,
+    RenderString,
   },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    size: {
-      default: select('Size', [...availableSizes, ''], 'xl'),
-    },
-    weight: {
-      default: select('Weight', [...availableWeights, ''], 'normal'),
+  computed: {
+    defaultSlot() {
+      return this.default;
     },
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>Heading:</strong>&nbsp;A text view that represents a heading/title.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <div style="margin: 20px;">
-          <Heading :size="size"
-                   :weight="weight"
-          >
-            Example Heading
-          </Heading>
-        </div>
-      </StorybookMobileDeviceSimulator>
+    <div style="margin: 20px;">
+      <Heading :size="size"
+                :weight="weight"
+      >
+        <RenderString :string="defaultSlot" />
+      </Heading>
     </div>
   `,
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<Heading :size="size"
+         :weight="weight"
+>
+  Example Heading
+</Heading>
+      `,
+    },
+  },
+};
 
-const weights = () => ({
+const weights = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     Heading,
-    StorybookMobileDeviceSimulator,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
   },
   data() {
     return {
@@ -64,33 +73,40 @@ const weights = () => ({
     capitalizeFirstLetter,
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>Heading:</strong>&nbsp;Available Weights</h2>
+    <div>
+      <h3>Available Weights</h3>
       <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <div style="margin: 20px;">
-          <Heading>Default weight example</Heading>
-          <Heading v-for="(weight, index) in availableWeights"
-                   :key="index"
-                   :weight="weight"
-          >
-            {{ capitalizeFirstLetter(weight) }} weight example
-          </Heading>
-        </div>
-      </StorybookMobileDeviceSimulator>
+      <div style="margin: 20px;">
+        <Heading>Default weight example</Heading>
+        <Heading v-for="(weight, index) in availableWeights"
+                  :key="index"
+                  :weight="weight"
+        >
+          {{ capitalizeFirstLetter(weight) }} weight example
+        </Heading>
+      </div>
     </div>
   `,
 });
+weights.argTypes = {
+  size: { table: { disable: true } },
+  weight: { table: { disable: true } },
+  default: { table: { disable: true } },
+};
+weights.parameters = {
+  docs: {
+    source: {
+      code: availableWeights.map((weight) => `<Heading weight="${weight}"> 
+  ${capitalizeFirstLetter(weight)} weight example
+</Heading>`).join('\n'),
+    },
+  },
+};
 
-const sizes = () => ({
+const sizes = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     Heading,
-    StorybookMobileDeviceSimulator,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
   },
   data() {
     return {
@@ -101,23 +117,35 @@ const sizes = () => ({
     capitalizeFirstLetter,
   },
   template: `
-    <div style="margin: 50px">
-      <h2><strong>Heading:</strong>&nbsp;Available Sizes</h2>
+    <div>
+      <h3>Available Sizes</h3>
       <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <div style="margin: 20px;">
-          <Heading>Default size example</Heading>
-          <Heading v-for="(size, index) in availableSizes"
-                   :key="index"
-                   :size="size"
-          >
-            {{ capitalizeFirstLetter(size) }} size example
-          </Heading>
-        </div>
-      </StorybookMobileDeviceSimulator>
+      <div style="margin: 20px;">
+        <Heading>Default size example</Heading>
+        <Heading v-for="(size, index) in availableSizes"
+                  :key="index"
+                  :size="size"
+        >
+          {{ capitalizeFirstLetter(size) }} size example
+        </Heading>
+      </div>
     </div>
   `,
 });
+sizes.argTypes = {
+  size: { table: { disable: true } },
+  weight: { table: { disable: true } },
+  default: { table: { disable: true } },
+};
+sizes.parameters = {
+  docs: {
+    source: {
+      code: availableSizes.map((size) => `<Heading size="${size}"> 
+  ${capitalizeFirstLetter(size)} size example
+</Heading>`).join('\n'),
+    },
+  },
+};
 
 export {
   defaultExample,

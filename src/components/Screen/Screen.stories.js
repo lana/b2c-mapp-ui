@@ -1,24 +1,34 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select } from '@storybook/addon-knobs';
 
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import Screen from './Screen.vue';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+import RenderString from '../../lib/renderString';
+
+const deviceDecorator = createDeviceDecorator('<strong>Screen:</strong>&nbsp;A wrapper used by each Screen of a microapp.');
 
 const ScreenStories = {
   component: Screen,
   title: 'Components/Screen',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    default: '<p style="margin: 20px;">Example Screen Content</p>',
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    default: { control: { type: 'text' }, table: { type: { summary: null } } },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     Screen,
-    StorybookMobileDeviceSimulator,
+    RenderString,
   },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+  computed: {
+    defaultSlot() {
+      return this.default;
     },
   },
   methods: {
@@ -26,19 +36,25 @@ const defaultExample = () => ({
     onKeyboardBlur: action('KeyboardBlur!'),
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>Screen:</strong>&nbsp;A wrapper used by each Screen of a microapp.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <Screen @keyboardFocus="onKeyboardFocus"
-                @keyboardBlur="onKeyboardBlur"
-        >
-          <p style="margin: 20px;">Example Screen Content</p>
-        </Screen>
-      </StorybookMobileDeviceSimulator>
-    </div>
+    <Screen @keyboardFocus="onKeyboardFocus"
+            @keyboardBlur="onKeyboardBlur"
+    >
+      <RenderString :string="defaultSlot" />
+    </Screen>
   `,
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<Screen @keyboardFocus="onKeyboardFocus"
+        @keyboardBlur="onKeyboardBlur"
+>
+  <p style="margin: 20px;">Example Screen Content</p>
+</Screen>`,
+    },
+  },
+};
 
 export {
   defaultExample,

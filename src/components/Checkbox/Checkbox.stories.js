@@ -1,30 +1,28 @@
-import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
-
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import Checkbox from './Checkbox.vue';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+
+const deviceDecorator = createDeviceDecorator('<strong>Checkbox:</strong>&nbsp;A simple Checkbox input.');
 
 const CheckboxStories = {
   component: Checkbox,
   title: 'Components/Checkbox',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    label: 'Example label',
+    hasError: false,
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    label: { name: 'Label', control: 'text' },
+    hasError: { name: 'Has Error?', control: 'boolean' },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     Checkbox,
-    StorybookMobileDeviceSimulator,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    label: {
-      default: text('Label', 'Example label'),
-    },
-    hasError: {
-      default: boolean('Has Error?', false),
-    },
   },
   data() {
     return {
@@ -32,31 +30,51 @@ const defaultExample = () => ({
     };
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>Checkbox:</strong>&nbsp;A simple Checkbox input.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <div style="margin: 20px">
-          <label>
-            <p>Enabled:</p>
-            <br>
-            <Checkbox v-model="isChecked" :label="label" :has-error="hasError"/>
-          </label>
-        </div>
-        <div style="margin: 20px">
-          <label>
-            <p>Disabled:</p>
-            <br>
-            <Checkbox v-model="isChecked" :label="label" :has-error="hasError" disabled/>
-          </label>
-        </div>
-        <div style="margin: 20px;">
-          Bound value: {{ isChecked }}
-        </div>
-      </StorybookMobileDeviceSimulator>
+  <div>
+    <div style="margin: 20px">
+      <label>
+        <p>Enabled:</p>
+        <br>
+        <Checkbox v-model="isChecked" :label="label" :has-error="hasError"/>
+      </label>
     </div>
+    <div style="margin: 20px">
+      <label>
+        <p>Disabled:</p>
+        <br>
+        <Checkbox v-model="isChecked" :label="label" :has-error="hasError" disabled/>
+      </label>
+    </div>
+    <div style="margin: 20px;">
+      Bound value: {{ isChecked }}
+    </div>
+  </div>
   `,
 });
+
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<div>
+  <div style="margin: 20px">
+    <label>
+      <p>Enabled:</p>
+      <br>
+      <Checkbox v-model="isChecked" :label="label" :has-error="hasError"/>
+    </label>
+  </div>
+  <div style="margin: 20px">
+    <label>
+      <p>Disabled:</p>
+      <br>
+      <Checkbox v-model="isChecked" :label="label" :has-error="hasError" disabled/>
+    </label>
+  </div>
+</div>`,
+    },
+  },
+};
 
 export {
   defaultExample,

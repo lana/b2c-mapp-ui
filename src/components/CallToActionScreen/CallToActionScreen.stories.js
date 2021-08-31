@@ -1,57 +1,91 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select, text } from '@storybook/addon-knobs';
-import { WorkInProgressIcon } from '@lana/b2c-mapp-ui-assets';
 
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import CallToActionScreen from './CallToActionScreen.vue';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+import RenderString from '../../lib/renderString';
+
+const deviceDecorator = createDeviceDecorator('<strong>CallToActionScreen:</strong>&nbsp;This can be used as a generic and configurable screen that has the following: title, description, image and button.');
 
 const CallToActionScreenStories = {
   component: CallToActionScreen,
   title: 'Components/CallToActionScreen',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    title: 'Example Title',
+    description: 'Some description',
+    buttonText: 'Example Button Text',
+    default: '<WorkInProgressIcon/>',
+    secondaryAction: '',
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    title: { name: 'Title', control: 'text' },
+    description: { name: 'Description', control: 'text' },
+    buttonText: { name: 'ButtonText', control: 'text' },
+    default: {
+      control: {
+        type: 'text',
+      },
+      table: {
+        type: {
+          summary: null,
+        },
+      },
+    },
+    secondaryAction: {
+      control: {
+        type: 'text',
+      },
+      table: {
+        type: {
+          summary: null,
+        },
+      },
+    },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     CallToActionScreen,
-    WorkInProgressIcon,
-    StorybookMobileDeviceSimulator,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    title: {
-      default: text('Title', 'Example Title'),
-    },
-    description: {
-      default: text('Description', 'Some description'),
-    },
-    buttonText: {
-      default: text('ButtonText', 'Example Button Text'),
-    },
+    RenderString,
   },
   methods: {
     onClick: action('Click!'),
   },
+  computed: {
+    defaultSlot() {
+      return this.default;
+    },
+  },
   template: `
-  <div style="margin: 10px 50px 10px 50px;">
-    <h2><strong>CallToActionScreen:</strong>&nbsp;This can be used as a generic and configurable screen that has the following: title, description, image and button.</h2>
-    <hr>
-    <StorybookMobileDeviceSimulator :device="device">
       <CallToActionScreen :title="title"
                           :description="description"
                           :button-text="buttonText"
                           @click="onClick"
       >
-        <WorkInProgressIcon/>
+        <RenderString :string="defaultSlot" />
+        <template v-slot:secondaryAction><RenderString :string="secondaryAction" /></template>
       </CallToActionScreen>
-    </StorybookMobileDeviceSimulator>
-  </div>
 `,
-
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<CallToActionScreen :title="title"
+                    :description="description"
+                    :button-text="buttonText"
+                    @click="onClick"
+>
+  <WorkInProgressIcon/>
+</CallToActionScreen>
+      `,
+    },
+  },
+};
 
 export {
   defaultExample,

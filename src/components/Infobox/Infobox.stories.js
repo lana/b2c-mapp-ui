@@ -1,43 +1,51 @@
-import { withKnobs, select, text } from '@storybook/addon-knobs';
-
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import Infobox from './Infobox.vue';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+import RenderString from '../../lib/renderString';
+
+const deviceDecorator = createDeviceDecorator('<strong>Infobox:</strong>&nbsp;A simple info box.');
 
 const InfoboxStories = {
   component: Infobox,
   title: 'Components/Infobox',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    default: 'Example Info...',
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    default: { control: { type: 'text' }, table: { type: { summary: null } } },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     Infobox,
-    StorybookMobileDeviceSimulator,
+    RenderString,
   },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+  computed: {
+    defaultSlot() {
+      return this.default;
     },
-    content: {
-      default: text('Contents', 'Example Info...'),
-    },
-  },
-  data() {
-    return {
-      value: '',
-    };
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>Infobox:</strong>&nbsp;A simple info box.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <Infobox>{{ content }}</Infobox>
-      </StorybookMobileDeviceSimulator>
-    </div>
+    <Infobox>
+      <RenderString :string="defaultSlot" />
+    </Infobox>
   `,
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<Infobox>
+  Example Info...
+</Infobox>
+`,
+    },
+  },
+};
 
 export {
   defaultExample,

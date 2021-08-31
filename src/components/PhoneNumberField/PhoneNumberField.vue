@@ -2,7 +2,7 @@
   <FormField :id="id"
              ref="field"
              v-model="inputValue"
-             class="field"
+             class="phone-field"
              :class="{ filled: !hideCountryCode }"
              type="tel"
              :label="label"

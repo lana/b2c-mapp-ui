@@ -1,8 +1,11 @@
 const IssuesStories = {
   title: 'How to file issues',
+  args: {},
+  argTypes: {},
 };
 
-const howToFileIssues = () => ({
+const howToFileIssues = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   template: `
     <div style="margin: 10px 50px 10px 50px;">
       <h2>How to file issues for this UI Library</h2>

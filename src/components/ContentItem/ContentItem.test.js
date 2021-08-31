@@ -93,7 +93,7 @@ describe('ContentItem unit test', () => {
     const { getByTestId } = render(
       ContentItem,
       {
-        slots: { 'forward-icon': '<ClockColorIcon data-testid="custom-forward-icon" />' },
+        slots: { forwardIcon: '<ClockColorIcon data-testid="custom-forward-icon" />' },
         propsData: { ...defaultProps },
         stubs: ['ClockColorIcon'],
       },
@@ -106,7 +106,7 @@ describe('ContentItem unit test', () => {
     const { getByTestId } = render(
       ContentItem,
       {
-        slots: { 'custom-title': '<b data-testid="custom-title">Bold text</b>' },
+        slots: { customTitle: '<b data-testid="custom-title">Bold text</b>' },
         propsData: { ...defaultProps },
       },
     );
@@ -118,7 +118,7 @@ describe('ContentItem unit test', () => {
     const { getByTestId } = render(
       ContentItem,
       {
-        slots: { 'custom-meta-text': '<span data-testid="custom-meta-text">Text <br />newline</span>' },
+        slots: { customMetaText: '<span data-testid="custom-meta-text">Text <br />newline</span>' },
         propsData: { ...defaultProps },
       },
     );

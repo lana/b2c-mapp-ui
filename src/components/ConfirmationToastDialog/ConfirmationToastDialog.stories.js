@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs } from '@storybook/addon-knobs';
 
 import ConfirmationToastDialog from './ConfirmationToastDialog.vue';
 import RenderString from '../../lib/renderString';
@@ -7,7 +6,7 @@ import RenderString from '../../lib/renderString';
 const ConfirmationToastDialogStories = {
   component: ConfirmationToastDialog,
   title: 'Components/ConfirmationToastDialog',
-  decorators: [withKnobs],
+  decorators: [],
   args: {
     dataTestId: 'bottom-dialog',
     title: 'Example Title',

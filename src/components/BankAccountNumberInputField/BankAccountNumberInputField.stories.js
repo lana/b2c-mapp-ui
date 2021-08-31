@@ -1,58 +1,48 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select, boolean, text, number } from '@storybook/addon-knobs';
 
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import BankAccountNumberInputField from './BankAccountNumberInputField.vue';
+import { createOptionalDeviceDecorator } from '../../lib/storybookHelpers';
+
+const deviceDecorator = createOptionalDeviceDecorator('<strong>AmountInput:</strong> An input that allows the user to enter a desire amount.');
 
 const BankAccountNumberInputFieldStories = {
   component: BankAccountNumberInputField,
   title: 'Components/BankAccountNumberInputField',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    disabled: false,
+    readonly: false,
+    autoformat: false,
+    showLengthHint: false,
+    lengthHint: null,
+    lengthHintLabel: '',
+    label: 'Example BankAccountField',
+    errorLabel: '',
+    countryCode: 'MX',
+    helpText: '',
+    hideClearButton: false,
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    disabled: { name: 'Is Disabled?', control: 'boolean' },
+    readonly: { name: 'Is Readonly?', control: 'boolean' },
+    autoformat: { name: 'Is Autoformatting Enabled?', control: 'boolean' },
+    showLengthHint: { name: 'Show length hint?', control: 'boolean' },
+    lengthHint: { name: 'Length Hint Number', control: 'number' },
+    lengthHintLabel: { name: 'Length Hint Label', control: 'text' },
+    label: { name: 'Label', control: 'text' },
+    errorLabel: { name: 'Error Label', control: 'text' },
+    countryCode: { name: 'Country Code', control: 'text' },
+    helpText: { name: 'Help Text', control: 'text' },
+    hideClearButton: { name: 'Hide Clear Button?', control: 'boolean' },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     BankAccountNumberInputField,
-    StorybookMobileDeviceSimulator,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    disabled: {
-      default: boolean('Is Disabled?', false),
-    },
-    readonly: {
-      default: boolean('Is Readonly?', false),
-    },
-    autoformat: {
-      default: boolean('Is Autoformatting Enabled?', false),
-    },
-    showLengthHint: {
-      default: boolean('Show length hint?', false),
-    },
-    lengthHint: {
-      default: number('Length Hint Number'),
-    },
-    lengthHintLabel: {
-      default: text('Length Hint Label', ''),
-    },
-    label: {
-      default: text('Label', 'Example BankAccount Field'),
-    },
-    errorLabel: {
-      default: text('Error Label', ''),
-    },
-    countryCode: {
-      default: text('Country Code', 'MX'),
-    },
-    helpText: {
-      default: text('Help Text', ''),
-    },
-    hideClearButton: {
-      default: boolean('Hide Clear Button?', false),
-    },
   },
   data() {
     return {
@@ -65,46 +55,63 @@ const defaultExample = () => ({
     onChange: action('Changed!'),
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>BankAccountNumberInputField:</strong>&nbsp;An international bank account formatting and validation field.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <div style="padding: 16px;">
-          <BankAccountNumberInputField :disabled="disabled"
-                                       :readonly="readonly"
-                                       :autoformat="autoformat"
-                                       :label="label"
-                                       :error-label="errorLabel"
-                                       :show-length-hint="showLengthHint"
-                                       :length-hint-label="lengthHintLabel"
-                                       :length-hint="lengthHint"
-                                       :help-text="helpText"
-                                       :hide-clear-button="hideClearButton"
-                                       v-model="value"
-                                       @blur="onBlur"
-                                       @focus="onFocus"
-                                       @change="onChange"
-          />
-          <br>
-          <div style="margin-left: 10px">
-            Bound value: {{ value }}
-          </div>
-        </div>
-      </StorybookMobileDeviceSimulator>
+    <div style="padding: 16px;">
+      <BankAccountNumberInputField :disabled="disabled"
+                                    :readonly="readonly"
+                                    :autoformat="autoformat"
+                                    :label="label"
+                                    :error-label="errorLabel"
+                                    :show-length-hint="showLengthHint"
+                                    :length-hint-label="lengthHintLabel"
+                                    :length-hint="lengthHint"
+                                    :help-text="helpText"
+                                    :hide-clear-button="hideClearButton"
+                                    v-model="value"
+                                    @blur="onBlur"
+                                    @focus="onFocus"
+                                    @change="onChange"
+      />
+      <br>
+      <div style="margin-left: 10px">
+        Bound value: {{ value }}
+      </div>
     </div>
   `,
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<BankAccountNumberInputField :disabled="disabled"
+                             :readonly="readonly"
+                             :autoformat="autoformat"
+                             :label="label"
+                             :error-label="errorLabel"
+                             :show-length-hint="showLengthHint"
+                             :length-hint-label="lengthHintLabel"
+                             :length-hint="lengthHint"
+                             :help-text="helpText"
+                             :hide-clear-button="hideClearButton"
+                             v-model="value"
+                             @blur="onBlur"
+                             @focus="onFocus"
+                             @change="onChange"
+/>
+      `,
+    },
+  },
+};
 
-const examples = () => ({
+const examples = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     BankAccountNumberInputField,
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>BankAccountNumberInputField:</strong>&nbsp;Examples.</h2>
-      <hr>
       <div style="display: flex; flex-direction: column; width: 100%;">
-        <div style="width: 500px">
+        <h3>Examples</h3>
+        <hr />
+        <div style="width: 100%; max-width: 500px;">
           <label>Normal example:</label>
           <BankAccountNumberInputField country-code="MX"
                                        label="Introduce un CLABE"
@@ -112,7 +119,7 @@ const examples = () => ({
           />
         </div>
         <br>
-        <div style="width: 500px">
+        <div style="width: 100%; max-width: 500px;">
           <label>With a valid value:</label>
           <BankAccountNumberInputField country-code="MX"
                                        label="Introduce un CLABE"
@@ -121,7 +128,7 @@ const examples = () => ({
           />
         </div>
         <br>
-        <div style="width: 500px">
+        <div style="width: 100%; max-width: 500px;">
           <label>With a autoformatting enabled:</label>
           <BankAccountNumberInputField country-code="MX"
                                        autoformat
@@ -131,7 +138,7 @@ const examples = () => ({
           />
         </div>
         <br>
-        <div style="width: 500px">
+        <div style="width: 100%; max-width: 500px;">
           <label>With a help text:</label>
           <BankAccountNumberInputField country-code="MX"
                                        label="Introduce un CLABE"
@@ -140,7 +147,7 @@ const examples = () => ({
           />
         </div>
         <br>
-        <div style="width: 500px">
+        <div style="width: 100%; max-width: 500px;">
           <label>With hidden clear button:</label>
           <BankAccountNumberInputField country-code="MX"
                                        label="Introduce un CLABE"
@@ -149,7 +156,7 @@ const examples = () => ({
           />
         </div>
         <br>
-        <div style="width: 500px">
+        <div style="width: 100%; max-width: 500px;">
           <label>With an invalid value:</label>
           <BankAccountNumberInputField country-code="MX"
                                        label="Introduce un CLABE"
@@ -158,7 +165,7 @@ const examples = () => ({
           />
         </div>
         <br>
-        <div style="width: 500px">
+        <div style="width: 100%; max-width: 500px;">
           <label>Readonly:</label>
           <BankAccountNumberInputField country-code="MX"
                                        label="Introduce un CLABE"
@@ -167,7 +174,7 @@ const examples = () => ({
                                        readonly
           />
         </div>
-        <div style="width: 500px">
+        <div style="width: 100%; max-width: 500px;">
           <label>Disabled:</label>
           <BankAccountNumberInputField country-code="MX"
                                        label="Introduce un CLABE"
@@ -177,9 +184,25 @@ const examples = () => ({
           />
         </div>
       </div>
-    </div>
   `,
 });
+examples.args = {
+  device: null,
+};
+examples.argTypes = {
+  device: { table: { disable: true } },
+  disabled: { table: { disable: true } },
+  readonly: { table: { disable: true } },
+  autoformat: { table: { disable: true } },
+  showLengthHint: { table: { disable: true } },
+  lengthHint: { table: { disable: true } },
+  lengthHintLabel: { table: { disable: true } },
+  label: { table: { disable: true } },
+  errorLabel: { table: { disable: true } },
+  countryCode: { table: { disable: true } },
+  helpText: { table: { disable: true } },
+  hideClearButton: { table: { disable: true } },
+};
 
 export {
   defaultExample,

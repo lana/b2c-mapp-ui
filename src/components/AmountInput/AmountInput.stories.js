@@ -1,35 +1,14 @@
-import { withKnobs, select } from '@storybook/addon-knobs';
-
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
 import AmountInput from './AmountInput.vue';
 
-const deviceDecorator = () => ({
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-  },
-  components: { StorybookMobileDeviceSimulator },
-  template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>AmountInput:</strong>&nbsp;An input that allows the user to enter a desire amount.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <story />
-      </StorybookMobileDeviceSimulator>
-    </div>
-  `,
-});
-deviceDecorator.argTypes = {
-  device: { control: { type: 'select', options: [...availableDevices] } },
-};
+const deviceDecorator = createDeviceDecorator('<strong>AmountInput:</strong> An input that allows the user to enter a desire amount.');
 
 const AmountInputStories = {
   component: AmountInput,
   title: 'Components/AmountInput',
-  decorators: [withKnobs, deviceDecorator],
+  decorators: [deviceDecorator],
   args: {
+    ...deviceDecorator.args,
     value: '0',
     dataTestId: '',
     locale: 'es-MX',
@@ -41,6 +20,7 @@ const AmountInputStories = {
     name: 'amount-name',
   },
   argTypes: {
+    ...deviceDecorator.argTypes,
     value: { name: 'Value', control: { type: 'number' } },
     locale: { name: 'Locale', control: { type: 'select', options: ['es-CL', 'es-MX'] } },
     currency: { name: 'Currency', control: { type: 'select', options: ['CLP', 'MXN'] } },

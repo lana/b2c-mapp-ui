@@ -1,41 +1,52 @@
-import { withKnobs, select } from '@storybook/addon-knobs';
-
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import Wrapper from './Wrapper.vue';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+import RenderString from '../../lib/renderString';
+
+const deviceDecorator = createDeviceDecorator('<strong>Wrapper:</strong>&nbsp;Container to display information, it could be like a modal</h2>');
 
 const WrapperStories = {
   component: Wrapper,
   title: 'Components/Wrapper',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    modal: false,
+    default: 'Example wrapped content',
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    modal: { control: 'boolean', name: 'Modal style?' },
+    default: { control: { type: 'text' }, table: { type: { summary: null } } },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     Wrapper,
-    StorybookMobileDeviceSimulator,
+    RenderString,
   },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+  computed: {
+    defaultSlot() {
+      return this.default;
     },
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>Wrapper:</strong>&nbsp;Description TBD</h2> <!-- TODO: Add a better description for this component-->
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <Wrapper modal>
-          Example wrapped content (modal style)
-        </Wrapper>
-        <br>
-        <Wrapper>
-          Example wrapped content
-        </Wrapper>
-      </StorybookMobileDeviceSimulator>
-    </div>
+    <Wrapper :modal="modal">
+      <RenderString :string="defaultSlot" />
+    </Wrapper>
   `,
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<Wrapper :modal="modal">
+    <RenderString :string="defaultSlot" />
+</Wrapper>`,
+    },
+  },
+};
 
 export {
   defaultExample,

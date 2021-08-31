@@ -1,39 +1,36 @@
-import { withKnobs, select, text } from '@storybook/addon-knobs';
-
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import TopBar from './TopBar.vue';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+
+const deviceDecorator = createDeviceDecorator('<strong>TopBar:</strong>&nbsp;A custom native AppBar replacement.', '<p style="margin-top: 10px;">It only renders the title, all actions should be placed by the Android native bridge.</p>');
 
 const TopBarStories = {
   component: TopBar,
   title: 'Components/TopBar',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    title: 'Example custom title',
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    title: { control: 'text', name: 'Title' },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     TopBar,
-    StorybookMobileDeviceSimulator,
   },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    title: {
-      default: text('Title', 'Example custom title'),
-    },
-  },
-  template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>TopBar:</strong>&nbsp;A custom native AppBar replacement.</h2>
-      <p style="margin-top: 10px;">It only renders the title, all actions should be placed by the Android native bridge.</p>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <TopBar :title="title"/>
-      </StorybookMobileDeviceSimulator>
-    </div>
-  `,
+  template: '<TopBar :title="title"/>',
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: '<TopBar :title="title"/>',
+    },
+  },
+};
 
 export {
   defaultExample,

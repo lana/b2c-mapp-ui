@@ -1,18 +1,19 @@
-import { number } from '@storybook/addon-knobs';
 import * as AllIcons from '@lana/b2c-mapp-ui-assets';
 
 const IconStories = {
   title: 'Components/Icons',
+  args: {
+    size: 24,
+  },
+  argTypes: {
+    size: { name: 'Size', control: { type: 'number', min: 12, max: 72 } },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     ...AllIcons,
-  },
-  props: {
-    size: {
-      default: number('Size', '24', { min: 12, max: 72 }),
-    },
   },
   data() {
     return {

@@ -1,54 +1,69 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select, boolean, number } from '@storybook/addon-knobs';
 
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import ForwardButton from './ForwardButton.vue';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+import RenderString from '../../lib/renderString';
+
+const deviceDecorator = createDeviceDecorator('<strong>ForwardButton:</strong>&nbsp;Wraps a Button component with extra padding to be placed at the bottom of the screen.');
 
 const ForwardButtonStories = {
   component: ForwardButton,
   title: 'Components/ForwardButton',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    disabled: false,
+    debounce: false,
+    debounceDelay: 400,
+    default: '',
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    disabled: { control: 'boolean', name: 'Is Disabled?' },
+    debounce: { control: 'boolean', name: 'Has debounce?' },
+    debounceDelay: { control: { type: 'number', step: 100 }, name: 'Debounce Delay' },
+    default: { control: { type: 'text' }, table: { type: { summary: null } } },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     ForwardButton,
-    StorybookMobileDeviceSimulator,
+    RenderString,
   },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    disabled: {
-      default: boolean('Is Disabled?', false),
-    },
-    debounce: {
-      default: boolean('Has debounce?', false),
-    },
-    debounceDelay: {
-      default: number('Debounce Delay', 400, { step: 100 }),
+  computed: {
+    defaultSlot() {
+      return this.default;
     },
   },
   methods: {
     onClick: action('Clicked!'),
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>ForwardButton:</strong>&nbsp;Wraps a Button component with extra padding to be placed at the bottom of the screen.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <div style="height: 100%;">
-          <ForwardButton :disabled="disabled"
-                         :debounce="debounce"
-                         :debounce-delay="debounceDelay"
-                         @click="onClick"
-          />
-        </div>
-      </StorybookMobileDeviceSimulator>
+    <div style="height: 100vh;">
+      <ForwardButton :disabled="disabled"
+                      :debounce="debounce"
+                      :debounce-delay="debounceDelay"
+                      @click="onClick"
+      >
+        <RenderString :string="defaultSlot" />
+      </ForwardButton>
     </div>
   `,
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<ForwardButton :disabled="disabled"
+               :debounce="debounce"
+               :debounce-delay="debounceDelay"
+               @click="onClick"
+/>`,
+    },
+  },
+};
 
 export {
   defaultExample,
