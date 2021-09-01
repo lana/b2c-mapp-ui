@@ -47,7 +47,7 @@ const computed = {
     return result;
   },
   hasMetaText() {
-    const result = (this.metaText || this.$slots['custom-meta-text']);
+    const result = (this.metaText || this.$slots.customMetaText);
     return result;
   },
   iconName() {

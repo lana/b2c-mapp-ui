@@ -1,216 +1,224 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
-import { DocumentFilledIcon, CheckCircleIcon, ClockIcon } from '@lana/b2c-mapp-ui-assets';
+import { DocumentFilledIcon } from '@lana/b2c-mapp-ui-assets';
 
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import ContentItem from './ContentItem.vue';
-import TextField from '../TextField/TextField.vue';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+import RenderString from '../../lib/renderString';
+
+const deviceDecorator = createDeviceDecorator('<strong>ContentItem:</strong>&nbsp;A list item which usually transitions the user to content in another screen.');
 
 const ContentItemStories = {
   component: ContentItem,
   title: 'Components/ContentItem',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    disabled: false,
+    hasForwardButton: true,
+    noBorder: false,
+    success: false,
+    title: 'Example Title',
+    metaText: 'Example Metatext',
+    default: '',
+    customTitle: '',
+    customMetaText: '',
+    forwardIcon: '',
+    extraItem: '',
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    disabled: { name: 'Is Disabled?', control: 'boolean' },
+    hasForwardButton: { name: 'Has Forward Button?', control: 'boolean' },
+    noBorder: { name: 'Hide Border?', control: 'boolean' },
+    success: { name: 'Success?', control: 'boolean' },
+    title: { name: 'Title', control: 'text' },
+    metaText: { name: 'Meta Text', control: 'text' },
+    default: { control: { type: 'text' }, table: { type: { summary: null } } },
+    customTitle: { control: { type: 'text' }, table: { type: { summary: null } } },
+    customMetaText: { control: { type: 'text' }, table: { type: { summary: null } } },
+    forwardIcon: { control: { type: 'text' }, table: { type: { summary: null } } },
+    extraItem: { control: { type: 'text' }, table: { type: { summary: null } } },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     ContentItem,
-    DocumentFilledIcon,
-    StorybookMobileDeviceSimulator,
+    RenderString,
   },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    disabled: {
-      default: boolean('Is Disabled?', false),
-    },
-    hasForwardButton: {
-      default: boolean('Has Forward Button?', true),
-    },
-    noBorder: {
-      default: boolean('Hide Border?', false),
-    },
-    title: {
-      default: text('Title', 'Example Title'),
-    },
-    metaText: {
-      default: text('Meta text', 'Example Metatext'),
+  computed: {
+    defaultSlot() {
+      return this.default;
     },
   },
   methods: {
     onClick: action('Click!'),
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>ContentItem:</strong>&nbsp;A list item which usually transitions the user to content in another screen.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <ContentItem :title="title"
-                     :meta-text="metaText"
-                     :has-forward-button="hasForwardButton"
-                     :no-border="noBorder"
-                     :disabled="disabled"
-                     @click="onClick"
-        >
-          <DocumentFilledIcon/>
-        </ContentItem>
-      </StorybookMobileDeviceSimulator>
-    </div>
+  <ContentItem :title="title"
+                :meta-text="metaText"
+                :has-forward-button="hasForwardButton"
+                :no-border="noBorder"
+                :disabled="disabled"
+                :success="success"
+                @click="onClick"
+  >
+    <RenderString :string="defaultSlot" fragment/>
+    <template v-slot:customTitle v-if="customTitle">
+      <RenderString :string="customTitle" />
+    </template>
+    <template v-slot:customMetaText v-if="customMetaText">
+      <RenderString :string="customMetaText" />
+    </template>
+    <template v-slot:forwardIcon v-if="forwardIcon">
+      <RenderString :string="forwardIcon" />
+    </template>
+    <template v-slot:extraItem v-if="extraItem">
+      <RenderString :string="extraItem" />
+    </template>
+  </ContentItem>
   `,
 });
+defaultExample.args = {
+  default: '<DocumentFilledIcon />',
+};
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<ContentItem :title="title"
+             :meta-text="metaText"
+             :has-forward-button="hasForwardButton"
+             :no-border="noBorder"
+             :disabled="disabled"
+             @click="onClick"
+>
+  <DocumentFilledIcon/>
+</ContentItem>`,
+    },
+  },
+};
 
-const withImage = () => ({
+const withImage = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     ContentItem,
-    StorybookMobileDeviceSimulator,
+    RenderString,
   },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+  computed: {
+    defaultSlot() {
+      return this.default;
     },
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>ContentItem:</strong>&nbsp;Example With Image</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <ContentItem title="Example with Image"
-                     meta-text="Example metatext"
-        >
-          <img src="https://source.unsplash.com/random/48x48"/>
-        </ContentItem>
-      </StorybookMobileDeviceSimulator>
-    </div>
+  <div>
+    <h3>Example With Image</h3>
+    <hr>
+      <ContentItem title="Example with Image"
+                    meta-text="Example metatext"
+      >
+        <RenderString :string="defaultSlot" fragment />
+      </ContentItem>
+  </div>
   `,
 });
+withImage.args = {
+  default: '<img src="https://source.unsplash.com/random/48x48"/>',
+};
+withImage.argTypes = {
+  title: { table: { disable: true } },
+  disabled: { table: { disable: true } },
+  metaText: { table: { disable: true } },
+  noBorder: { table: { disable: true } },
+  success: { table: { disable: true } },
+  hasForwardButton: { table: { disable: true } },
+  customTitle: { table: { disable: true } },
+  customMetaText: { table: { disable: true } },
+  forwardIcon: { table: { disable: true } },
+  extraItem: { table: { disable: true } },
+};
+withImage.parameters = {
+  docs: {
+    source: {
+      code: `
+<ContentItem title="Example with Image"
+              meta-text="Example metatext"
+>
+  <img src="https://source.unsplash.com/random/48x48"/>
+</ContentItem>`,
+    },
+  },
+};
 
-const withIcon = () => ({
+const withIcon = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     ContentItem,
-    DocumentFilledIcon,
-    StorybookMobileDeviceSimulator,
+    RenderString,
   },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    hasForwardButton: {
-      default: boolean('Has Forward Button?', true),
-    },
-    success: {
-      default: boolean('Is in Success state?', false),
-    },
-    title: {
-      default: text('Title', 'Example Title'),
-    },
-    metaText: {
-      default: text('Meta text', 'Example Metatext'),
+  computed: {
+    defaultSlot() {
+      return this.default;
     },
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>ContentItem:</strong>&nbsp;Example With Icon</h2>
+    <div>
+      <h3>Example With Icon</h3>
       <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <ContentItem title="Example with Icon"
-                     meta-text="Example metatext"
-                     no-border
-                     :success="success"
-                     :has-forward-button="hasForwardButton"
-        >
-          <DocumentFilledIcon/>
-        </ContentItem>
-      </StorybookMobileDeviceSimulator>
+      <ContentItem title="Example with Icon"
+                   meta-text="Example metatext"
+                   no-border
+                   :success="success"
+                   :has-forward-button="hasForwardButton"
+      >
+        <RenderString :string="defaultSlot" fragment />
+      </ContentItem>
     </div>
   `,
 });
+withIcon.args = {
+  default: '<DocumentFilledIcon />',
+};
+withIcon.argTypes = {
+  title: { table: { disable: true } },
+  metaText: { table: { disable: true } },
+  noBorder: { table: { disable: true } },
+  customTitle: { table: { disable: true } },
+  customMetaText: { table: { disable: true } },
+  forwardIcon: { table: { disable: true } },
+  extraItem: { table: { disable: true } },
+};
+withIcon.parameters = {
+  docs: {
+    source: {
+      code: `
+<ContentItem :title="title"
+             :meta-text="metaText"
+             :has-forward-button="hasForwardButton"
+             :no-border="noBorder"
+             :disabled="disabled"
+             @click="onClick"
+>
+  <DocumentFilledIcon/>
+</ContentItem>`,
+    },
+  },
+};
 
-const successState = () => ({
+const successState = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     ContentItem,
     DocumentFilledIcon,
-    StorybookMobileDeviceSimulator,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    disabled: {
-      default: boolean('Is Disabled?', false),
-    },
-    hasForwardButton: {
-      default: boolean('Has Forward Button?', true),
-    },
-    success: {
-      default: boolean('Has Success forward icon?', true),
-    },
-    title: {
-      default: text('Title', 'Example Title'),
-    },
-    metaText: {
-      default: text('Meta text', 'Example Metatext'),
-    },
   },
   methods: {
     onClick: action('Click!'),
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>ContentItem:</strong>&nbsp;A list item with success state, it does not redirect anywhere, it just provides success/completed information.</h2>
+    <div>
+      <h3>A list item with success state, it does not redirect anywhere, it just provides success/completed information.</h3>
       <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <ContentItem :title="title"
-                     :meta-text="metaText"
-                     :has-forward-button="hasForwardButton"
-                     no-border
-                     :disabled="disabled"
-                     :success="success"
-                     @click="onClick"
-        >
-          <DocumentFilledIcon/>
-        </ContentItem>
-      </StorybookMobileDeviceSimulator>
-    </div>
-  `,
-});
-
-const withCustomForwardIcon = () => ({
-  components: {
-    ContentItem,
-    DocumentFilledIcon,
-    StorybookMobileDeviceSimulator,
-    ClockIcon,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    disabled: {
-      default: boolean('Is Disabled?', false),
-    },
-    hasForwardButton: {
-      default: boolean('Has Forward Button?', true),
-    },
-    success: {
-      default: boolean('Has Success forward icon?', true),
-    },
-    title: {
-      default: text('Title', 'Example Title'),
-    },
-    metaText: {
-      default: text('Meta text', 'Example Metatext'),
-    },
-  },
-  methods: {
-    onClick: action('Click!'),
-  },
-  template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>ContentItem:</strong>&nbsp;A list item with success state, it does not redirect anywhere, it just provides success/completed information.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
         <ContentItem :title="title"
                      :meta-text="metaText"
                      :has-forward-button="hasForwardButton"
@@ -220,105 +228,217 @@ const withCustomForwardIcon = () => ({
                      @click="onClick"
         >
           <DocumentFilledIcon/>
-          <template v-slot:forward-icon>
-            <ClockIcon/>
+        </ContentItem>
+    </div>
+  `,
+});
+successState.args = {
+  success: true,
+};
+successState.argTypes = {
+  noBorder: { table: { disable: true } },
+  default: { table: { disable: true } },
+  customTitle: { table: { disable: true } },
+  customMetaText: { table: { disable: true } },
+  forwardIcon: { table: { disable: true } },
+  extraItem: { table: { disable: true } },
+};
+successState.parameters = {
+  docs: {
+    source: {
+      code: `
+<ContentItem :title="title"
+              :meta-text="metaText"
+              :has-forward-button="hasForwardButton"
+              no-border
+              :disabled="disabled"
+              :success="success"
+              @click="onClick"
+>
+  <DocumentFilledIcon/>
+</ContentItem>`,
+    },
+  },
+};
+
+const withCustomForwardIcon = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {
+    ContentItem,
+    DocumentFilledIcon,
+    RenderString,
+  },
+  methods: {
+    onClick: action('Click!'),
+  },
+  template: `
+    <div>
+      <h3>A list item with success state, it does not redirect anywhere, it just provides success/completed information.</h3>
+      <hr>
+      <ContentItem :title="title"
+                    :meta-text="metaText"
+                    :has-forward-button="hasForwardButton"
+                    no-border
+                    :disabled="disabled"
+                    :success="success"
+                    @click="onClick"
+      >
+        <DocumentFilledIcon/>
+        <template v-slot:forwardIcon>
+          <RenderString :string="forwardIcon" />
+        </template>
+      </ContentItem>
+    </div>
+  `,
+});
+withCustomForwardIcon.args = {
+  success: true,
+  forwardIcon: '<ClockIcon width="24"/>',
+};
+withCustomForwardIcon.argTypes = {
+  noBorder: { table: { disable: true } },
+  default: { table: { disable: true } },
+  customTitle: { table: { disable: true } },
+  customMetaText: { table: { disable: true } },
+  extraItem: { table: { disable: true } },
+};
+withCustomForwardIcon.parameters = {
+  docs: {
+    source: {
+      code: `
+<ContentItem :title="title"
+             :meta-text="metaText"
+             :has-forward-button="hasForwardButton"
+             no-border
+             :disabled="disabled"
+             :success="success"
+             @click="onClick"
+>
+  <DocumentFilledIcon/>
+  <template v-slot:forwardIcon>
+    <ClockIcon/>
+  </template>
+</ContentItem>`,
+    },
+  },
+};
+
+const noImageAndCustomForwardIcon = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {
+    ContentItem,
+    RenderString,
+  },
+  methods: {
+    onClick: action('Click!'),
+  },
+  template: `
+    <div>
+      <h3>A list item with success state, it does not redirect anywhere, it just provides success/completed information.</h3>
+      <hr>
+      <ContentItem :title="title"
+                   :meta-text="metaText"
+                   no-border
+                   @click="onClick"
+      >
+        <template v-slot:forwardIcon>
+          <RenderString :string="forwardIcon" fragment />
+        </template>
+      </ContentItem>
+    </div>
+  `,
+});
+noImageAndCustomForwardIcon.args = {
+  success: true,
+  forwardIcon: '<ClockIcon width="24"/>',
+};
+noImageAndCustomForwardIcon.argTypes = {
+  noBorder: { table: { disable: true } },
+  hasForwardButton: { table: { disable: true } },
+  default: { table: { disable: true } },
+  success: { table: { disable: true } },
+  disabled: { table: { disable: true } },
+  customTitle: { table: { disable: true } },
+  customMetaText: { table: { disable: true } },
+  extraItem: { table: { disable: true } },
+};
+noImageAndCustomForwardIcon.parameters = {
+  docs: {
+    source: {
+      code: `
+<ContentItem :title="title"
+             :meta-text="metaText"
+             no-border
+             @click="onClick"
+>
+  <template v-slot:forwardIcon>
+    <ClockIcon/>
+  </template>
+</ContentItem>`,
+    },
+  },
+};
+
+const customTitleAndCustomMetaText = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {
+    ContentItem,
+    RenderString,
+  },
+  methods: {
+    onClick: action('Click!'),
+  },
+  template: `
+    <div>
+      <h3>Custom Title and Custom Meta Text</h3>
+      <hr>
+      <div style="padding: 16px;">
+        <ContentItem no-border
+                    @click="onClick"
+        >
+          <template v-slot:customTitle>
+            <RenderString :string="customTitle" />
+          </template>
+          <template v-slot:customMetaText>
+            <RenderString :string="customMetaText" />
           </template>
         </ContentItem>
-      </StorybookMobileDeviceSimulator>
+      </div>
     </div>
   `,
 });
-
-const noImageAndCustomForwardIcon = () => ({
-  components: {
-    ContentItem,
-    DocumentFilledIcon,
-    StorybookMobileDeviceSimulator,
-    CheckCircleIcon,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    title: {
-      default: text('Title', 'Example Title'),
-    },
-    metaText: {
-      default: text('Meta text', 'Example Metatext'),
-    },
-  },
-  methods: {
-    onClick: action('Click!'),
-  },
-  template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>ContentItem:</strong>&nbsp;A list item with success state, it does not redirect anywhere, it just provides success/completed information.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <ContentItem :title="title"
-                     :meta-text="metaText"
-                     no-border
-                     @click="onClick"
-        >
-          <template v-slot:forward-icon>
-            <CheckCircleIcon/>
-          </template>
-        </ContentItem>
-      </StorybookMobileDeviceSimulator>
-    </div>
-  `,
-});
-
-const customTitleAndCustomMetaText = () => ({
-  components: {
-    ContentItem,
-    DocumentFilledIcon,
-    StorybookMobileDeviceSimulator,
-    TextField,
-  },
-  data() {
-    return {
-      title: 'Example <b>Title</b>',
-      metaText: 'Example <br /> Metatext',
-    };
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+customTitleAndCustomMetaText.args = {
+  customTitle: 'Example <b>Title</b>',
+  customMetaText: 'Example <br /> Metatext',
+};
+customTitleAndCustomMetaText.argTypes = {
+  title: { table: { disable: true } },
+  metaText: { table: { disable: true } },
+  noBorder: { table: { disable: true } },
+  hasForwardButton: { table: { disable: true } },
+  default: { table: { disable: true } },
+  success: { table: { disable: true } },
+  disabled: { table: { disable: true } },
+  extraItem: { table: { disable: true } },
+  forwardIcon: { table: { disable: true } },
+};
+customTitleAndCustomMetaText.parameters = {
+  docs: {
+    source: {
+      code: `
+<ContentItem no-border
+            @click="onClick"
+>
+  <template v-slot:customTitle>
+    <span v-if="customTitle" v-html="customTitle" />
+  </template>
+  <template v-slot:customMetaText>
+    <span v-if="customMetaText" v-html="customMetaText" />
+  </template>
+</ContentItem>`,
     },
   },
-  methods: {
-    onClick: action('Click!'),
-  },
-  template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>ContentItem:</strong>&nbsp;A list item with success state, it does not redirect anywhere, it just provides success/completed information.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <div style="padding: 16px;">
-          <ContentItem no-border
-                      @click="onClick"
-          >
-            <template v-slot:custom-title>
-              <span v-if="title" v-html="title" />
-            </template>
-            <template v-slot:custom-meta-text>
-              <span v-if="metaText" v-html="metaText" />
-            </template>
-          </ContentItem>
-          <hr />
-          <h2> Content values </h2>
-          <TextField v-model="title"
-                    label="Title"
-          />
-          <TextField v-model="metaText"
-                    label="MetaText"
-          />
-        </div>
-      </StorybookMobileDeviceSimulator>
-    </div>
-  `,
-});
+};
 
 export {
   defaultExample,

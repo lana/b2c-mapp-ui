@@ -1,38 +1,35 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
 
 import CodeInputField from './CodeInputField.vue';
 import { availableTypes } from './CodeInputField';
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+
+const deviceDecorator = createDeviceDecorator('<strong>CodeInputField:</strong>&nbsp;Used for validating codes such as SMS verification.');
 
 const CodeInputFieldStories = {
   component: CodeInputField,
   title: 'components/CodeInputField',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    type: availableTypes[1],
+    disabled: false,
+    errorMessage: '',
+    errorDescription: '',
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    type: { name: 'Type', control: 'select', options: availableTypes },
+    disabled: { name: 'Is Disabled?', control: 'boolean' },
+    errorMessage: { name: 'Error Message', control: 'text' },
+    errorDescription: { name: 'Error Description', control: 'text' },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     CodeInputField,
-    StorybookMobileDeviceSimulator,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    type: {
-      default: select('Type', availableTypes, availableTypes[1]),
-    },
-    disabled: {
-      default: boolean('Is Disabled?', false),
-    },
-    errorMessage: {
-      default: text('Error Message', ''),
-    },
-    errorDescription: {
-      default: text('Error Description', ''),
-    },
   },
   data() {
     return {
@@ -48,10 +45,7 @@ const defaultExample = () => ({
     this.$refs.field.focus();
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px; height: 100vh;">
-      <h2><strong>CodeInputField:</strong>&nbsp;Used for validating codes such as SMS verification.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
+      <div>
         <CodeInputField v-model="code"
                         ref="field"
                         :type="type"
@@ -67,34 +61,39 @@ const defaultExample = () => ({
         <div style="margin-left: 20px">
           Bound value: {{ code }}
         </div>
-      </StorybookMobileDeviceSimulator>
-    </div>
+      </div>
   `,
 });
 
-const withError = () => ({
+const withError = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     CodeInputField,
-    StorybookMobileDeviceSimulator,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px; height: 100vh;">
-      <h2><strong>CodeInputField:</strong>&nbsp;With Error.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <CodeInputField value="123456"
-                        error-message="Example error message"
-                        error-description="Example error description"
-        />
-      </StorybookMobileDeviceSimulator>
-    </div>
+    <CodeInputField value="123456"
+                    error-message="Example error message"
+                    error-description="Example error description"
+    />
   `,
 });
+withError.argTypes = {
+  type: { table: { disable: true } },
+  disabled: { table: { disable: true } },
+  errorMessage: { table: { disable: true } },
+  errorDescription: { table: { disable: true } },
+};
+withError.parameters = {
+  docs: {
+    source: {
+      code: `
+<CodeInputField value="123456"
+              error-message="Example error message"
+              error-description="Example error description"
+/>`,
+    },
+  },
+};
 
 export {
   defaultExample,

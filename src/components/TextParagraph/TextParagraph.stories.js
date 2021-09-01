@@ -1,66 +1,123 @@
-import { withKnobs, select } from '@storybook/addon-knobs';
-
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import TextParagraph from './TextParagraph.vue';
 import { availableSizes, availableColors, availableWeights } from './TextParagraph';
 import { capitalizeFirstLetter } from '../../lib/textHelper';
+import { createOptionalDeviceDecorator } from '../../lib/storybookHelpers';
+import RenderString from '../../lib/renderString';
+
+const deviceDecorator = createOptionalDeviceDecorator('<strong>TextParagraph:</strong>&nbsp;A text view that represents a paragraph.');
 
 const TextParagraphStories = {
   component: TextParagraph,
   title: 'Components/TextParagraph',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    color: '',
+    weight: '',
+    size: '',
+    default: 'Example Text',
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    color: { control: 'select', name: 'Color', options: [...availableColors, ''] },
+    weight: { control: 'select', name: 'Weight', options: [...availableWeights, ''] },
+    size: { control: 'select', name: 'Size', options: [...availableSizes, ''] },
+    default: { control: { type: 'text' }, table: { type: { summary: null } } },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     TextParagraph,
-    StorybookMobileDeviceSimulator,
+    RenderString,
   },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    color: {
-      default: select('Color', [...availableColors, ''], ''),
-    },
-    weight: {
-      default: select('Weight', [...availableWeights, ''], ''),
-    },
-    size: {
-      default: select('Size', [...availableSizes, ''], ''),
+  computed: {
+    defaultSlot() {
+      return this.default;
     },
   },
   template: `
+    <TextParagraph :weight="weight"
+                   :color="color"
+                   :size="size"
+    >
+      <RenderString :string="defaultSlot" />
+    </TextParagraph>`,
+});
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<TextParagraph :weight="weight"
+               :color="color"
+               :size="size"
+>
+  Example Text
+</TextParagraph>      
+`,
+    },
+  },
+};
+
+const examples = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {
+    TextParagraph,
+  },
+  template: `
     <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>TextParagraph:</strong>&nbsp;A text view that represents a paragraph.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <TextParagraph :weight="weight"
-                       :color="color"
-                       :size="size"
-        >
-          Example Text
-        </TextParagraph>
-        <TextParagraph :weight="weight"
-                       :color="color"
-                       :size="size"
-        >
-          Example with emoji: 🍒
-        </TextParagraph>
-        <TextParagraph class="foo"
-                       :weight="weight"
-                       :color="color"
-                       :size="size"
-        >
-          Example Text with a custom class
-        </TextParagraph>
-      </StorybookMobileDeviceSimulator>
+      <TextParagraph :weight="weight"
+                      :color="color"
+                      :size="size"
+      >
+        Example with emoji: 🍒
+      </TextParagraph>
+      <TextParagraph class="foo"
+                      :weight="weight"
+                      :color="color"
+                      :size="size"
+      >
+        Example Text with a custom class
+      </TextParagraph>
     </div>
   `,
 });
+examples.args = {
+  device: '',
+};
+examples.argTypes = {
+  device: { table: { disable: true } },
+  color: { table: { disable: true } },
+  weight: { table: { disable: true } },
+  size: { table: { disable: true } },
+  default: { table: { disable: true } },
+};
+examples.parameters = {
+  docs: {
+    source: {
+      code: `
+<div style="margin: 10px 50px 10px 50px;">
+  <TextParagraph :weight="weight"
+                 :color="color"
+                 :size="size"
+  >
+    Example with emoji: 🍒
+  </TextParagraph>
+  <TextParagraph class="foo"
+                 :weight="weight"
+                 :color="color"
+                 :size="size"
+  >
+    Example Text with a custom class
+  </TextParagraph>
+</div>`,
+    },
+  },
+};
 
-const weights = () => ({
+const weights = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     TextParagraph,
   },
@@ -84,8 +141,29 @@ const weights = () => ({
     </div>
   `,
 });
+weights.args = {
+  device: '',
+};
+weights.argTypes = {
+  device: { table: { disable: true } },
+  color: { table: { disable: true } },
+  weight: { table: { disable: true } },
+  size: { table: { disable: true } },
+  default: { table: { disable: true } },
+};
+weights.parameters = {
+  docs: {
+    source: {
+      code: availableWeights.map((weight) => `
+<TextParagraph weight="${weight}">
+  ${capitalizeFirstLetter(weight)} weight example
+</TextParagraph>`).join(''),
+    },
+  },
+};
 
-const sizes = () => ({
+const sizes = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     TextParagraph,
   },
@@ -109,8 +187,29 @@ const sizes = () => ({
     </div>
   `,
 });
+sizes.args = {
+  device: '',
+};
+sizes.argTypes = {
+  device: { table: { disable: true } },
+  color: { table: { disable: true } },
+  weight: { table: { disable: true } },
+  size: { table: { disable: true } },
+  default: { table: { disable: true } },
+};
+sizes.parameters = {
+  docs: {
+    source: {
+      code: availableSizes.map((size) => `
+<TextParagraph size="${size}">
+  ${capitalizeFirstLetter(size)} size example
+</TextParagraph>`).join(''),
+    },
+  },
+};
 
-const colors = () => ({
+const colors = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     TextParagraph,
   },
@@ -134,9 +233,30 @@ const colors = () => ({
     </div>
   `,
 });
+colors.args = {
+  device: '',
+};
+colors.argTypes = {
+  device: { table: { disable: true } },
+  color: { table: { disable: true } },
+  weight: { table: { disable: true } },
+  size: { table: { disable: true } },
+  default: { table: { disable: true } },
+};
+colors.parameters = {
+  docs: {
+    source: {
+      code: availableColors.map((color) => `
+<TextParagraph color="${color}">
+  ${capitalizeFirstLetter(color)} color example
+</TextParagraph>`).join(''),
+    },
+  },
+};
 
 export {
   defaultExample,
+  examples,
   colors,
   sizes,
   weights,

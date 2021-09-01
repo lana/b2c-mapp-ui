@@ -1,45 +1,49 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select, text } from '@storybook/addon-knobs';
 
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import SlideButton from './SlideButton.vue';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+
+const deviceDecorator = createDeviceDecorator('<strong>SlideButton:</strong>&nbsp;Slide button to confirm any action visually.');
 
 const SlideButtonStories = {
   component: SlideButton,
   title: 'Components/SlideButton',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    initialInstructionLabel: 'Desliza para confirmar',
+    completedLabel: '',
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    initialInstructionLabel: { control: 'text', name: 'Initial instruction label' },
+    completedLabel: { control: 'text', name: 'Label after completion' },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     SlideButton,
-    StorybookMobileDeviceSimulator,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    initialInstructionLabel: {
-      default: text('Initial instruction label', 'Desliza para confirmar'),
-    },
-    completedLabel: {
-      default: text('Label after completion', ''),
-    },
   },
   methods: {
     onActionConfirmed: action('Confirmed!'),
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>SlideButton:</strong>&nbsp;Slide button to confirm any action visually.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <SlideButton :initial-instruction-label="initialInstructionLabel" :completed-label="completedLabel" @actionConfirmed="onActionConfirmed"/>
-      </StorybookMobileDeviceSimulator>
-    </div>
+    <SlideButton :initial-instruction-label="initialInstructionLabel" :completed-label="completedLabel" @actionConfirmed="onActionConfirmed"/>
   `,
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<SlideButton :initial-instruction-label="initialInstructionLabel"
+             :completed-label="completedLabel"
+             @actionConfirmed="onActionConfirmed"
+/>`,
+    },
+  },
+};
 
 export {
   defaultExample,

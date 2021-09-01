@@ -1,53 +1,55 @@
-import { withKnobs, text, number, boolean, select } from '@storybook/addon-knobs';
-
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import Stepper from './Stepper.vue';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+
+const deviceDecorator = createDeviceDecorator('<strong>Stepper:</strong>&nbsp;A step based progress indicator for multi screen flows.');
 
 const StepperStories = {
   component: Stepper,
   title: 'Components/Stepper',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    title: 'Your progress',
+    countOfSteps: 4,
+    hideActiveStep: false,
+    value: 1,
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    title: { control: 'text', name: 'Title' },
+    countOfSteps: { control: 'number', name: 'Count of Steps' },
+    hideActiveStep: { control: 'boolean', name: 'Hide the active step?' },
+    value: { control: 'number', name: 'Active Step Number' },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     Stepper,
-    StorybookMobileDeviceSimulator,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    title: {
-      default: text('Title', 'Your progress'),
-    },
-    countOfSteps: {
-      default: number('Count of Steps', 4),
-    },
-    hideActiveStep: {
-      default: boolean('Hide the active step?', false),
-    },
-    value: {
-      default: number('Active Step Number', 1),
-    },
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>Stepper:</strong>&nbsp;A step based progress indicator for multi screen flows.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <div style="margin-top: 40px;">
-          <Stepper :title="title"
-                   :count-of-steps="countOfSteps"
-                   :value="value"
-                   :hide-active-step="hideActiveStep"
-          />
-        </div>
-      </StorybookMobileDeviceSimulator>
+    <div style="margin-top: 40px;">
+      <Stepper :title="title"
+               :count-of-steps="countOfSteps"
+               :value="value"
+               :hide-active-step="hideActiveStep"
+      />
     </div>
   `,
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<Stepper :title="title"
+         :count-of-steps="countOfSteps"
+         :value="value"
+         :hide-active-step="hideActiveStep"
+/>`,
+    },
+  },
+};
 
 export {
   defaultExample,

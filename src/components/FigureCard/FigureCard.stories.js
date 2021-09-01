@@ -1,49 +1,64 @@
-import { withKnobs, select, text, boolean } from '@storybook/addon-knobs';
-
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import FigureCard from './FigureCard.vue';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+import RenderString from '../../lib/renderString';
+
+const deviceDecorator = createDeviceDecorator('<strong>FigureCard:</strong>&nbsp;The FigureCard looks like a button containing a figure and a caption.');
 
 const FigureCardStories = {
   component: FigureCard,
   title: 'Components/FigureCard',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    titleAbove: false,
+    title: 'Example Title',
+    imageSource: 'https://source.unsplash.com/random/116x26',
+    default: '',
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    titleAbove: { control: 'boolean', name: 'Title Above' },
+    title: { control: 'text', name: 'Title' },
+    imageSource: { control: 'text', name: 'Image Source (URL)' },
+    default: { control: { type: 'text' }, table: { type: { summary: null } } },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     FigureCard,
-    StorybookMobileDeviceSimulator,
+    RenderString,
   },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    titleAbove: {
-      default: boolean('Title Above', false),
-    },
-    title: {
-      default: text('Title', 'Example Title'),
-    },
-    imageSource: {
-      default: text('Image Source (URL)', 'https://source.unsplash.com/random/116x26'),
+  computed: {
+    defaultSlot() {
+      return this.default;
     },
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>FigureCard:</strong>&nbsp;The FigureCard looks like a button containing a figure and a caption.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <div style="margin-top: 20px;">
-          <FigureCard :title-above="titleAbove"
-                      :title="title"
-                      :image-source="imageSource"
-          />
-        </div>
-      </StorybookMobileDeviceSimulator>
+    <div>
+      <div style="margin-top: 20px;">
+        <FigureCard :title-above="titleAbove"
+                    :title="title"
+                    :image-source="imageSource"
+        >
+          <RenderString :string="defaultSlot" />
+        </FigureCard>
+      </div>
     </div>
   `,
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<FigureCard :title-above="titleAbove"
+            :title="title"
+            :image-source="imageSource"
+/>`,
+    },
+  },
+};
 
 export {
   defaultExample,

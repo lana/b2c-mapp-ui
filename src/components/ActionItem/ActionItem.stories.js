@@ -1,44 +1,25 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select } from '@storybook/addon-knobs';
 import { DocumentFilledIcon } from '@lana/b2c-mapp-ui-assets';
 
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import ActionItem from './ActionItem.vue';
 import RenderString from '../../lib/renderString';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
 
-const deviceDecorator = () => ({
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-  },
-  components: { StorybookMobileDeviceSimulator },
-  template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>ContentRadioList:</strong>&nbsp;A control that allows a user to select an option by showing all available options as a list of radio buttons.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <story />
-      </StorybookMobileDeviceSimulator>
-    </div>
-  `,
-});
-deviceDecorator.argTypes = {
-  device: { control: { type: 'select', options: [...availableDevices] } },
-};
+const deviceDecorator = createDeviceDecorator('<strong>ContentRadioList:</strong> A control that allows a user to select an option by showing all available options as a list of radio buttons.');
 
 const ActionItemStories = {
   component: ActionItem,
   title: 'Components/ActionItem',
-  decorators: [withKnobs, deviceDecorator],
+  decorators: [deviceDecorator],
   args: {
+    ...deviceDecorator.args,
     title: 'Example ActionItem',
     description: '',
     status: '',
     default: 'Default slot',
   },
   argTypes: {
+    ...deviceDecorator.argTypes,
     title: { control: { type: 'text' } },
     description: { control: { type: 'text' } },
     status: { control: { type: 'text' } },

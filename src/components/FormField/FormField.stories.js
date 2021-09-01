@@ -1,63 +1,62 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select, boolean, text, number } from '@storybook/addon-knobs';
 
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import FormField from './FormField.vue';
+import { createOptionalDeviceDecorator } from '../../lib/storybookHelpers';
+import RenderString from '../../lib/renderString';
+
+const deviceDecorator = createOptionalDeviceDecorator('<strong>FormField:</strong>&nbsp;A simple text field.');
 
 const FormFieldStories = {
   component: FormField,
   title: 'Components/FormField',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    type: '',
+    disabled: false,
+    readonly: false,
+    label: 'Example FormField',
+    errorLabel: '',
+    maxLength: null,
+    showPrefix: false,
+    hideClearButton: false,
+    lengthHint: null,
+    lengthHintLabel: '',
+    helpText: '',
+    default: '',
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    type: { control: 'text', name: 'Type' },
+    disabled: { control: 'boolean', name: 'Is Disabled?' },
+    readonly: { control: 'boolean', name: 'Is Readonly?' },
+    label: { control: 'text', name: 'Label' },
+    errorLabel: { control: 'text', name: 'Error Label' },
+    maxLength: { control: 'number', name: 'Max Length' },
+    showPrefix: { control: 'boolean', name: 'Show Prefix?' },
+    hideClearButton: { control: 'boolean', name: 'Hide Clear Button' },
+    lengthHint: { control: 'number', name: 'Length Hint' },
+    lengthHintLabel: { control: 'text', name: 'Length Hint Label' },
+    helpText: { control: 'text', name: 'Help Text' },
+    default: { control: { type: 'text' }, table: { type: { summary: null } } },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     FormField,
-    StorybookMobileDeviceSimulator,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    type: {
-      default: text('Type', ''),
-    },
-    disabled: {
-      default: boolean('Is Disabled?', false),
-    },
-    readonly: {
-      default: boolean('Is Readonly?', false),
-    },
-    label: {
-      default: text('Label', 'Example FormField'),
-    },
-    errorLabel: {
-      default: text('Error Label', ''),
-    },
-    maxLength: {
-      default: number('Max Length'),
-    },
-    showPrefix: {
-      default: boolean('Show Prefix?', false),
-    },
-    hideClearButton: {
-      default: boolean('Hide Clear Button?', false),
-    },
-    lengthHint: {
-      default: number('Length Hint'),
-    },
-    lengthHintLabel: {
-      default: text('Length Hint Label'),
-    },
-    helpText: {
-      default: text('Help Text'),
-    },
+    RenderString,
   },
   data() {
     return {
       value: '',
     };
+  },
+  computed: {
+    defaultSlot() {
+      return this.default;
+    },
   },
   methods: {
     onBlur: action('Blur!'),
@@ -67,45 +66,69 @@ const defaultExample = () => ({
     onKeypress: action('KeyPress!'),
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>FormField:</strong>&nbsp;A simple text field.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <div style="padding: 16px;">
-          <FormField v-model="value"
-                     :type="type"
-                     :disabled="disabled"
-                     :readonly="readonly"
-                     :label="label"
-                     :error-label="errorLabel"
-                     :max-length="maxLength"
-                     :show-prefix="showPrefix"
-                     :length-hint="lengthHint"
-                     :length-hint-label="lengthHintLabel"
-                     :help-text="helpText"
-                     :hide-clear-button="hideClearButton"
-                     @blur="onBlur"
-                     @focus="onFocus"
-                     @keypress="onKeypress"
-                     @keyup="onKeyup"
-                     @paste="onPaste"
-          />
-        </div>
-        <div style="margin: 20px;">
-          Bound value: {{ value }}
-        </div>
-      </StorybookMobileDeviceSimulator>
+    <div>
+      <div style="padding: 16px;">
+        <FormField v-model="value"
+                   :type="type"
+                   :disabled="disabled"
+                   :readonly="readonly"
+                   :label="label"
+                   :error-label="errorLabel"
+                   :max-length="maxLength"
+                   :show-prefix="showPrefix"
+                   :length-hint="lengthHint"
+                   :length-hint-label="lengthHintLabel"
+                   :help-text="helpText"
+                   :hide-clear-button="hideClearButton"
+                   @blur="onBlur"
+                   @focus="onFocus"
+                   @keypress="onKeypress"
+                   @keyup="onKeyup"
+                   @paste="onPaste"
+        >
+          <RenderString :string="defaultSlot" />
+        </FormField>
+      </div>
+      <div style="margin: 20px;">
+        Bound value: {{ value }}
+      </div>
     </div>
   `,
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<FormField v-model="value"
+           :type="type"
+           :disabled="disabled"
+           :readonly="readonly"
+           :label="label"
+           :error-label="errorLabel"
+           :max-length="maxLength"
+           :show-prefix="showPrefix"
+           :length-hint="lengthHint"
+           :length-hint-label="lengthHintLabel"
+           :help-text="helpText"
+           :hide-clear-button="hideClearButton"
+           @blur="onBlur"
+           @focus="onFocus"
+           @keypress="onKeypress"
+           @keyup="onKeyup"
+           @paste="onPaste"
+/>`,
+    },
+  },
+};
 
-const examples = () => ({
+const examples = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     FormField,
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>FormField:</strong>&nbsp;Examples.</h2>
+      <h3>Examples.</h3>
       <hr>
       <div style="display: flex; flex-direction: column; width: 100%;">
         <div style="width: 500px">
@@ -146,8 +169,65 @@ const examples = () => ({
     </div>
   `,
 });
-
-// TODO: Add more stories for this component to showcase more usage scenarios
+examples.args = {
+  device: '',
+};
+examples.argTypes = {
+  device: { table: { disable: true } },
+  type: { table: { disable: true } },
+  disabled: { table: { disable: true } },
+  readonly: { table: { disable: true } },
+  label: { table: { disable: true } },
+  errorLabel: { table: { disable: true } },
+  maxLength: { table: { disable: true } },
+  showPrefix: { table: { disable: true } },
+  hideClearButton: { table: { disable: true } },
+  lengthHint: { table: { disable: true } },
+  lengthHintLabel: { table: { disable: true } },
+  helpText: { table: { disable: true } },
+  default: { table: { disable: true } },
+};
+examples.parameters = {
+  docs: {
+    source: {
+      code: `
+<div style="width: 500px">
+  <label>Unfocused with no value:</label>
+  <FormField label='Enter your name'/>
+</div>
+<br>
+<div style="width: 500px">
+  <label>Focused with value:</label>
+  <FormField label="Example" value="foo" start-focused/>
+</div>
+<br>
+<div style="width: 500px">
+  <label>Unfocused with error:</label>
+  <FormField value="foo" label="Foo" error-label="Invalid value"/>
+</div>
+<br>
+<div style="width: 500px">
+  <label>With help text:</label>
+  <FormField label="With help text" help-text="Example help text" />
+</div>
+<br>
+<div style="width: 500px">
+  <label>With hidden clear button:</label>
+  <FormField label="With help text" value="Example" hide-clear-button/>
+</div>
+<br>
+<div style="width: 500px">
+  <label>Readonly:</label>
+  <FormField label="Enter your name" value="Locked Value" readonly/>
+</div>
+<br>
+<div style="width: 500px">
+  <label>Disabled:</label>
+  <FormField label="Enter your name" value="Locked Value" disabled/>
+</div>`,
+    },
+  },
+};
 
 export {
   defaultExample,

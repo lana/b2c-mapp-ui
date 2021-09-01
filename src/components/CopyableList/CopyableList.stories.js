@@ -1,68 +1,104 @@
-import { withKnobs, select, text } from '@storybook/addon-knobs';
-import { InfoIcon, DocumentFilledIcon } from '@lana/b2c-mapp-ui-assets/dist/index';
-
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import CopyableList from './CopyableList.vue';
-import CopyableListItem from '../CopyableListItem/CopyableListItem.vue';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+import RenderString from '../../lib/renderString';
+
+const deviceDecorator = createDeviceDecorator('<strong>CopyableList:</strong>&nbsp;A list of items with a copy to clipboard button.');
 
 const CopyableListStories = {
   component: CopyableList,
   title: 'Components/CopyableList',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    title: 'Example Title',
+    default: '',
+    content: '',
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    title: { name: 'Title', control: 'text' },
+    default: { control: { type: 'text' }, table: { type: { summary: null } } },
+    content: { control: { type: 'text' }, table: { type: { summary: null } } },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     CopyableList,
-    CopyableListItem,
-    InfoIcon,
-    DocumentFilledIcon,
-    StorybookMobileDeviceSimulator,
+    RenderString,
   },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    title: {
-      default: text('Title', 'Example Title'),
+  computed: {
+    defaultSlot() {
+      return this.default;
     },
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>CopyableList:</strong>&nbsp;A list of items with a copy to clipboard button.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <CopyableList :title="title">
-          <CopyableListItem title="An info example"
-                            text="Text to be copied"
-          >
-            <DocumentFilledIcon/>
-          </CopyableListItem>
-          <CopyableListItem title="Random URL (with hidden copy button)"
-                            text="https://source.unsplash.com/random/24x24"
-                            hide-button
-          >
-            <img src="https://source.unsplash.com/random/24x24"/>
-          </CopyableListItem>
-          <CopyableListItem title="Example Title"
-                            text="1234567890ABCDE"
-          >
-            <DocumentFilledIcon/>
-          </CopyableListItem>
-          <CopyableListItem title="Some other title"
-                            text="1234567890ABCDE"
-          >
-            <InfoIcon/>
-          </CopyableListItem>
-          <div slot="content">
-            <p style="margin: 20px">Some example extra content</p>
-          </div>
-        </CopyableList>
-      </StorybookMobileDeviceSimulator>
-    </div>
+    <CopyableList :title="title">
+      <RenderString :string="defaultSlot" />
+      <template v-slot:content>
+        <RenderString :string="content" />
+      </template>
+    </CopyableList>
   `,
 });
+defaultExample.args = {
+  default: `<CopyableListItem title="An info example"
+                    text="Text to be copied"
+  >
+    <DocumentFilledIcon/>
+  </CopyableListItem>
+  <CopyableListItem title="Random URL (with hidden copy button)"
+                    text="https://source.unsplash.com/random/24x24"
+                    hide-button
+  >
+    <img src="https://source.unsplash.com/random/24x24"/>
+  </CopyableListItem>
+  <CopyableListItem title="Example Title"
+                    text="1234567890ABCDE"
+  >
+    <DocumentFilledIcon/>
+  </CopyableListItem>
+  <CopyableListItem title="Some other title"
+                    text="1234567890ABCDE"
+  >
+    <InfoIcon/>
+  </CopyableListItem>`,
+  content: '<p style="margin: 20px">Some example extra content</p>',
+};
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<CopyableList :title="title">
+  <CopyableListItem title="An info example"
+                    text="Text to be copied"
+  >
+    <DocumentFilledIcon/>
+  </CopyableListItem>
+  <CopyableListItem title="Random URL (with hidden copy button)"
+                    text="https://source.unsplash.com/random/24x24"
+                    hide-button
+  >
+    <img src="https://source.unsplash.com/random/24x24"/>
+  </CopyableListItem>
+  <CopyableListItem title="Example Title"
+                    text="1234567890ABCDE"
+  >
+    <DocumentFilledIcon/>
+  </CopyableListItem>
+  <CopyableListItem title="Some other title"
+                    text="1234567890ABCDE"
+  >
+    <InfoIcon/>
+  </CopyableListItem>
+  <div slot="content">
+    <p style="margin: 20px">Some example extra content</p>
+  </div>
+</CopyableList>`,
+    },
+  },
+};
 
 export {
   defaultExample,

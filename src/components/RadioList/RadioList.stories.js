@@ -1,136 +1,147 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
 
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import RadioList from './RadioList.vue';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+
+const deviceDecorator = createDeviceDecorator('<strong>RadioList:</strong>&nbsp;A control that allows a user to select an option by showing all available options as a list of radio buttons.');
 
 const RadioListStories = {
   component: RadioList,
   title: 'Components/RadioList',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    title: 'Example Title',
+    disabled: false,
+    options: [
+      {
+        label: 'Option 1',
+        value: 'option1',
+      },
+      {
+        label: 'Option 2',
+        value: 'option2',
+      },
+      {
+        label: 'Option 3',
+        value: 'option3',
+      },
+    ],
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    title: { control: 'text', name: 'Title' },
+    disabled: { control: 'boolean', name: 'Is Disabled?' },
+    options: { control: 'object', name: 'Options' },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     RadioList,
-    StorybookMobileDeviceSimulator,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    title: {
-      default: text('Title', 'Example Title'),
-    },
-    disabled: {
-      default: boolean('Is Disabled?', false),
-    },
   },
   data() {
     return {
       selectedValue: 'option2',
-      options: [
-        {
-          label: 'Option 1',
-          value: 'option1',
-        },
-        {
-          label: 'Option 2',
-          value: 'option2',
-        },
-        {
-          label: 'Option 3',
-          value: 'option3',
-        },
-      ],
     };
   },
   methods: {
     onInput: action('Changed!'),
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>RadioList:</strong>&nbsp;A control that allows a user to select an option by showing all available options as a list of radio buttons.</h2>
+    <div>
+      <RadioList v-model="selectedValue"
+                 id="exampleRadioList"
+                 :title="title"
+                 :options="options"
+                 :disabled="disabled"
+                 @input="onInput"
+      />
       <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <RadioList v-model="selectedValue"
-                   id="exampleRadioList"
-                   :title="title"
-                   :options="options"
-                   :disabled="disabled"
-                   @input="onInput"
-        />
-        <hr>
-        <div style="margin: 20px">
-          Bound value: {{ selectedValue }}
-        </div>
-      </StorybookMobileDeviceSimulator>
+      <div style="margin: 20px">
+        Bound value: {{ selectedValue }}
+      </div>
     </div>
   `,
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<RadioList v-model="value"
+           id="exampleRadioList"
+           :title="title"
+           :options="options"
+           :disabled="disabled"
+           @input="onInput"
+/>`,
+    },
+  },
+};
 
-const withHtmlLabel = () => ({
+const withHtmlLabel = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     RadioList,
-    StorybookMobileDeviceSimulator,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    title: {
-      default: text('Title', 'Example Title'),
-    },
-    disabled: {
-      default: boolean('Is Disabled?', false),
-    },
   },
   data() {
     return {
       selectedValue: 'option2',
-      options: [
-        {
-          label: 'Option 1',
-          value: 'option1',
-        },
-        {
-          htmlLabel: `
-            <p>Option 2</p>
-            <p>With <strong>fancy</strong>&nbsp;<em>HTML</em></p>
-          `,
-          value: 'option2',
-        },
-        {
-          label: 'Option 3',
-          value: 'option3',
-        },
-      ],
     };
   },
   methods: {
     onInput: action('Changed!'),
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>RadioList:</strong>&nbsp;A control that allows a user to select an option by showing all available options as a list of radio buttons.</h2>
+    <div>
+      <RadioList v-model="selectedValue"
+                 id="exampleRadioList"
+                 :title="title"
+                 :options="options"
+                 :disabled="disabled"
+                 @input="onInput"
+      />
       <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <RadioList v-model="selectedValue"
-                   id="exampleRadioList"
-                   :title="title"
-                   :options="options"
-                   :disabled="disabled"
-                   @input="onInput"
-        />
-        <hr>
-        <div style="margin: 20px">
-          Bound value: {{ selectedValue }}
-        </div>
-      </StorybookMobileDeviceSimulator>
+      <div style="margin: 20px">
+        Bound value: {{ selectedValue }}
+      </div>
     </div>
   `,
 });
+withHtmlLabel.args = {
+  options: [
+    {
+      label: 'Option 1',
+      value: 'option1',
+    },
+    {
+      htmlLabel: `
+        <p>Option 2</p>
+        <p>With <strong>fancy</strong>&nbsp;<em>HTML</em></p>
+      `,
+      value: 'option2',
+    },
+    {
+      label: 'Option 3',
+      value: 'option3',
+    },
+  ],
+};
+withHtmlLabel.parameters = {
+  docs: {
+    source: {
+      code: `
+<RadioList v-model="value"
+           id="exampleRadioList"
+           :title="title"
+           :options="options"
+           :disabled="disabled"
+           @input="onInput"
+/>`,
+    },
+  },
+};
 
 export {
   defaultExample,

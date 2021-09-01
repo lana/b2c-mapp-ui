@@ -1,54 +1,46 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select, boolean, text } from '@storybook/addon-knobs';
-import { DocumentFilledIcon } from '@lana/b2c-mapp-ui-assets';
 
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import ListItem from './ListItem.vue';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+import RenderString from '../../lib/renderString';
+
+const deviceDecorator = createDeviceDecorator('<strong>ListItem:</strong>&nbsp;A list item which usually takes the user to content in another screen.');
 
 const ListItemStories = {
   component: ListItem,
   title: 'Components/ListItem',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    title: 'Example Title',
+    description: 'Example Description',
+    linkTitle: 'Example Link Title',
+    hasToggle: true,
+    hasCheckbox: false,
+    transparent: false,
+    disabled: false,
+    rightLabel: '',
+    default: '<img src="https://source.unsplash.com/random/48x48"/>',
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    title: { control: 'text', name: 'Title' },
+    description: { control: 'text', name: 'Description' },
+    linkTitle: { control: 'text', name: 'Link Title' },
+    hasToggle: { control: 'boolean', name: 'Has Toggle Switch' },
+    hasCheckbox: { control: 'boolean', name: 'Has Checkbox?' },
+    transparent: { control: 'boolean', name: 'Is transparent?' },
+    disabled: { control: 'boolean', name: 'Is disabled?' },
+    rightLabel: { control: 'text', name: 'Right label' },
+    default: { control: { type: 'text' }, table: { type: { summary: null } } },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     ListItem,
-    DocumentFilledIcon,
-    StorybookMobileDeviceSimulator,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    title: {
-      default: text('Title', 'Example Title'),
-    },
-    description: {
-      default: text('Description', 'Example Description'),
-    },
-    linkTitle: {
-      default: text('Link Title', 'Example Link Title'),
-    },
-    hasToggle: {
-      default: boolean('Has Toggle Switch?', true),
-    },
-    hasCheckbox: {
-      default: boolean('Has Checkbox?', false),
-    },
-    transparent: {
-      default: boolean('Is transparent?', false),
-    },
-    disabled: {
-      default: boolean('Is disabled?', false),
-    },
-    hasImage: {
-      default: boolean('Show image?', false),
-    },
-    rightLabel: {
-      default: text('Right label', ''),
-    },
+    RenderString,
   },
   methods: {
     onLinkClick: action('Link Clicked!'),
@@ -59,38 +51,58 @@ const defaultExample = () => ({
       isChecked: false,
     };
   },
+  computed: {
+    defaultSlot() {
+      return this.default;
+    },
+  },
   watch: {
     isChecked() {
       this.onToggleChanged(this.isChecked);
     },
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>ListItem:</strong>&nbsp;A list item which usually takes the user to content in another screen.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <ListItem v-model="isChecked"
-                  :transparent="transparent"
-                  :title="title"
-                  :description="description"
-                  :link-title="linkTitle"
-                  :has-toggle="hasToggle"
-                  :has-checkbox="hasCheckbox"
-                  :right-label="rightLabel"
-                  :disabled="disabled"
-                  @linkClick="onLinkClick"
-        >
-          <img v-if="hasImage" src="https://source.unsplash.com/random/48x48"/>
-          <p v-if="!hasImage"><DocumentFilledIcon/></p>
-        </ListItem>
-        <br>
-        <div style="margin: 20px;">
-          Bound value: {{ isChecked }}
-        </div>
-      </StorybookMobileDeviceSimulator>
+    <div>
+      <ListItem v-model="isChecked"
+                :transparent="transparent"
+                :title="title"
+                :description="description"
+                :link-title="linkTitle"
+                :has-toggle="hasToggle"
+                :has-checkbox="hasCheckbox"
+                :right-label="rightLabel"
+                :disabled="disabled"
+                @linkClick="onLinkClick"
+      >
+        <RenderString :string="defaultSlot" />
+      </ListItem>
+      <br>
+      <div style="margin: 20px;">
+        Bound value: {{ isChecked }}
+      </div>
     </div>
   `,
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<ListItem v-model="isChecked"
+          :transparent="transparent"
+          :title="title"
+          :description="description"
+          :link-title="linkTitle"
+          :has-toggle="hasToggle"
+          :has-checkbox="hasCheckbox"
+          :right-label="rightLabel"
+          :disabled="disabled"
+          @linkClick="onLinkClick"
+>
+  <img src="https://source.unsplash.com/random/48x48"/>
+</ListItem>`,
+    },
+  },
+};
 
 export {
   defaultExample,

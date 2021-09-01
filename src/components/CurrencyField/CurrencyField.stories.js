@@ -1,68 +1,66 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select, boolean, text, number } from '@storybook/addon-knobs';
 
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import CurrencyField from './CurrencyField.vue';
 import { sleep } from '@/lib/sleepHelper';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
+import RenderString from '../../lib/renderString';
+
+const deviceDecorator = createDeviceDecorator('<strong>CurrencyField:</strong>&nbsp;An input field with currency formatting.');
 
 const CurrencyFieldStories = {
   component: CurrencyField,
   title: 'Components/CurrencyField',
-  decorators: [withKnobs],
+  decorators: [deviceDecorator],
+  args: {
+    ...deviceDecorator.args,
+    disabled: false,
+    readonly: false,
+    label: 'Example CurrencyField',
+    errorLabel: '',
+    maxLength: null,
+    showPrefix: false,
+    hideClearButton: false,
+    lengthHint: null,
+    lengthHintLabel: '',
+    currency: 'CLP',
+    locale: 'es-cl',
+    helpText: '',
+    default: '',
+  },
+  argTypes: {
+    ...deviceDecorator.argTypes,
+    disabled: { name: 'Is Disabled?', control: 'boolean' },
+    readonly: { name: 'Is Readonly?', control: 'boolean' },
+    label: { name: 'Label', control: 'text' },
+    errorLabel: { name: 'Error Label', control: 'text' },
+    maxLength: { name: 'Max length', control: 'number' },
+    showPrefix: { name: 'Show Prefix?', control: 'boolean' },
+    hideClearButton: { name: 'Hide Clear Button', control: 'boolean' },
+    lengthHint: { name: 'Length Hint', control: 'number' },
+    lengthHintLabel: { name: 'Length Hint Label', control: 'text' },
+    currency: { name: 'Currency Code', control: 'select', options: ['CLP', 'MXN', 'EUR', 'BRL'] },
+    locale: { name: 'Locale', control: 'select', options: ['es-cl', 'es-mx', 'es-es', 'pt-br'] },
+    helpText: { name: 'Help text', control: 'text' },
+    default: { control: { type: 'text' }, table: { type: { summary: null } } },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     CurrencyField,
-    StorybookMobileDeviceSimulator,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-    disabled: {
-      default: boolean('Is Disabled?', false),
-    },
-    readonly: {
-      default: boolean('Is Readonly?', false),
-    },
-    label: {
-      default: text('Label', 'Example CurrencyField'),
-    },
-    errorLabel: {
-      default: text('Error Label', ''),
-    },
-    maxLength: {
-      default: number('Max Length'),
-    },
-    showPrefix: {
-      default: boolean('Show Prefix?', false),
-    },
-    hideClearButton: {
-      default: boolean('Hide Clear Button?', false),
-    },
-    lengthHint: {
-      default: number('Length Hint'),
-    },
-    lengthHintLabel: {
-      default: text('Length Hint Label'),
-    },
-    currency: {
-      default: text('Currency Code', 'CLP'),
-    },
-    locale: {
-      default: text('Locale', 'es-CL'),
-    },
-    helpText: {
-      default: text('Help Text'),
-    },
+    RenderString,
   },
   data() {
     return {
       value: '',
       unformattedValue: '',
     };
+  },
+  computed: {
+    defaultSlot() {
+      return this.default;
+    },
   },
   methods: {
     onBlur: action('Blur!'),
@@ -77,54 +75,74 @@ const defaultExample = () => ({
     },
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>CurrencyField:</strong>&nbsp;An input field with currency formatting.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <div style="margin: 20px;">
-          <CurrencyField v-model="value"
-                         ref="field"
-                         :disabled="disabled"
-                         :readonly="readonly"
-                         :label="label"
-                         :currency="currency"
-                         :locale="locale"
-                         :error-label="errorLabel"
-                         :max-length="maxLength"
-                         :show-prefix="showPrefix"
-                         :length-hint="lengthHint"
-                         :length-hint-label="lengthHintLabel"
-                         :hide-clear-button="hideClearButton"
-                         :help-text="helpText"
-                         @blur="onBlur"
-                         @focus="onFocus"
-                         @keypress="onKeypress"
-                         @keyup="onKeyup"
-                         @paste="onPaste"
-          />
-        </div>
-        <br>
-        <div style="margin: 20px;">
-          Bound value: {{ value }}
-        </div>
-        <br>
-        <div style="margin: 20px;">
-          Unformatted value: {{ unformattedValue }}
-        </div>
-      </StorybookMobileDeviceSimulator>
+    <div>
+      <div style="margin: 20px;">
+        <CurrencyField v-model="value"
+                       ref="field"
+                       :disabled="disabled"
+                       :readonly="readonly"
+                       :label="label"
+                       :currency="currency"
+                       :locale="locale"
+                       :error-label="errorLabel"
+                       :max-length="maxLength"
+                       :show-prefix="showPrefix"
+                       :length-hint="lengthHint"
+                       :length-hint-label="lengthHintLabel"
+                       :hide-clear-button="hideClearButton"
+                       :help-text="helpText"
+                       @blur="onBlur"
+                       @focus="onFocus"
+                       @keypress="onKeypress"
+                       @keyup="onKeyup"
+                       @paste="onPaste"
+        >
+          <RenderString :string="defaultSlot" fragment/>
+        </CurrencyField>
+      </div>
+      <br>
+      <div style="margin: 20px;">
+        Bound value: {{ value }}
+      </div>
+      <br>
+      <div style="margin: 20px;">
+        Unformatted value: {{ unformattedValue }}
+      </div>
     </div>
   `,
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<CurrencyField v-model="value"
+               ref="field"
+               :disabled="disabled"
+               :readonly="readonly"
+               :label="label"
+               :currency="currency"
+               :locale="locale"
+               :error-label="errorLabel"
+               :max-length="maxLength"
+               :show-prefix="showPrefix"
+               :length-hint="lengthHint"
+               :length-hint-label="lengthHintLabel"
+               :hide-clear-button="hideClearButton"
+               :help-text="helpText"
+               @blur="onBlur"
+               @focus="onFocus"
+               @keypress="onKeypress"
+               @keyup="onKeyup"
+               @paste="onPaste"  
+/>`,
+    },
+  },
+};
 
-const withPrefilledValue = () => ({
+const withPrefilledValue = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     CurrencyField,
-    StorybookMobileDeviceSimulator,
-  },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
   },
   data() {
     return {
@@ -149,33 +167,62 @@ const withPrefilledValue = () => ({
     this.value = 12345;
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>CurrencyField:</strong>&nbsp;Example with a pre-filled value. (it should appear with proper formatting)</h2>
+    <div>
+      <h3>Example with a pre-filled value. (it should appear with proper formatting)</h3>
       <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <div style="margin: 20px;">
-          <CurrencyField v-model="value"
-                         ref="field"
-                         label="Example with Prefilled Value"
-                         @blur="onBlur"
-                         @focus="onFocus"
-                         @keypress="onKeypress"
-                         @keyup="onKeyup"
-                         @paste="onPaste"
-          />
-        </div>
-        <br>
-        <div style="margin: 20px;">
-          Bound value: {{ value }}
-        </div>
-        <br>
-        <div style="margin: 20px;">
-          Unformatted value: {{ unformattedValue }}
-        </div>
-      </StorybookMobileDeviceSimulator>
+      <div style="margin: 20px;">
+        <CurrencyField v-model="value"
+                       ref="field"
+                       label="Example with Prefilled Value"
+                       @blur="onBlur"
+                       @focus="onFocus"
+                       @keypress="onKeypress"
+                       @keyup="onKeyup"
+                       @paste="onPaste"
+        />
+      </div>
+      <br>
+      <div style="margin: 20px;">
+        Bound value: {{ value }}
+      </div>
+      <br>
+      <div style="margin: 20px;">
+        Unformatted value: {{ unformattedValue }}
+      </div>
     </div>
   `,
 });
+withPrefilledValue.argTypes = {
+  disabled: { table: { disable: true } },
+  readonly: { table: { disable: true } },
+  label: { table: { disable: true } },
+  errorLabel: { table: { disable: true } },
+  maxLength: { table: { disable: true } },
+  showPrefix: { table: { disable: true } },
+  hideClearButton: { table: { disable: true } },
+  lengthHint: { table: { disable: true } },
+  lengthHintLabel: { table: { disable: true } },
+  currency: { table: { disable: true } },
+  locale: { table: { disable: true } },
+  helpText: { table: { disable: true } },
+  default: { table: { disable: true } },
+};
+withPrefilledValue.parameters = {
+  docs: {
+    source: {
+      code: `
+<CurrencyField v-model="value"
+               ref="field"
+               label="Example with Prefilled Value"
+               @blur="onBlur"
+               @focus="onFocus"
+               @keypress="onKeypress"
+               @keyup="onKeyup"
+               @paste="onPaste"
+/>`,
+    },
+  },
+};
 
 export {
   defaultExample,

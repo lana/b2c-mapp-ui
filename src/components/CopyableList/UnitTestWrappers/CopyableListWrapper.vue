@@ -29,7 +29,7 @@
   </section>
 </template>
 <script>
-import { InfoIcon, FaceIdIcon, TouchIdIcon } from '@lana/b2c-mapp-ui-assets/dist/index';
+import { InfoIcon, FaceIdIcon, TouchIdIcon } from '@lana/b2c-mapp-ui-assets';
 
 import CopyableList from '../CopyableList.vue';
 import CopyableListItem from '../../CopyableListItem/CopyableListItem.vue';

@@ -1,33 +1,51 @@
-import { withKnobs, select } from '@storybook/addon-knobs';
-
 import StorybookMobileDeviceSimulator from './StorybookMobileDeviceSimulator.vue';
 import { availableDevices } from './StorybookMobileDeviceSimulator';
+import { createScreenDecorator } from '../../lib/storybookHelpers';
+import RenderString from '../../lib/renderString';
+
+const screenDecorator = createScreenDecorator('<strong>StorybookMobileDeviceSimulator:</strong>&nbsp;A minimal mobile device simulator for helping visualize Storybook stories as a mobile device.');
 
 const StorybookMobileDeviceSimulatorStories = {
   component: StorybookMobileDeviceSimulator,
   title: 'Components/StorybookMobileDeviceSimulator',
-  decorators: [withKnobs],
+  decorators: [screenDecorator],
+  args: {
+    device: availableDevices[0],
+    default: '<p>Example mobile device content</p>',
+  },
+  argTypes: {
+    device: { control: 'select', name: 'Simulated Mobile Device', options: [...availableDevices] },
+    default: { control: { type: 'text' }, table: { type: { summary: null } } },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     StorybookMobileDeviceSimulator,
+    RenderString,
   },
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
+  computed: {
+    defaultSlot() {
+      return this.default;
     },
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px; height: 100vh;">
-      <h2><strong>StorybookMobileDeviceSimulator:</strong>&nbsp;A minimal mobile device simulator for helping visualize Storybook stories as a mobile device.</h2>
-      <hr>
       <StorybookMobileDeviceSimulator :device="device">
-        <p>Example mobile device content</p>
+        <RenderString :string="defaultSlot" />
       </StorybookMobileDeviceSimulator>
-    </div>
   `,
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<StorybookMobileDeviceSimulator :device="device">
+  <p>Example mobile device content</p>
+</StorybookMobileDeviceSimulator>`,
+    },
+  },
+};
 
 export {
   defaultExample,

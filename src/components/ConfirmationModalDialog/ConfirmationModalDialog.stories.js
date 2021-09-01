@@ -1,35 +1,62 @@
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 import { CloseIcon } from '@lana/b2c-mapp-ui-assets';
 
 import ConfirmationModalDialog from './ConfirmationModalDialog.vue';
+import { createScreenDecorator } from '../../lib/storybookHelpers';
+import RenderString from '../../lib/renderString';
+
+const screenDecorator = createScreenDecorator('<strong>ConfirmationModalDialog:</strong>');
 
 const ConfirmationModalDialogStories = {
   component: ConfirmationModalDialog,
   title: 'Components/ConfirmationModalDialog',
-  decorators: [withKnobs],
+  decorators: [screenDecorator],
+  args: {
+    title: 'Example Title',
+    description: 'Example Description',
+    confirmButtonText: 'Accept',
+    dismissButtonText: 'Cancel',
+    confirmButtonDisabled: false,
+    dismissButtonDisabled: false,
+    default: '',
+    extraActions: '',
+  },
+  argTypes: {
+    title: { name: 'Title', control: 'text' },
+    description: { name: 'Description', control: 'text' },
+    confirmButtonText: { name: 'Confirm Button Text', control: 'text' },
+    dismissButtonText: { name: 'Dismiss Button Text', control: 'text' },
+    confirmButtonDisabled: { name: 'Disable Confirm Button?', control: 'boolean' },
+    dismissButtonDisabled: { name: 'Disable Dismiss Button?', control: 'boolean' },
+    default: {
+      control: {
+        type: 'text',
+      },
+      table: {
+        type: {
+          summary: null,
+        },
+      },
+    },
+    extraActions: {
+      control: {
+        type: 'text',
+      },
+      table: {
+        type: {
+          summary: 'Extra actions slot',
+          detail: 'It is binded to `onDismiss` and `onConfirm` methods',
+        },
+      },
+    },
+  },
 };
 
-const defaultExample = () => ({
+const defaultExample = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     ConfirmationModalDialog,
-  },
-  props: {
-    title: {
-      default: text('Title', 'Example Title'),
-    },
-    description: {
-      default: text('Description', 'Example Description'),
-    },
-    confirmButtonText: {
-      default: text('Confirm Button Text', 'Accept'),
-    },
-    dismissButtonText: {
-      default: text('Dismiss Button Text', 'Cancel'),
-    },
-    disabled: {
-      default: boolean('Is Disabled?', false),
-    },
+    RenderString,
   },
   data() {
     return {
@@ -37,6 +64,9 @@ const defaultExample = () => ({
     };
   },
   computed: {
+    defaultSlot() {
+      return this.default;
+    },
     showHideTitle() {
       if (this.isShowing) { return 'Hide'; }
       return 'Show';
@@ -51,70 +81,20 @@ const defaultExample = () => ({
     },
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>ConfirmationModalDialog:</strong>&nbsp;A modal dialog that requires a decision from the user or provides critical information.</h2>
-      <hr>
+    <div style="min-height: 400px;">
       <div style="margin-top: 20px; width: 100px">
         <ConfirmationModalDialog v-model="isShowing"
                                  :title="title"
                                  :description="description"
                                  :confirm-button-text="confirmButtonText"
                                  :dismiss-button-text="dismissButtonText"
-                                 :disabled="disabled"
-                                 @dismiss="onDismiss"
-                                 @confirm="onConfirm"
-                                 @close="onClose"
-        />
-      </div>
-      <div style="margin-top: 20px;">
-        Bound value: {{ isShowing }}
-      </div>
-      <div style="margin-top: 20px; display: flex; flex-direction: row; width: 100%; justify-content: center">
-        <button style="font-size: 20px; color: blue;" @click="toggleIsShowing">{{ showHideTitle }} Dialog</button>
-      </div>
-    </div>
-  `,
-});
-
-const withCustomContent = () => ({
-  components: {
-    ConfirmationModalDialog,
-  },
-  data() {
-    return {
-      isShowing: false,
-    };
-  },
-  computed: {
-    showHideTitle() {
-      if (this.isShowing) { return 'Hide'; }
-      return 'Show';
-    },
-  },
-  methods: {
-    onDismiss: action('Dismissed!'),
-    onConfirm: action('Confirmed!'),
-    onClose: action('Closed!'),
-    toggleIsShowing() {
-      this.isShowing = !this.isShowing;
-    },
-  },
-  template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>ConfirmationModalDialog:</strong>&nbsp;Custom Content.</h2>
-      <hr>
-      <div style="margin-top: 20px; width: 100px">
-        <ConfirmationModalDialog v-model="isShowing"
-                                 title="Custom Content Example"
-                                 confirm-button-text="Got it"
-                                 dismiss-button-text="Never mind"
+                                 :confirm-button-disabled="confirmButtonDisabled"
+                                 :dismiss-button-disabled="dismissButtonDisabled"
                                  @dismiss="onDismiss"
                                  @confirm="onConfirm"
                                  @close="onClose"
         >
-          <div style="color: deeppink; margin: 20px">
-            This is some <strong>custom</strong> content
-          </div>
+          <RenderString :string="defaultSlot" />
         </ConfirmationModalDialog>
       </div>
       <div style="margin-top: 20px;">
@@ -126,10 +106,30 @@ const withCustomContent = () => ({
     </div>
   `,
 });
+defaultExample.parameters = {
+  docs: {
+    source: {
+      code: `
+<ConfirmationModalDialog v-model="isShowing"
+                         :title="title"
+                         :description="description"
+                         :confirm-button-text="confirmButtonText"
+                         :dismiss-button-text="dismissButtonText"
+                         :confirm-button-disabled="confirmButtonDisabled"
+                         :dismiss-button-disabled="dismissButtonDisabled"
+                         @dismiss="onDismiss"
+                         @confirm="onConfirm"
+                         @close="onClose"
+/>`,
+    },
+  },
+};
 
-const withDismissButtonDisabled = () => ({
+const withCustomContent = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     ConfirmationModalDialog,
+    RenderString,
   },
   data() {
     return {
@@ -137,6 +137,9 @@ const withDismissButtonDisabled = () => ({
     };
   },
   computed: {
+    defaultSlot() {
+      return this.default;
+    },
     showHideTitle() {
       if (this.isShowing) { return 'Hide'; }
       return 'Show';
@@ -151,9 +154,93 @@ const withDismissButtonDisabled = () => ({
     },
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>ConfirmationModalDialog:</strong>&nbsp;Custom Content with disabled Dismiss Button.</h2>
-      <hr>
+    <div style="min-height: 400px;">
+      <div style="margin-top: 20px; width: 100px">
+        <ConfirmationModalDialog v-model="isShowing"
+                                 title="Custom Content Example"
+                                 confirm-button-text="Got it"
+                                 dismiss-button-text="Never mind"
+                                 @dismiss="onDismiss"
+                                 @confirm="onConfirm"
+                                 @close="onClose"
+        >
+          <RenderString :string="defaultSlot" />
+        </ConfirmationModalDialog>
+      </div>
+      <div style="margin-top: 20px;">
+        Bound value: {{ isShowing }}
+      </div>
+      <div style="margin-top: 20px; display: flex; flex-direction: row; width: 100%; justify-content: center">
+        <button style="font-size: 20px; color: blue;" @click="toggleIsShowing">{{ showHideTitle }} Dialog</button>
+      </div>
+    </div>
+  `,
+});
+withCustomContent.args = {
+  description: '',
+  default: `<div style="color: deeppink; margin: 20px">
+  This is some <strong>custom</strong> content
+</div>`,
+};
+withCustomContent.argTypes = {
+  title: { table: { disable: true } },
+  description: { table: { disable: true } },
+  confirmButtonText: { table: { disable: true } },
+  dismissButtonText: { table: { disable: true } },
+  confirmButtonDisabled: { table: { disable: true } },
+  dismissButtonDisabled: { table: { disable: true } },
+  extraActions: { table: { disable: true } },
+};
+withCustomContent.parameters = {
+  docs: {
+    source: {
+      code: `
+<ConfirmationModalDialog v-model="isShowing"
+                         title="Custom Content Example"
+                         confirm-button-text="Got it"
+                         dismiss-button-text="Never mind"
+                         @dismiss="onDismiss"
+                         @confirm="onConfirm"
+                         @close="onClose"
+>
+  <div style="color: deeppink; margin: 20px">
+    This is some <strong>custom</strong> content
+  </div>
+</ConfirmationModalDialog>`,
+    },
+  },
+};
+
+const withDismissButtonDisabled = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: {
+    ConfirmationModalDialog,
+    RenderString,
+  },
+  data() {
+    return {
+      isShowing: false,
+    };
+  },
+  computed: {
+    defaultSlot() {
+      return this.default;
+    },
+    showHideTitle() {
+      if (this.isShowing) { return 'Hide'; }
+      return 'Show';
+    },
+  },
+  methods: {
+    onDismiss: action('Dismissed!'),
+    onConfirm: action('Confirmed!'),
+    onClose: action('Closed!'),
+    toggleIsShowing() {
+      this.isShowing = !this.isShowing;
+    },
+  },
+  template: `
+    <div style="min-height: 400px;">
       <div style="margin-top: 20px; width: 100px">
         <ConfirmationModalDialog v-model="isShowing"
                                  title="Custom Content with disabled Dismiss Button Example"
@@ -164,9 +251,7 @@ const withDismissButtonDisabled = () => ({
                                  @close="onClose"
                                  dismissButtonDisabled
         >
-          <div style="color: deeppink; margin: 20px">
-            This is some <strong>custom</strong> content
-          </div>
+          <RenderString :string="defaultSlot" />
         </ConfirmationModalDialog>
       </div>
       <div style="margin-top: 20px;">
@@ -178,10 +263,48 @@ const withDismissButtonDisabled = () => ({
     </div>
   `,
 });
+withDismissButtonDisabled.args = {
+  description: '',
+  default: `<div style="color: deeppink; margin: 20px">
+  This is some <strong>custom</strong> content
+</div>`,
+};
+withDismissButtonDisabled.argTypes = {
+  title: { table: { disable: true } },
+  description: { table: { disable: true } },
+  confirmButtonText: { table: { disable: true } },
+  dismissButtonText: { table: { disable: true } },
+  confirmButtonDisabled: { table: { disable: true } },
+  dismissButtonDisabled: { table: { disable: true } },
+  default: { table: { disable: true } },
+  extraActions: { table: { disable: true } },
+};
+withDismissButtonDisabled.parameters = {
+  docs: {
+    source: {
+      code: `
+<ConfirmationModalDialog v-model="isShowing"
+                         title="Custom Content with disabled Dismiss Button Example"
+                         confirm-button-text="Got it"
+                         dismiss-button-text="Never mind"
+                         @dismiss="onDismiss"
+                         @confirm="onConfirm"
+                         @close="onClose"
+                         dismissButtonDisabled
+>
+  <div style="color: deeppink; margin: 20px">
+    This is some <strong>custom</strong> content
+  </div>
+</ConfirmationModalDialog>`,
+    },
+  },
+};
 
-const withConfirmButtonDisabled = () => ({
+const withConfirmButtonDisabled = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     ConfirmationModalDialog,
+    RenderString,
   },
   data() {
     return {
@@ -189,6 +312,9 @@ const withConfirmButtonDisabled = () => ({
     };
   },
   computed: {
+    defaultSlot() {
+      return this.default;
+    },
     showHideTitle() {
       if (this.isShowing) { return 'Hide'; }
       return 'Show';
@@ -203,9 +329,7 @@ const withConfirmButtonDisabled = () => ({
     },
   },
   template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>ConfirmationModalDialog:</strong>&nbsp;Custom Content with disabled Confirm Button.</h2>
-      <hr>
+    <div style="min-height: 400px;">
       <div style="margin-top: 20px; width: 100px">
         <ConfirmationModalDialog v-model="isShowing"
                                  title="Custom Content with disabled Confirm Button Example"
@@ -216,9 +340,7 @@ const withConfirmButtonDisabled = () => ({
                                  confirmButtonDisabled
                                  @close="onClose"
         >
-          <div style="color: deeppink; margin: 20px">
-            This is some <strong>custom</strong> content
-          </div>
+          <RenderString :string="defaultSlot" />
         </ConfirmationModalDialog>
       </div>
       <div style="margin-top: 20px;">
@@ -230,11 +352,49 @@ const withConfirmButtonDisabled = () => ({
     </div>
   `,
 });
+withConfirmButtonDisabled.args = {
+  description: '',
+  default: `<div style="color: deeppink; margin: 20px">
+  This is some <strong>custom</strong> content
+</div>`,
+};
+withConfirmButtonDisabled.argTypes = {
+  title: { table: { disable: true } },
+  description: { table: { disable: true } },
+  confirmButtonText: { table: { disable: true } },
+  dismissButtonText: { table: { disable: true } },
+  confirmButtonDisabled: { table: { disable: true } },
+  dismissButtonDisabled: { table: { disable: true } },
+  default: { table: { disable: true } },
+  extraActions: { table: { disable: true } },
+};
+withConfirmButtonDisabled.parameters = {
+  docs: {
+    source: {
+      code: `
+<ConfirmationModalDialog v-model="isShowing"
+                         title="Custom Content with disabled Confirm Button Example"
+                         confirm-button-text="Got it"
+                         dismiss-button-text="Never mind"
+                         @dismiss="onDismiss"
+                         @confirm="onConfirm"
+                         confirmButtonDisabled
+                         @close="onClose"
+>
+  <div style="color: deeppink; margin: 20px">
+    This is some <strong>custom</strong> content
+  </div>
+</ConfirmationModalDialog>`,
+    },
+  },
+};
 
-const withCustomActionButton = () => ({
+const withCustomActionButton = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: {
     ConfirmationModalDialog,
     CloseIcon,
+    RenderString,
   },
   data() {
     return {
@@ -257,8 +417,7 @@ const withCustomActionButton = () => ({
   },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>ConfirmationModalDialog:</strong>&nbsp;Custom action button binded to "onDismiss" example.</h2>
-      <hr>
+      <h2>Custom action button binded to "onDismiss" example.</h2>
       <div style="margin-top: 20px; width: 100px">
         <ConfirmationModalDialog v-model="isShowing"
                                  title="Custom action button binded to 'onDismiss' Example"
@@ -268,8 +427,8 @@ const withCustomActionButton = () => ({
                                  @confirm="onConfirm"
                                  @close="onClose"
         >
-          <template v-slot:extraActions="{ onDismiss }">
-            <button style="position: absolute; right: 10%; top: 10%;" @click="onDismiss"><CloseIcon width="18" /></button>
+          <template v-slot:extraActions="{ onDismiss, onConfirm }">
+            <RenderString :string="extraActions" :customProps="{ onDismiss, onConfirm }" />
           </template>
           <div style="margin: 20px">
             This is some <strong>custom</strong> content
@@ -285,6 +444,44 @@ const withCustomActionButton = () => ({
     </div>
   `,
 });
+withCustomActionButton.args = {
+  description: '',
+  default: `<div style="color: deeppink; margin: 20px">
+  This is some <strong>custom</strong> content
+</div>`,
+  extraActions: '<button style="position: absolute; right: 10%; top: 10%;" @click="onDismiss"><CloseIcon width="18" /></button>',
+};
+withCustomActionButton.argTypes = {
+  title: { table: { disable: true } },
+  description: { table: { disable: true } },
+  confirmButtonText: { table: { disable: true } },
+  dismissButtonText: { table: { disable: true } },
+  confirmButtonDisabled: { table: { disable: true } },
+  dismissButtonDisabled: { table: { disable: true } },
+  default: { table: { disable: true } },
+};
+withCustomActionButton.parameters = {
+  docs: {
+    source: {
+      code: `
+<ConfirmationModalDialog v-model="isShowing"
+                         title="Custom action button binded to 'onDismiss' Example"
+                         confirm-button-text=""
+                         dismiss-button-text=""
+                         @dismiss="onDismiss"
+                         @confirm="onConfirm"
+                         @close="onClose"
+>
+  <template v-slot:extraActions="{ onDismiss, onConfirm }">
+    <button style="position: absolute; right: 10%; top: 10%;" @click="onDismiss"><CloseIcon width="18" /></button>
+  </template>
+  <div style="margin: 20px">
+    This is some <strong>custom</strong> content
+  </div>
+</ConfirmationModalDialog>`,
+    },
+  },
+};
 
 export {
   defaultExample,

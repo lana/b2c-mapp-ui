@@ -16,19 +16,19 @@
     </div>
     <div :data-testid="`${dataTestId}-heading`" class="body">
       <Heading class="title" size="medium">
-        <slot name="custom-title">{{ title }}</slot>
+        <slot name="customTitle">{{ title }}</slot>
       </Heading>
       <TextParagraph v-if="hasMetaText"
                      class="meta-text"
                      :data-test-id="`${dataTestId}-meta-text`"
       >
-        <slot name="custom-meta-text">{{ metaText }}</slot>
+        <slot name="customMetaText">{{ metaText }}</slot>
       </TextParagraph>
     </div>
-    <slot name="forward-icon">
+    <slot name="forwardIcon">
       <Component :is="iconName" v-if="hasIcon" class="item-icon" :data-testid="iconDataTestId"/>
     </slot>
-    <slot name="extra-item"/>
+    <slot name="extraItem"/>
   </li>
 </template>
 

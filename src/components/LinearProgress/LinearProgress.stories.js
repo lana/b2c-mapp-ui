@@ -1,43 +1,23 @@
-import { withKnobs, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
-import { MedalLevel0Icon } from '@lana/b2c-mapp-ui-assets/dist/index';
+import { MedalLevel0Icon } from '@lana/b2c-mapp-ui-assets';
 
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import LinearProgress from './LinearProgress.vue';
 import SpecCard from '../SpecCard/SpecCard.vue';
 import ContentItem from '../ContentItem/ContentItem.vue';
 import Heading from '../Heading/Heading.vue';
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
 
 const availableColors = ['blue', 'brown', 'green', 'orange', 'pink', 'purple', 'red', 'yellow'];
 
-const deviceDecorator = () => ({
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-  },
-  components: { StorybookMobileDeviceSimulator },
-  template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>LinearProgress:</strong>&nbsp;A component that let user see a progress.</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <story />
-      </StorybookMobileDeviceSimulator>
-    </div>
-  `,
-});
-deviceDecorator.argTypes = {
-  device: { control: { type: 'select', options: [...availableDevices] } },
-};
+const deviceDecorator = createDeviceDecorator('<strong>LinearProgress:</strong>&nbsp;A component that let user see a progress.');
 
 const LinearProgressStories = {
   component: LinearProgress,
   title: 'Components/LinearProgress',
-  decorators: [withKnobs, deviceDecorator],
+  decorators: [deviceDecorator],
   args: {
+    ...deviceDecorator.args,
     dataTestId: 'linear-progress',
     progress: 10,
     total: 100,
@@ -48,6 +28,7 @@ const LinearProgressStories = {
     circularAnimation: false,
   },
   argTypes: {
+    ...deviceDecorator.argTypes,
     progress: { name: 'Progress', control: { type: 'number' } },
     total: { name: 'Total', control: { type: 'number' } },
     percentage: { name: 'Percentage', control: { type: 'number', min: 0, max: 100 } },

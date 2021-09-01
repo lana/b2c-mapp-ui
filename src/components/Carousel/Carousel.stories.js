@@ -1,42 +1,22 @@
-import { withKnobs, select } from '@storybook/addon-knobs';
-
-import StorybookMobileDeviceSimulator from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import Carousel from './Carousel.vue';
 import RenderString from '../../lib/renderString';
+import { createDeviceDecorator } from '../../lib/storybookHelpers';
 
-const deviceDecorator = () => ({
-  props: {
-    device: {
-      default: select('Simulated Mobile Device', [...availableDevices], availableDevices[0]),
-    },
-  },
-  components: { StorybookMobileDeviceSimulator },
-  template: `
-    <div style="margin: 10px 50px 10px 50px;">
-      <h2><strong>Carousel:</strong>&nbsp;A component that lets the user show different things through a slide presentation screen</h2>
-      <hr>
-      <StorybookMobileDeviceSimulator :device="device">
-        <story />
-      </StorybookMobileDeviceSimulator>
-    </div>
-  `,
-});
-deviceDecorator.argTypes = {
-  device: { control: { type: 'select', options: [...availableDevices] } },
-};
+const deviceDecorator = createDeviceDecorator('<strong>Carousel:</strong>&nbsp;A component that lets the user show different things through a slide presentation screen');
 
 const CarouselStories = {
   component: Carousel,
   title: 'Components/Carousel',
-  decorators: [withKnobs, deviceDecorator],
+  decorators: [deviceDecorator],
   args: {
+    ...deviceDecorator.args,
     hideArrows: false,
     arrowIcons: false,
     hideNavigation: false,
     value: 0,
   },
   argTypes: {
+    ...deviceDecorator.argTypes,
     hideArrows: { control: { type: 'boolean' } },
     arrowIcons: { control: { type: 'boolean' } },
     hideNavigation: { control: { type: 'boolean' } },
