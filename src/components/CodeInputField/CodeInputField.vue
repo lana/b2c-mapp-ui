@@ -4,9 +4,9 @@
            ref="oneTimeCodeField"
            v-model="codeInput"
            class="field"
-           autoComplete="one-time-code"
            type="tel"
-           maxlength="6"
+           :autocomplete="autocomplete"
+           :maxlength="expectedCodeLength"
            :disabled="disabled"
            :data-testid="dataTestId"
     >
