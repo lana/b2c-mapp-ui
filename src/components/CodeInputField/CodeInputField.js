@@ -40,6 +40,10 @@ const props = {
   disabled: Boolean,
   errorMessage: String,
   errorDescription: String,
+  autocomplete: {
+    type: String,
+    default: 'off'
+  }
 };
 
 const data = function () {
