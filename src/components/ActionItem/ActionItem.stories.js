@@ -5,7 +5,7 @@ import ActionItem from './ActionItem.vue';
 import RenderString from '../../lib/renderString';
 import { createDeviceDecorator } from '../../lib/storybookHelpers';
 
-const deviceDecorator = createDeviceDecorator('<strong>ContentRadioList:</strong> A control that allows a user to select an option by showing all available options as a list of radio buttons.');
+const deviceDecorator = createDeviceDecorator('<strong>ActionItem:</strong>&nbsp;A list item which takes the user to perform an action in another screen.');
 
 const ActionItemStories = {
   component: ActionItem,

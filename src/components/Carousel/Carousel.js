@@ -123,8 +123,8 @@ const methods = {
   },
   handleScroll(event) {
     const { scrollLeft, clientLeft } = event.target;
-    const roundedScrollLeft = Math.round(scrollLeft) + clientLeft;
-    const index = this.items.findIndex(({ offsetLeft: itemOffsetLeft }) => (itemOffsetLeft === roundedScrollLeft));
+    const correctedScrollLeft = scrollLeft + clientLeft;
+    const index = this.items.findIndex(({ offsetLeft: itemOffsetLeft }) => (Math.abs(itemOffsetLeft - correctedScrollLeft) < 1));
     if (index < 0) { return; }
     if (this.destinationScrollLeft !== null && this.items[index].offsetLeft !== this.destinationScrollLeft) { return; }
     this.destinationScrollLeft = null;
