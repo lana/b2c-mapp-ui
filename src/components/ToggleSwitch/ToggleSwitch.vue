@@ -14,7 +14,7 @@
     </label>
     <template v-if="buttons">
       <Button class="toggle-button true-button"
-              :class="{ focused: isChecked }"
+              :class="{ focused: (isChecked === true) }"
               :disabled="disabled"
               type="secondary"
               @click="check"
@@ -22,7 +22,7 @@
         {{ trueButtonLabel }}
       </Button>
       <Button class="toggle-button false-button"
-              :class="{ focused: !isChecked }"
+              :class="{ focused: (isChecked === false) }"
               :disabled="disabled"
               type="secondary"
               @click="uncheck"
