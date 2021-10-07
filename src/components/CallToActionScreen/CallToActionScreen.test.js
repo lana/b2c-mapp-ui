@@ -9,7 +9,7 @@ describe('CallToActionScreen unit test ', () => {
   };
 
   it('Should emit click event when call-to-action-button is clicked', () => {
-    const wrapper = mount(CallToActionScreen, { propsData: { ...defaultProps } });
+    const wrapper = mount(CallToActionScreen, { props: { ...defaultProps } });
     const button = wrapper.find('button[data-testid="button-wrapped-button"]');
     button.trigger('click');
     const clickEventEmitted = wrapper.emitted().click;

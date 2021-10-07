@@ -15,13 +15,17 @@
     </div>
     <div :data-testid="`${dataTestId}-heading`" class="body">
       <Heading class="title" :class="{ success }" size="medium">
-        <slot name="customTitle">{{ title }}</slot>
+        <slot name="customTitle">
+          {{ title }}
+        </slot>
       </Heading>
       <TextParagraph v-if="hasMetaText"
                      class="meta-text"
                      :data-test-id="`${dataTestId}-meta-text`"
       >
-        <slot name="customMetaText">{{ metaText }}</slot>
+        <slot name="customMetaText">
+          {{ metaText }}
+        </slot>
       </TextParagraph>
     </div>
   </li>

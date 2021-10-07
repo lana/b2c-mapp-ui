@@ -12,6 +12,7 @@ const IconStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ...AllIcons,
   },
@@ -20,6 +21,11 @@ const defaultExample = (args, { argTypes }) => ({
       availableIconNames: Object.keys(AllIcons),
     };
   },
+  computed: {
+    styleWidth() {
+      return { width: `${this.size}px` };
+    },
+  },
   template: `
     <div style="margin: 10px 50px 10px 50px;">
       <h2><strong>Icons <small>({{ availableIconNames.length }})</small>:</strong>&nbsp;A gallery of all the available icons.</h2>
@@ -27,10 +33,10 @@ const defaultExample = (args, { argTypes }) => ({
       <hr>
       <div style="margin-top: 20px; display: flex; flex-direction: column;">
         <template v-for="(icon, index) in availableIconNames">
-          <div style="margin: 10px; display: flex; flex-direction: row; justify-content: space-between">
+          <div style="margin: 10px; display: flex; flex-direction: row; justify-content: space-between; align-items: center">
             <label>{{ icon }}</label>
             <component :is="icon"
-                       :width="size"
+                       :style="styleWidth"
                        :key="'icon-' + index"
             />
           </div>

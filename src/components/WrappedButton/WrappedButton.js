@@ -34,6 +34,8 @@ const props = {
   name: String,
 };
 
+const emits = ['click'];
+
 const methods = {
   onClick(event) {
     this.$emit('click', event);
@@ -43,6 +45,7 @@ const methods = {
 const WrappedButton = {
   components,
   props,
+  emits,
   methods,
 };
 

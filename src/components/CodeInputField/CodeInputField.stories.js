@@ -28,6 +28,7 @@ const CodeInputFieldStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     CodeInputField,
   },
@@ -67,6 +68,7 @@ const defaultExample = (args, { argTypes }) => ({
 
 const withError = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     CodeInputField,
   },

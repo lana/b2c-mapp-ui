@@ -38,6 +38,7 @@ const RadioListStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     RadioList,
   },
@@ -82,6 +83,7 @@ defaultExample.parameters = {
 
 const withHtmlLabel = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     RadioList,
   },

@@ -22,6 +22,7 @@ const SpecCardStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     SpecCard,
     RenderString,
@@ -34,7 +35,7 @@ const defaultExample = (args, { argTypes }) => ({
   template: `
     <div style="margin-top: 20px;">
       <SpecCard :title="title">
-        <RenderString :string="defaultSlot" />
+        <RenderString :string="defaultSlot" v-if="defaultSlot"/>
       </SpecCard>
     </div>`,
 });

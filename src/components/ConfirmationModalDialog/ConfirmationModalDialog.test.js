@@ -5,7 +5,7 @@ import ConfirmationModalDialog from './ConfirmationModalDialog.vue';
 import ConfirmationModalDialogWrapper from './UnitTestWrappers/ConfirmationModalDialogWrapper.vue';
 import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
 
-describe('ConfirmationmodalDialog unit test', () => {
+describe('ConfirmationModalDialog unit test', () => {
   beforeAll(() => {
     silenceDeprecationErrorsAndInnerComponentWarnings(jest);
   });
@@ -18,14 +18,14 @@ describe('ConfirmationmodalDialog unit test', () => {
   };
 
   it('Should be intially visible if given value is set to true', () => {
-    const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps, value: true } });
+    const { getByTestId } = render(ConfirmationModalDialog, { props: { ...defaultProps, modelValue: true } });
     const dialog = getByTestId('dialog-section');
     const dialogIsVisible = dialog.className.includes('visible');
     expect(dialogIsVisible).toBeTruthy();
   });
 
   it('Should be intially NOT visible if given value is set to false', () => {
-    const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps, value: false } });
+    const { getByTestId } = render(ConfirmationModalDialog, { props: { ...defaultProps, modelValue: false } });
     const dialog = getByTestId('dialog-section');
     const dialogIsNotVisible = !dialog.className.includes('visible');
     expect(dialogIsNotVisible).toBeTruthy();
@@ -44,25 +44,25 @@ describe('ConfirmationmodalDialog unit test', () => {
   }));
 
   it('Should show title if provided', () => {
-    const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps } });
+    const { getByTestId } = render(ConfirmationModalDialog, { props: { ...defaultProps } });
     const titleIsShown = getByTestId('dialog-title').textContent.includes('title');
     expect(titleIsShown).toBeTruthy();
   });
 
   it('Should show description if provided', () => {
-    const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps } });
+    const { getByTestId } = render(ConfirmationModalDialog, { props: { ...defaultProps } });
     const descriptionIsShown = getByTestId('dialog-description').textContent.includes('description');
     expect(descriptionIsShown).toBeTruthy();
   });
 
   it('Should NOT show given children if description is provided', () => {
-    const { queryAllByTestId } = render(ConfirmationModalDialog, { slots: { default: '<span data-testid="confirmation-modal-dialog-slot">Hey!</span>' }, propsData: { ...defaultProps } });
+    const { queryAllByTestId } = render(ConfirmationModalDialog, { slots: { default: '<span data-testid="confirmation-modal-dialog-slot">Hey!</span>' }, props: { ...defaultProps } });
     const childrenIsNotShown = !queryAllByTestId('confirmation-modal-dialog-slot').length;
     expect(childrenIsNotShown).toBeTruthy();
   });
 
   it('Should show given children if description is not provided', () => {
-    const { getByTestId } = render(ConfirmationModalDialog, { slots: { default: '<span data-testid="confirmation-modal-dialog-slot">Hey!</span>' }, propsData: { ...defaultProps, description: null } });
+    const { getByTestId } = render(ConfirmationModalDialog, { slots: { default: '<span data-testid="confirmation-modal-dialog-slot">Hey!</span>' }, props: { ...defaultProps, description: null } });
     const childrenIsShown = getByTestId('confirmation-modal-dialog-slot').textContent.includes('Hey!');
     expect(childrenIsShown).toBeTruthy();
   });
@@ -72,7 +72,7 @@ describe('ConfirmationmodalDialog unit test', () => {
       ConfirmationModalDialog,
       {
         slots: { extraActions: '<a data-testid="custom-action">x</a>' },
-        propsData: { ...defaultProps },
+        props: { ...defaultProps },
       },
     );
     const customTitleVisible = getByTestId('custom-action');
@@ -81,31 +81,31 @@ describe('ConfirmationmodalDialog unit test', () => {
 
   describe('Confirm actions behavior', () => {
     it('Should show action-confirm button when confirm is given', () => {
-      const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps } });
+      const { getByTestId } = render(ConfirmationModalDialog, { props: { ...defaultProps } });
       const confirmIsShown = getByTestId('dialog-action-confirm-button').textContent.includes('confirm');
       expect(confirmIsShown).toBeTruthy();
     });
 
     it('Should be disabled if given confirmButtonDisabled is set to true', () => {
-      const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps, confirmButtonDisabled: true } });
-      const confirmIsDisabled = getByTestId('dialog-action-confirm-button').getAttribute('disabled') === 'disabled';
-      expect(confirmIsDisabled).toBeTruthy();
+      const { getByTestId } = render(ConfirmationModalDialog, { props: { ...defaultProps, confirmButtonDisabled: true } });
+      const confirmDisabled = getByTestId('dialog-action-confirm-button').getAttribute('disabled');
+      expect(confirmDisabled).toBeDefined();
     });
 
     it('Should be NOT disabled if given confirmButtonDisabled is set to false', () => {
-      const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps, confirmButtonDisabled: false } });
-      const confirmIsNotDisabled = !getByTestId('dialog-action-confirm-button').getAttribute('disabled');
-      expect(confirmIsNotDisabled).toBeTruthy();
+      const { getByTestId } = render(ConfirmationModalDialog, { props: { ...defaultProps, confirmButtonDisabled: false } });
+      const confirmDisabled = getByTestId('dialog-action-confirm-button').getAttribute('disabled');
+      expect(confirmDisabled).toBeFalsy();
     });
 
     it('Should be NOT disabled if given confirmButtonDisabled by default', () => {
-      const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps } });
-      const confirmIsNotDisabled = !getByTestId('dialog-action-confirm-button').getAttribute('disabled');
-      expect(confirmIsNotDisabled).toBeTruthy();
+      const { getByTestId } = render(ConfirmationModalDialog, { props: { ...defaultProps } });
+      const confirmDisabled = getByTestId('dialog-action-confirm-button').getAttribute('disabled');
+      expect(confirmDisabled).toBeFalsy();
     });
 
     it('Should NOT show action-confirm button when confirm is NOT given', () => {
-      const { queryAllByTestId } = render(ConfirmationModalDialog, { propsData: {
+      const { queryAllByTestId } = render(ConfirmationModalDialog, { props: {
         ...defaultProps,
         confirmButtonText: null,
       } });
@@ -114,41 +114,41 @@ describe('ConfirmationmodalDialog unit test', () => {
     });
 
     it('Should emit an event when confirm is given and action-confirm is clicked', () => {
-      const { getByTestId, emitted } = render(ConfirmationModalDialog, { propsData: { ...defaultProps } });
+      const { getByTestId, emitted } = render(ConfirmationModalDialog, { props: { ...defaultProps } });
       const confirmCTA = getByTestId('dialog-action-confirm-button');
       fireEvent.click(confirmCTA);
-      const clickEvent = emitted().confirm;
+      const clickEvent = emitted('confirm');
       expect(clickEvent).toBeTruthy();
     });
   });
 
   describe('Dismiss actions behavior', () => {
     it('Should show action-dismiss button when dismiss is given', () => {
-      const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps } });
+      const { getByTestId } = render(ConfirmationModalDialog, { props: { ...defaultProps } });
       const dismissIsShown = getByTestId('dialog-action-dismiss-button').textContent.includes('dismiss');
       expect(dismissIsShown).toBeTruthy();
     });
 
     it('Should be disabled if given dismissButtonDisabled is set to true', () => {
-      const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps, dismissButtonDisabled: true } });
-      const dismissIsDisabled = getByTestId('dialog-action-dismiss-button').getAttribute('disabled') === 'disabled';
-      expect(dismissIsDisabled).toBeTruthy();
+      const { getByTestId } = render(ConfirmationModalDialog, { props: { ...defaultProps, dismissButtonDisabled: true } });
+      const dismissDisabled = getByTestId('dialog-action-dismiss-button').getAttribute('disabled');
+      expect(dismissDisabled).toBeDefined();
     });
 
     it('Should be NOT disabled if given dismissButtonDisabled is set to false', () => {
-      const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps, dismissButtonDisabled: false } });
-      const dismissIsNotDisabled = !getByTestId('dialog-action-dismiss-button').getAttribute('disabled');
-      expect(dismissIsNotDisabled).toBeTruthy();
+      const { getByTestId } = render(ConfirmationModalDialog, { props: { ...defaultProps, dismissButtonDisabled: false } });
+      const dismissDisabled = getByTestId('dialog-action-dismiss-button').getAttribute('disabled');
+      expect(dismissDisabled).toBeFalsy();
     });
 
     it('Should be NOT disabled if given dismissButtonDisabled by default', () => {
-      const { getByTestId } = render(ConfirmationModalDialog, { propsData: { ...defaultProps } });
-      const dismissIsNotDisabled = !getByTestId('dialog-action-dismiss-button').getAttribute('disabled');
-      expect(dismissIsNotDisabled).toBeTruthy();
+      const { getByTestId } = render(ConfirmationModalDialog, { props: { ...defaultProps } });
+      const dismissDisabled = getByTestId('dialog-action-dismiss-button').getAttribute('disabled');
+      expect(dismissDisabled).toBeFalsy();
     });
 
     it('Should NOT show action-dismiss button when dismiss is NOT given', () => {
-      const { queryAllByTestId } = render(ConfirmationModalDialog, { propsData: {
+      const { queryAllByTestId } = render(ConfirmationModalDialog, { props: {
         ...defaultProps,
         dismissButtonText: null,
       } });
@@ -157,7 +157,7 @@ describe('ConfirmationmodalDialog unit test', () => {
     });
 
     it('Should emit an event when dismiss is given and action-dismiss is clicked', () => {
-      const { getByTestId, emitted } = render(ConfirmationModalDialog, { propsData: { ...defaultProps } });
+      const { getByTestId, emitted } = render(ConfirmationModalDialog, { props: { ...defaultProps } });
       const dismissCTA = getByTestId('dialog-action-dismiss-button');
       fireEvent.click(dismissCTA);
       const clickEvent = emitted().dismiss;
@@ -165,7 +165,7 @@ describe('ConfirmationmodalDialog unit test', () => {
     });
 
     it('Should emit a close event when its closed', async () => {
-      const wrapper = mount(ConfirmationModalDialog, { propsData: { ...defaultProps } });
+      const wrapper = mount(ConfirmationModalDialog, { props: { ...defaultProps } });
       wrapper.vm.$options.watch.isShowing.call(wrapper.vm, false);
       await wrapper.vm.$nextTick();
       const closeEventEmitted = wrapper.emitted().close;
@@ -176,8 +176,8 @@ describe('ConfirmationmodalDialog unit test', () => {
       const { getByTestId, emitted } = render(
         ConfirmationModalDialog,
         {
-          scopedSlots: { extraActions: '<a data-testid="custom-action" @click="props.onDismiss">x</a>' },
-          propsData: { ...defaultProps },
+          slots: { extraActions: '<template v-slot:extraActions="{ onDismiss }"><a data-testid="custom-action" @click="onDismiss">x</a></template>' },
+          props: { ...defaultProps },
         },
       );
       const dismissCTA = getByTestId('custom-action');

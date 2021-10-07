@@ -38,6 +38,7 @@ const ListItemStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ListItem,
     RenderString,
@@ -74,7 +75,7 @@ const defaultExample = (args, { argTypes }) => ({
                 :disabled="disabled"
                 @linkClick="onLinkClick"
       >
-        <RenderString :string="defaultSlot" />
+        <RenderString :string="defaultSlot" v-if="defaultSlot"/>
       </ListItem>
       <br>
       <div style="margin: 20px;">

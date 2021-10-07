@@ -5,11 +5,11 @@
              :class="[{ loading, pressed: (!isLinkButton && isPressed), 'link-button': isLinkButton, 'drop-shadow': dropShadow }, type]"
              :type="buttonTypeAttribute"
              :href="href"
-             :disabled="disabled"
+             :disabled="(disabled) ? 'disabled': null"
              :data-testid="dataTestIdToUse"
              @click="clickMethod"
-             @touchStart="toggleIsPressed"
-             @touchEnd="toggleIsPressed"
+             @touchstart="setIsPressed(true)"
+             @touchend="setIsPressed(false)"
   >
     <span v-if="isLinkButton" class="default-wrapper">
       <slot/>

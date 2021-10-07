@@ -2,7 +2,7 @@ import Wrapper from './Wrapper.vue';
 import { createDeviceDecorator } from '../../lib/storybookHelpers';
 import RenderString from '../../lib/renderString';
 
-const deviceDecorator = createDeviceDecorator('<strong>Wrapper:</strong>&nbsp;Container to display information, it could be like a modal</h2>');
+const deviceDecorator = createDeviceDecorator('<strong>Wrapper:</strong>&nbsp;Container to display information, it could be like a modal');
 
 const WrapperStories = {
   component: Wrapper,
@@ -22,6 +22,7 @@ const WrapperStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     Wrapper,
     RenderString,
@@ -33,7 +34,7 @@ const defaultExample = (args, { argTypes }) => ({
   },
   template: `
     <Wrapper :modal="modal">
-      <RenderString :string="defaultSlot" />
+      <RenderString :string="defaultSlot" v-if="defaultSlot" />
     </Wrapper>
   `,
 });

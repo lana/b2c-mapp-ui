@@ -46,6 +46,7 @@ const ContentRadioListStories = {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ContentRadioList,
     RenderString,
@@ -71,10 +72,10 @@ const Template = (args, { argTypes }) => ({
                         :options="options"
                         @input="onInput"
       >
-        <template v-if="checkedIcon" #checkedIcon>
+        <template v-if="checkedIcon" v-slot:checkedIcon>
           <RenderString :string="checkedIcon" />
         </template>
-        <template v-if="uncheckedIcon" #uncheckedIcon>
+        <template v-if="uncheckedIcon" v-slot:uncheckedIcon>
           <RenderString :string="uncheckedIcon" />
         </template>
       </ContentRadioList>
@@ -104,13 +105,16 @@ const options = [
   },
 ];
 
+const optionsValues = options.map(({ value }) => value);
+const optionsLabels = options.reduce((accumulator, { value, title }) => ({ ...accumulator, [value]: title }), {});
+
 const defaultExample = Template.bind({});
 defaultExample.args = {
   options,
   value: 'option2',
 };
 defaultExample.argTypes = {
-  value: { control: { type: 'select', options: options.reduce((accumulator, { value, title }) => ({ ...accumulator, [title]: value }), {}) } },
+  value: { control: { type: 'select', labels: optionsLabels }, options: optionsValues },
   checkedIcon: { table: { disable: true } },
   uncheckedIcon: { table: { disable: true } },
 };
@@ -133,11 +137,11 @@ const withCustomCheckedUncheckedIcons = Template.bind({});
 withCustomCheckedUncheckedIcons.args = {
   options,
   value: 'option1',
-  checkedIcon: '<CheckBoldIcon width="24"/>',
+  checkedIcon: '<CheckBoldIcon :style="{ width: \'24px\' }"/>',
   uncheckedIcon: '<div />',
 };
 withCustomCheckedUncheckedIcons.argTypes = {
-  value: { control: { type: 'select', options: options.reduce((accumulator, { value, title }) => ({ ...accumulator, [title]: value }), {}) } },
+  value: { control: { type: 'select', labels: optionsLabels }, options: optionsValues },
 };
 withCustomCheckedUncheckedIcons.parameters = {
   docs: {
@@ -149,10 +153,10 @@ withCustomCheckedUncheckedIcons.parameters = {
                   :options="options"
                   @input="onInput"
 >
-  <template #checkedIcon>
-    <CheckBoldIcon />
+  <template v-slot:checkedIcon>
+    <CheckBoldIcon :style="{ width: '24px' }" />
   </template>
-  <template #uncheckedIcon>
+  <template v-slot:uncheckedIcon>
     <div />
   </template>
 </ContentRadioList>

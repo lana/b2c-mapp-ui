@@ -14,13 +14,13 @@ describe('TopBar unit test', () => {
   };
 
   it('Should show given title', () => {
-    const { getByTestId } = render(TopBar, { propsData: { ...defaultProps } });
+    const { getByTestId } = render(TopBar, { props: { ...defaultProps } });
     const title = getByTestId('heading');
     expect(title.textContent).toEqual('my title');
   });
 
   it('Should apply given classname to header', () => {
-    const { getByTestId } = render(TopBar, { propsData: { ...defaultProps, class: 'test-classname' } });
+    const { getByTestId } = render(TopBar, { props: { ...defaultProps, class: 'test-classname' } });
     const header = getByTestId('top-bar');
     expect(header.className.includes('test-classname')).toBe(true);
   });

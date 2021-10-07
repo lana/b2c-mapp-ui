@@ -54,6 +54,7 @@ const ConfirmationModalDialogStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ConfirmationModalDialog,
     RenderString,
@@ -127,6 +128,7 @@ defaultExample.parameters = {
 
 const withCustomContent = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ConfirmationModalDialog,
     RenderString,
@@ -213,6 +215,7 @@ withCustomContent.parameters = {
 
 const withDismissButtonDisabled = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ConfirmationModalDialog,
     RenderString,
@@ -302,6 +305,7 @@ withDismissButtonDisabled.parameters = {
 
 const withConfirmButtonDisabled = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ConfirmationModalDialog,
     RenderString,
@@ -391,6 +395,7 @@ withConfirmButtonDisabled.parameters = {
 
 const withCustomActionButton = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ConfirmationModalDialog,
     CloseIcon,
@@ -449,7 +454,7 @@ withCustomActionButton.args = {
   default: `<div style="color: deeppink; margin: 20px">
   This is some <strong>custom</strong> content
 </div>`,
-  extraActions: '<button style="position: absolute; right: 10%; top: 10%;" @click="onDismiss"><CloseIcon width="18" /></button>',
+  extraActions: '<button style="position: absolute; right: 10%; top: 10%;" @click="onDismiss"><CloseIcon :style="{ width: \'18px\' }" /></button>',
 };
 withCustomActionButton.argTypes = {
   title: { table: { disable: true } },
@@ -473,7 +478,7 @@ withCustomActionButton.parameters = {
                          @close="onClose"
 >
   <template v-slot:extraActions="{ onDismiss, onConfirm }">
-    <button style="position: absolute; right: 10%; top: 10%;" @click="onDismiss"><CloseIcon width="18" /></button>
+    <button style="position: absolute; right: 10%; top: 10%;" @click="onDismiss"><CloseIcon :style="{ width: '18px' }" /></button>
   </template>
   <div style="margin: 20px">
     This is some <strong>custom</strong> content

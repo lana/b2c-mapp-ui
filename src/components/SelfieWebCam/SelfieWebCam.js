@@ -44,12 +44,15 @@ const props = {
   },
 };
 
+const emits = ['cameras', 'notsupported', 'camera-change', 'video-live', 'started', 'stopped', 'error'];
+
 const data = function () {
   return {
     source: null,
     canvas: null,
     wasCamerasListEmitted: false,
     cameras: [],
+    device: null,
   };
 };
 
@@ -80,7 +83,7 @@ const methods = {
       const filterVideoInputDevices = ({ kind }) => (kind === 'videoinput');
       devices.filter(filterVideoInputDevices).forEach((device) => { this.cameras.push(device); });
       if (this.wasCamerasListEmitted) { return; }
-      if (this.selectFirstDevice && (this.cameras.length > 0)) { this.deviceId = this.cameras[0].deviceId; }
+      if (this.selectFirstDevice && (this.cameras.length > 0)) { this.device = this.cameras[0].deviceId; }
       this.$emit('cameras', this.cameras);
       this.wasCamerasListEmitted = true;
     } catch (error) {
@@ -116,8 +119,8 @@ const methods = {
     this.stopStreamedVideo(this.$refs.video);
   },
   start() {
-    if (!this.deviceId) { return; }
-    this.loadCamera(this.deviceId);
+    if (!this.device && !this.deviceId) { return; }
+    this.loadCamera(this.device || this.deviceId);
   },
   startSelfie() {
     this.loadSelfieCamera();
@@ -216,18 +219,19 @@ const mounted = function () {
   this.setupMedia();
 };
 
-const beforeDestroy = function () {
+const beforeUnmount = function () {
   this.stop();
 };
 
 const SelfieWebCam = {
   props,
+  emits,
   data,
   computed,
   methods,
   watch,
   mounted,
-  beforeDestroy,
+  beforeUnmount,
 };
 
 export default SelfieWebCam;

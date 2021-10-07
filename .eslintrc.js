@@ -4,8 +4,8 @@ module.exports = {
     node: true,
   },
   extends: [
-    'plugin:vue/essential',
-    '@vue/airbnb',
+    'airbnb-base',
+    'plugin:vue/vue3-strongly-recommended',
   ],
   plugins: [
     'fp',
@@ -20,8 +20,7 @@ module.exports = {
     window: true,
   },
   parserOptions: {
-    parser: 'babel-eslint',
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     sourceType: 'module',
   },
   overrides: [
@@ -51,6 +50,7 @@ module.exports = {
       ObjectExpression: { consistent: true },
       ObjectPattern: 'never',
     }],
+    'no-bitwise': ['error', { int32Hint: true }],
     'no-plusplus': 'off',
     'require-await': 'error',
     'import/no-extraneous-dependencies': 'off',
@@ -132,6 +132,7 @@ module.exports = {
         'style',
       ],
     }],
+    'vue/v-slot-style': ['error', 'longform'],
     'vue/v-on-function-call': 'error',
     'vue/valid-v-slot': 'error',
     'vue/custom-event-name-casing': 'off',

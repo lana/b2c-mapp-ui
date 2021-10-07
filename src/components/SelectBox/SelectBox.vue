@@ -1,7 +1,7 @@
 <template>
   <div class="outer-select-box-container">
     <div class="select-box-container"
-         :class="{ focus: isFocused, disabled, readonly, 'no-value': (!hasEmptyOption && !value), error: errorLabel }"
+         :class="{ focus: isFocused, disabled, readonly, 'no-value': (!hasEmptyOption && !modelValue), error: errorLabel }"
          :data-testid="`${dataTestId}-container`"
     >
       <label class="select-box" :data-testid="`${dataTestId}-label`">
@@ -36,7 +36,9 @@
     </div>
     <div class="extra-text-container" :class="{ error: errorLabel }">
       <WarningBoldIcon v-if="errorLabel" class="error-icon"/>
-      <TextParagraph v-if="errorLabelOrHelpText" class="help-text" :data-test-id="`${dataTestId}-helptext`">{{ errorLabelOrHelpText }}</TextParagraph>
+      <TextParagraph v-if="errorLabelOrHelpText" class="help-text" :data-test-id="`${dataTestId}-helptext`">
+        {{ errorLabelOrHelpText }}
+      </TextParagraph>
     </div>
   </div>
 </template>

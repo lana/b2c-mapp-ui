@@ -18,7 +18,7 @@ const CopyableListItemStories = {
     dataTestId: '',
     hideButton: false,
     disabled: false,
-    default: '<InfoIcon width="24" />',
+    default: '<InfoIcon :style="{ width: \'24px\' }" />',
   },
   argTypes: {
     ...deviceDecorator.argTypes,
@@ -42,6 +42,7 @@ const CopyableListItemStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     CopyableListItem,
     RenderString,
@@ -84,6 +85,7 @@ defaultExample.parameters = {
 
 const moreExampleStates = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     CopyableListItem,
     InfoIcon,
@@ -98,7 +100,7 @@ const moreExampleStates = (args, { argTypes }) => ({
                             text="Text to be copied"
                             @click="onClick"
           >
-            <DocumentFilledIcon width="24"/>
+            <DocumentFilledIcon :style="{ width: '24px' }"/>
           </CopyableListItem>
           <CopyableListItem title="Random URL (with hidden copy button)"
                             text="https://source.unsplash.com/random/24x24"
@@ -111,13 +113,13 @@ const moreExampleStates = (args, { argTypes }) => ({
                             text="1234567890ABCDE"
                             @click="onClick"
           >
-            <DocumentFilledIcon width="24"/>
+            <DocumentFilledIcon :style="{ width: '24px' }"/>
           </CopyableListItem>
           <CopyableListItem title="Another Title"
                             text="1234567890ABCDE"
                             @click="onClick"
           >
-            <InfoIcon width="24"/>
+            <InfoIcon :style="{ width: '24px' }"/>
           </CopyableListItem>
         </ul>
   `,

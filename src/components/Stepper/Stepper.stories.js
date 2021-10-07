@@ -25,6 +25,7 @@ const StepperStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     Stepper,
   },
@@ -32,7 +33,7 @@ const defaultExample = (args, { argTypes }) => ({
     <div style="margin-top: 40px;">
       <Stepper :title="title"
                :count-of-steps="countOfSteps"
-               :value="value"
+               v-model="value"
                :hide-active-step="hideActiveStep"
       />
     </div>
@@ -44,7 +45,7 @@ defaultExample.parameters = {
       code: `
 <Stepper :title="title"
          :count-of-steps="countOfSteps"
-         :value="value"
+         v-model="value"
          :hide-active-step="hideActiveStep"
 />`,
     },

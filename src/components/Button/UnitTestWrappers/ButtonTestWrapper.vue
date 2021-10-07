@@ -13,11 +13,20 @@ export default {
     Button,
   },
   props: {
-    type: String,
+    type: {
+      type: String,
+      default: '',
+    },
     loading: Boolean,
-    additionalClass: String,
+    additionalClass: {
+      type: String,
+      default: '',
+    },
     disabled: Boolean,
-    href: String,
+    href: {
+      type: String,
+      default: null,
+    },
   },
 };
 

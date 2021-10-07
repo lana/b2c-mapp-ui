@@ -35,6 +35,7 @@ const BoxContentItemStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     BoxContentItem,
     RenderString,
@@ -90,6 +91,7 @@ defaultExample.parameters = {
 
 const withImage = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     BoxContentItem,
   },
@@ -139,6 +141,7 @@ withImage.parameters = {
 
 const withIcon = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     BoxContentItem,
     DocumentFilledIcon,
@@ -189,6 +192,7 @@ withIcon.parameters = {
 
 const successState = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     BoxContentItem,
     DocumentFilledIcon,
@@ -242,6 +246,7 @@ successState.parameters = {
 
 const listExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     BoxContentItem,
     PaymentsIcon,

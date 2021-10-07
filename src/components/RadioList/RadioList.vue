@@ -1,6 +1,8 @@
 <template>
   <section class="wrapper">
-    <Heading v-if="title" class="title">{{ title }}</Heading>
+    <Heading v-if="title" class="title">
+      {{ title }}
+    </Heading>
     <ul :data-testid="`${dataTestId}-select`">
       <li v-for="({ label, htmlLabel, value: optionValue }, index) in options"
           :key="`${optionValue}-${index}`"

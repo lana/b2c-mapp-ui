@@ -28,6 +28,7 @@ const TextParagraphStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     TextParagraph,
     RenderString,
@@ -42,7 +43,7 @@ const defaultExample = (args, { argTypes }) => ({
                    :color="color"
                    :size="size"
     >
-      <RenderString :string="defaultSlot" />
+      <RenderString :string="defaultSlot" v-if="defaultSlot" />
     </TextParagraph>`,
 });
 defaultExample.parameters = {
@@ -62,6 +63,7 @@ defaultExample.parameters = {
 
 const examples = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     TextParagraph,
   },
@@ -118,6 +120,7 @@ examples.parameters = {
 
 const weights = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     TextParagraph,
   },
@@ -164,6 +167,7 @@ weights.parameters = {
 
 const sizes = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     TextParagraph,
   },
@@ -210,6 +214,7 @@ sizes.parameters = {
 
 const colors = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     TextParagraph,
   },

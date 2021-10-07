@@ -32,7 +32,7 @@ const props = {
     default: availableTypesLookup.smsCode,
     validator(value) { return (!value || availableTypes.includes(value)); },
   },
-  value: {
+  modelValue: {
     type: String,
     default: '',
   },
@@ -42,13 +42,15 @@ const props = {
   errorDescription: String,
   autocomplete: {
     type: String,
-    default: 'off'
-  }
+    default: 'off',
+  },
 };
+
+const emits = ['animationend', 'readyToCheckChanged', 'update:modelValue'];
 
 const data = function () {
   return {
-    codeInput: this.value,
+    codeInput: this.modelValue,
   };
 };
 
@@ -85,17 +87,17 @@ const methods = {
   onReadyToCheckChanged() {
     this.$emit('readyToCheckChanged', this.isCodeReadyToCheck);
   },
-  emitInputEvent() {
-    this.$emit('input', this.codeInput);
+  emitUpdateModelValueEvent() {
+    this.$emit('update:modelValue', this.codeInput);
   },
 };
 
 const watch = {
   codeInput() {
-    this.emitInputEvent();
+    this.emitUpdateModelValueEvent();
   },
-  value() {
-    this.codeInput = this.value;
+  modelValue() {
+    this.codeInput = this.modelValue;
   },
   isCodeReadyToCheck() {
     this.onReadyToCheckChanged();
@@ -105,6 +107,7 @@ const watch = {
 const CodeInputField = {
   components,
   props,
+  emits,
   data,
   computed,
   methods,

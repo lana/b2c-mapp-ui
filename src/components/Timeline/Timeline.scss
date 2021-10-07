@@ -23,10 +23,10 @@
     background-color: $black-400;
   }
 }
-.timeline::v-deep {
+.timeline {
   width: 100%;
 
-  > * {
+  :deep(> *) {
     margin: 80px 16px;
     position: relative;
 

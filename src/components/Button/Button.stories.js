@@ -49,6 +49,7 @@ const ButtonStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     Button,
     RenderString,
@@ -101,6 +102,7 @@ defaultExample.parameters = {
 
 const types = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     Button,
   },
@@ -127,9 +129,8 @@ const types = (args, { argTypes }) => ({
       <br>
       <Button drop-shadow @click="onClick('Drop Shadow')">With Drop Shadow</Button>
       <br>
-      <template v-for="(type, index) in availableTypes">
-        <Button :key="index"
-                :type="type"
+      <template v-for="(type, index) in availableTypes" :key="index">
+        <Button :type="type"
                 @click="onClick(type)"
         >
           {{ capitalizeFirstLetter(type) }} type example
@@ -139,6 +140,17 @@ const types = (args, { argTypes }) => ({
     </div>
   `,
 });
+types.argTypes = {
+  type: { table: { disable: true } },
+  disabled: { table: { disable: true } },
+  loading: { table: { disable: true } },
+  dropShadow: { table: { disable: true } },
+  debounce: { table: { disable: true } },
+  debounceDelay: { table: { disable: true } },
+  href: { table: { disable: true } },
+  loadingText: { table: { disable: true } },
+  default: { table: { disable: true } },
+};
 
 types.parameters = {
   docs: {
@@ -157,15 +169,7 @@ types.parameters = {
   <br>
   <Button drop-shadow @click="onClick('Drop Shadow')">With Drop Shadow</Button>
   <br>
-  <template v-for="(type, index) in availableTypes">
-    <Button :key="index"
-            :type="type"
-            @click="onClick(type)"
-    >
-      {{ capitalizeFirstLetter(type) }} type example
-    </Button>
-    <br>
-  </template>
+  ${availableTypes.map((type) => `<Button type="${type}" @click="onClick('${type}')">${capitalizeFirstLetter(type)} type example</Button>`).join('<br />')}
 </div>`,
     },
   },

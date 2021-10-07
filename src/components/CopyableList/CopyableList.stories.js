@@ -24,6 +24,7 @@ const CopyableListStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     CopyableList,
     RenderString,
@@ -36,31 +37,36 @@ const defaultExample = (args, { argTypes }) => ({
   template: `
     <CopyableList :title="title">
       <RenderString :string="defaultSlot" />
-      <template v-slot:content>
+      <template v-slot:content v-if="content">
         <RenderString :string="content" />
       </template>
     </CopyableList>
   `,
 });
 defaultExample.args = {
-  default: `<CopyableListItem title="An info example"
+  default: `
+  <CopyableListItem title="An info example"
                     text="Text to be copied"
+                    key="info"
   >
     <DocumentFilledIcon/>
   </CopyableListItem>
   <CopyableListItem title="Random URL (with hidden copy button)"
                     text="https://source.unsplash.com/random/24x24"
+                    key="url"
                     hide-button
   >
     <img src="https://source.unsplash.com/random/24x24"/>
   </CopyableListItem>
   <CopyableListItem title="Example Title"
                     text="1234567890ABCDE"
+                    key="icon"
   >
     <DocumentFilledIcon/>
   </CopyableListItem>
   <CopyableListItem title="Some other title"
                     text="1234567890ABCDE"
+                    key="other"
   >
     <InfoIcon/>
   </CopyableListItem>`,

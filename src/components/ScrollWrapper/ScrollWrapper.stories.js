@@ -11,18 +11,21 @@ const ScrollWrapperStories = {
   decorators: [deviceDecorator],
   args: {
     ...deviceDecorator.args,
+    position: 0,
     default: `Something to be scrolled
     <p style="margin-top: 20px; height: 800px"> Some really long content</p>
     <p>The bottom</p>`,
   },
   argTypes: {
     ...deviceDecorator.argTypes,
+    position: { control: 'number' },
     default: { control: { type: 'text' }, table: { type: { summary: null } } },
   },
 };
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ScrollWrapper,
     Screen,
@@ -35,7 +38,7 @@ const defaultExample = (args, { argTypes }) => ({
   },
   template: `
     <Screen>
-      <ScrollWrapper>
+      <ScrollWrapper :position="position">
         <RenderString :string="defaultSlot" />
       </ScrollWrapper>
     </Screen>
@@ -46,7 +49,7 @@ defaultExample.parameters = {
     source: {
       code: `
 <Screen>
-  <ScrollWrapper>
+  <ScrollWrapper :position="position">
     Something to be scrolled
     <p style="margin-top: 20px; height: 800px"> Some really long content</p>
     <p>The bottom</p>

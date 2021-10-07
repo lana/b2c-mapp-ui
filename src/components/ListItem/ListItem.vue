@@ -7,7 +7,9 @@
       <slot/>
     </div>
     <div :data-testid="`${dataTestId}-heading`" class="body">
-      <Heading size="medium">{{ title }}</Heading>
+      <Heading size="medium">
+        {{ title }}
+      </Heading>
       <TextParagraph v-if="description"
                      class="description"
                      :data-test-id="`${dataTestId}-description`"

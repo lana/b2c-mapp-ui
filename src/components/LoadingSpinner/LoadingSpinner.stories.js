@@ -17,6 +17,7 @@ const LoadingSpinnerStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     LoadingSpinner,
   },

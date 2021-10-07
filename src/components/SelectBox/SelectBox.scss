@@ -53,7 +53,7 @@
     color: $black-500;
   }
 
-  .select-icon ::v-deep path {
+  .select-icon :deep(path) {
     fill: $black-500;
   }
 }
@@ -69,7 +69,7 @@
     color: $red-500;
   }
 
-  .select-icon ::v-deep path {
+  .select-icon :deep(path) {
     fill: $red-500;
   }
 }
@@ -87,7 +87,7 @@
   padding-left: 0;
   padding-bottom: 0;
 
-  ::v-deep path {
+  :deep(path) {
     fill: $blue-500;
   }
 }
@@ -135,7 +135,7 @@
   min-width: 16px;
   margin-right: 8px;
 
-  ::v-deep path {
+  :deep(path) {
     fill: $red-500;
   }
 }

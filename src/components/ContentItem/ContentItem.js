@@ -35,6 +35,8 @@ const props = {
   noBorder: Boolean,
 };
 
+const emits = ['click'];
+
 const data = function () {
   return {
     isPressed: false,
@@ -74,6 +76,7 @@ const methods = {
 const ContentItem = {
   components,
   props,
+  emits,
   data,
   computed,
   methods,

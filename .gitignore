@@ -16,6 +16,9 @@ yarn-error.log*
 # Output of 'npm pack'
 *.tgz
 
+# Output of 'npm run analyze'
+stats.html
+
 # Editor directories and files
 .idea
 .vscode

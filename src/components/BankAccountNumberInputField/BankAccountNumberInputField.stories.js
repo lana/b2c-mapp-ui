@@ -41,6 +41,7 @@ const BankAccountNumberInputFieldStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     BankAccountNumberInputField,
   },
@@ -104,6 +105,7 @@ defaultExample.parameters = {
 
 const examples = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     BankAccountNumberInputField,
   },
@@ -124,7 +126,7 @@ const examples = (args, { argTypes }) => ({
           <BankAccountNumberInputField country-code="MX"
                                        label="Introduce un CLABE"
                                        error-label="Invalid CLABE number"
-                                       value="138211000000000127"
+                                       modelValue="138211000000000127"
           />
         </div>
         <br>
@@ -134,7 +136,7 @@ const examples = (args, { argTypes }) => ({
                                        autoformat
                                        label="Introduce un CLABE"
                                        error-label="Invalid CLABE number"
-                                       value="138211000000000127"
+                                       modelValue="138211000000000127"
           />
         </div>
         <br>
@@ -142,7 +144,7 @@ const examples = (args, { argTypes }) => ({
           <label>With a help text:</label>
           <BankAccountNumberInputField country-code="MX"
                                        label="Introduce un CLABE"
-                                       value=""
+                                       modelValue=""
                                        help-text="Example Help Text"
           />
         </div>
@@ -151,7 +153,7 @@ const examples = (args, { argTypes }) => ({
           <label>With hidden clear button:</label>
           <BankAccountNumberInputField country-code="MX"
                                        label="Introduce un CLABE"
-                                       value="138211000000000127"
+                                       modelValue="138211000000000127"
                                        hide-clear-button
           />
         </div>
@@ -161,7 +163,7 @@ const examples = (args, { argTypes }) => ({
           <BankAccountNumberInputField country-code="MX"
                                        label="Introduce un CLABE"
                                        error-label="Invalid CLABE number"
-                                       value="1382110000000"
+                                       modelValue="1382110000000"
           />
         </div>
         <br>
@@ -170,7 +172,7 @@ const examples = (args, { argTypes }) => ({
           <BankAccountNumberInputField country-code="MX"
                                        label="Introduce un CLABE"
                                        error-label="Invalid CLABE number"
-                                       value="138211000000000127"
+                                       modelValue="138211000000000127"
                                        readonly
           />
         </div>
@@ -179,7 +181,7 @@ const examples = (args, { argTypes }) => ({
           <BankAccountNumberInputField country-code="MX"
                                        label="Introduce un CLABE"
                                        error-label="Invalid CLABE number"
-                                       value="138211000000000127"
+                                       modelValue="138211000000000127"
                                        disabled
           />
         </div>
@@ -187,7 +189,7 @@ const examples = (args, { argTypes }) => ({
   `,
 });
 examples.args = {
-  device: null,
+  device: '',
 };
 examples.argTypes = {
   device: { table: { disable: true } },

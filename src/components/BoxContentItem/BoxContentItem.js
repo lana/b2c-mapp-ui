@@ -26,6 +26,8 @@ const props = {
   disabled: Boolean,
 };
 
+const emits = ['click'];
+
 const data = function () {
   return {
     isPressed: false,
@@ -57,6 +59,7 @@ const methods = {
 const BoxContentItem = {
   components,
   props,
+  emits,
   data,
   computed,
   methods,

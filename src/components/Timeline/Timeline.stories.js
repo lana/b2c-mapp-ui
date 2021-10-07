@@ -40,6 +40,7 @@ const TimelineStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     Timeline,
     Screen,
@@ -68,7 +69,7 @@ defaultExample.args = {
   default: `<SpecCard key="1"><Progress :percentage="20" /></SpecCard>
 <SpecCard key="2"><Progress :percentage="50" /></SpecCard>
 <SpecCard key="3"><Progress :percentage="100" color="green" /></SpecCard>`,
-  startPoint: '<SheepRunningIcon class="icon" width="80" />',
+  startPoint: '<SheepRunningIcon class="icon" :style="{ width: \'80px\' }" />',
 };
 defaultExample.parameters = {
   docs: {
@@ -79,7 +80,7 @@ defaultExample.parameters = {
     <SpecCard key="2"><Progress :percentage="50" /></SpecCard>
     <SpecCard key="3"><Progress :percentage="100" color="green" /></SpecCard>
     <template v-slot:startPoint>
-      <SheepRunningIcon class="icon" width="80" />
+      <SheepRunningIcon class="icon" :style="{ width: '80px' }" />
     </template>
   </Timeline>
       `,

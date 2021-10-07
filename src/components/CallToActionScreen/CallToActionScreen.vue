@@ -2,7 +2,9 @@
   <Screen>
     <ScrollWrapper>
       <Wrapper modal>
-        <Heading class="title">{{ title }}</Heading>
+        <Heading class="title">
+          {{ title }}
+        </Heading>
         <TextParagraph> {{ description }}</TextParagraph>
       </Wrapper>
       <Wrapper>
@@ -10,7 +12,9 @@
       </Wrapper>
     </ScrollWrapper>
     <slot name="secondaryAction"/>
-    <WrappedButton :data-testid="dataTestId" :debounce="debounce" @click="onClick"> {{ buttonText }} </WrappedButton>
+    <WrappedButton :data-testid="dataTestId" :debounce="debounce" @click="onClick">
+      {{ buttonText }}
+    </WrappedButton>
   </Screen>
 </template>
 
