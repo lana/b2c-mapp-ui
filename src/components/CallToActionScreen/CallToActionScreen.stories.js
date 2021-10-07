@@ -48,6 +48,7 @@ const CallToActionScreenStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     CallToActionScreen,
     RenderString,
@@ -67,7 +68,7 @@ const defaultExample = (args, { argTypes }) => ({
                           @click="onClick"
       >
         <RenderString :string="defaultSlot" />
-        <template v-slot:secondaryAction><RenderString :string="secondaryAction" /></template>
+        <template v-slot:secondaryAction v-if="secondaryAction"><RenderString :string="secondaryAction" /></template>
       </CallToActionScreen>
 `,
 });

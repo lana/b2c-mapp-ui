@@ -22,6 +22,7 @@ const ScreenStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     Screen,
     RenderString,
@@ -39,7 +40,7 @@ const defaultExample = (args, { argTypes }) => ({
     <Screen @keyboardFocus="onKeyboardFocus"
             @keyboardBlur="onKeyboardBlur"
     >
-      <RenderString :string="defaultSlot" />
+      <RenderString :string="defaultSlot" v-if="defaultSlot" />
     </Screen>
   `,
 });

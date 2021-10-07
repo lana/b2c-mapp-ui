@@ -24,6 +24,16 @@ const props = {
   disabled: Boolean,
 };
 
+const emits = ['click'];
+
+const computed = {
+  uniqueId() {
+    const base = `${this.title}-${this.text}`;
+    const result = `${Array.from(base).reduce((s, c) => Math.imul(31, s) + c.charCodeAt(0) | 0, 0)}`;
+    return result;
+  },
+};
+
 const methods = {
   onClick(event) {
     this.$emit('click', event);
@@ -33,6 +43,8 @@ const methods = {
 const CopyableListItem = {
   components,
   props,
+  emits,
+  computed,
   methods,
 };
 

@@ -43,6 +43,7 @@ const ContentItemStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ContentItem,
     RenderString,
@@ -102,6 +103,7 @@ defaultExample.parameters = {
 
 const withImage = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ContentItem,
     RenderString,
@@ -153,6 +155,7 @@ withImage.parameters = {
 
 const withIcon = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ContentItem,
     RenderString,
@@ -208,6 +211,7 @@ withIcon.parameters = {
 
 const successState = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ContentItem,
     DocumentFilledIcon,
@@ -263,6 +267,7 @@ successState.parameters = {
 
 const withCustomForwardIcon = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ContentItem,
     DocumentFilledIcon,
@@ -293,7 +298,7 @@ const withCustomForwardIcon = (args, { argTypes }) => ({
 });
 withCustomForwardIcon.args = {
   success: true,
-  forwardIcon: '<ClockIcon width="24"/>',
+  forwardIcon: '<ClockIcon :style="{ width: \'24px\' }"/>',
 };
 withCustomForwardIcon.argTypes = {
   noBorder: { table: { disable: true } },
@@ -325,6 +330,7 @@ withCustomForwardIcon.parameters = {
 
 const noImageAndCustomForwardIcon = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ContentItem,
     RenderString,
@@ -350,7 +356,7 @@ const noImageAndCustomForwardIcon = (args, { argTypes }) => ({
 });
 noImageAndCustomForwardIcon.args = {
   success: true,
-  forwardIcon: '<ClockIcon width="24"/>',
+  forwardIcon: '<ClockIcon :style="{ width: \'24px\' }"/>',
 };
 noImageAndCustomForwardIcon.argTypes = {
   noBorder: { table: { disable: true } },
@@ -381,6 +387,7 @@ noImageAndCustomForwardIcon.parameters = {
 
 const customTitleAndCustomMetaText = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ContentItem,
     RenderString,

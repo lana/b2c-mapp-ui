@@ -24,6 +24,8 @@ const ProgressStories = {
     animate: false,
     animationDuration: 1000,
     circularAnimation: false,
+    customTitle: '',
+    customDescription: '',
   },
   argTypes: {
     ...deviceDecorator.argTypes,
@@ -62,6 +64,7 @@ const ProgressStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     Progress,
     RenderString,
@@ -89,10 +92,10 @@ const defaultExample = (args, { argTypes }) => ({
                 :circular-animation="circularAnimation"
                 @animationend="onAnimationEnd"
       >
-        <template v-if="customTitle" #customTitle>
+        <template v-if="customTitle" v-slot:customTitle>
           <RenderString :string="customTitle" />
         </template>
-        <template v-if="customDescription" #customDescription>
+        <template v-if="customDescription" v-slot:customDescription>
           <RenderString :string="customDescription" />
         </template>
       </Progress>
@@ -114,10 +117,10 @@ defaultExample.parameters = {
           :circular-animation="circularAnimation"
           @animationend="onAnimationEnd"
 >
-  <template #customTitle>
+  <template v-slot:customTitle>
     {{ customTitle }}
   </template>
-  <template #customDescription>
+  <template v-slot:customDescription>
     {{ customDescription }}
   </template>
 </Progress>

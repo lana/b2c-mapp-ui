@@ -17,6 +17,7 @@ const ActionItemStories = {
     description: '',
     status: '',
     default: 'Default slot',
+    highlight: false,
   },
   argTypes: {
     ...deviceDecorator.argTypes,
@@ -39,6 +40,7 @@ const ActionItemStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ActionItem,
     RenderString,
@@ -89,6 +91,7 @@ defaultExample.parameters = {
 
 const fullExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ActionItem,
     DocumentFilledIcon,

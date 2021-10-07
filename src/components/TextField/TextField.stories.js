@@ -11,6 +11,7 @@ const TextFieldStories = {
   decorators: [deviceDecorator],
   args: {
     ...deviceDecorator.args,
+    value: '',
     type: '',
     disabled: false,
     readonly: false,
@@ -21,9 +22,11 @@ const TextFieldStories = {
     lengthHintLabel: '',
     helpText: '',
     hideClearButton: false,
+    startFocused: false,
   },
   argTypes: {
     ...deviceDecorator.argTypes,
+    value: { control: 'text', name: 'Value' },
     type: { control: 'text', name: 'Type' },
     disabled: { control: 'boolean', name: 'Is Disabled?' },
     readonly: { control: 'boolean', name: 'Is Readonly?' },
@@ -34,17 +37,19 @@ const TextFieldStories = {
     lengthHintLabel: { control: 'text', name: 'Length Hint Label' },
     helpText: { control: 'text', name: 'Help Text' },
     hideClearButton: { control: 'boolean', name: 'Hide Clear Button?' },
+    startFocused: { control: 'boolean', name: 'Start Focused?' },
   },
 };
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     TextField,
   },
   data() {
     return {
-      value: '',
+      value: this.value,
     };
   },
   methods: {
@@ -68,6 +73,7 @@ const defaultExample = (args, { argTypes }) => ({
                    :length-hint-label="lengthHintLabel"
                    :help-text="helpText"
                    :hide-clear-button="hideClearButton"
+                   :start-focused="startFocused"
                    @blur="onBlur"
                    @focus="onFocus"
                    @keypress="onKeypress"
@@ -109,6 +115,7 @@ defaultExample.parameters = {
 
 const examples = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     TextField,
   },
@@ -129,37 +136,37 @@ const examples = (args, { argTypes }) => ({
         <br>
         <div style="width: 500px">
           <label>Focused with value:</label>
-          <TextField label="Example" value="foo" start-focused/>
+          <TextField label="Example" modelValue="foo" start-focused/>
         </div>
         <br>
         <div style="width: 500px">
           <label>Unfocused with error:</label>
-          <TextField value="foo" label="foo" error-label="Invalid value"/>
+          <TextField modelValue="foo" label="foo" error-label="Invalid value"/>
         </div>
         <br>
         <div style="width: 500px">
           <label>Length hint with error:</label>
-          <TextField value="1234" label="Credit Card Number" :length-hint="16" error-label="Length should be 16"/>
+          <TextField modelValue="1234" label="Credit Card Number" :length-hint="16" error-label="Length should be 16"/>
         </div>
         <br>
         <div style="width: 500px">
           <label>With hidden clear button:</label>
-          <TextField label="Example" value="Example" hide-clear-button/>
+          <TextField label="Example" modelValue="Example" hide-clear-button/>
         </div>
         <br>
         <div style="width: 500px">
           <label>With Help Text:</label>
-          <TextField label="With help text" value="Example" hide-clear-button help-text="Example Help Text"/>
+          <TextField label="With help text" modelValue="Example" hide-clear-button help-text="Example Help Text"/>
         </div>
         <br>
         <div style="width: 500px">
           <label>Readonly:</label>
-          <TextField label="Enter your name" value="value locked" readonly/>
+          <TextField label="Enter your name" modelValue="value locked" readonly/>
         </div>
         <br>
         <div style="width: 500px">
           <label>Disabled:</label>
-          <TextField label="Enter your name" value="value locked" disabled/>
+          <TextField label="Enter your name" modelValue="value locked" disabled/>
         </div>
       </div>
     </div>
@@ -198,37 +205,37 @@ examples.parameters = {
   <br>
   <div style="width: 500px">
     <label>Focused with value:</label>
-    <TextField label="Example" value="foo" start-focused/>
+    <TextField label="Example" modelValue="foo" start-focused/>
   </div>
   <br>
   <div style="width: 500px">
     <label>Unfocused with error:</label>
-    <TextField value="foo" label="foo" error-label="Invalid value"/>
+    <TextField modelValue="foo" label="foo" error-label="Invalid value"/>
   </div>
   <br>
   <div style="width: 500px">
     <label>Length hint with error:</label>
-    <TextField value="1234" label="Credit Card Number" :length-hint="16" error-label="Length should be 16"/>
+    <TextField modelValue="1234" label="Credit Card Number" :length-hint="16" error-label="Length should be 16"/>
   </div>
   <br>
   <div style="width: 500px">
     <label>With hidden clear button:</label>
-    <TextField label="Example" value="Example" hide-clear-button/>
+    <TextField label="Example" modelValue="Example" hide-clear-button/>
   </div>
   <br>
   <div style="width: 500px">
     <label>With Help Text:</label>
-    <TextField label="With help text" value="Example" hide-clear-button help-text="Example Help Text"/>
+    <TextField label="With help text" modelValue="Example" hide-clear-button help-text="Example Help Text"/>
   </div>
   <br>
   <div style="width: 500px">
     <label>Readonly:</label>
-    <TextField label="Enter your name" value="value locked" readonly/>
+    <TextField label="Enter your name" modelValue="value locked" readonly/>
   </div>
   <br>
   <div style="width: 500px">
     <label>Disabled:</label>
-    <TextField label="Enter your name" value="value locked" disabled/>
+    <TextField label="Enter your name" modelValue="value locked" disabled/>
   </div>
 </div>`,
     },

@@ -14,7 +14,7 @@ describe('CopyToClipboardButton unit test', () => {
 
   it('Should emit a click event when its clicked', async () => {
     jest.useFakeTimers();
-    const wrapper = mount(CopyToClipboardButton, { propsData: { toCopyValue: 'myValue' } });
+    const wrapper = mount(CopyToClipboardButton, { props: { toCopyValue: 'myValue' } });
     const button = wrapper.find('button[data-testid="copy-to-clipboard-button"]');
     button.trigger('click');
     jest.runAllTimers();
@@ -25,14 +25,14 @@ describe('CopyToClipboardButton unit test', () => {
 
   it('Should display given toCopyLabel by default status', () => {
     const givenLabel = 'copiar';
-    const wrapper = mount(CopyToClipboardButton, { propsData: { toCopyValue: 'myValue', toCopyLabel: givenLabel } });
+    const wrapper = mount(CopyToClipboardButton, { props: { toCopyValue: 'myValue', toCopyLabel: givenLabel } });
     const givenLabelIsShown = wrapper.find('button[data-testid="copy-to-clipboard-button"]').text().includes(givenLabel);
     expect(givenLabelIsShown).toBeTruthy();
   });
 
   it('Should add given toCopyClass by default status', () => {
     const givenClass = 'my-custom-class';
-    const wrapper = mount(CopyToClipboardButton, { propsData: { toCopyValue: 'myValue', toCopyClass: givenClass } });
+    const wrapper = mount(CopyToClipboardButton, { props: { toCopyValue: 'myValue', toCopyClass: givenClass } });
     const givenClassIsApplied = wrapper.find('button[data-testid="copy-to-clipboard-button"]').classes().includes(givenClass);
     expect(givenClassIsApplied).toBeTruthy();
   });
@@ -40,7 +40,7 @@ describe('CopyToClipboardButton unit test', () => {
   it('Should apply given copyingLabel when is copying', async () => {
     const givenLabel = 'copiando';
     jest.useFakeTimers();
-    const wrapper = mount(CopyToClipboardButton, { propsData: { toCopyValue: 'myValue', copyingLabel: givenLabel } });
+    const wrapper = mount(CopyToClipboardButton, { props: { toCopyValue: 'myValue', copyingLabel: givenLabel } });
     const button = wrapper.find('button[data-testid="copy-to-clipboard-button"]');
     button.element.click();
     await wrapper.vm.$forceUpdate();
@@ -52,7 +52,7 @@ describe('CopyToClipboardButton unit test', () => {
   it('Should not emit a click event when is copying and its clicked', async () => {
     const givenLabel = 'copiando';
     jest.useFakeTimers();
-    const wrapper = mount(CopyToClipboardButton, { propsData: { toCopyValue: 'myValue', copyingLabel: givenLabel } });
+    const wrapper = mount(CopyToClipboardButton, { props: { toCopyValue: 'myValue', copyingLabel: givenLabel } });
     const button = wrapper.find('button[data-testid="copy-to-clipboard-button"]');
     button.element.click();
     await wrapper.vm.$forceUpdate();
@@ -65,7 +65,7 @@ describe('CopyToClipboardButton unit test', () => {
   it('Should apply given copyingClass when is copying', async () => {
     const givenClass = 'my-custom-class';
     jest.useFakeTimers();
-    const wrapper = mount(CopyToClipboardButton, { propsData: { toCopyValue: 'myValue', copyingClass: givenClass } });
+    const wrapper = mount(CopyToClipboardButton, { props: { toCopyValue: 'myValue', copyingClass: givenClass } });
     const button = wrapper.find('button[data-testid="copy-to-clipboard-button"]');
     button.element.click();
     await wrapper.vm.$forceUpdate();
@@ -77,7 +77,7 @@ describe('CopyToClipboardButton unit test', () => {
   it('Should show given copiedLabel when copy is done', async () => {
     const givenLabel = 'copiar';
     jest.useFakeTimers();
-    const wrapper = mount(CopyToClipboardButton, { propsData: { toCopyValue: 'myValue', copiedLabel: givenLabel } });
+    const wrapper = mount(CopyToClipboardButton, { props: { toCopyValue: 'myValue', copiedLabel: givenLabel } });
     const button = wrapper.find('button[data-testid="copy-to-clipboard-button"]');
     button.element.click();
     jest.runTimersToTime('1500');
@@ -89,7 +89,7 @@ describe('CopyToClipboardButton unit test', () => {
   it('Should apply given copiedClass when copy is done', async () => {
     const givenClass = 'my-custom-class';
     jest.useFakeTimers();
-    const wrapper = mount(CopyToClipboardButton, { propsData: { toCopyValue: 'myValue', copiedClass: givenClass } });
+    const wrapper = mount(CopyToClipboardButton, { props: { toCopyValue: 'myValue', copiedClass: givenClass } });
     const button = wrapper.find('button[data-testid="copy-to-clipboard-button"]');
     button.element.click();
     jest.runTimersToTime('1500');

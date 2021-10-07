@@ -17,35 +17,38 @@ const props = {
     type: String,
     required: true,
   },
-  value: [String, Number],
+  modelValue: [String, Number],
   title: String,
   disabled: Boolean,
 };
 
+const emits = ['update:modelValue'];
+
 const data = function () {
   return {
-    selectedValue: this.value,
+    selectedValue: this.modelValue,
   };
 };
 
 const methods = {
-  emitInputEvent() {
-    this.$emit('input', this.selectedValue);
+  emitUpdateModelValueEvent() {
+    this.$emit('update:modelValue', this.selectedValue);
   },
 };
 
 const watch = {
   selectedValue() {
-    this.emitInputEvent();
+    this.emitUpdateModelValueEvent();
   },
-  value() {
-    this.selectedValue = this.value;
+  modelValue() {
+    this.selectedValue = this.modelValue;
   },
 };
 
 const RadioList = {
   components,
   props,
+  emits,
   data,
   methods,
   watch,

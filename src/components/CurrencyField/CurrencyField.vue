@@ -7,23 +7,24 @@
       >
         <slot/>
         <strong class="label">{{ label }}</strong>
-        <input :id="inputId"
-               ref="input"
-               v-model="inputValue"
-               v-currency="currencyOptions"
-               class="input"
-               autocomplete="off"
-               :data-testid="`${dataTestId}-input`"
-               :name="name"
-               :maxlength="maxLengthToUse"
-               :readonly="readonly"
-               :disabled="disabled"
-               @focus="onFocus"
-               @blur="onBlur"
-               @paste="onPaste"
-               @keypress="onKeypress"
-               @keyup="onKeyup"
-        >
+        <CurrencyInput :id="inputId"
+                       ref="input"
+                       v-model="inputValue"
+                       v-model:formattedValue="formattedValue"
+                       :options="currencyOptions"
+                       class="input"
+                       autocomplete="off"
+                       :data-testid="`${dataTestId}-input`"
+                       :name="name"
+                       :maxlength="maxLengthToUse"
+                       :readonly="readonly"
+                       :disabled="disabled"
+                       @focus="onFocus"
+                       @blur="onBlur"
+                       @paste="onPaste"
+                       @keypress="onKeypress"
+                       @keyup="onKeyup"
+        />
         <div v-if="isClearIconShowing" class="clear-icon-container" @mousedown="clearValue">
           <CloseBoldIcon class="clear-icon"/>
         </div>
@@ -31,7 +32,9 @@
     </div>
     <div class="extra-text-container" :class="{ error: errorLabel }" :data-testid="`${dataTestId}-extra-text`">
       <WarningBoldIcon v-if="errorLabel" class="error-icon"/>
-      <TextParagraph v-if="errorLabelOrHelpText" class="help-text" :data-test-id="`${dataTestId}-helptext`">{{ errorLabelOrHelpText }}</TextParagraph>
+      <TextParagraph v-if="errorLabelOrHelpText" class="help-text" :data-test-id="`${dataTestId}-helptext`">
+        {{ errorLabelOrHelpText }}
+      </TextParagraph>
     </div>
   </div>
 </template>

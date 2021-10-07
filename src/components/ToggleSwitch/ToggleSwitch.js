@@ -9,7 +9,7 @@ const props = {
     type: String,
     default: 'toggle',
   },
-  value: Boolean,
+  modelValue: Boolean,
   disabled: Boolean,
   buttons: Boolean,
   trueButtonLabel: {
@@ -22,15 +22,17 @@ const props = {
   },
 };
 
+const emits = ['update:modelValue'];
+
 const data = function () {
   return {
-    isChecked: this.value,
+    isChecked: this.modelValue,
   };
 };
 
 const methods = {
-  emitInputEvent() {
-    this.$emit('input', this.isChecked);
+  emitUpdateModelValueEvent() {
+    this.$emit('update:modelValue', this.isChecked);
   },
   uncheck() {
     this.isChecked = false;
@@ -42,16 +44,17 @@ const methods = {
 
 const watch = {
   isChecked() {
-    this.emitInputEvent();
+    this.emitUpdateModelValueEvent();
   },
-  value() {
-    this.isChecked = this.value;
+  modelValue() {
+    this.isChecked = this.modelValue;
   },
 };
 
 const ToggleSwitch = {
   components,
   props,
+  emits,
   data,
   methods,
   watch,

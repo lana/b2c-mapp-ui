@@ -19,14 +19,14 @@ describe('ConfirmationToastDialog unit test', () => {
   };
 
   it('Should be initially visible if given value is set to true', () => {
-    const { getByTestId } = render(ConfirmationToastDialog, { propsData: { ...defaultProps, value: true } });
+    const { getByTestId } = render(ConfirmationToastDialog, { props: { ...defaultProps, modelValue: true } });
     const dialog = getByTestId('bottom-dialog-section');
     const dialogIsVisible = dialog.className.includes('visible');
     expect(dialogIsVisible).toBeTruthy();
   });
 
   it('Should be initially NOT visible if given value is set to false', () => {
-    const { getByTestId } = render(ConfirmationToastDialog, { propsData: { ...defaultProps, value: false } });
+    const { getByTestId } = render(ConfirmationToastDialog, { props: { ...defaultProps, modelValue: false } });
     const dialog = getByTestId('bottom-dialog-section');
     const dialogIsNotVisible = !dialog.className.includes('visible');
     expect(dialogIsNotVisible).toBeTruthy();
@@ -45,31 +45,31 @@ describe('ConfirmationToastDialog unit test', () => {
   }));
 
   it('Should show title if provided', () => {
-    const { getByTestId } = render(ConfirmationToastDialog, { propsData: { ...defaultProps } });
+    const { getByTestId } = render(ConfirmationToastDialog, { props: { ...defaultProps } });
     const titleIsShown = getByTestId('bottom-dialog-title').textContent.includes('title');
     expect(titleIsShown).toBeTruthy();
   });
 
   it('Should show description if provided', () => {
-    const { getByTestId } = render(ConfirmationToastDialog, { propsData: { ...defaultProps } });
+    const { getByTestId } = render(ConfirmationToastDialog, { props: { ...defaultProps } });
     const descriptionIsShown = getByTestId('bottom-dialog-description').textContent.includes('description');
     expect(descriptionIsShown).toBeTruthy();
   });
 
   it('Should NOT show given children if description is provided', () => {
-    const { queryAllByTestId } = render(ConfirmationToastDialog, { slots: { default: '<span data-testid="confirmation-modal-dialog-slot">Hey!</span>' }, propsData: { ...defaultProps } });
+    const { queryAllByTestId } = render(ConfirmationToastDialog, { slots: { default: '<span data-testid="confirmation-modal-dialog-slot">Hey!</span>' }, props: { ...defaultProps } });
     const childrenIsNotShown = !queryAllByTestId('confirmation-modal-dialog-slot').length;
     expect(childrenIsNotShown).toBeTruthy();
   });
 
   it('Should show given children if description is not provided', () => {
-    const { getByTestId } = render(ConfirmationToastDialog, { slots: { default: '<span data-testid="confirmation-modal-dialog-slot">Hey!</span>' }, propsData: { ...defaultProps, description: null } });
+    const { getByTestId } = render(ConfirmationToastDialog, { slots: { default: '<span data-testid="confirmation-modal-dialog-slot">Hey!</span>' }, props: { ...defaultProps, description: null } });
     const childrenIsShown = getByTestId('confirmation-modal-dialog-slot').textContent.includes('Hey!');
     expect(childrenIsShown).toBeTruthy();
   });
 
   it('Should emit a dismiss event when its closed', async () => {
-    const wrapper = mount(ConfirmationToastDialog, { propsData: { ...defaultProps } });
+    const wrapper = mount(ConfirmationToastDialog, { props: { ...defaultProps } });
     wrapper.vm.$options.watch.isShowing.call(wrapper.vm, false);
     await wrapper.vm.$nextTick();
     const closeEventEmitted = wrapper.emitted().dismiss;
@@ -78,13 +78,13 @@ describe('ConfirmationToastDialog unit test', () => {
 
   describe('Confirm actions behavior', () => {
     it('Should show action-confirm button when confirm is given', () => {
-      const { getByTestId } = render(ConfirmationToastDialog, { propsData: { ...defaultProps } });
+      const { getByTestId } = render(ConfirmationToastDialog, { props: { ...defaultProps } });
       const confirmIsShown = getByTestId('bottom-dialog-action-confirm-button').textContent.includes('confirm');
       expect(confirmIsShown).toBeTruthy();
     });
 
     it('Should NOT show action-confirm button when confirm is NOT given', () => {
-      const { queryAllByTestId } = render(ConfirmationToastDialog, { propsData: {
+      const { queryAllByTestId } = render(ConfirmationToastDialog, { props: {
         ...defaultProps,
         confirmButtonText: null,
       } });
@@ -93,7 +93,7 @@ describe('ConfirmationToastDialog unit test', () => {
     });
 
     it('Should emit an event when confirm is given and action-confirm is clicked', () => {
-      const { getByTestId, emitted } = render(ConfirmationToastDialog, { propsData: { ...defaultProps } });
+      const { getByTestId, emitted } = render(ConfirmationToastDialog, { props: { ...defaultProps } });
       const confirmCTA = getByTestId('bottom-dialog-action-confirm-button');
       fireEvent.click(confirmCTA);
       const clickEvent = emitted().confirm;
@@ -103,13 +103,13 @@ describe('ConfirmationToastDialog unit test', () => {
 
   describe('Secondary actions behavior', () => {
     it('Should show bottom-dialog-action-secondary button when secondaryText is given', () => {
-      const { getByTestId } = render(ConfirmationToastDialog, { propsData: { ...defaultProps } });
+      const { getByTestId } = render(ConfirmationToastDialog, { props: { ...defaultProps } });
       const dismissIsShown = getByTestId('bottom-dialog-action-secondary').textContent.includes('secondary');
       expect(dismissIsShown).toBeTruthy();
     });
 
     it('Should NOT show bottom-dialog-action-secondary when secondaryText is NOT given', () => {
-      const { queryAllByTestId } = render(ConfirmationToastDialog, { propsData: {
+      const { queryAllByTestId } = render(ConfirmationToastDialog, { props: {
         ...defaultProps,
         secondaryButtonText: null,
       } });
@@ -118,7 +118,7 @@ describe('ConfirmationToastDialog unit test', () => {
     });
 
     it('Should emit an event when secondary is given and bottom-dialog-action-secondary is clicked', () => {
-      const { getByTestId, emitted } = render(ConfirmationToastDialog, { propsData: { ...defaultProps } });
+      const { getByTestId, emitted } = render(ConfirmationToastDialog, { props: { ...defaultProps } });
       const secondaryCTA = getByTestId('bottom-dialog-action-secondary');
       fireEvent.click(secondaryCTA);
       const clickEvent = emitted().secondary;
@@ -131,7 +131,7 @@ describe('ConfirmationToastDialog unit test', () => {
       ConfirmationToastDialog,
       {
         slots: { actions: '<span data-testid="custom-actions">Text <br />newline</span>' },
-        propsData: { ...defaultProps },
+        props: { ...defaultProps },
       },
     );
     const customMetaTextVisible = getByTestId('custom-actions');

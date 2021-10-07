@@ -21,7 +21,7 @@ const props = {
     type: Number,
     default: 10,
   },
-  value: {
+  modelValue: {
     type: String,
     default: '',
   },
@@ -44,9 +44,11 @@ const props = {
   helpText: String,
 };
 
+const emits = ['update:modelValue', 'change', 'validate', 'focus', 'blur', 'keypress', 'keyup', 'paste'];
+
 const data = function () {
   return {
-    inputValue: this.value,
+    inputValue: this.modelValue,
     datePickerValue: this.formattedDateText,
   };
 };
@@ -99,15 +101,20 @@ const computed = {
     const result = (this.isExpectedInputValueLength && validDateRegexp.test(this.autoformattedDate) && isDateTextInputValid(this.autoformattedDate));
     return result;
   },
+  uniqueId() {
+    const base = (Math.random() + 1).toString(36).substring(7);
+    const result = `${Array.from(base).reduce((s, c) => Math.imul(31, s) + c.charCodeAt(0) | 0, 0)}`;
+    return result;
+  },
 };
 
 const methods = {
-  emitInputChangeAndValidationEvents() {
+  emitUpdateModelValueChangeAndValidationEvents() {
     const validationPayload = {
       value: this.inputValue,
       id: this.id,
     };
-    this.$emit('input', this.inputValue);
+    this.$emit('update:modelValue', this.inputValue);
     this.$emit('change', this.formFieldFormattedDateText);
     this.$emit('validate', validationPayload);
   },
@@ -154,14 +161,14 @@ const methods = {
 
 const watch = {
   inputValue() {
-    this.emitInputChangeAndValidationEvents();
+    this.emitUpdateModelValueChangeAndValidationEvents();
     this.updateInputAndCalendarValuesAsNeeded();
   },
   datePickerValue() {
     this.updateInputValueFromDatePicker();
   },
-  value() {
-    this.inputValue = this.value;
+  modelValue() {
+    this.inputValue = this.modelValue;
   },
 };
 
@@ -172,6 +179,7 @@ const mounted = function () {
 const DateField = {
   components,
   props,
+  emits,
   data,
   computed,
   mounted,

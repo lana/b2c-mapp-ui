@@ -1,4 +1,4 @@
-import frag from 'vue-frag';
+import { h } from 'vue';
 import * as AllIcons from '@lana/b2c-mapp-ui-assets';
 
 import * as AllComponents from '../library';
@@ -15,19 +15,16 @@ const RenderString = {
     },
     customProps: Object,
   },
-  render(createElement) {
+  render() {
     const render = {
       components: {
         ...AllIcons,
         ...AllComponents,
       },
-      directives: {
-        frag,
-      },
       props: Object.keys(this.customProps || {}),
-      template: `<div${(this.fragment) ? ' v-frag' : ''}>${this.string}</div>`,
+      template: this.string,
     };
-    return createElement(render, { props: this.customProps });
+    return h(render, { ...this.customProps });
   },
 };
 

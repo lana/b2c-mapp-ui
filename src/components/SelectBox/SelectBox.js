@@ -17,7 +17,7 @@ const props = {
     type: Array,
     default: () => [],
   },
-  value: String,
+  modelValue: String,
   label: String,
   id: String,
   name: String,
@@ -27,9 +27,11 @@ const props = {
   helpText: String,
 };
 
+const emits = ['update:modelValue', 'focus', 'blur', 'keypress', 'keyup', 'paste'];
+
 const data = function () {
   return {
-    selectedValue: this.value,
+    selectedValue: this.modelValue,
     isFocused: false,
   };
 };
@@ -48,8 +50,8 @@ const computed = {
 };
 
 const methods = {
-  emitInputEvent() {
-    this.$emit('input', this.selectedValue);
+  emitUpdateModelValueEvent() {
+    this.$emit('update:modelValue', this.selectedValue);
   },
   toggleFocus() {
     this.isFocused = !this.isFocused;
@@ -83,16 +85,17 @@ const methods = {
 
 const watch = {
   selectedValue() {
-    this.emitInputEvent();
+    this.emitUpdateModelValueEvent();
   },
-  value() {
-    this.selectedValue = this.value;
+  modelValue() {
+    this.selectedValue = this.modelValue;
   },
 };
 
 const SelectBox = {
   components,
   props,
+  emits,
   computed,
   data,
   methods,

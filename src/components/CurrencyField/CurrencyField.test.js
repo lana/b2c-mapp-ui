@@ -1,12 +1,14 @@
+import { nextTick } from 'vue';
 import { mount } from '@vue/test-utils';
+import { render } from '@testing-library/vue';
 
 import CurrencyField from './CurrencyField.vue';
 import WithErrorFormFieldWrapper from './UnitTestWrappers/WithErrorCurrencyFieldWrapper.vue';
-import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
+import { silenceInnerComponentWarnings } from '../../lib/testUtils';
 
 describe('CurrencyField unit test', () => {
   beforeAll(() => {
-    silenceDeprecationErrorsAndInnerComponentWarnings(jest);
+    silenceInnerComponentWarnings(jest);
   });
   const defaultProps = {
     name: 'my-input',
@@ -15,16 +17,15 @@ describe('CurrencyField unit test', () => {
 
   it('Should apply given value', async () => {
     const newValue = '123';
-    const wrapper = mount(CurrencyField, { propsData: { ...defaultProps, value: newValue } });
+    const wrapper = mount(CurrencyField, { props: { ...defaultProps, modelValue: newValue } });
     await wrapper.vm.$nextTick();
-    wrapper.vm.$options.watch.value.call(wrapper.vm, newValue);
+    wrapper.vm.$options.watch.modelValue.call(wrapper.vm, newValue);
     await wrapper.vm.$nextTick();
-    const appliedValue = wrapper.vm.$data.inputValue === newValue;
-    expect(appliedValue).toBeTruthy();
+    expect(wrapper.vm.$data.inputValue).toBe(123);
   });
 
   it('Should have focus class if focus is triggered', async () => {
-    const wrapper = mount(CurrencyField, { propsData: { ...defaultProps } });
+    const wrapper = mount(CurrencyField, { props: { ...defaultProps } });
     const inputField = wrapper.find('input');
     const fieldContainer = wrapper.find('.field-container');
     inputField.trigger('focus');
@@ -34,48 +35,48 @@ describe('CurrencyField unit test', () => {
   });
 
   it('Should NOT have focus class if not focused', () => {
-    const wrapper = mount(CurrencyField, { propsData: { ...defaultProps } });
+    const wrapper = mount(CurrencyField, { props: { ...defaultProps } });
     const noFocusClass = !wrapper.find('label[data-testid="currency-input-label"]').element.className.includes('focus');
     expect(noFocusClass).toBeTruthy();
   });
 
   it('Should emit focus event if startFocused is true', async () => {
-    const wrapper = mount(CurrencyField, { propsData: { ...defaultProps, startFocused: true } });
-    await wrapper.vm.$nextTick();
-    const focusEventEmitted = wrapper.emitted().focus;
+    const { emitted } = render(CurrencyField, { props: { ...defaultProps, startFocused: true } });
+    await nextTick();
+    const focusEventEmitted = emitted('focus');
     expect(focusEventEmitted).toBeTruthy();
   });
 
   it('Should have labeled class if is readonly', async () => {
-    const wrapper = mount(CurrencyField, { propsData: { ...defaultProps, readonly: true, value: '3' } });
+    const wrapper = mount(CurrencyField, { props: { ...defaultProps, readonly: true, modelValue: '3' } });
     await wrapper.vm.$nextTick();
     const labeledClass = wrapper.find('label[data-testid="currency-input-label"]').element.className.includes('labeled');
     expect(labeledClass).toBeTruthy();
   });
 
   it('Should have labeled class if showPrefix is given', async () => {
-    const wrapper = mount(CurrencyField, { propsData: { ...defaultProps, showPrefix: true } });
+    const wrapper = mount(CurrencyField, { props: { ...defaultProps, showPrefix: true } });
     await wrapper.vm.$nextTick();
     const labeledClass = wrapper.find('label[data-testid="currency-input-label"]').element.className.includes('labeled');
     expect(labeledClass).toBeTruthy();
   });
 
   it('Should have labeled class if value is given', async () => {
-    const wrapper = mount(CurrencyField, { propsData: { ...defaultProps, value: '3423' } });
+    const wrapper = mount(CurrencyField, { props: { ...defaultProps, modelValue: '3423' } });
     await wrapper.vm.$nextTick();
     const labeledClass = wrapper.find('label[data-testid="currency-input-label"]').element.className.includes('labeled');
     expect(labeledClass).toBeTruthy();
   });
 
   it('Should NOT have labeled class if readOnly && showPrefix && value are not given', async () => {
-    const wrapper = mount(CurrencyField, { propsData: { ...defaultProps } });
+    const wrapper = mount(CurrencyField, { props: { ...defaultProps } });
     await wrapper.vm.$nextTick();
     const noLabeledClass = !wrapper.find('label[data-testid="currency-input-label"]').element.className.includes('labeled');
     expect(noLabeledClass).toBeTruthy();
   });
 
   it('Should show given children inside field-label', async () => {
-    const wrapper = mount(CurrencyField, { slots: { default: '<span data-testid="currency-input-child">Child</span>' }, propsData: { ...defaultProps } });
+    const wrapper = mount(CurrencyField, { slots: { default: '<span data-testid="currency-input-child">Child</span>' }, props: { ...defaultProps } });
     await wrapper.vm.$nextTick();
     const showingChildren = wrapper.find('span[data-testid="currency-input-child"]').exists();
     expect(showingChildren).toBeTruthy();
@@ -96,29 +97,27 @@ describe('CurrencyField unit test', () => {
   });
 
   it('Should emit input event when value changed', async () => {
-    const wrapper = mount(CurrencyField, { propsData: { ...defaultProps, value: '' } });
+    const wrapper = mount(CurrencyField, { props: { ...defaultProps, modelValue: '' } });
     await wrapper.vm.$nextTick();
     wrapper.find('input').element.value = '1234';
     wrapper.find('input').trigger('input');
     await wrapper.vm.$nextTick();
-    const inputEventIsEmitted = wrapper.emitted().input;
-    expect(inputEventIsEmitted).toBeTruthy();
+    const inputEventIsEmitted = wrapper.emitted('update:modelValue');
+    expect(inputEventIsEmitted.length > 1).toBeTruthy();
   });
 
   it('Should provide current input value in the input event when value changed', async () => {
-    const givenValue = '123';
-    const wrapper = mount(CurrencyField, { propsData: { ...defaultProps, value: '' } });
+    const givenValue = 123;
+    const wrapper = mount(CurrencyField, { props: { ...defaultProps, modelValue: '' } });
     await wrapper.vm.$nextTick();
-    wrapper.find('input').element.value = givenValue;
-    wrapper.find('input').trigger('input');
+    await wrapper.find('input').setValue(givenValue);
     await wrapper.vm.$nextTick();
-    const inputEventValue = wrapper.emitted().input[0][0];
-    const inputEmittedValueIsCurrent = (inputEventValue.includes(givenValue));
-    expect(inputEmittedValueIsCurrent).toBeTruthy();
+    const inputEventValue = wrapper.emitted('update:modelValue')[1][0];
+    expect(inputEventValue).toBe(123);
   });
 
   it('Should emit blur event when is blurred', async () => {
-    const wrapper = mount(CurrencyField, { propsData: { ...defaultProps, value: '' } });
+    const wrapper = mount(CurrencyField, { props: { ...defaultProps, modelValue: '' } });
     await wrapper.vm.$nextTick();
     wrapper.find('input').trigger('blur');
     const blurEvent = wrapper.emitted().blur;
@@ -126,7 +125,7 @@ describe('CurrencyField unit test', () => {
   });
 
   it('Should emit focus event when is focused', async () => {
-    const wrapper = mount(CurrencyField, { propsData: { ...defaultProps, value: '' } });
+    const wrapper = mount(CurrencyField, { props: { ...defaultProps, modelValue: '' } });
     await wrapper.vm.$nextTick();
     wrapper.find('input').trigger('focus');
     const focusEvent = wrapper.emitted().focus;

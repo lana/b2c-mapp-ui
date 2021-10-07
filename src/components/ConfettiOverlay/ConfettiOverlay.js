@@ -1,5 +1,12 @@
+import Confetti from './Confetti.vue';
+
 const defaultCountOfParticles = 80;
 const maximumCountOfParticlesForSmoothPerformance = 200;
+const colors = ['blue', 'orange', 'pink', 'purple', 'red', 'yellow'];
+
+const components = {
+  Confetti,
+};
 
 const props = {
   particles: {
@@ -17,12 +24,19 @@ const props = {
 const computed = {
   countOfParticles() {
     const numericValue = Number.parseInt(this.particles, 10);
-    const result = (numericValue < maximumCountOfParticlesForSmoothPerformance) ? numericValue : maximumCountOfParticlesForSmoothPerformance;
+    const count = (numericValue < maximumCountOfParticlesForSmoothPerformance) ? numericValue : maximumCountOfParticlesForSmoothPerformance;
+    const result = [...Array(count).keys()].map((index) => ({
+      id: index,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      width: Math.random() * 10,
+      height: Math.random() * 100,
+    }));
     return result;
   },
 };
 
 const ConfettiOverlay = {
+  components,
   props,
   computed,
 };

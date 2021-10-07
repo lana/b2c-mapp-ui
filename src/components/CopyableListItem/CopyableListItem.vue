@@ -1,6 +1,8 @@
 <template>
-  <li :key="_uid" class="copyable-list-item" :data-testid="dataTestId">
-    <div class="item-icon" :data-testid="`${dataTestId}-icon`"><slot/></div>
+  <li :key="uniqueId" class="copyable-list-item" :data-testid="dataTestId">
+    <div class="item-icon" :data-testid="`${dataTestId}-icon`">
+      <slot/>
+    </div>
     <div class="item-text-container" :data-testid="`${dataTestId}-content`">
       <TextParagraph v-if="title"
                      class="title"

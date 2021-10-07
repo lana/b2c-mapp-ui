@@ -22,8 +22,8 @@ const AmountInputStories = {
   argTypes: {
     ...deviceDecorator.argTypes,
     value: { name: 'Value', control: { type: 'number' } },
-    locale: { name: 'Locale', control: { type: 'select', options: ['es-CL', 'es-MX'] } },
-    currency: { name: 'Currency', control: { type: 'select', options: ['CLP', 'MXN'] } },
+    locale: { name: 'Locale', control: 'select', options: ['es-CL', 'es-MX'] },
+    currency: { name: 'Currency', control: 'select', options: ['CLP', 'MXN'] },
     dataTestId: { control: { type: 'text' } },
     id: { control: { type: 'text' } },
     name: { control: { type: 'text' } },
@@ -35,26 +35,25 @@ const AmountInputStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     AmountInput,
   },
   data() {
     return {
       boundValue: `${this.value || ''}`,
-      unformattedValue: `${this.value || ''}`,
+      formattedValue: this.value || 0,
     };
   },
   watch: {
     value() {
       this.boundValue = `${this.value || 0}`;
     },
-    boundValue() {
-      this.unformattedValue = this.$refs.field.getUnformattedValue();
-    },
   },
   template: `
     <div style="height: 80%">
       <AmountInput v-model="boundValue"
+                   v-model:formattedValue="formattedValue"
                    :key="startFocused"
                    ref="field"
                    :currency="currency"
@@ -65,7 +64,7 @@ const defaultExample = (args, { argTypes }) => ({
       >
       </AmountInput>
       <p>bound value: {{boundValue}}</p>
-      <p>unformatted value: {{unformattedValue}}</p>
+      <p>formatted value: {{formattedValue}}</p>
     </div>
   `,
 });

@@ -28,6 +28,7 @@ const ForwardButtonStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ForwardButton,
     RenderString,
@@ -43,11 +44,11 @@ const defaultExample = (args, { argTypes }) => ({
   template: `
     <div style="height: 100vh;">
       <ForwardButton :disabled="disabled"
-                      :debounce="debounce"
-                      :debounce-delay="debounceDelay"
-                      @click="onClick"
+                     :debounce="debounce"
+                     :debounce-delay="debounceDelay"
+                     @click="onClick"
       >
-        <RenderString :string="defaultSlot" />
+        <RenderString :string="defaultSlot" v-if="defaultSlot"/>
       </ForwardButton>
     </div>
   `,

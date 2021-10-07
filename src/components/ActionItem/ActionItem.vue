@@ -16,7 +16,9 @@
       >
         {{ title }}
       </TextParagraph>
-      <TextParagraph v-if="description" :color="descriptionTextColor">{{ description }}</TextParagraph>
+      <TextParagraph v-if="description" :color="descriptionTextColor">
+        {{ description }}
+      </TextParagraph>
     </div>
   </li>
 </template>

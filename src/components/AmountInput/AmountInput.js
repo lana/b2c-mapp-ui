@@ -1,14 +1,12 @@
-import { CurrencyDirective, getValue, setValue, parse } from 'vue-currency-input';
-import ContentEditable from 'vue-contenteditable/src/contenteditable.vue';
+import { nextTick } from 'vue';
+import ContentEditable from 'vue-contenteditable';
 
+import CurrencyInput from '../CurrencyInput/CurrencyInput.vue';
 import { escapeRegExp } from '../../lib/regexHelper';
 
 const components = {
   ContentEditable,
-};
-
-const directives = {
-  currency: CurrencyDirective,
+  CurrencyInput,
 };
 
 const props = {
@@ -16,9 +14,9 @@ const props = {
     type: String,
     default: 'amount-input',
   },
-  value: {
+  modelValue: {
     type: [String, Number],
-    default: '0',
+    default: 0,
   },
   currency: {
     type: [String],
@@ -40,12 +38,23 @@ const props = {
 };
 
 const data = function () {
+  const currencyOptions = {
+    currency: this.currency,
+    locale: this.locale,
+    currencyDisplay: 'hidden',
+    distractionFree: false,
+    allowNegative: false,
+  };
   return {
     isFocused: false,
-    inputValue: `${this.value || '0'}`,
-    currencyValue: `${this.value || '0'}`,
+    inputValue: `${this.modelValue || '0'}`,
+    formattedValue: `${this.modelValue || '0'}`,
+    currencyValue: Number(this.modelValue || 0),
+    currencyOptions,
   };
 };
+
+const emits = ['update:modelValue', 'update:formattedValue', 'focus', 'blur', 'keypress', 'keyup', 'paste'];
 
 const computed = {
   inputId() {
@@ -79,20 +88,7 @@ const computed = {
   },
   numericInputValue() {
     if (!this.inputValue) { return '0'; }
-    const result = `${Number(this.truncatedInputValue) || 0}`;
-    return result;
-  },
-  currencyOptions() {
-    const result = {
-      currency: null,
-      precision: {
-        min: 0,
-        max: this.currencyPrecision,
-      },
-      locale: this.locale,
-      distractionFree: false,
-      allowNegative: false,
-    };
+    const result = Number(this.truncatedInputValue) || 0;
     return result;
   },
 };
@@ -110,8 +106,11 @@ const methods = {
     if (!this.$refs.input) { return; }
     this.$refs.input.blur();
   },
-  emitInputEvent() {
-    this.$emit('input', this.currencyValue);
+  emitUpdateModelValueEvent() {
+    this.$emit('update:modelValue', this.currencyValue);
+  },
+  emitFormattedEvent() {
+    this.$emit('update:formattedValue', this.formattedValue);
   },
   onFocus(event) {
     this.toggleFocus(true);
@@ -132,14 +131,10 @@ const methods = {
   onPaste(event) {
     this.$emit('paste', event);
   },
-  getUnformattedValue() {
-    const result = getValue(this.$refs.input);
-    return result;
-  },
   async fitTextContainer() {
     let inputFontSize = 48;
     this.$refs.content.$el.style.fontSize = null;
-    await this.$nextTick();
+    await nextTick();
     let inputWidth = this.$refs.content.$el.offsetWidth;
     const containerWidth = this.$refs.content.$el.parentElement.offsetWidth;
     while (inputWidth > containerWidth) {
@@ -154,32 +149,33 @@ const watch = {
   inputValue() {
     this.fitTextContainer();
     if (!this.isFocused) { return; }
-    const newValue = parse(this.numericInputValue, { ...this.currencyOptions, currency: this.currency });
-    setValue(this.$refs.input, newValue);
+    this.currencyValue = this.numericInputValue;
   },
   currencyValue() {
-    this.emitInputEvent();
+    this.emitUpdateModelValueEvent();
     if (this.isFocused) { return; }
     this.inputValue = `${this.currencyValue}`;
   },
-  value() {
-    if (!this.value) { return; }
-    const newValue = parse(`${this.value}` || '0', { ...this.currencyOptions, currency: this.currency });
-    setValue(this.$refs.input, newValue);
+  formattedValue() {
+    this.emitFormattedEvent();
+  },
+  modelValue() {
+    if (!this.modelValue) { return; }
+    this.currencyValue = this.modelValue;
     if (this.isFocused) { return; }
-    this.inputValue = this.currencyValue;
+    this.inputValue = this.formattedValue;
   },
   isFocused() {
     if (this.disabled || this.readonly) { return; }
-    const newValue = parse(this.numericInputValue, { ...this.currencyOptions, currency: this.currency });
+    this.currencyValue = this.numericInputValue;
     if (!this.isFocused) {
-      if (!newValue) {
-        this.currencyValue = '0';
+      if (!this.numericInputValue) {
+        this.currencyValue = 0;
       }
-      this.inputValue = `${this.currencyValue}`;
+      this.inputValue = `${this.formattedValue}`;
       return;
     }
-    this.inputValue = `${newValue}`;
+    this.inputValue = `${this.numericInputValue}`;
   },
 };
 
@@ -189,8 +185,8 @@ const mounted = function () {
 
 const AmountInput = {
   components,
-  directives,
   props,
+  emits,
   computed,
   data,
   methods,

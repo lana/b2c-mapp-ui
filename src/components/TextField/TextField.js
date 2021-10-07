@@ -16,7 +16,7 @@ const props = {
     default: 'text',
   },
   maxLength: Number,
-  value: {
+  modelValue: {
     type: String,
     default: '',
   },
@@ -33,9 +33,11 @@ const props = {
   hideClearButton: Boolean,
 };
 
+const emits = ['update:modelValue', 'focus', 'blur', 'keypress', 'keyup', 'paste'];
+
 const data = function () {
   return {
-    inputValue: this.value,
+    inputValue: this.modelValue,
   };
 };
 
@@ -47,8 +49,8 @@ const computed = {
 };
 
 const methods = {
-  emitInputEvent() {
-    this.$emit('input', this.inputValue);
+  emitUpdateModelValueEvent() {
+    this.$emit('update:modelValue', this.inputValue);
   },
   focus() {
     if (!this.$refs.field) { return; }
@@ -77,10 +79,10 @@ const methods = {
 
 const watch = {
   inputValue() {
-    this.emitInputEvent();
+    this.emitUpdateModelValueEvent();
   },
-  value() {
-    this.inputValue = this.value;
+  modelValue() {
+    this.inputValue = this.modelValue;
   },
 };
 
@@ -88,6 +90,7 @@ const TextField = {
   components,
   computed,
   props,
+  emits,
   data,
   methods,
   watch,

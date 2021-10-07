@@ -9,7 +9,9 @@
     />
     <div :data-testid="`${dataTestId}-content`" class="dialog">
       <Wrapper>
-        <Heading v-if="title" :data-test-id="`${dataTestId}-title`">{{ title }}</Heading>
+        <Heading v-if="title" :data-test-id="`${dataTestId}-title`">
+          {{ title }}
+        </Heading>
         <TextParagraph v-if="description"
                        class="description"
                        :data-test-id="`${dataTestId}-description`"

@@ -1,6 +1,6 @@
 @import '../../styles/colors';
 
-$colors: ($blue-600, $orange-500, $pink-600, $purple-400, $red-500, $yellow-500);
+$colors: "blue" $blue-600, "orange" $orange-500, "pink" $pink-600, "purple" $purple-400, "red" $red-500, "yellow" $yellow-500;
 
 .wrapper {
   position: absolute;
@@ -11,32 +11,18 @@ $colors: ($blue-600, $orange-500, $pink-600, $purple-400, $red-500, $yellow-500)
   overflow: hidden;
 }
 
-[class|="confetti"] {
+.confetti-container {
   position: absolute;
+  top: -10%;
 }
 
-@for $i from 0 through 150 {
-  $particleWidth: random(10);
-  $particleHeight: random(100);
-  .confetti-#{$i} {
-    visibility: hidden;
-    width: #{$particleWidth}px;
-    height: #{$particleWidth*0.8}px;
-    background-color: nth($colors, random(3));
-    top: -10%;
-    left: unquote($particleHeight+"%");
-    opacity: random() + 0.5;
-    transform: rotate(#{random()*360}deg);
-    animation: drop-#{$i} unquote(2+random()+"s") unquote(random()+"s") ease-in;
-  }
+:deep(.confetti) {
+  width: 100%;
+  height: 100%;
 
-  @keyframes drop-#{$i} {
-    10% {
-      visibility: visible;
-    }
-    100% {
-      top: 110%;
-      transform: translateX(unquote($particleHeight+random(15)+"%"));
+  @each $colorName, $color in $colors {
+    &.#{$colorName} {
+      background-color: $color;
     }
   }
 }

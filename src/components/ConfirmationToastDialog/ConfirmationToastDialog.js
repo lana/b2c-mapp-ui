@@ -21,7 +21,7 @@ const props = {
   description: String,
   confirmButtonText: String,
   secondaryButtonText: String,
-  value: Boolean,
+  modelValue: Boolean,
   loading: Boolean,
   loadingText: {
     type: String,
@@ -30,15 +30,17 @@ const props = {
   disabled: Boolean,
 };
 
+const emits = ['update:modelValue', 'dismiss', 'confirm', 'secondary'];
+
 const data = function () {
   return {
-    isShowing: this.value,
+    isShowing: this.modelValue,
   };
 };
 
 const methods = {
-  emitInputEvent() {
-    this.$emit('input', this.isShowing);
+  emitUpdateModelValueEvent() {
+    this.$emit('update:modelValue', this.isShowing);
     if (!this.isShowing) { this.$emit('dismiss'); }
   },
   onConfirm() {
@@ -56,16 +58,17 @@ const methods = {
 
 const watch = {
   isShowing() {
-    this.emitInputEvent();
+    this.emitUpdateModelValueEvent();
   },
-  value() {
-    this.isShowing = this.value;
+  modelValue() {
+    this.isShowing = this.modelValue;
   },
 };
 
 const ConfirmationToastDialog = {
   components,
   props,
+  emits,
   data,
   methods,
   watch,

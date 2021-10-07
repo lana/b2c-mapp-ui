@@ -78,7 +78,7 @@
   width: 24px;
   margin-right: 8px;
 
-  ::v-deep path {
+  :deep(path) {
     fill: $red-500;
   }
 }

@@ -26,6 +26,7 @@ const HeadingStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     Heading,
     RenderString,
@@ -40,7 +41,7 @@ const defaultExample = (args, { argTypes }) => ({
       <Heading :size="size"
                 :weight="weight"
       >
-        <RenderString :string="defaultSlot" />
+        <RenderString :string="defaultSlot" v-if="defaultSlot" />
       </Heading>
     </div>
   `,
@@ -61,6 +62,7 @@ defaultExample.parameters = {
 
 const weights = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     Heading,
   },
@@ -105,6 +107,7 @@ weights.parameters = {
 
 const sizes = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     Heading,
   },

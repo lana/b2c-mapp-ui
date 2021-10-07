@@ -36,6 +36,8 @@ const data = function () {
   };
 };
 
+const emits = ['actionConfirmed'];
+
 const computed = {
   instructionLabel() {
     if (this.isCompleted) { return this.completedLabel; }
@@ -110,10 +112,12 @@ const methods = {
     this.slideButtonStyle.left = `${buttonLeftPosition}px`;
   },
   getButtonWidth() {
+    if (!this.$refs.slideButton) { return; }
     const [{ width }] = this.$refs.slideButton.getClientRects();
     return width;
   },
   hasSliderReachedEndPoint() {
+    if (!this.$refs.slideButton) { return; }
     const [{ right }] = this.$refs.slideButton.getClientRects();
     const result = (right >= this.endPoint);
     return result;
@@ -130,7 +134,7 @@ const mounted = function () {
   document.addEventListener('mouseup', this.endSlide);
 };
 
-const destroyed = function () {
+const unmounted = function () {
   document.removeEventListener('mousemove', this.continueSlide);
   document.removeEventListener('mouseup', this.endSlide);
 };
@@ -138,11 +142,12 @@ const destroyed = function () {
 const WrappedButton = {
   components,
   props,
+  emits,
   data,
   computed,
   methods,
   mounted,
-  destroyed,
+  unmounted,
 };
 
 export default WrappedButton;

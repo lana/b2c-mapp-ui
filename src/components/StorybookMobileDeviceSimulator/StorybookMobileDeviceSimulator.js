@@ -14,7 +14,7 @@ const deviceNameLookup = {
   huaweiMate20Lite: 'Huawei Mate 20 Lite',
 };
 
-const availableDevices = Object.values(deviceNameLookup);
+const getAvailableDevices = () => Object.values(deviceNameLookup);
 
 const deviceNameToResolutionLookup = {
   [deviceNameLookup.default]: {
@@ -67,7 +67,7 @@ const props = {
   device: {
     type: String,
     default: deviceNameLookup.default,
-    validator(value) { return (availableDevices.includes(value)); },
+    validator(value) { return (getAvailableDevices().includes(value)); },
   },
 };
 
@@ -83,6 +83,6 @@ const StorybookMobileDeviceSimulator = {
   computed,
 };
 
-export { availableDevices };
+export { getAvailableDevices };
 
 export default StorybookMobileDeviceSimulator;

@@ -1,8 +1,9 @@
 import StorybookMobileDeviceSimulator from './StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from './StorybookMobileDeviceSimulator';
+import { getAvailableDevices } from './StorybookMobileDeviceSimulator';
 import { createScreenDecorator } from '../../lib/storybookHelpers';
 import RenderString from '../../lib/renderString';
 
+const availableDevices = getAvailableDevices();
 const screenDecorator = createScreenDecorator('<strong>StorybookMobileDeviceSimulator:</strong>&nbsp;A minimal mobile device simulator for helping visualize Storybook stories as a mobile device.');
 
 const StorybookMobileDeviceSimulatorStories = {
@@ -21,6 +22,7 @@ const StorybookMobileDeviceSimulatorStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     StorybookMobileDeviceSimulator,
     RenderString,

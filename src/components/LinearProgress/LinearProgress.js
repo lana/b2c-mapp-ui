@@ -21,6 +21,8 @@ const props = {
   circularAnimation: Boolean,
 };
 
+const emits = ['animationend', 'error'];
+
 const computed = {
   progressPercentage() {
     const result = (this.percentage || ((this.progress / this.total) * 100) || 0);
@@ -78,6 +80,7 @@ const mounted = function () {
 
 const LinearProgress = {
   props,
+  emits,
   computed,
   methods,
   mounted,

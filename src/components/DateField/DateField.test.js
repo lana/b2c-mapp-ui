@@ -17,7 +17,7 @@ describe('DateField unit test', () => {
   };
 
   it('Should NOT display error label if field is empty', () => {
-    const { getByTestId } = render(DateField, { propsData: { ...defaultProps } });
+    const { getByTestId } = render(DateField, { props: { ...defaultProps } });
     const labelHasNotError = !getByTestId('date-field-label').className.includes('error');
     expect(labelHasNotError).toBeTruthy();
   });
@@ -25,7 +25,7 @@ describe('DateField unit test', () => {
   it('Should apply given name and prefix to date-field-input ', async () => {
     const givenName = 'test';
     const prefixedName = 'date-field-test';
-    const wrapper = mount(DateField, { propsData: { ...defaultProps, datePicker: true, name: givenName } });
+    const wrapper = mount(DateField, { props: { ...defaultProps, datePicker: true, name: givenName } });
     const dateField = wrapper.find('input[data-testid="date-field-input"]');
     await wrapper.vm.$nextTick();
     const dateFieldName = dateField.element.getAttribute('name');
@@ -35,7 +35,7 @@ describe('DateField unit test', () => {
 
   it('Should apply given prefix to date-field-input if name is not given', async () => {
     const prefixedName = 'date-field';
-    const wrapper = mount(DateField, { propsData: { ...defaultProps, datePicker: true } });
+    const wrapper = mount(DateField, { props: { ...defaultProps, datePicker: true } });
     const dateField = wrapper.find('input[data-testid="date-field-input"]');
     await wrapper.vm.$nextTick();
     const dateFieldName = dateField.element.getAttribute('name');
@@ -45,10 +45,9 @@ describe('DateField unit test', () => {
 
   it('Should show error label if wrong value is applied', async () => {
     const wrongDate = '34-23-3333';
-    const wrapper = mount(DateField, { propsData: { ...defaultProps } });
+    const wrapper = mount(DateField, { props: { ...defaultProps } });
     const dateInput = wrapper.find('input[data-testid="date-field-input"');
-    dateInput.element.setAttribute('value', wrongDate);
-    dateInput.trigger('input');
+    await dateInput.setValue(wrongDate);
     await wrapper.vm.$nextTick();
     const labelHasError = wrapper.find('div[data-testid="date-field-container"]').classes().includes('error');
     expect(labelHasError).toBeTruthy();
@@ -56,10 +55,9 @@ describe('DateField unit test', () => {
 
   it('Should show error label if value seems to be valid but is not', async () => {
     const wrongDate = '29-02-2019';
-    const wrapper = mount(DateField, { propsData: { ...defaultProps } });
+    const wrapper = mount(DateField, { props: { ...defaultProps } });
     const dateInput = wrapper.find('input[data-testid="date-field-input"');
-    dateInput.element.setAttribute('value', wrongDate);
-    dateInput.trigger('input');
+    await dateInput.setValue(wrongDate);
     await wrapper.vm.$nextTick();
     const labelHasError = wrapper.find('div[data-testid="date-field-container"]').classes().includes('error');
     expect(labelHasError).toBeTruthy();
@@ -67,10 +65,9 @@ describe('DateField unit test', () => {
 
   it('Should not display error label if field value is valid', async () => {
     const goodDate = '20/10/2018';
-    const wrapper = mount(DateField, { propsData: { ...defaultProps } });
+    const wrapper = mount(DateField, { props: { ...defaultProps } });
     const dateInput = wrapper.find('input[data-testid="date-field-input"');
-    dateInput.element.setAttribute('value', goodDate);
-    dateInput.trigger('input');
+    await dateInput.setValue(goodDate);
     await wrapper.vm.$nextTick();
     const labelHasNotError = !wrapper.find('label[data-testid="date-field-label"]').classes().includes('error');
     expect(labelHasNotError).toBeTruthy();
@@ -79,10 +76,9 @@ describe('DateField unit test', () => {
   it('Should apply autoformat if is given by props', async () => {
     const unformattedDate = '20/10';
     const formattedDate = '20/10/';
-    const wrapper = mount(DateField, { propsData: { ...defaultProps } });
+    const wrapper = mount(DateField, { props: { ...defaultProps } });
     const dateInput = wrapper.find('input[data-testid="date-field-input"');
-    dateInput.element.setAttribute('value', unformattedDate);
-    dateInput.trigger('input');
+    await dateInput.setValue(unformattedDate);
     await wrapper.vm.$nextTick();
     const autoFormatIsApplied = dateInput.element.value === formattedDate;
     expect(autoFormatIsApplied).toBeTruthy();
@@ -90,12 +86,9 @@ describe('DateField unit test', () => {
 
   it('Should show date picked using datapicker', async () => {
     const goodDate = '20/10/2018';
-    const wrapper = mount(DateField, { propsData: { ...defaultProps, datePicker: true } });
+    const wrapper = mount(DateField, { props: { ...defaultProps, datePicker: true } });
     const datePicker = wrapper.find('input[data-testid="date-field-datepicker-input"]');
-    datePicker.element.setAttribute('value', goodDate);
-    datePicker.trigger('focus');
-    datePicker.trigger('change');
-    datePicker.trigger('blur');
+    await datePicker.setValue(goodDate);
     await wrapper.vm.$nextTick();
     const dateInput = wrapper.find('input[data-testid="date-field-input"]');
     const hasGivenValueFromDatePicker = dateInput.element.value === datePicker.element.value;
@@ -104,11 +97,9 @@ describe('DateField unit test', () => {
 
   it('Should emit a validation event when its value changed', async () => {
     const goodDate = '20/10/2018';
-    const wrapper = mount(DateField, { propsData: { ...defaultProps } });
+    const wrapper = mount(DateField, { props: { ...defaultProps } });
     const dateInput = wrapper.find('input[data-testid="date-field-input"');
-    dateInput.element.setAttribute('value', goodDate);
-    dateInput.trigger('input');
-    dateInput.trigger('change', goodDate);
+    await dateInput.setValue(goodDate);
     await wrapper.vm.$nextTick();
     const validationEmittedEvent = wrapper.emitted().validate;
     expect(validationEmittedEvent).toBeTruthy();
@@ -117,11 +108,9 @@ describe('DateField unit test', () => {
   it('Should provide current value and id in validation emitted event when its value changed', async () => {
     const goodDate = '20/10/2018';
     const givenId = 'dateInputId';
-    const wrapper = mount(DateField, { propsData: { ...defaultProps, id: givenId } });
+    const wrapper = mount(DateField, { props: { ...defaultProps, id: givenId } });
     const dateInput = wrapper.find('input[data-testid="date-field-input"');
-    dateInput.element.setAttribute('value', goodDate);
-    dateInput.trigger('input');
-    dateInput.trigger('change', goodDate);
+    await dateInput.setValue(goodDate);
     await wrapper.vm.$nextTick();
     const validationEvent = wrapper.emitted().validate[0][0];
     const validationEventValueIsCurrentDate = validationEvent.value === goodDate;
@@ -131,7 +120,7 @@ describe('DateField unit test', () => {
   });
 
   it('Should emit focus event when is focused', async () => {
-    const wrapper = mount(DateField, { propsData: { ...defaultProps } });
+    const wrapper = mount(DateField, { props: { ...defaultProps } });
     const dateInput = wrapper.find('input[data-testid="date-field-input"');
     dateInput.trigger('focus');
     await wrapper.vm.$nextTick();
@@ -140,7 +129,7 @@ describe('DateField unit test', () => {
   });
 
   it('Should emit blur event when is blurred', async () => {
-    const wrapper = mount(DateField, { propsData: { ...defaultProps } });
+    const wrapper = mount(DateField, { props: { ...defaultProps } });
     const dateInput = wrapper.find('input[data-testid="date-field-input"');
     dateInput.trigger('focus');
     dateInput.trigger('blur');
@@ -149,18 +138,18 @@ describe('DateField unit test', () => {
     expect(blurEmittedEvent).toBeTruthy();
   });
 
-  it('Should apply given input value: ', async () => {
+  it('Should apply given input value', async () => {
     const newValue = '2';
-    const wrapper = mount(DateField, { propsData: { ...defaultProps, value: newValue } });
-    wrapper.vm.$options.watch.value.call(wrapper.vm, newValue);
+    const wrapper = mount(DateField, { props: { ...defaultProps, modelValue: newValue } });
+    wrapper.vm.$options.watch.modelValue.call(wrapper.vm, newValue);
     await wrapper.vm.$nextTick();
     expect(wrapper.vm.$data.inputValue).toEqual(newValue);
   });
 
   it('Should apply given input value if autoformat is not given: ', async () => {
     const newValue = '2303';
-    const wrapper = mount(DateField, { propsData: { ...defaultProps, autoformat: false, value: newValue } });
-    wrapper.vm.$options.watch.value.call(wrapper.vm, newValue);
+    const wrapper = mount(DateField, { props: { ...defaultProps, autoformat: false, modelValue: newValue } });
+    wrapper.vm.$options.watch.modelValue.call(wrapper.vm, newValue);
     await wrapper.vm.$nextTick();
     expect(wrapper.vm.$data.inputValue).toEqual(newValue);
   });
@@ -168,11 +157,9 @@ describe('DateField unit test', () => {
   describe('Datepicker behavior:', () => {
     it('Should emit a validation event when its value changed : ', async () => {
       const goodDate = '2020-04-02';
-      const wrapper = mount(DateField, { propsData: { ...defaultProps, datePicker: true } });
+      const wrapper = mount(DateField, { props: { ...defaultProps, datePicker: true } });
       const datePicker = wrapper.find('input[data-testid="date-field-datepicker-input"]');
-      datePicker.element.setAttribute('value', goodDate);
-      datePicker.trigger('input');
-      datePicker.trigger('change', goodDate);
+      await datePicker.setValue(goodDate);
       await wrapper.vm.$nextTick();
       const validationEvent = wrapper.emitted().validate;
       expect(validationEvent).toBeTruthy();
@@ -182,11 +169,9 @@ describe('DateField unit test', () => {
       const goodDate = '2020-04-02';
       const formattedDate = '02/04/2020';
       const givenId = 'dateInputId';
-      const wrapper = mount(DateField, { propsData: { ...defaultProps, datePicker: true, id: givenId } });
+      const wrapper = mount(DateField, { props: { ...defaultProps, datePicker: true, id: givenId } });
       const datePicker = wrapper.find('input[data-testid="date-field-datepicker-input"]');
-      datePicker.element.setAttribute('value', goodDate);
-      datePicker.trigger('input');
-      datePicker.trigger('change', goodDate);
+      await datePicker.setValue(goodDate);
       await wrapper.vm.$nextTick();
       const validationEvent = wrapper.emitted().validate[0][0];
       const validationEventValueIsCurrentDate = validationEvent.value === formattedDate;
@@ -197,12 +182,10 @@ describe('DateField unit test', () => {
 
     it('Should get value from main date input', async () => {
       const goodDate = '20/10/2018';
-      const wrapper = mount(DateField, { propsData: { ...defaultProps, datePicker: true } });
+      const wrapper = mount(DateField, { props: { ...defaultProps, datePicker: true } });
       const dateInput = wrapper.find('input[data-testid="date-field-input"');
       const datePicker = wrapper.find('input[data-testid="date-field-datepicker-input"]');
-      dateInput.element.setAttribute('value', goodDate);
-      dateInput.trigger('input');
-      dateInput.trigger('change', goodDate);
+      await dateInput.setValue(goodDate);
       await wrapper.vm.$nextTick();
       const calendarDateIsChanged = datePicker.element.value === '2018-10-20';
       expect(calendarDateIsChanged).toBeTruthy();
@@ -212,7 +195,7 @@ describe('DateField unit test', () => {
       const givenName = 'test';
       const prefixedName = 'input-date-test';
       const givenId = 'idPicker';
-      const wrapper = mount(DateField, { propsData: { ...defaultProps, datePicker: true, id: givenId, name: givenName } });
+      const wrapper = mount(DateField, { props: { ...defaultProps, datePicker: true, id: givenId, name: givenName } });
       const datePicker = wrapper.find('input[data-testid="date-field-datepicker-input"]');
       await wrapper.vm.$nextTick();
       const datePickerName = datePicker.element.getAttribute('name');
@@ -222,7 +205,7 @@ describe('DateField unit test', () => {
 
     it('Should apply given prefix to datepicker input field if name is not given', async () => {
       const prefixedName = 'input-date';
-      const wrapper = mount(DateField, { propsData: { ...defaultProps, datePicker: true } });
+      const wrapper = mount(DateField, { props: { ...defaultProps, datePicker: true } });
       const datePicker = wrapper.find('input[data-testid="date-field-datepicker-input"]');
       await wrapper.vm.$nextTick();
       const datePickerName = datePicker.element.getAttribute('name');

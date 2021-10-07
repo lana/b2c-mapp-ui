@@ -14,15 +14,17 @@ const props = {
     type: String,
     default: '',
   },
-  value: Boolean,
+  modelValue: Boolean,
   id: String,
   disabled: Boolean,
   hasError: Boolean,
 };
 
+const emits = ['update:modelValue'];
+
 const data = function () {
   return {
-    isChecked: this.value,
+    isChecked: this.modelValue,
     fallbackId: `${this._uid}checkbox`, // eslint-disable-line no-underscore-dangle
   };
 };
@@ -35,23 +37,24 @@ const computed = {
 };
 
 const methods = {
-  emitInputEvent() {
-    this.$emit('input', this.isChecked);
+  emitUpdateModelValueEvent() {
+    this.$emit('update:modelValue', this.isChecked);
   },
 };
 
 const watch = {
   isChecked() {
-    this.emitInputEvent();
+    this.emitUpdateModelValueEvent();
   },
-  value() {
-    this.isChecked = this.value;
+  modelValue() {
+    this.isChecked = this.modelValue;
   },
 };
 
 const Checkbox = {
   components,
   props,
+  emits,
   data,
   computed,
   methods,

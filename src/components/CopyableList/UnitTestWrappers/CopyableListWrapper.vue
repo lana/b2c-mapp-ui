@@ -22,9 +22,11 @@
       >
         <TouchIdIcon/>
       </CopyableListItem>
-      <div slot="content">
-        <p style="margin: 20px">Some example extra content</p>
-      </div>
+      <template v-slot:content>
+        <p style="margin: 20px">
+          Some example extra content
+        </p>
+      </template>
     </CopyableList>
   </section>
 </template>

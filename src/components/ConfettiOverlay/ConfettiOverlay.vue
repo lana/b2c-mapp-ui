@@ -1,8 +1,10 @@
 <template>
   <div class="wrapper">
-    <div v-for="index in countOfParticles"
-         :key="index"
-         :class="`confetti-${index}`"
+    <Confetti v-for="({ id, color, width, height }) in countOfParticles"
+              :key="id"
+              :color="color"
+              :width="width"
+              :height="height"
     />
   </div>
 </template>

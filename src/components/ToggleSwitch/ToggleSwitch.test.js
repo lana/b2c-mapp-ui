@@ -10,13 +10,13 @@ describe('UI/forms/ToggleSwitch', () => {
   });
 
   it('Should be checked if given checked prop is set to true', () => {
-    const { getByTestId } = render(ToggleSwitch, { propsData: { value: true } });
+    const { getByTestId } = render(ToggleSwitch, { props: { modelValue: true } });
     const inputIsChecked = getByTestId('toggle-wrapper').className.includes('checked');
     expect(inputIsChecked).toBeTruthy();
   });
 
   it('Should be unchecked if given checked prop is set to false', () => {
-    const { getByTestId } = render(ToggleSwitch, { propsData: { value: false } });
+    const { getByTestId } = render(ToggleSwitch, { props: { modelValue: false } });
     const inputIsNotChecked = !getByTestId('toggle-wrapper').className.includes('checked');
     expect(inputIsNotChecked).toBeTruthy();
   });
@@ -28,27 +28,27 @@ describe('UI/forms/ToggleSwitch', () => {
   });
 
   it('Should emit a input event when is checked/unchecked', async () => {
-    const wrapper = mount(ToggleSwitch, { propsData: { value: true } });
+    const wrapper = mount(ToggleSwitch, { props: { modelValue: true } });
     await wrapper.vm.$nextTick();
     wrapper.vm.$options.watch.isChecked.call(wrapper.vm);
     await wrapper.vm.$nextTick();
-    const emittedInput = wrapper.emitted().input;
+    const emittedInput = wrapper.emitted('update:modelValue');
     expect(emittedInput).toBeTruthy();
   });
 
   it('Should emit current value when is checked/unchecked', async () => {
-    const wrapper = mount(ToggleSwitch, { propsData: { value: true } });
+    const wrapper = mount(ToggleSwitch, { props: { modelValue: true } });
     await wrapper.vm.$nextTick();
     wrapper.vm.$options.watch.isChecked.call(wrapper.vm);
     await wrapper.vm.$nextTick();
-    const currentValueEmitted = wrapper.emitted().input[0][0];
+    const currentValueEmitted = wrapper.emitted('update:modelValue')[0][0];
     expect(currentValueEmitted).toBeTruthy();
   });
 
   it('Should takes given value', async () => {
-    const wrapper = mount(ToggleSwitch, { propsData: { value: true } });
+    const wrapper = mount(ToggleSwitch, { props: { modelValue: true } });
     await wrapper.vm.$nextTick();
-    wrapper.vm.$options.watch.value.call(wrapper.vm);
+    wrapper.vm.$options.watch.modelValue.call(wrapper.vm);
     await wrapper.vm.$nextTick();
     const takesGivenValue = wrapper.vm.$data.isChecked;
     expect(takesGivenValue).toBeTruthy();

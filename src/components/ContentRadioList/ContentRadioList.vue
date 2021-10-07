@@ -1,8 +1,8 @@
 <template>
   <section class="wrapper">
     <ul :data-testid="`${dataTestId}-select`">
-      <li v-for="({ title, metaText, value: optionValue, disabled }, index) in options"
-          :key="`${optionValue}-${index}`"
+      <li v-for="({ title, metaText, value: optionValue, disabled }) in options"
+          :key="`${optionValue}`"
           class="item"
           :class="{ checked: (selectedValue === optionValue) }"
           :data-testid="`${dataTestId}-option`"
@@ -12,14 +12,14 @@
           :class="{ checked: (selectedValue === optionValue) }"
           class="label"
           :data-testid="`${dataTestId}-option-label`"
-          :for="`${id}-${index}`"
+          :for="`${optionValue}`"
         >
-          <input :id="`${id}-${index}`"
+          <input :id="`${optionValue}`"
                  v-model="selectedValue"
                  :data-testid="`${dataTestId}-option-input`"
                  type="radio"
                  class="hidden"
-                 :name="`${id}-${index}`"
+                 :name="`${optionValue}`"
                  :value="optionValue"
                  :disabled="disabled"
           >

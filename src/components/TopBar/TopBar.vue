@@ -1,6 +1,8 @@
 <template>
   <header :data-testid="dataTestId" class="topbar">
-    <Heading class="headline title">{{ title }}</Heading>
+    <Heading class="headline title">
+      {{ title }}
+    </Heading>
   </header>
 </template>
 
