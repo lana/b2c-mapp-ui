@@ -3,14 +3,11 @@ import vue from '@vitejs/plugin-vue';
 import eslintPlugin from 'vite-plugin-eslint';
 import { resolve } from 'path';
 
-import libInjectCss from './src/lib/libInjectCss';
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     eslintPlugin(),
-    libInjectCss(),
   ],
   build: {
     lib: {
