@@ -1,6 +1,6 @@
 {
   "name": "@lana/b2c-mapp-ui",
-  "version": "9.0.1",
+  "version": "9.0.2",
   "description": "Shared custom libraries for building µapps.",
   "bugs": {
     "url": "https://github.com/lana/b2c-mapp-ui/issues"
@@ -33,12 +33,7 @@
   },
   "main": "./dist/b2c-mapp-ui.umd.js",
   "module": "./dist/b2c-mapp-ui.es.js",
-  "exports": {
-    ".": {
-      "require": "./dist/b2c-mapp-ui.umd.js",
-      "import": "./dist/b2c-mapp-ui.es.js"
-    }
-  },
+  "style": "./dist/style.css",
   "keywords": [
     "ui",
     "lana-ui"
