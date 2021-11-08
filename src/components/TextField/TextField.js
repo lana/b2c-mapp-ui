@@ -17,7 +17,7 @@ const props = {
   },
   maxLength: Number,
   modelValue: {
-    type: String,
+    type: [String, Number],
     default: '',
   },
   id: String,
@@ -31,6 +31,8 @@ const props = {
   lengthHintLabel: String,
   helpText: String,
   hideClearButton: Boolean,
+  inputmode: String,
+  pattern: String,
 };
 
 const emits = ['update:modelValue', 'focus', 'blur', 'keypress', 'keyup', 'paste'];

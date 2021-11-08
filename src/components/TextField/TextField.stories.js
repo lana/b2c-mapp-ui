@@ -23,6 +23,8 @@ const TextFieldStories = {
     helpText: '',
     hideClearButton: false,
     startFocused: false,
+    inputmode: '',
+    pattern: '',
   },
   argTypes: {
     ...deviceDecorator.argTypes,
@@ -38,6 +40,8 @@ const TextFieldStories = {
     helpText: { control: 'text', name: 'Help Text' },
     hideClearButton: { control: 'boolean', name: 'Hide Clear Button?' },
     startFocused: { control: 'boolean', name: 'Start Focused?' },
+    inputmode: { control: 'text', name: 'Inputmode' },
+    pattern: { control: 'text', name: 'Pattern' },
   },
 };
 
@@ -49,7 +53,7 @@ const defaultExample = (args, { argTypes }) => ({
   },
   data() {
     return {
-      value: this.value,
+      boundValue: this.value,
     };
   },
   methods: {
@@ -62,7 +66,7 @@ const defaultExample = (args, { argTypes }) => ({
   template: `
     <div>
       <div style="padding: 16px;">
-        <TextField v-model="value"
+        <TextField v-model="boundValue"
                    :type="type"
                    :disabled="disabled"
                    :readonly="readonly"
@@ -74,6 +78,8 @@ const defaultExample = (args, { argTypes }) => ({
                    :help-text="helpText"
                    :hide-clear-button="hideClearButton"
                    :start-focused="startFocused"
+                   :inputmode="inputmode"
+                   :pattern="pattern"
                    @blur="onBlur"
                    @focus="onFocus"
                    @keypress="onKeypress"
@@ -83,7 +89,7 @@ const defaultExample = (args, { argTypes }) => ({
       </div>
       <br>
       <div style="margin: 20px;">
-        Bound value: {{ value }}
+        Bound value: {{ boundValue }}
       </div>
     </div>
   `,
@@ -103,6 +109,8 @@ defaultExample.parameters = {
            :length-hint-label="lengthHintLabel"
            :help-text="helpText"
            :hide-clear-button="hideClearButton"
+           :inputmode="inputmode"
+           :pattern="pattern"
            @blur="onBlur"
            @focus="onFocus"
            @keypress="onKeypress"

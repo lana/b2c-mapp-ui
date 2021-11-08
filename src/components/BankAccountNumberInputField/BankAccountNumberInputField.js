@@ -33,6 +33,8 @@ const props = {
   lengthHintLabel: String,
   helpText: String,
   hideClearButton: Boolean,
+  inputmode: String,
+  pattern: String,
 };
 
 const emits = ['update:modelValue', 'change', 'focus', 'blur'];
