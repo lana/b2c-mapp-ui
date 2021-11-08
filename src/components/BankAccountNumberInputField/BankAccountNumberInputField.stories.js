@@ -22,6 +22,8 @@ const BankAccountNumberInputFieldStories = {
     countryCode: 'MX',
     helpText: '',
     hideClearButton: false,
+    inputmode: false,
+    pattern: false,
   },
   argTypes: {
     ...deviceDecorator.argTypes,
@@ -36,6 +38,8 @@ const BankAccountNumberInputFieldStories = {
     countryCode: { name: 'Country Code', control: 'text' },
     helpText: { name: 'Help Text', control: 'text' },
     hideClearButton: { name: 'Hide Clear Button?', control: 'boolean' },
+    inputmode: { control: 'text', name: 'Inputmode' },
+    pattern: { control: 'text', name: 'Pattern' },
   },
 };
 
@@ -57,20 +61,22 @@ const defaultExample = (args, { argTypes }) => ({
   },
   template: `
     <div style="padding: 16px;">
-      <BankAccountNumberInputField :disabled="disabled"
-                                    :readonly="readonly"
-                                    :autoformat="autoformat"
-                                    :label="label"
-                                    :error-label="errorLabel"
-                                    :show-length-hint="showLengthHint"
-                                    :length-hint-label="lengthHintLabel"
-                                    :length-hint="lengthHint"
-                                    :help-text="helpText"
-                                    :hide-clear-button="hideClearButton"
-                                    v-model="value"
-                                    @blur="onBlur"
-                                    @focus="onFocus"
-                                    @change="onChange"
+      <BankAccountNumberInputField v-model="value"
+                                   :disabled="disabled"
+                                   :readonly="readonly"
+                                   :autoformat="autoformat"
+                                   :label="label"
+                                   :error-label="errorLabel"
+                                   :show-length-hint="showLengthHint"
+                                   :length-hint-label="lengthHintLabel"
+                                   :length-hint="lengthHint"
+                                   :help-text="helpText"
+                                   :hide-clear-button="hideClearButton"
+                                   :inputmode="inputmode"
+                                   :pattern="pattern"
+                                   @blur="onBlur"
+                                   @focus="onFocus"
+                                   @change="onChange"
       />
       <br>
       <div style="margin-left: 10px">
@@ -83,7 +89,8 @@ defaultExample.parameters = {
   docs: {
     source: {
       code: `
-<BankAccountNumberInputField :disabled="disabled"
+<BankAccountNumberInputField v-model="value"
+                             :disabled="disabled"
                              :readonly="readonly"
                              :autoformat="autoformat"
                              :label="label"
@@ -93,7 +100,8 @@ defaultExample.parameters = {
                              :length-hint="lengthHint"
                              :help-text="helpText"
                              :hide-clear-button="hideClearButton"
-                             v-model="value"
+                             :inputmode="inputmode"
+                             :pattern="pattern"
                              @blur="onBlur"
                              @focus="onFocus"
                              @change="onChange"

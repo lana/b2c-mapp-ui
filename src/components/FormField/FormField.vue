@@ -21,6 +21,8 @@
                :maxlength="maxLengthToUse"
                :readonly="readonly"
                :disabled="disabled"
+               :inputmode="inputmode"
+               :pattern="pattern"
                @focus="onFocus"
                @blur="onBlur"
                @paste="onPaste"

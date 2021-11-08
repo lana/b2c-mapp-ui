@@ -36,6 +36,8 @@ const props = {
   lengthHintLabel: String,
   helpText: String,
   hideClearButton: Boolean,
+  inputmode: String,
+  pattern: String,
 };
 
 const emits = ['update:modelValue', 'focus', 'blur', 'keypress', 'keyup', 'paste'];

@@ -24,6 +24,8 @@ const FormFieldStories = {
     lengthHint: null,
     lengthHintLabel: '',
     helpText: '',
+    inputmode: '',
+    pattern: '',
     default: '',
   },
   argTypes: {
@@ -40,6 +42,8 @@ const FormFieldStories = {
     lengthHint: { control: 'number', name: 'Length Hint' },
     lengthHintLabel: { control: 'text', name: 'Length Hint Label' },
     helpText: { control: 'text', name: 'Help Text' },
+    inputmode: { control: 'text', name: 'Inputmode' },
+    pattern: { control: 'text', name: 'Pattern' },
     default: { control: { type: 'text' }, table: { type: { summary: null } } },
   },
 };
@@ -84,6 +88,8 @@ const defaultExample = (args, { argTypes }) => ({
                    :help-text="helpText"
                    :hide-clear-button="hideClearButton"
                    :start-focused="startFocused"
+                   :inputmode="inputmode"
+                   :pattern="pattern"
                    @blur="onBlur"
                    @focus="onFocus"
                    @keypress="onKeypress"
@@ -115,6 +121,8 @@ defaultExample.parameters = {
            :length-hint-label="lengthHintLabel"
            :help-text="helpText"
            :hide-clear-button="hideClearButton"
+           :inputmode="inputmode"
+           :pattern="pattern"
            @blur="onBlur"
            @focus="onFocus"
            @keypress="onKeypress"
