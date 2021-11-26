@@ -20,6 +20,10 @@ const props = {
   modelValue: [String, Number],
   title: String,
   disabled: Boolean,
+  buttonMode: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 const emits = ['update:modelValue'];
