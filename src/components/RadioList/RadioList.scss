@@ -76,3 +76,54 @@
   font-family: Graphik, Roboto, sans-serif;
   color: $black-700;
 }
+
+.buttons {
+  padding: 4px;
+  border-radius: 104px;
+  background-color: $black-200;
+  display: flex;
+
+  input {
+    display: none;
+  }
+
+  .content {
+    text-align: center;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .label {
+    font-size: 14px;
+    color: $black-600;
+    cursor: pointer;
+    width: 100%;
+    line-height: 40px;
+  }
+
+  .item {
+    background-color: transparent;
+    width: 100%;
+    text-align: center;
+    min-height: 40px;
+    justify-content: center;
+
+    &.checked {
+      background-color: $black-100;
+      box-shadow: 0 0 4px #00000014;
+      border-radius: 104px;
+
+      .label {
+        font-weight: 600;
+        color: $purple-500;
+      }
+    }
+    &:hover {
+      .label {
+        font-weight: 600;
+        color: $purple-500;
+      }
+    }
+  }
+}

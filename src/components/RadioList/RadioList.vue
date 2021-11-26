@@ -3,7 +3,7 @@
     <Heading v-if="title" class="title">
       {{ title }}
     </Heading>
-    <ul :data-testid="`${dataTestId}-select`">
+    <ul :data-testid="`${dataTestId}-select`" :class="{ buttons: buttonMode}">
       <li v-for="({ label, htmlLabel, value: optionValue }, index) in options"
           :key="`${optionValue}-${index}`"
           class="item"
