@@ -53,7 +53,10 @@ const props = {
   },
 };
 
+const name = 'TextParagraph';
+
 const TextParagraph = {
+  name,
   props,
 };
 

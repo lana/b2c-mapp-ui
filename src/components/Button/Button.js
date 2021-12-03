@@ -29,11 +29,11 @@ const props = {
   dropShadow: Boolean,
   id: String,
   debounce: {
-    type: [Boolean],
+    type: Boolean,
     default: false,
   },
   debounceDelay: {
-    type: [Number],
+    type: Number,
     default: 400,
   },
 };
@@ -85,7 +85,10 @@ const methods = {
   },
 };
 
+const name = 'UiButton';
+
 const Button = {
+  name,
   components,
   props,
   emits,

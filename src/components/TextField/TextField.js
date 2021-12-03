@@ -88,7 +88,10 @@ const watch = {
   },
 };
 
+const name = 'TextField';
+
 const TextField = {
+  name,
   components,
   computed,
   props,

@@ -64,7 +64,10 @@ const watch = {
   },
 };
 
+const name = 'ConfirmationModalDialog';
+
 const ConfirmationModalDialog = {
+  name,
   components,
   props,
   emits,

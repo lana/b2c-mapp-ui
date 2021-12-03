@@ -1,12 +1,8 @@
 import { mount } from '@vue/test-utils';
 
 import AmountInput from './AmountInput.vue';
-import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
 
 describe('AmountInput unit test', () => {
-  beforeAll(() => {
-    silenceDeprecationErrorsAndInnerComponentWarnings(jest);
-  });
   const defaultProps = {
     name: 'my-input',
   };
@@ -23,7 +19,7 @@ describe('AmountInput unit test', () => {
   it('Should emit input event when value changed', async () => {
     const wrapper = mount(AmountInput, { props: { ...defaultProps, modelValue: '' } });
     await wrapper.vm.$nextTick();
-    wrapper.find('input').setValue('1234');
+    await wrapper.find('input').setValue('1234');
     await wrapper.vm.$nextTick();
     const inputEventIsEmitted = wrapper.emitted('update:modelValue');
     expect(inputEventIsEmitted).toBeTruthy();
@@ -34,6 +30,15 @@ describe('AmountInput unit test', () => {
     await wrapper.vm.$nextTick();
     const symbolText = wrapper.find('div[data-testid="amount-input-container"] .symbol').text();
     expect(symbolText).toBe('€');
+  });
+
+  it('Should show $1,999 for given value', async () => {
+    const wrapper = mount(AmountInput, { props: { ...defaultProps, currency: 'CLP', locale: 'es-CL', modelValue: 500 } });
+    await wrapper.vm.$nextTick();
+    await wrapper.find('div[data-testid="amount-input-container"]').trigger('blur');
+    const amountText = wrapper.find('div[data-testid="amount-input-container"]').text();
+    const expectedValue = (new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' })).format(500).replace(/\s/g, '');
+    expect(amountText).toBe(expectedValue);
   });
 
   it('Should provide current input value in the input event when value changed', async () => {
@@ -60,10 +65,10 @@ describe('AmountInput unit test', () => {
     const givenValue = 10000;
     const wrapper = mount(AmountInput, { props: { ...defaultProps, modelValue: '', currency: 'CLP', locale: 'es-CL' } });
     await wrapper.vm.$nextTick();
-    wrapper.find('input').setValue(givenValue);
-    await wrapper.vm.$nextTick();
+    await wrapper.find('input').setValue(givenValue);
+    const expectedValue = new Intl.NumberFormat('es-CL', { currency: 'CLP' }).format(10000);
     const formattedValueEventValue = wrapper.emitted('update:formattedValue')[0][0];
-    expect(formattedValueEventValue).toBe('10,000');
+    expect(formattedValueEventValue).toBe(expectedValue);
   });
 
   it('Should emit blur event when is blurred', async () => {

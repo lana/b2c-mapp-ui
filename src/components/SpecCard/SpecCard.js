@@ -16,7 +16,10 @@ const props = {
   titleAbove: Boolean,
 };
 
+const name = 'SpecCard';
+
 const SpecCard = {
+  name,
   components,
   props,
 };

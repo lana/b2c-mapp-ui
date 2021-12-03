@@ -11,6 +11,7 @@
                        class="input"
                        tabindex="0"
                        no-n-l
+                       :no-h-t-m-l="false"
                        inputmode="numeric"
                        pattern="\d*"
                        :data-testid="`${dataTestId}-input`"

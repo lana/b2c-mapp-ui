@@ -1,19 +1,21 @@
 <template>
-  <input
-    ref="inputRef"
-    :value="formattedValue"
+  <input ref="inputRef"
+         v-model="inputValue"
   >
 </template>
 
 <script>
-import { watch } from 'vue';
-import { useCurrencyInput } from 'vue-currency-input';
+import { useCurrencyInput, parse } from 'vue-currency-input';
 
 export default {
   name: 'CurrencyInput',
   props: {
     modelValue: {
       type: [Number, String],
+      default: null,
+    },
+    formattedValue: {
+      type: String,
       default: '',
     },
     options: {
@@ -21,17 +23,13 @@ export default {
       default: () => ({}),
     },
   },
-  emits: ['update:formattedValue'],
+  emits: ['update:formattedValue', 'update:modelValue'],
   setup(props) {
     const { inputRef,
-      formattedValue,
+      formattedValue: inputValue,
       setValue } = useCurrencyInput(props.options);
 
-    watch(() => props.modelValue, (value) => {
-      setValue(value);
-    });
-
-    return { inputRef, formattedValue };
+    return { inputRef, inputValue, setValue };
   },
   methods: {
     focus() {
@@ -42,8 +40,13 @@ export default {
     },
   },
   watch: {
-    formattedValue() {
-      this.$emit('update:formattedValue', this.formattedValue);
+    inputValue() {
+      this.$emit('update:formattedValue', this.inputValue);
+      const modelValue = parse(this.inputValue, this.options);
+      this.$emit('update:modelValue', modelValue);
+    },
+    modelValue() {
+      this.setValue(this.modelValue);
     },
   },
 };

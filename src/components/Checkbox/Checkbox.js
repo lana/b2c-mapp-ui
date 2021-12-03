@@ -51,7 +51,10 @@ const watch = {
   },
 };
 
+const name = 'Checkbox';
+
 const Checkbox = {
+  name,
   components,
   props,
   emits,

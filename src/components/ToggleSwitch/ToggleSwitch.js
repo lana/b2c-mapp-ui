@@ -51,7 +51,10 @@ const watch = {
   },
 };
 
+const name = 'ToggleSwitch';
+
 const ToggleSwitch = {
+  name,
   components,
   props,
   emits,

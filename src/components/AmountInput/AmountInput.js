@@ -38,19 +38,11 @@ const props = {
 };
 
 const data = function () {
-  const currencyOptions = {
-    currency: this.currency,
-    locale: this.locale,
-    currencyDisplay: 'hidden',
-    distractionFree: false,
-    allowNegative: false,
-  };
   return {
     isFocused: false,
     inputValue: `${this.modelValue || '0'}`,
     formattedValue: `${this.modelValue || '0'}`,
     currencyValue: Number(this.modelValue || 0),
-    currencyOptions,
   };
 };
 
@@ -77,6 +69,16 @@ const computed = {
   currencyPrecision() {
     const { fraction = '' } = this.currencyParts;
     const result = fraction.length;
+    return result;
+  },
+  currencyOptions() {
+    const result = {
+      currency: this.currency,
+      locale: this.locale,
+      currencyDisplay: 'hidden',
+      distractionFree: false,
+      allowNegative: false,
+    };
     return result;
   },
   truncatedInputValue() {
@@ -183,7 +185,10 @@ const mounted = function () {
   this.focusIfNeeded();
 };
 
+const name = 'AmountInput';
+
 const AmountInput = {
+  name,
   components,
   props,
   emits,

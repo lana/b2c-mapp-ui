@@ -6,7 +6,10 @@ const props = {
   modal: Boolean,
 };
 
+const name = 'Wrapper';
+
 const Wrapper = {
+  name,
   props,
 };
 

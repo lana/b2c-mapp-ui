@@ -56,7 +56,10 @@ const methods = {
   },
 };
 
+const name = 'BoxContentItem';
+
 const BoxContentItem = {
+  name,
   components,
   props,
   emits,

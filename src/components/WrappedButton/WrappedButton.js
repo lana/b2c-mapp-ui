@@ -42,7 +42,10 @@ const methods = {
   },
 };
 
+const name = 'WrappedButton';
+
 const WrappedButton = {
+  name,
   components,
   props,
   emits,

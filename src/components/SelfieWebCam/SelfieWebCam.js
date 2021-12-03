@@ -223,7 +223,10 @@ const beforeUnmount = function () {
   this.stop();
 };
 
+const name = 'SelfieWebCam';
+
 const SelfieWebCam = {
+  name,
   props,
   emits,
   data,

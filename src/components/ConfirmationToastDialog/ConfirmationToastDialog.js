@@ -65,7 +65,10 @@ const watch = {
   },
 };
 
+const name = 'ConfirmationToastDialog';
+
 const ConfirmationToastDialog = {
+  name,
   components,
   props,
   emits,

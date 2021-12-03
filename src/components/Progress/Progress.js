@@ -103,7 +103,10 @@ const mounted = function () {
   this.startAnimation();
 };
 
+const name = 'UiProgress';
+
 const Progress = {
+  name,
   components,
   props,
   emits,

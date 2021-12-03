@@ -78,6 +78,7 @@ const methods = {
     if (this.hasSliderReachedEndPoint()) { this.endSlide(); }
   },
   endSlide() {
+    if (!this.isStarted) { return; }
     this.isStarted = false;
     if (this.hasSliderReachedEndPoint()) {
       const overlayWidth = (this.buttonCenterPoint - gapWidth);
@@ -139,7 +140,10 @@ const unmounted = function () {
   document.removeEventListener('mouseup', this.endSlide);
 };
 
-const WrappedButton = {
+const name = 'SlideButton';
+
+const SlideButton = {
+  name,
   components,
   props,
   emits,
@@ -150,4 +154,4 @@ const WrappedButton = {
   unmounted,
 };
 
-export default WrappedButton;
+export default SlideButton;

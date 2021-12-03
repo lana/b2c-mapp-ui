@@ -1,11 +1,10 @@
 <template>
   <div data-testid="wrapper">
-    <ConfirmationModalDialog
-      v-model="isShowing"
-      title="title"
-      description="description"
-      confirm-button-text="confirmButtonText"
-      dismiss-button-text="dismissButtonText"
+    <ConfirmationModalDialog v-model="isShowing"
+                             title="title"
+                             description="description"
+                             confirm-button-text="confirmButtonText"
+                             dismiss-button-text="dismissButtonText"
     />
     <span data-testid="open-modal" @click="openModal">Click Me</span>
   </div>

@@ -78,7 +78,10 @@ const mounted = function () {
   this.startAnimation();
 };
 
+const name = 'LinearProgress';
+
 const LinearProgress = {
+  name,
   props,
   emits,
   computed,

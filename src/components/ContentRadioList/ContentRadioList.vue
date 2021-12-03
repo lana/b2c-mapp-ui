@@ -8,11 +8,10 @@
           :data-testid="`${dataTestId}-option`"
           :disabled="disabled"
       >
-        <label
-          :class="{ checked: (selectedValue === optionValue) }"
-          class="label"
-          :data-testid="`${dataTestId}-option-label`"
-          :for="`${optionValue}`"
+        <label :class="{ checked: (selectedValue === optionValue) }"
+               class="label"
+               :data-testid="`${dataTestId}-option-label`"
+               :for="`${optionValue}`"
         >
           <input :id="`${optionValue}`"
                  v-model="selectedValue"

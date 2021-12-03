@@ -35,7 +35,10 @@ const computed = {
   },
 };
 
+const name = 'ConfettiOverlay';
+
 const ConfettiOverlay = {
+  name,
   components,
   props,
   computed,

@@ -15,7 +15,10 @@ const props = {
   },
 };
 
+const name = 'TopBar';
+
 const TopBar = {
+  name,
   components,
   props,
 };

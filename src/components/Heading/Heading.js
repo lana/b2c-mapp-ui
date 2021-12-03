@@ -31,7 +31,10 @@ const props = {
   },
 };
 
+const name = 'Heading';
+
 const Heading = {
+  name,
   props,
 };
 

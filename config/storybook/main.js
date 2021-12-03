@@ -9,4 +9,11 @@ module.exports = {
   core: {
     builder: 'storybook-builder-vite',
   },
+  viteFinal(config, { configType }) {
+    const newConfig = {
+      ...config,
+      base: (configType === 'PRODUCTION') ? '/b2c-mapp-ui/' : config.base,
+    };
+    return newConfig;
+  },
 };

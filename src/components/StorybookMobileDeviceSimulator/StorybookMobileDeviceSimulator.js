@@ -78,7 +78,10 @@ const computed = {
   },
 };
 
+const name = 'StorybookMobileDeviceSimulator';
+
 const StorybookMobileDeviceSimulator = {
+  name,
   props,
   computed,
 };

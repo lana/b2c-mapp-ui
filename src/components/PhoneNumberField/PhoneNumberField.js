@@ -114,7 +114,10 @@ const watch = {
   },
 };
 
+const name = 'PhoneNumberField';
+
 const PhoneNumberField = {
+  name,
   components,
   computed,
   props,

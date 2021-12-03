@@ -40,7 +40,10 @@ const beforeUnmount = function () {
   window.removeEventListener('resize', this.onWindowResize);
 };
 
+const name = 'Screen';
+
 const Screen = {
+  name,
   emits,
   data,
   methods,

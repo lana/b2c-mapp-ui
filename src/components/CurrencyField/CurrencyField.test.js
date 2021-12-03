@@ -16,7 +16,7 @@ describe('CurrencyField unit test', () => {
   };
 
   it('Should apply given value', async () => {
-    const newValue = '123';
+    const newValue = 123;
     const wrapper = mount(CurrencyField, { props: { ...defaultProps, modelValue: newValue } });
     await wrapper.vm.$nextTick();
     wrapper.vm.$options.watch.modelValue.call(wrapper.vm, newValue);

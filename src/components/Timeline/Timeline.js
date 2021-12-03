@@ -5,7 +5,10 @@ const props = {
   },
 };
 
+const name = 'Timeline';
+
 const Timeline = {
+  name,
   props,
 };
 

@@ -99,7 +99,10 @@ const methods = {
   },
 };
 
+const name = 'CopyToClipboardButton';
+
 const CopyToClipboardButton = {
+  name,
   props,
   emits,
   data,
