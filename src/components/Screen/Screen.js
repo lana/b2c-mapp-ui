@@ -1,3 +1,5 @@
+const emits = ['keyboardFocus', 'keyboardBlur'];
+
 const data = function () {
   return {
     lastClick: {
@@ -34,15 +36,16 @@ const mounted = function () {
   window.addEventListener('resize', this.onWindowResize);
 };
 
-const beforeDestroy = function () {
+const beforeUnmount = function () {
   window.removeEventListener('resize', this.onWindowResize);
 };
 
 const Screen = {
+  emits,
   data,
   methods,
   mounted,
-  beforeDestroy,
+  beforeUnmount,
 };
 
 export default Screen;

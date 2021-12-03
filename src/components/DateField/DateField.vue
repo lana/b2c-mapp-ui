@@ -23,10 +23,10 @@
     <label v-if="datePicker && !readonly"
            class="calendar-icon"
            :data-testid="`${dataTestId}-datepicker-label`"
-           :htmlFor="`input-date-${_uid}`"
+           :htmlFor="`input-date-${uniqueId}`"
     >
       <CalendarIcon class="icon" :class="{ 'grey-icon': disabled, 'red-icon': hasError }"/>
-      <input :id="`input-date-${_uid}`"
+      <input :id="`input-date-${uniqueId}`"
              v-model="datePickerValue"
              class="hidden-input"
              :name="calendarInputName"

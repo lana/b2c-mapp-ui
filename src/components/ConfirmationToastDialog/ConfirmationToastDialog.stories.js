@@ -11,19 +11,21 @@ const ConfirmationToastDialogStories = {
     dataTestId: 'bottom-dialog',
     title: 'Example Title',
     description: 'Example Description',
+    loading: false,
     loadingText: 'Cargando...',
     confirmButtonText: 'Confirm',
     secondaryButtonText: 'Secondary',
+    disabled: false,
   },
   argTypes: {
     title: { control: 'text', name: 'Title' },
     dataTestId: { control: 'text', name: 'DataTestId' },
     description: { control: 'text', name: 'Description' },
+    loading: { control: 'boolean', name: 'Is loading' },
     loadingText: { control: 'text', name: 'Loading Text' },
     confirmButtonText: { control: 'text', name: 'Confirm Button Text' },
     secondaryButtonText: { control: 'text', name: 'Secondary Button Text' },
     disabled: { control: 'boolean', name: 'Is disabled?' },
-    loading: { control: 'boolean', name: 'Is loading' },
     default: {
       name: 'Default slot',
       control: {
@@ -51,6 +53,7 @@ const ConfirmationToastDialogStories = {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ConfirmationToastDialog,
     RenderString,
@@ -172,13 +175,13 @@ withCustomActionsContent.args = {
                no-border
                :has-forward-button="false"
   >
-    <EditMinimalIcon width="24"/>
+    <EditMinimalIcon :style="{ width: '24px' }"/>
   </ContentItem>
   <ContentItem title="Delete"
                no-border
                :has-forward-button="false"
   >
-    <DeleteMinimalIcon width="24"/>
+    <DeleteMinimalIcon :style="{ width: '24px' }"/>
   </ContentItem>
 </div>`,
 };
@@ -202,14 +205,14 @@ withCustomActionsContent.parameters = {
                  :has-forward-button="false"
                  @click="onConfirm"
     >
-      <EditMinimalIcon width="24"/>
+      <EditMinimalIcon :style="{ width: '24px' }"/>
     </ContentItem>
     <ContentItem title="Delete"
                  no-border
                  :has-forward-button="false"
                  @click="onDismiss"
     >
-      <DeleteMinimalIcon width="24"/>
+      <DeleteMinimalIcon :style="{ width: '24px' }"/>
     </ContentItem>
   </template>
 </ConfirmationToastDialog>

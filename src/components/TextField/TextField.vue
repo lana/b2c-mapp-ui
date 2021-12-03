@@ -15,6 +15,8 @@
                :length-hint-label="lengthHintLabel"
                :help-text="helpText"
                :hide-clear-button="hideClearButton"
+               :inputmode="inputmode"
+               :pattern="pattern"
                @focus="onFocus"
                @blur="onBlur"
                @keypress="onKeypress"

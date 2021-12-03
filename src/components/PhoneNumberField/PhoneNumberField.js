@@ -5,7 +5,7 @@ import TextParagraph from '../TextParagraph/TextParagraph.vue';
 import phoneNumberMetadata from '../../../data/libphonenumber-metadata.min.json';
 import { onlyDigitsRegexp, nonDigitRegexp } from '../../lib/regexHelper';
 
-const availableCountryCodes = getCountries(phoneNumberMetadata);
+const getAvailableCountryCodes = () => getCountries(phoneNumberMetadata);
 
 const components = {
   FormField,
@@ -17,14 +17,14 @@ const props = {
     type: String,
     default: 'phone-field',
   },
-  value: {
+  modelValue: {
     type: String,
     default: '',
   },
   countryCode: {
     type: String,
     required: true,
-    validator(value) { return availableCountryCodes.includes(value); },
+    validator(value) { return getAvailableCountryCodes().includes(value); },
   },
   hideCountryCodeUntilFocus: Boolean,
   startFocused: Boolean,
@@ -45,10 +45,12 @@ const props = {
   },
 };
 
+const emits = ['update:modelValue', 'update:formattedValue', 'focus', 'blur'];
+
 const data = function () {
   return {
     isFocused: false,
-    inputValue: this.value,
+    inputValue: this.modelValue,
   };
 };
 
@@ -72,8 +74,8 @@ const computed = {
 };
 
 const methods = {
-  emitInputEvent() {
-    this.$emit('input', this.inputValue);
+  emitUpdateModelValueEvent() {
+    this.$emit('update:modelValue', this.inputValue);
   },
   onFocus(event) {
     this.isFocused = true;
@@ -102,11 +104,13 @@ const methods = {
 
 const watch = {
   inputValue() {
-    if (this.inputValue) { this.inputValue = this.formattedPhoneNumber; }
-    this.emitInputEvent();
+    this.emitUpdateModelValueEvent();
   },
-  value() {
-    this.inputValue = this.value;
+  formattedPhoneNumber() {
+    this.$emit('update:formattedValue', this.formattedPhoneNumber);
+  },
+  modelValue() {
+    this.inputValue = this.modelValue;
   },
 };
 
@@ -114,13 +118,14 @@ const PhoneNumberField = {
   components,
   computed,
   props,
+  emits,
   data,
   methods,
   watch,
 };
 
 export {
-  availableCountryCodes,
+  getAvailableCountryCodes,
 };
 
 export default PhoneNumberField;

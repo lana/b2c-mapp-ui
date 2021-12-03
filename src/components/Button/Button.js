@@ -1,5 +1,5 @@
 import { MopIcon } from '@lana/b2c-mapp-ui-assets';
-import debounce from 'lodash.debounce';
+import { debounce } from 'lodash-es';
 
 const debounceSettings = { leading: true, trailing: false };
 
@@ -38,6 +38,8 @@ const props = {
   },
 };
 
+const emits = ['click'];
+
 const data = function () {
   return {
     isPressed: false,
@@ -73,8 +75,8 @@ const computed = {
 };
 
 const methods = {
-  toggleIsPressed() {
-    this.isPressed = !this.isPressed;
+  setIsPressed(isPressed) {
+    this.isPressed = isPressed;
   },
   onClick(event) {
     if (this.disabled || this.loading) { return; }
@@ -86,6 +88,7 @@ const methods = {
 const Button = {
   components,
   props,
+  emits,
   data,
   computed,
   methods,

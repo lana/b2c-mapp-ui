@@ -23,7 +23,7 @@
               :data-testid="`${dataTestId}-left-arrow`"
               :disabled="!isPreviousAvailable"
               :class="{ 'with-icon': arrowIcons }"
-              @click="changeRenderedItem(-1)"
+              @click="debouncedChangeRenderedItem(-1)"
       >
         <slot v-if="arrowIcons" name="leftArrowIcon">
           <ChevronLeftIcon v-if="!$slots.leftArrowIcon" class="icon"/>
@@ -35,7 +35,7 @@
               :data-testid="`${dataTestId}-right-arrow`"
               :disabled="!isNextAvailable"
               :class="{ 'with-icon': arrowIcons }"
-              @click="changeRenderedItem(1)"
+              @click="debouncedChangeRenderedItem(1)"
       >
         <slot v-if="arrowIcons" name="rightArrowIcon">
           <ChevronRightIcon v-if="!$slots.rightArrowIcon" class="icon"/>

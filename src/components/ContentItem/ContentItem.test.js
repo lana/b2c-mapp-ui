@@ -1,11 +1,13 @@
 import { render, fireEvent } from '@testing-library/vue';
+import { mount } from '@vue/test-utils';
+import { SuccessMicroillustration as Success, ChevronRightIcon } from '@lana/b2c-mapp-ui-assets';
 
 import ContentItem from './ContentItem.vue';
-import { silenceDeprecationErrorsAndInnerComponentWarnings } from '../../lib/testUtils';
+import { silenceInnerComponentWarnings } from '../../lib/testUtils';
 
 describe('ContentItem unit test', () => {
   beforeAll(() => {
-    silenceDeprecationErrorsAndInnerComponentWarnings(jest);
+    silenceInnerComponentWarnings(jest);
   });
 
   const defaultProps = {
@@ -16,31 +18,31 @@ describe('ContentItem unit test', () => {
   };
 
   it('Should NOT show content-item-media-icon if media content its not given', () => {
-    const { queryAllByTestId } = render(ContentItem, { propsData: { ...defaultProps } });
+    const { queryAllByTestId } = render(ContentItem, { props: { ...defaultProps } });
     const mediaIconNotVisible = queryAllByTestId('content-item-media-icon').length === 0;
     expect(mediaIconNotVisible).toBeTruthy();
   });
 
   it('Should show given media content', () => {
-    const { getByTestId } = render(ContentItem, { slots: { default: "<img src='any' alt=''/>" }, propsData: { ...defaultProps } });
+    const { getByTestId } = render(ContentItem, { slots: { default: "<img src='any' alt=''/>" }, props: { ...defaultProps } });
     const mediaIconVisible = getByTestId('content-item-media-icon');
     expect(mediaIconVisible).toBeTruthy();
   });
 
   it('Should show given meta info', () => {
-    const { getByTestId } = render(ContentItem, { propsData: { ...defaultProps } });
+    const { getByTestId } = render(ContentItem, { props: { ...defaultProps } });
     const metaInfoExist = getByTestId('content-item-meta-text').textContent.includes('META');
     expect(metaInfoExist).toBeTruthy();
   });
 
   it('Should NOT show meta information if is not given', () => {
-    const { queryAllByTestId } = render(ContentItem, { propsData: { ...defaultProps, metaText: null } });
+    const { queryAllByTestId } = render(ContentItem, { props: { ...defaultProps, metaText: null } });
     const metaInfoNotExist = queryAllByTestId('content-item-meta-text').length === 0;
     expect(metaInfoNotExist).toBeTruthy();
   });
 
   it('Should emit click event when content-item is clicked', () => {
-    const { getByTestId, emitted } = render(ContentItem, { propsData: { ...defaultProps } });
+    const { getByTestId, emitted } = render(ContentItem, { props: { ...defaultProps } });
     const li = getByTestId('content-item');
     fireEvent.click(li);
     const clicked = emitted().click;
@@ -48,7 +50,7 @@ describe('ContentItem unit test', () => {
   });
 
   it('Should NOT emit click event when content-item is clicked and its disabled', () => {
-    const { getByTestId, emitted } = render(ContentItem, { propsData: { ...defaultProps, disabled: true } });
+    const { getByTestId, emitted } = render(ContentItem, { props: { ...defaultProps, disabled: true } });
     const li = getByTestId('content-item');
     fireEvent.click(li);
     const clicked = emitted().click;
@@ -56,33 +58,33 @@ describe('ContentItem unit test', () => {
   });
 
   it('Should display ForwardIcon if hasForwardButton is given to true', () => {
-    const { queryAllByTestId } = render(ContentItem, { propsData: { ...defaultProps, hasForwardButton: true } });
+    const { queryAllByTestId } = render(ContentItem, { props: { ...defaultProps, hasForwardButton: true } });
     const forwardIconExist = queryAllByTestId('content-item-forward-icon');
     expect(forwardIconExist).toBeTruthy();
   });
 
   it('Should display ForwardIcon if hasForwardButton is NOT given', () => {
-    const { queryAllByTestId } = render(ContentItem, { propsData: { ...defaultProps } });
-    const forwardIconExist = queryAllByTestId('content-item-forward-icon').length;
-    expect(forwardIconExist).toBeTruthy();
+    const wrapper = mount(ContentItem, { props: { ...defaultProps } });
+    const forwardIcon = wrapper.findComponent(ChevronRightIcon);
+    expect(forwardIcon.exists()).toBeTruthy();
   });
 
   it('Should NOT display ForwardIcon if hasForwardButton is given to false', () => {
-    const { queryAllByTestId } = render(ContentItem, { propsData: { ...defaultProps, hasForwardButton: false } });
+    const { queryAllByTestId } = render(ContentItem, { props: { ...defaultProps, hasForwardButton: false } });
     const forwardIconExist = !queryAllByTestId('content-item-forward-icon').length;
     expect(forwardIconExist).toBeTruthy();
   });
 
   it('Should show success state if success prop is provided', () => {
-    const { queryAllByTestId } = render(ContentItem, { propsData: { ...defaultProps, success: true } });
-    const successIconExists = queryAllByTestId('success-content-item-forward-icon').length;
-    const successStateIsApplied = queryAllByTestId('content-item')[0].className.includes('success');
+    const wrapper = mount(ContentItem, { props: { ...defaultProps, success: true } });
+    const successIconExists = wrapper.findComponent(Success).exists();
+    const successStateIsApplied = wrapper.find('[data-testid="content-item"]').classes().includes('success');
     const isShowingSuccessState = successIconExists && successStateIsApplied;
     expect(isShowingSuccessState).toBeTruthy();
   });
 
   it('Should NOT emit click event when content-item is clicked and it has success state', () => {
-    const { getByTestId, emitted } = render(ContentItem, { propsData: { ...defaultProps, success: true } });
+    const { getByTestId, emitted } = render(ContentItem, { props: { ...defaultProps, success: true } });
     const li = getByTestId('content-item');
     fireEvent.click(li);
     const clicked = emitted().click;
@@ -94,7 +96,7 @@ describe('ContentItem unit test', () => {
       ContentItem,
       {
         slots: { forwardIcon: '<ClockColorIcon data-testid="custom-forward-icon" />' },
-        propsData: { ...defaultProps },
+        props: { ...defaultProps },
         stubs: ['ClockColorIcon'],
       },
     );
@@ -107,7 +109,7 @@ describe('ContentItem unit test', () => {
       ContentItem,
       {
         slots: { customTitle: '<b data-testid="custom-title">Bold text</b>' },
-        propsData: { ...defaultProps },
+        props: { ...defaultProps },
       },
     );
     const customTitleVisible = getByTestId('custom-title');
@@ -119,7 +121,7 @@ describe('ContentItem unit test', () => {
       ContentItem,
       {
         slots: { customMetaText: '<span data-testid="custom-meta-text">Text <br />newline</span>' },
-        propsData: { ...defaultProps },
+        props: { ...defaultProps },
       },
     );
     const customMetaTextVisible = getByTestId('custom-meta-text');

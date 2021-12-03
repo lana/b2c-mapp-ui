@@ -1,6 +1,13 @@
-const esModules = ['vue-contenteditable'].join('|');
+const esModules = ['vue-contenteditable', 'lodash-es'].join('|');
 module.exports = {
-  preset: '@vue/cli-plugin-unit-jest',
+  moduleFileExtensions: [
+    'js',
+    'vue',
+  ],
+  transform: {
+    '^.+\\.vue$': 'vue-jest',
+    '^.+\\.js$': 'babel-jest',
+  },
   setupFiles: ['<rootDir>/setupTests.js'],
   roots: ['<rootDir>/src/components'],
   modulePathIgnorePatterns: [

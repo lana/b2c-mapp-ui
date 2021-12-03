@@ -1,3 +1,5 @@
+import { nextTick } from 'vue';
+
 import ConfettiOverlay from './ConfettiOverlay.vue';
 import ScrollWrapper from '../ScrollWrapper/ScrollWrapper.vue';
 import Screen from '../Screen/Screen.vue';
@@ -23,6 +25,7 @@ const ConfettiStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     ConfettiOverlay,
     Button,
@@ -38,7 +41,7 @@ const defaultExample = (args, { argTypes }) => ({
   methods: {
     async restartConfetti() {
       this.isConfettiShowing = false;
-      await this.$nextTick();
+      await nextTick();
       this.isConfettiShowing = true;
     },
   },

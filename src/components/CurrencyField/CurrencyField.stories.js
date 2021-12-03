@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 
 import CurrencyField from './CurrencyField.vue';
-import { sleep } from '@/lib/sleepHelper';
+import { sleep } from '../../lib/sleepHelper';
 import { createDeviceDecorator } from '../../lib/storybookHelpers';
 import RenderString from '../../lib/renderString';
 
@@ -47,14 +47,15 @@ const CurrencyFieldStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     CurrencyField,
     RenderString,
   },
   data() {
     return {
-      value: '',
-      unformattedValue: '',
+      value: null,
+      formattedValue: '',
     };
   },
   computed: {
@@ -69,15 +70,11 @@ const defaultExample = (args, { argTypes }) => ({
     onKeyup: action('KeyUp!'),
     onKeypress: action('KeyPress!'),
   },
-  watch: {
-    value() {
-      this.unformattedValue = this.$refs.field.getUnformattedValue();
-    },
-  },
   template: `
     <div>
       <div style="margin: 20px;">
         <CurrencyField v-model="value"
+                       v-model:formattedValue="formattedValue"
                        ref="field"
                        :disabled="disabled"
                        :readonly="readonly"
@@ -97,7 +94,7 @@ const defaultExample = (args, { argTypes }) => ({
                        @keyup="onKeyup"
                        @paste="onPaste"
         >
-          <RenderString :string="defaultSlot" fragment/>
+          <RenderString :string="defaultSlot" v-if="defaultSlot" fragment/>
         </CurrencyField>
       </div>
       <br>
@@ -106,7 +103,7 @@ const defaultExample = (args, { argTypes }) => ({
       </div>
       <br>
       <div style="margin: 20px;">
-        Unformatted value: {{ unformattedValue }}
+        Formatted value: {{ formattedValue }}
       </div>
     </div>
   `,
@@ -141,13 +138,14 @@ defaultExample.parameters = {
 
 const withPrefilledValue = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     CurrencyField,
   },
   data() {
     return {
       value: null,
-      unformattedValue: '',
+      formattedValue: '',
     };
   },
   methods: {
@@ -156,11 +154,6 @@ const withPrefilledValue = (args, { argTypes }) => ({
     onPaste: action('Paste!'),
     onKeyup: action('KeyUp!'),
     onKeypress: action('KeyPress!'),
-  },
-  watch: {
-    value() {
-      this.unformattedValue = this.$refs.field.getUnformattedValue();
-    },
   },
   async mounted() {
     await sleep(100);
@@ -172,6 +165,7 @@ const withPrefilledValue = (args, { argTypes }) => ({
       <hr>
       <div style="margin: 20px;">
         <CurrencyField v-model="value"
+                       v-model:formattedValue="formattedValue"
                        ref="field"
                        label="Example with Prefilled Value"
                        @blur="onBlur"
@@ -187,7 +181,7 @@ const withPrefilledValue = (args, { argTypes }) => ({
       </div>
       <br>
       <div style="margin: 20px;">
-        Unformatted value: {{ unformattedValue }}
+        Formatted value: {{ formattedValue }}
       </div>
     </div>
   `,

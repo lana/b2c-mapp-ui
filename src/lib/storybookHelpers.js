@@ -1,10 +1,13 @@
 import StorybookMobileDeviceSimulator from '../components/StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices } from '../components/StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
+import { getAvailableDevices } from '../components/StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
+
+const availableDevices = getAvailableDevices();
 
 const createDeviceDecorator = (title, subtitle = '') => {
-  const deviceDecorator = (story, { argTypes }) => ({
+  const deviceDecorator = (story, { argTypes, args }) => ({
     props: Object.keys(argTypes),
     components: { StorybookMobileDeviceSimulator, story },
+    setup() { return { ...args }; },
     template: `
   <div style="margin: 10px 50px 10px 50px; height: 100%;">
     <h2>${title}</h2>
@@ -19,15 +22,16 @@ const createDeviceDecorator = (title, subtitle = '') => {
     device: availableDevices[0],
   };
   deviceDecorator.argTypes = {
-    device: { name: 'Simulated Mobile Device', control: 'select', options: [...availableDevices], defaultValue: availableDevices[0] },
+    device: { name: 'Simulated Mobile Device', control: 'select', options: [...availableDevices] },
   };
   return deviceDecorator;
 };
 
 const createOptionalDeviceDecorator = (title) => {
-  const deviceDecorator = (story, { argTypes }) => ({
+  const deviceDecorator = (story, { argTypes, args }) => ({
     props: Object.keys(argTypes),
     components: { StorybookMobileDeviceSimulator, story },
+    setup() { return { ...args }; },
     template: `
   <div style="margin: 10px 50px 10px 50px; height: 100%;">
     <h2>${title}</h2>
@@ -42,15 +46,16 @@ const createOptionalDeviceDecorator = (title) => {
     device: availableDevices[0],
   };
   deviceDecorator.argTypes = {
-    device: { name: 'Simulated Mobile Device', control: 'select', options: [...availableDevices], defaultValue: availableDevices[0] },
+    device: { name: 'Simulated Mobile Device', control: 'select', options: [...availableDevices] },
   };
   return deviceDecorator;
 };
 
 const createScreenDecorator = (title) => {
-  const deviceDecorator = (story, { argTypes }) => ({
+  const deviceDecorator = (story, { argTypes, args }) => ({
     props: Object.keys(argTypes),
     components: { story },
+    setup() { return { ...args }; },
     template: `
   <div style="margin: 10px 50px 10px 50px; height: 100%;">
     <h2>${title}</h2>

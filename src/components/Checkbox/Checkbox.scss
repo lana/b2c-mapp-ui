@@ -35,6 +35,6 @@
   color: $black-700;
 }
 
-.error svg.unchecked-icon ::v-deep rect {
+.error svg.unchecked-icon :deep(rect) {
   stroke: $red-500;
 }

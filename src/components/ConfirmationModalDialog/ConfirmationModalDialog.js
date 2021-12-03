@@ -17,7 +17,7 @@ const props = {
   description: String,
   confirmButtonText: String,
   dismissButtonText: String,
-  value: Boolean,
+  modelValue: Boolean,
   loading: Boolean,
   confirmButtonDisabled: {
     type: Boolean,
@@ -29,15 +29,17 @@ const props = {
   },
 };
 
+const emits = ['update:modelValue', 'close', 'confirm', 'dismiss'];
+
 const data = function () {
   return {
-    isShowing: this.value,
+    isShowing: this.modelValue,
   };
 };
 
 const methods = {
-  emitInputEvent() {
-    this.$emit('input', this.isShowing);
+  emitUpdateModelValueEvent() {
+    this.$emit('update:modelValue', this.isShowing);
     if (!this.isShowing) { this.$emit('close'); }
   },
   onConfirm() {
@@ -55,16 +57,17 @@ const methods = {
 
 const watch = {
   isShowing() {
-    this.emitInputEvent();
+    this.emitUpdateModelValueEvent();
   },
-  value() {
-    this.isShowing = this.value;
+  modelValue() {
+    this.isShowing = this.modelValue;
   },
 };
 
 const ConfirmationModalDialog = {
   components,
   props,
+  emits,
   data,
   methods,
   watch,

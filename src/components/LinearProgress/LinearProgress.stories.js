@@ -22,7 +22,7 @@ const LinearProgressStories = {
     progress: 10,
     total: 100,
     percentage: null,
-    color: 'blue',
+    color: availableColors[0],
     animate: false,
     animationDuration: 1000,
     circularAnimation: false,
@@ -33,7 +33,7 @@ const LinearProgressStories = {
     total: { name: 'Total', control: { type: 'number' } },
     percentage: { name: 'Percentage', control: { type: 'number', min: 0, max: 100 } },
     dataTestId: { control: { type: 'text' } },
-    color: { control: { type: 'select', options: availableColors, default: availableColors[0] } },
+    color: { control: 'select', options: availableColors },
     animate: { name: 'Animate?', control: { type: 'boolean' } },
     animationDuration: { name: 'Animate duration', control: { type: 'number' } },
     circularAnimation: { name: 'Infinite animation?', control: { type: 'boolean' } },
@@ -42,6 +42,7 @@ const LinearProgressStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     LinearProgress,
   },
@@ -90,6 +91,7 @@ defaultExample.parameters = {
 
 const withCardExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     LinearProgress,
     ContentItem,

@@ -9,21 +9,21 @@ describe('TextPargraph unit test:', () => {
   });
 
   it('Should apply allowed given size as a classname', async () => {
-    const wrapper = mount(TextParagraph, { slots: { default: 'inner text' }, propsData: { size: 'xsmall' } });
+    const wrapper = mount(TextParagraph, { slots: { default: 'inner text' }, props: { size: 'xsmall' } });
     await wrapper.vm.$nextTick();
     const sizeApplied = wrapper.find('p').element.className.includes('txt-xsmall');
     expect(sizeApplied).toBeTruthy();
   });
 
   it('Should apply allowed given color as a classname', async () => {
-    const wrapper = mount(TextParagraph, { slots: { default: 'inner text' }, propsData: { color: 'brown-700' } });
+    const wrapper = mount(TextParagraph, { slots: { default: 'inner text' }, props: { color: 'brown-700' } });
     await wrapper.vm.$nextTick();
     const sizeApplied = wrapper.find('p').element.className.includes('brown-700');
     expect(sizeApplied).toBeTruthy();
   });
 
   it('Should apply allowed given weight as a classname', async () => {
-    const wrapper = mount(TextParagraph, { slots: { default: 'inner text' }, propsData: { weight: 'bold' } });
+    const wrapper = mount(TextParagraph, { slots: { default: 'inner text' }, props: { weight: 'bold' } });
     await wrapper.vm.$nextTick();
     const sizeApplied = wrapper.find('p').element.className.includes('bold');
     expect(sizeApplied).toBeTruthy();

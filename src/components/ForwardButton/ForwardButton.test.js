@@ -15,7 +15,7 @@ describe('ForwardButton unit test', () => {
   });
 
   it('Should add extra class if given', () => {
-    const { getByTestId } = render(ForwardButton, { propsData: { class: 'myClassName' } });
+    const { getByTestId } = render(ForwardButton, { props: { class: 'myClassName' } });
     const extraClassApplied = getByTestId('forward-section').className.includes('myClassName');
     expect(extraClassApplied).toBeTruthy();
   });

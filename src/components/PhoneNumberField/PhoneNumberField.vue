@@ -23,7 +23,9 @@
              @keypress="supressNonDigitCharacterEntry"
   >
     <div v-if="!hideCountryCode" class="prefix-container">
-      <TextParagraph :data-test-id="`${dataTestId}-prefix`">{{ prefix }}</TextParagraph>
+      <TextParagraph :data-test-id="`${dataTestId}-prefix`">
+        {{ prefix }}
+      </TextParagraph>
     </div>
   </FormField>
 </template>

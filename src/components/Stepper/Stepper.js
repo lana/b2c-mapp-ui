@@ -14,7 +14,7 @@ const props = {
     default: '',
   },
   hideActiveStep: Boolean,
-  value: Number,
+  modelValue: Number,
   countOfSteps: Number,
 };
 
@@ -22,8 +22,8 @@ const computed = {
   availableSteps() {
     if (!this.countOfSteps) { return []; }
     const result = [...Array(this.countOfSteps).keys()].map((step, index) => ({
-      isActive: ((index === this.value) && !this.hideActiveStep),
-      isInactive: (index > this.value), // WARNING: `Inactive` in this context is not the same thing as `!isActive`
+      isActive: ((index === this.modelValue) && !this.hideActiveStep),
+      isInactive: (index > this.modelValue), // WARNING: `Inactive` in this context is not the same thing as `!isActive`
       stepNumber: (index + 1),
     }));
     return result;

@@ -20,9 +20,12 @@ const FormFieldStories = {
     maxLength: null,
     showPrefix: false,
     hideClearButton: false,
+    startFocused: false,
     lengthHint: null,
     lengthHintLabel: '',
     helpText: '',
+    inputmode: '',
+    pattern: '',
     default: '',
   },
   argTypes: {
@@ -35,15 +38,19 @@ const FormFieldStories = {
     maxLength: { control: 'number', name: 'Max Length' },
     showPrefix: { control: 'boolean', name: 'Show Prefix?' },
     hideClearButton: { control: 'boolean', name: 'Hide Clear Button' },
+    startFocused: { control: 'boolean', name: 'Start focused?' },
     lengthHint: { control: 'number', name: 'Length Hint' },
     lengthHintLabel: { control: 'text', name: 'Length Hint Label' },
     helpText: { control: 'text', name: 'Help Text' },
+    inputmode: { control: 'text', name: 'Inputmode' },
+    pattern: { control: 'text', name: 'Pattern' },
     default: { control: { type: 'text' }, table: { type: { summary: null } } },
   },
 };
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     FormField,
     RenderString,
@@ -80,13 +87,16 @@ const defaultExample = (args, { argTypes }) => ({
                    :length-hint-label="lengthHintLabel"
                    :help-text="helpText"
                    :hide-clear-button="hideClearButton"
+                   :start-focused="startFocused"
+                   :inputmode="inputmode"
+                   :pattern="pattern"
                    @blur="onBlur"
                    @focus="onFocus"
                    @keypress="onKeypress"
                    @keyup="onKeyup"
                    @paste="onPaste"
         >
-          <RenderString :string="defaultSlot" />
+          <RenderString :string="defaultSlot" v-if="defaultSlot"/>
         </FormField>
       </div>
       <div style="margin: 20px;">
@@ -111,6 +121,8 @@ defaultExample.parameters = {
            :length-hint-label="lengthHintLabel"
            :help-text="helpText"
            :hide-clear-button="hideClearButton"
+           :inputmode="inputmode"
+           :pattern="pattern"
            @blur="onBlur"
            @focus="onFocus"
            @keypress="onKeypress"
@@ -123,6 +135,7 @@ defaultExample.parameters = {
 
 const examples = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     FormField,
   },
@@ -138,12 +151,12 @@ const examples = (args, { argTypes }) => ({
         <br>
         <div style="width: 500px">
           <label>Focused with value:</label>
-          <FormField label="Example" value="foo" start-focused/>
+          <FormField label="Example" modelValue="foo" start-focused/>
         </div>
         <br>
         <div style="width: 500px">
           <label>Unfocused with error:</label>
-          <FormField value="foo" label="Foo" error-label="Invalid value"/>
+          <FormField modelValue="foo" label="Foo" error-label="Invalid value"/>
         </div>
         <br>
         <div style="width: 500px">
@@ -153,17 +166,17 @@ const examples = (args, { argTypes }) => ({
         <br>
         <div style="width: 500px">
           <label>With hidden clear button:</label>
-          <FormField label="With help text" value="Example" hide-clear-button/>
+          <FormField label="With help text" modelValue="Example" hide-clear-button/>
         </div>
         <br>
         <div style="width: 500px">
           <label>Readonly:</label>
-          <FormField label="Enter your name" value="Locked Value" readonly/>
+          <FormField label="Enter your name" modelValue="Locked Value" readonly/>
         </div>
         <br>
         <div style="width: 500px">
           <label>Disabled:</label>
-          <FormField label="Enter your name" value="Locked Value" disabled/>
+          <FormField label="Enter your name" modelValue="Locked Value" disabled/>
         </div>
       </div>
     </div>
@@ -198,12 +211,12 @@ examples.parameters = {
 <br>
 <div style="width: 500px">
   <label>Focused with value:</label>
-  <FormField label="Example" value="foo" start-focused/>
+  <FormField label="Example" modelValue="foo" start-focused/>
 </div>
 <br>
 <div style="width: 500px">
   <label>Unfocused with error:</label>
-  <FormField value="foo" label="Foo" error-label="Invalid value"/>
+  <FormField modelValue="foo" label="Foo" error-label="Invalid value"/>
 </div>
 <br>
 <div style="width: 500px">
@@ -213,17 +226,17 @@ examples.parameters = {
 <br>
 <div style="width: 500px">
   <label>With hidden clear button:</label>
-  <FormField label="With help text" value="Example" hide-clear-button/>
+  <FormField label="With help text" modelValue="Example" hide-clear-button/>
 </div>
 <br>
 <div style="width: 500px">
   <label>Readonly:</label>
-  <FormField label="Enter your name" value="Locked Value" readonly/>
+  <FormField label="Enter your name" modelValue="Locked Value" readonly/>
 </div>
 <br>
 <div style="width: 500px">
   <label>Disabled:</label>
-  <FormField label="Enter your name" value="Locked Value" disabled/>
+  <FormField label="Enter your name" modelValue="Locked Value" disabled/>
 </div>`,
     },
   },

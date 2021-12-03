@@ -15,7 +15,9 @@
         >
           <ChevronsRightIcon class="button-icon"/>
         </div>
-        <div class="slide-label">{{ instructionLabel }}</div>
+        <div class="slide-label">
+          {{ instructionLabel }}
+        </div>
       </div>
     </div>
   </div>

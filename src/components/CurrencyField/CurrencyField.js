@@ -1,17 +1,14 @@
-import { CurrencyDirective, getValue, setValue } from 'vue-currency-input';
 import { CloseBoldIcon, WarningBoldIcon } from '@lana/b2c-mapp-ui-assets';
 
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
+import CurrencyInput from '../CurrencyInput/CurrencyInput.vue';
 import { sleep } from '../../lib/sleepHelper';
 
 const components = {
+  CurrencyInput,
   TextParagraph,
   CloseBoldIcon,
   WarningBoldIcon,
-};
-
-const directives = {
-  currency: CurrencyDirective,
 };
 
 const props = {
@@ -23,9 +20,9 @@ const props = {
     type: Number,
     default: 100,
   },
-  value: {
+  modelValue: {
     type: [String, Number],
-    default: '',
+    default: null,
   },
   id: String,
   name: String,
@@ -49,11 +46,14 @@ const props = {
   hideClearButton: Boolean,
 };
 
+const emits = ['update:modelValue', 'update:formattedValue', 'focus', 'blur', 'keypress', 'keyup', 'paste'];
+
 const data = function () {
   return {
     isFocused: false,
     isClearing: false,
-    inputValue: this.value,
+    inputValue: this.modelValue,
+    formattedValue: this.modelValue,
   };
 };
 
@@ -63,7 +63,7 @@ const computed = {
     return result;
   },
   hasLabel() {
-    const result = (this.isClearing || this.showPrefix || !!this.inputValue || this.readonly || this.isFocused);
+    const result = (this.isClearing || this.showPrefix || !!this.inputValue || this.inputValue === 0 || this.readonly || this.isFocused);
     return result;
   },
   inputId() {
@@ -106,8 +106,8 @@ const methods = {
     if (!this.$refs.input) { return; }
     this.$refs.input.blur();
   },
-  emitInputEvent() {
-    this.$emit('input', this.inputValue);
+  emitUpdateModelValueEvent() {
+    this.$emit('update:modelValue', this.inputValue);
   },
   onFocus(event) {
     this.toggleFocus();
@@ -129,15 +129,10 @@ const methods = {
   focus() {
     this.$refs.input.focus();
   },
-  getUnformattedValue() {
-    const result = getValue(this.$refs.input);
-    return result;
-  },
   async clearValue() {
     this.isClearing = true;
-    this.inputValue = '';
-    setValue(this.$refs.input, this.inputValue);
-    this.emitInputEvent();
+    this.inputValue = null;
+    this.emitUpdateModelValueEvent();
     this.blur();
     await sleep(50); // NOTE: sleep must be used here because `this.$nextTick()` is not waiting long enough in this case
     this.focus();
@@ -147,14 +142,13 @@ const methods = {
 
 const watch = {
   inputValue() {
-    if (!this.getUnformattedValue()) { // NOTE: This logic is required in order to force-set the initial value (whenever it starts off as undefined and is later programatically changed) for the vue-currency-input directive that we are using.
-      setValue(this.$refs.input, this.inputValue);
-      return;
-    }
-    this.emitInputEvent();
+    this.emitUpdateModelValueEvent();
   },
-  value() {
-    this.inputValue = this.value;
+  formattedValue() {
+    this.$emit('update:formattedValue', this.formattedValue);
+  },
+  modelValue() {
+    this.inputValue = this.modelValue;
   },
 };
 
@@ -164,8 +158,8 @@ const mounted = function () {
 
 const CurrencyField = {
   components,
-  directives,
   props,
+  emits,
   data,
   computed,
   methods,

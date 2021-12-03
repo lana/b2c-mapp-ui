@@ -13,6 +13,7 @@ const RadioListStories = {
     ...deviceDecorator.args,
     title: 'Example Title',
     disabled: false,
+    buttonMode: false,
     options: [
       {
         label: 'Option 1',
@@ -32,12 +33,14 @@ const RadioListStories = {
     ...deviceDecorator.argTypes,
     title: { control: 'text', name: 'Title' },
     disabled: { control: 'boolean', name: 'Is Disabled?' },
+    buttonMode: { control: 'boolean', name: 'Button Mode?' },
     options: { control: 'object', name: 'Options' },
   },
 };
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     RadioList,
   },
@@ -56,6 +59,7 @@ const defaultExample = (args, { argTypes }) => ({
                  :title="title"
                  :options="options"
                  :disabled="disabled"
+                 :button-mode="buttonMode"
                  @input="onInput"
       />
       <hr>
@@ -74,6 +78,7 @@ defaultExample.parameters = {
            :title="title"
            :options="options"
            :disabled="disabled"
+           :button-mode="buttonMode"
            @input="onInput"
 />`,
     },
@@ -82,6 +87,7 @@ defaultExample.parameters = {
 
 const withHtmlLabel = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     RadioList,
   },
@@ -100,6 +106,7 @@ const withHtmlLabel = (args, { argTypes }) => ({
                  :title="title"
                  :options="options"
                  :disabled="disabled"
+                 :button-mode="buttonMode"
                  @input="onInput"
       />
       <hr>
@@ -137,6 +144,7 @@ withHtmlLabel.parameters = {
            :title="title"
            :options="options"
            :disabled="disabled"
+           :button-mode="buttonMode"
            @input="onInput"
 />`,
     },

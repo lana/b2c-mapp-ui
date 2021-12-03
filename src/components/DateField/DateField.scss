@@ -26,11 +26,11 @@
   }
 }
 
-svg.icon.grey-icon ::v-deep path {
+svg.icon.grey-icon :deep(path) {
   fill: $black-500;
 }
 
-svg.icon.red-icon ::v-deep path {
+svg.icon.red-icon :deep(path) {
   fill: $red-500;
 }
 

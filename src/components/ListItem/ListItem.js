@@ -17,7 +17,7 @@ const props = {
   },
   title: String,
   description: String,
-  value: Boolean,
+  modelValue: Boolean,
   transparent: Boolean,
   linkTitle: String,
   hasToggle: Boolean,
@@ -26,15 +26,17 @@ const props = {
   rightLabel: String,
 };
 
+const emits = ['update:modelValue', 'linkClick'];
+
 const data = function () {
   return {
-    isChecked: this.value,
+    isChecked: this.modelValue,
   };
 };
 
 const methods = {
-  emitInputEvent() {
-    this.$emit('input', this.isChecked);
+  emitUpdateModelValueEvent() {
+    this.$emit('update:modelValue', this.isChecked);
   },
   onLinkClick(event) {
     if (this.disabled) { return; }
@@ -44,10 +46,10 @@ const methods = {
 
 const watch = {
   isChecked() {
-    this.emitInputEvent();
+    this.emitUpdateModelValueEvent();
   },
-  value() {
-    this.isChecked = this.value;
+  modelValue() {
+    this.isChecked = this.modelValue;
   },
 };
 
@@ -61,6 +63,7 @@ const computed = {
 const ListItem = {
   components,
   props,
+  emits,
   data,
   methods,
   watch,

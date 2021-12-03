@@ -14,6 +14,8 @@ const components = {
   ScrollWrapper,
 };
 
+const emits = ['click'];
+
 const props = {
   dataTestId: {
     type: String,
@@ -38,13 +40,14 @@ const props = {
 };
 
 const methods = {
-  onClick() {
-    this.$emit('click');
+  onClick(event) {
+    this.$emit('click', event);
   },
 };
 
 const CallToActionScreen = {
   components,
+  emits,
   props,
   methods,
 };

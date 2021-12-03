@@ -37,6 +37,7 @@ const DateFieldStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     DateField,
   },
@@ -111,6 +112,7 @@ defaultExample.parameters = {
 
 const validation = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     DateField,
   },
@@ -120,12 +122,12 @@ const validation = (args, { argTypes }) => ({
     <hr>
     <div style="margin: 10px; width: 300px;">
       <label>With Valid Date:</label>
-      <DateField value="01/12/1990" label="Enter your DOB" date-picker/>
+      <DateField modelValue="01/12/1990" label="Enter your DOB" date-picker/>
     </div>
     <br>
     <div style="margin: 10px; width: 300px;">
       <label>With Help Text:</label>
-      <DateField value="01/12/1990"
+      <DateField modelValue="01/12/1990"
                  label="Enter your DOB"
                  date-picker
                  help-text="Example Help Text"
@@ -134,17 +136,17 @@ const validation = (args, { argTypes }) => ({
     <br>
     <div style="margin: 10px; width: 300px;">
       <label>With Invalid Date:</label>
-      <DateField value="29/02/1990" label="Enter your DOB" date-picker/>
+      <DateField modelValue="29/02/1990" label="Enter your DOB" date-picker/>
     </div>
     <br>
     <div style="margin: 10px; width: 300px;">
       <label>Readonly:</label>
-      <DateField value="01/12/1990" label="Enter your DOB" date-picker readonly/>
+      <DateField modelValue="01/12/1990" label="Enter your DOB" date-picker readonly/>
     </div>
     <br>
     <div style="margin: 10px; width: 300px;">
       <label>Disabled:</label>
-      <DateField value="01/12/1990" label="Enter your DOB" date-picker disabled/>
+      <DateField modelValue="01/12/1990" label="Enter your DOB" date-picker disabled/>
     </div>
   </div>
   `,

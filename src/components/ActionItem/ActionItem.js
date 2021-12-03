@@ -29,6 +29,8 @@ const props = {
   },
 };
 
+const emits = ['click'];
+
 const computed = {
   hasErrorStatus() {
     if (!this.status) { return; }
@@ -51,6 +53,7 @@ const ActionItem = {
   components,
   computed,
   props,
+  emits,
   methods,
 };
 

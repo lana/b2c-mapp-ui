@@ -21,6 +21,8 @@
                :maxlength="maxLengthToUse"
                :readonly="readonly"
                :disabled="disabled"
+               :inputmode="inputmode"
+               :pattern="pattern"
                @focus="onFocus"
                @blur="onBlur"
                @paste="onPaste"
@@ -34,7 +36,9 @@
     </div>
     <div class="extra-text-container" :class="{ error: errorLabel }" :data-testid="`${dataTestId}-extra-text`">
       <WarningBoldIcon v-if="errorLabel" class="error-icon"/>
-      <TextParagraph v-if="errorLabelOrHelpText" class="help-text" :data-test-id="`${dataTestId}-helptext`">{{ errorLabelOrHelpText }}</TextParagraph>
+      <TextParagraph v-if="errorLabelOrHelpText" class="help-text" :data-test-id="`${dataTestId}-helptext`">
+        {{ errorLabelOrHelpText }}
+      </TextParagraph>
     </div>
   </div>
 </template>

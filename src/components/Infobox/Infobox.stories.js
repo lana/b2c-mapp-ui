@@ -20,6 +20,7 @@ const InfoboxStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     Infobox,
     RenderString,
@@ -31,7 +32,7 @@ const defaultExample = (args, { argTypes }) => ({
   },
   template: `
     <Infobox>
-      <RenderString :string="defaultSlot" />
+      <RenderString :string="defaultSlot" v-if="defaultSlot" />
     </Infobox>
   `,
 });

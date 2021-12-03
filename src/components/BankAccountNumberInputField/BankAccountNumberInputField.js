@@ -13,7 +13,7 @@ const props = {
     type: String,
     default: 'bank-account-field',
   },
-  value: {
+  modelValue: {
     type: String,
     default: '',
   },
@@ -33,11 +33,15 @@ const props = {
   lengthHintLabel: String,
   helpText: String,
   hideClearButton: Boolean,
+  inputmode: String,
+  pattern: String,
 };
+
+const emits = ['update:modelValue', 'change', 'focus', 'blur'];
 
 const data = function () {
   return {
-    inputValue: this.value,
+    inputValue: this.modelValue,
   };
 };
 
@@ -94,12 +98,12 @@ const computed = {
 };
 
 const methods = {
-  emitInputEvent() {
+  emitUpdateModelValueEvent() {
     const payload = {
       value: this.inputValue,
       validation: this.validation,
     };
-    this.$emit('input', this.inputValue);
+    this.$emit('update:modelValue', this.inputValue);
     this.$emit('change', payload);
   },
   focus() {
@@ -125,11 +129,11 @@ const methods = {
 
 const watch = {
   inputValue() {
-    this.emitInputEvent();
+    this.emitUpdateModelValueEvent();
     this.updateInputValueWithFormatting();
   },
-  value() {
-    this.inputValue = this.value;
+  modelValue() {
+    this.inputValue = this.modelValue;
   },
 };
 
@@ -140,6 +144,7 @@ const mounted = function () {
 const BankAccountNumberInputField = {
   components,
   props,
+  emits,
   data,
   computed,
   methods,

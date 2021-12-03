@@ -52,6 +52,8 @@ const props = {
   name: String,
 };
 
+const emits = ['click'];
+
 const data = function () {
   return {
     currentCopyState: copyStatesLookup.toCopy,
@@ -99,6 +101,7 @@ const methods = {
 
 const CopyToClipboardButton = {
   props,
+  emits,
   data,
   computed,
   methods,

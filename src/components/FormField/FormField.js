@@ -1,3 +1,4 @@
+import { nextTick } from 'vue';
 import { CloseBoldIcon, WarningBoldIcon } from '@lana/b2c-mapp-ui-assets';
 
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
@@ -18,7 +19,7 @@ const props = {
     type: Number,
     default: 100,
   },
-  value: {
+  modelValue: {
     type: String,
     default: '',
   },
@@ -35,13 +36,17 @@ const props = {
   lengthHintLabel: String,
   helpText: String,
   hideClearButton: Boolean,
+  inputmode: String,
+  pattern: String,
 };
+
+const emits = ['update:modelValue', 'focus', 'blur', 'keypress', 'keyup', 'paste'];
 
 const data = function () {
   return {
     isFocused: false,
     isClearing: false,
-    inputValue: this.value,
+    inputValue: this.modelValue,
   };
 };
 
@@ -73,27 +78,27 @@ const computed = {
 };
 
 const methods = {
-  toggleFocus() {
-    this.isFocused = !this.isFocused;
+  setFocus(focus) {
+    this.isFocused = focus;
   },
-  focusIfNeeded() {
+  async focusIfNeeded() {
     if (!(this.startFocused && this.$refs.input)) { return; }
-    this.toggleFocus();
+    await nextTick();
     this.$refs.input.focus();
   },
   blur() {
     if (!this.$refs.input) { return; }
     this.$refs.input.blur();
   },
-  emitInputEvent() {
-    this.$emit('input', this.inputValue);
+  emitUpdateModelValueEvent() {
+    this.$emit('update:modelValue', this.inputValue);
   },
   onFocus(event) {
-    this.toggleFocus();
+    this.setFocus(true);
     this.$emit('focus', event);
   },
   onBlur(event) {
-    this.toggleFocus();
+    this.setFocus(false);
     this.$emit('blur', event);
   },
   onKeypress(event) {
@@ -119,10 +124,10 @@ const methods = {
 
 const watch = {
   inputValue() {
-    this.emitInputEvent();
+    this.emitUpdateModelValueEvent();
   },
-  value() {
-    this.inputValue = this.value;
+  modelValue() {
+    this.inputValue = this.modelValue;
   },
 };
 
@@ -133,6 +138,7 @@ const mounted = function () {
 const FormField = {
   components,
   props,
+  emits,
   data,
   computed,
   methods,

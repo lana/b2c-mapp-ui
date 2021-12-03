@@ -22,7 +22,9 @@ const data = function () {
 const methods = {
   scrollToPosition() {
     if ((typeof this.position !== 'number') || !this.$refs.wrapper) { return; }
-    this.$refs.wrapper.scrollTop = this.position;
+    this.$refs.wrapper.scrollTo({
+      top: this.position,
+    });
   },
 };
 

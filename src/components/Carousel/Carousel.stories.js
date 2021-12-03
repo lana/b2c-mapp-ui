@@ -96,6 +96,7 @@ const CarouselStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     Carousel,
     RenderString,
@@ -153,8 +154,8 @@ defaultExample.args = {
   default: `<div key="1"><Progress :percentage="20" /></div>
 <div key="2"><Progress :percentage="50" /></div>
 <div key="3"><Progress :percentage="100" color="green" /></div>`,
-  leftArrowIcon: '<BackIcon class="icon" width="18" />',
-  rightArrowIcon: '<ForwardIcon class="icon" width="18" />',
+  leftArrowIcon: '<BackIcon class="icon" :style="{ width: \'18px\' }" />',
+  rightArrowIcon: '<ForwardIcon class="icon" :style="{ width: \'18px\' }" />',
   navigationItem: '<span style="margin: 4px;" v-html="index" />',
   navigationItemActive: '<span style="margin: 4px; background-color: #00a0df" v-html="index" />',
 };
@@ -172,10 +173,10 @@ defaultExample.parameters = {
     <div key="2"><Progress :percentage="50" /></div>
     <div key="3"><Progress :percentage="100" color="green" /></div>
     <template #leftArrowIcon>
-      <BackIcon class="icon" width="18" />
+      <BackIcon class="icon" :style="{ width: '18px' }" />
     </template>
     <template #rightArrowIcon>
-      <ForwardIcon class="icon" width="18" />
+      <ForwardIcon class="icon" :style="{ width: '18px' }" />
     </template>
     <template #navigationItem="{ index }">
       <span style="margin: 4px;" v-html="index" />
@@ -189,8 +190,8 @@ defaultExample.parameters = {
   },
 };
 
-const simpleExample = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const simpleExample = (args) => ({
+  setup() { return { ...args }; },
   components: {
     Carousel,
   },
@@ -259,6 +260,7 @@ simpleExample.parameters = {
 
 const innerWidthItemExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     Carousel,
   },

@@ -1,7 +1,6 @@
+import { ref, nextTick } from 'vue';
 import { ChevronLeftIcon, ChevronRightIcon } from '@lana/b2c-mapp-ui-assets';
-import debounce from 'lodash.debounce';
-
-const SCROLL_DEBOUNCE = 200;
+import { debounce } from 'lodash-es';
 
 const components = {
   ChevronLeftIcon,
@@ -21,7 +20,7 @@ const props = {
     type: Boolean,
     default: false,
   },
-  value: {
+  modelValue: {
     type: Number,
     default: 0,
   },
@@ -29,13 +28,19 @@ const props = {
     type: String,
     default: 'carousel',
   },
+  scrollDebounce: {
+    type: Number,
+    default: 200,
+  },
 };
+
+const emits = ['update:modelValue'];
 
 const data = function () {
   return {
     items: [],
     itemsCount: 0,
-    currentIndex: this.value,
+    currentIndex: this.modelValue,
     initialX: 0,
     scrollLeft: 0,
     destinationScrollLeft: null,
@@ -59,40 +64,40 @@ const computed = {
 
 const methods = {
   getItems() {
-    const items = this.$slots.default.reduce((accumulator, node) => {
+    const items = this.$slots.default().reduce((accumulator, node) => {
       if (!node.componentInstance || !node.componentInstance.$refs) { return accumulator; }
       if (node.componentInstance.$refs.carouselItem) {
         accumulator.push(node.componentInstance.$refs.carouselItem);
       }
       return accumulator;
     }, []);
-    const result = (items.length) ? items : [...this.$refs.carousel.children];
+    const result = (items.length) ? items : [...this.carousel.children];
     return result;
   },
   async setItems() {
-    await this.$nextTick();
-    if (!this.$refs.carousel) { return; }
+    await nextTick();
+    if (!this.carousel) { return; }
     this.items = this.getItems();
     this.updateScroll(this.currentIndex);
   },
   updateScroll(index) {
-    if (!this.items[index]) { return; }
-    this.$refs.carousel.style.scrollBehavior = 'auto';
-    this.$refs.carousel.scrollTo({
+    if (!this.items[index] || !this.carousel) { return; }
+    this.carousel.style.scrollBehavior = 'auto';
+    this.carousel.scrollTo({
       left: this.items[index].offsetLeft,
     });
-    this.$refs.carousel.style.scrollBehavior = '';
+    this.carousel.style.scrollBehavior = '';
   },
-  changeRenderedItem: debounce(function changeRenderedItem(direction) {
+  changeRenderedItem(direction) {
     this.setCurrentIndex(this.currentIndex + direction);
-  }, SCROLL_DEBOUNCE),
+  },
   setCurrentIndex(index) {
     if (!this.items[index] || index === this.currentIndex) {
       return;
     }
     this.destinationScrollLeft = this.items[index].offsetLeft;
     this.currentIndex = index;
-    this.$refs.carousel.scrollTo({
+    this.carousel.scrollTo({
       left: this.items[index].offsetLeft,
       behavior: 'smooth',
     });
@@ -102,24 +107,24 @@ const methods = {
     return result;
   },
   handleGestureStart(event) {
-    this.initialX = this.getMouseXPositionFromEvent(event) - this.$refs.carousel.offsetLeft;
-    this.scrollLeft = this.$refs.carousel.scrollLeft;
+    this.initialX = this.getMouseXPositionFromEvent(event) - this.carousel.offsetLeft;
+    this.scrollLeft = this.carousel.scrollLeft;
     this.isScrolling = true;
-    this.$refs.carousel.style.scrollSnapType = 'none';
+    this.carousel.style.scrollSnapType = 'none';
   },
   handleGestureMove(event) {
     if (!this.isScrolling) { return; }
-    const currentX = this.getMouseXPositionFromEvent(event) - this.$refs.carousel.offsetLeft;
+    const currentX = this.getMouseXPositionFromEvent(event) - this.carousel.offsetLeft;
     const walk = (currentX - this.initialX) * 3;
-    this.$refs.carousel.scrollLeft = this.scrollLeft - walk;
+    this.carousel.scrollLeft = this.scrollLeft - walk;
   },
   handleGestureEnd(event) {
     if (!this.isScrolling) { return; }
     this.isScrolling = false;
-    this.$refs.carousel.style.scrollSnapType = '';
-    const currentX = this.getMouseXPositionFromEvent(event) - this.$refs.carousel.offsetLeft;
+    this.carousel.style.scrollSnapType = '';
+    const currentX = this.getMouseXPositionFromEvent(event) - this.carousel.offsetLeft;
     const walk = (currentX - this.initialX) * 3;
-    this.$refs.carousel.scrollLeft = this.scrollLeft - walk;
+    this.carousel.scrollLeft = this.scrollLeft - walk;
   },
   handleScroll(event) {
     const { scrollLeft, clientLeft } = event.target;
@@ -135,18 +140,27 @@ const methods = {
   },
   initObserver() {
     const resizeObserver = new ResizeObserver(this.onObserverEvent);
-    resizeObserver.observe(this.$refs.carousel);
+    resizeObserver.observe(this.carousel);
     this.resizeObserver = resizeObserver;
   },
 };
 
 const watch = {
-  value() {
-    this.setCurrentIndex(this.value || 0);
+  modelValue() {
+    this.setCurrentIndex(this.modelValue || 0);
   },
   currentIndex() {
-    this.$emit('input', this.currentIndex);
+    this.$emit('update:modelValue', this.currentIndex);
   },
+};
+
+const setup = function () {
+  const carousel = ref(null);
+  return { carousel };
+};
+
+const created = function () {
+  this.debouncedChangeRenderedItem = debounce(this.changeRenderedItem, this.scrollDebounce);
 };
 
 const mounted = function () {
@@ -156,21 +170,24 @@ const mounted = function () {
   this.initObserver();
 };
 
-const beforeDestroy = function () {
+const beforeUnmount = function () {
   document.removeEventListener('mousemove', this.handleGestureMove);
   document.removeEventListener('mouseup', this.handleGestureEnd);
-  if (this.resizeObserver) { this.resizeObserver.unobserve(this.$refs.carousel); }
+  if (this.resizeObserver) { this.resizeObserver.unobserve(this.carousel); }
 };
 
 const Carousel = {
   components,
   props,
+  emits,
   data,
   computed,
   methods,
+  setup,
   watch,
+  created,
   mounted,
-  beforeDestroy,
+  beforeUnmount,
 };
 
 export default Carousel;

@@ -11,21 +11,34 @@ export default {
   components: {
     Carousel,
   },
+  emits: ['update:modelValue'],
   data() {
     return {
-      slide: this.value || 0,
+      slide: this.modelValue || 0,
     };
   },
   watch: {
     slide() {
-      this.$emit('input', this.slide);
+      this.$emit('update:modelValue', this.slide);
     },
   },
-  props: ['hideArrows', 'arrowIcons', 'hideNavigation', 'value', 'childAmount'],
+  props: {
+    hideArrows: Boolean,
+    arrowIcons: Boolean,
+    hideNavigation: Boolean,
+    modelValue: {
+      type: Number,
+      default: 0,
+    },
+    childAmount: {
+      type: Number,
+      default: 1,
+    },
+  },
   beforeMount() {
     Element.prototype.scrollTo = () => {};
   },
-  beforeDestroy() {
+  beforeUnmount() {
     Element.prototype.scrollTo = undefined;
   },
 };

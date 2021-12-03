@@ -22,6 +22,8 @@ const props = {
   debounceDelay: Number,
 };
 
+const emits = ['click'];
+
 const methods = {
   onClick(event) {
     this.$emit('click', event);
@@ -31,6 +33,7 @@ const methods = {
 const ForwardButton = {
   components,
   props,
+  emits,
   methods,
 };
 

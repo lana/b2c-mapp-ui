@@ -1,10 +1,11 @@
 import { action } from '@storybook/addon-actions';
 
 import PhoneNumberField from './PhoneNumberField.vue';
-import { availableCountryCodes } from './PhoneNumberField';
+import { getAvailableCountryCodes } from './PhoneNumberField';
 import { createOptionalDeviceDecorator } from '../../lib/storybookHelpers';
 
 const defaultCountryCode = 'MX';
+const availableCountryCodes = getAvailableCountryCodes();
 
 const deviceDecorator = createOptionalDeviceDecorator('<strong>PhoneNumberField:</strong>&nbsp;An international phone-number formatting field.');
 
@@ -46,12 +47,14 @@ const PhoneNumberFieldStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     PhoneNumberField,
   },
   data() {
     return {
       value: '',
+      formattedValue: '',
       isValid: false,
     };
   },
@@ -81,6 +84,7 @@ const defaultExample = (args, { argTypes }) => ({
       </p>
       <hr>
       <PhoneNumberField v-model="value"
+                        v-model:formattedValue="formattedValue"
                         ref="field"
                         :country-code="countryCode"
                         :hide-country-code-until-focus="hideCountryCodeUntilFocus"
@@ -102,6 +106,8 @@ const defaultExample = (args, { argTypes }) => ({
       <div style="margin: 20px;">
         <div>Bound value: {{ value }}</div>
         <br>
+        <div>Formatted value: {{ formattedValue }}</div>
+        <br>
         <div>Is Valid?: {{ isValid }}</div>
       </div>
     </div>
@@ -110,6 +116,7 @@ const defaultExample = (args, { argTypes }) => ({
 
 const countryCodes = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     PhoneNumberField,
   },
@@ -160,6 +167,7 @@ countryCodes.parameters = {
 
 const moreExamples = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     PhoneNumberField,
   },
@@ -202,7 +210,7 @@ const moreExamples = (args, { argTypes }) => ({
         <div style="width: 500px">
           <p>With Error</p>
           <PhoneNumberField :country-code="defaultCountryCode"
-                            value="55 1234 1234"
+                            modelValue="55 1234 1234"
                             error-label="Invalid phone number"
                             label="Example"
           />
@@ -212,7 +220,7 @@ const moreExamples = (args, { argTypes }) => ({
           <PhoneNumberField :country-code="defaultCountryCode"
                             disabled
                             label="Disabled Example"
-                            value="55 1234 1234"
+                            modelValue="55 1234 1234"
           />
         </div>
         <div style="width: 500px">
@@ -220,7 +228,7 @@ const moreExamples = (args, { argTypes }) => ({
           <PhoneNumberField :country-code="defaultCountryCode"
                             readonly
                             label="Readonly"
-                            value="55 1234 1234"
+                            modelValue="55 1234 1234"
           />
         </div>
       </div>
@@ -280,7 +288,7 @@ moreExamples.parameters = {
   <div style="width: 500px">
     <p>With Error</p>
     <PhoneNumberField :country-code="defaultCountryCode"
-                      value="55 1234 1234"
+                      modelValue="55 1234 1234"
                       error-label="Invalid phone number"
                       label="Example"
     />
@@ -290,7 +298,7 @@ moreExamples.parameters = {
     <PhoneNumberField :country-code="defaultCountryCode"
                       disabled
                       label="Disabled Example"
-                      value="55 1234 1234"
+                      modelValue="55 1234 1234"
     />
   </div>
   <div style="width: 500px">
@@ -298,7 +306,7 @@ moreExamples.parameters = {
     <PhoneNumberField :country-code="defaultCountryCode"
                       readonly
                       label="Readonly"
-                      value="55 1234 1234"
+                      modelValue="55 1234 1234"
     />
   </div>
 </div>

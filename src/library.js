@@ -36,7 +36,7 @@ import SlideButton from './components/SlideButton/SlideButton.vue';
 import SpecCard from './components/SpecCard/SpecCard.vue';
 import Stepper from './components/Stepper/Stepper.vue';
 import StorybookMobileDeviceSimulator from './components/StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { availableDevices as availableSimulatedMobileDevices } from './components/StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
+import { getAvailableDevices as getAvailableSimulatedMobileDevices } from './components/StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
 import TextField from './components/TextField/TextField.vue';
 import TextParagraph from './components/TextParagraph/TextParagraph.vue';
 import Timeline from './components/Timeline/Timeline.vue';
@@ -85,7 +85,7 @@ export {
   SpecCard,
   Stepper,
   StorybookMobileDeviceSimulator,
-  availableSimulatedMobileDevices,
+  getAvailableSimulatedMobileDevices,
   TextField,
   TextParagraph,
   Timeline,

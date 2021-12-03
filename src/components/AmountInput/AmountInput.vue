@@ -17,17 +17,18 @@
                        :contenteditable="!(readonly || disabled)"
                        @keypress="onKeypress"
                        @keyup="onKeyup"
-                       @focus.native="onFocus"
-                       @blur.native="onBlur"
+                       @focus="onFocus"
+                       @blur="onBlur"
                        @paste="onPaste"
       />
-      <input ref="input"
-             v-model="currencyValue"
-             v-currency="currencyOptions"
-             class="hidden"
-             :readonly="readonly"
-             :disabled="disabled"
-      >
+      <CurrencyInput ref="inputRef"
+                     v-model="currencyValue"
+                     v-model:formattedValue="formattedValue"
+                     :options="currencyOptions"
+                     class="hidden"
+                     :readonly="readonly"
+                     :disabled="disabled"
+      />
     </div>
   </div>
 </template>

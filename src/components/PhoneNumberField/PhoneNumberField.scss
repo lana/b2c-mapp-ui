@@ -9,10 +9,11 @@
   display: flex;
   flex-direction: row;
   min-width: 54px;
+  box-sizing: border-box;
 }
 
 .filled {
-  ::v-deep input {
+  :deep(input) {
     text-indent: 35px;
   }
 

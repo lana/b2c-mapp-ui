@@ -31,6 +31,7 @@ const SelectBoxStories = {
 
 const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     SelectBox,
   },
@@ -113,6 +114,7 @@ defaultExample.parameters = {
 
 const withPreselectedValue = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     SelectBox,
   },
@@ -167,7 +169,7 @@ withPreselectedValue.args = {
     },
     {
       label: 'Option 3',
-      value: 'option2',
+      value: 'option3',
     },
   ],
 };
@@ -195,6 +197,7 @@ withPreselectedValue.parameters = {
 
 const withNoValueInitiallySelected = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
+  setup() { return { ...args }; },
   components: {
     SelectBox,
   },

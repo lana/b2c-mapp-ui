@@ -9,8 +9,8 @@ describe('ConfettiOverlay unit test', () => {
   };
 
   it('Should pass health-check test', async () => {
-    const wrapper = shallowMount(ConfettiOverlay);
+    const wrapper = shallowMount(ConfettiOverlay, {});
     await waitForDomUpdate(wrapper);
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.findAll('.wrapper > *').length).toBe(80);
   });
 });
