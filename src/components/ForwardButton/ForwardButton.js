@@ -30,7 +30,10 @@ const methods = {
   },
 };
 
+const name = 'ForwardButton';
+
 const ForwardButton = {
+  name,
   components,
   props,
   emits,

@@ -30,7 +30,10 @@ const computed = {
   },
 };
 
+const name = 'Stepper';
+
 const Stepper = {
+  name,
   components,
   props,
   computed,

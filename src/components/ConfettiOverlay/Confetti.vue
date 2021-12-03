@@ -8,6 +8,7 @@
 import { ref, onMounted } from 'vue';
 
 export default {
+  name: 'Confetti',
   props: {
     color: {
       type: String,

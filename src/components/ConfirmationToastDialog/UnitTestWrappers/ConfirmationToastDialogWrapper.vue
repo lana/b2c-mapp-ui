@@ -1,10 +1,9 @@
 <template>
   <div data-testid="wrapper">
-    <ConfirmationToastDialog
-      v-model="isShowing"
-      title="title"
-      confirm-button-text="confirmButtonText"
-      dismiss-button-text="dismissButtonText"
+    <ConfirmationToastDialog v-model="isShowing"
+                             title="title"
+                             confirm-button-text="confirmButtonText"
+                             dismiss-button-text="dismissButtonText"
     />
     <span data-testid="open-modal" @click="openModal">Click Me</span>
   </div>

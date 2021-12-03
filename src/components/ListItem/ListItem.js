@@ -60,7 +60,10 @@ const computed = {
   },
 };
 
+const name = 'ListItem';
+
 const ListItem = {
+  name,
   components,
   props,
   emits,

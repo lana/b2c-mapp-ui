@@ -73,7 +73,10 @@ const methods = {
   },
 };
 
+const name = 'ContentItem';
+
 const ContentItem = {
+  name,
   components,
   props,
   emits,

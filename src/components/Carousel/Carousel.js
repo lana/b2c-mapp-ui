@@ -176,7 +176,10 @@ const beforeUnmount = function () {
   if (this.resizeObserver) { this.resizeObserver.unobserve(this.carousel); }
 };
 
+const name = 'Carousel';
+
 const Carousel = {
+  name,
   components,
   props,
   emits,

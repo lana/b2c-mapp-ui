@@ -135,7 +135,10 @@ const mounted = function () {
   this.focusIfNeeded();
 };
 
+const name = 'FormField';
+
 const FormField = {
+  name,
   components,
   props,
   emits,

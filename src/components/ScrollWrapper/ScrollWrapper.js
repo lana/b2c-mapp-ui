@@ -32,7 +32,10 @@ const mounted = function () {
   this.scrollToPosition();
 };
 
+const name = 'ScrollWrapper';
+
 const ScrollWrapper = {
+  name,
   props,
   data,
   methods,

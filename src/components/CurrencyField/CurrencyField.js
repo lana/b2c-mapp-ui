@@ -156,7 +156,10 @@ const mounted = function () {
   this.focusIfNeeded();
 };
 
+const name = 'CurrencyField';
+
 const CurrencyField = {
+  name,
   components,
   props,
   emits,

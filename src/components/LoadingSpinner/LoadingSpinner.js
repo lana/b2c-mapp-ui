@@ -4,7 +4,10 @@ const components = {
   MopSpinnerIcon,
 };
 
+const name = 'LoadingSpinner';
+
 const LoadingSpinner = {
+  name,
   components,
 };
 

@@ -49,7 +49,10 @@ const watch = {
   },
 };
 
+const name = 'RadioList';
+
 const RadioList = {
+  name,
   components,
   props,
   emits,

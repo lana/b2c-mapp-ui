@@ -49,7 +49,10 @@ const methods = {
   },
 };
 
+const name = 'ActionItem';
+
 const ActionItem = {
+  name,
   components,
   computed,
   props,

@@ -11,7 +11,10 @@ const props = {
   },
 };
 
+const name = 'Infobox';
+
 const Infobox = {
+  name,
   components,
   props,
 };

@@ -67,6 +67,9 @@ module.exports = {
     'fp/no-delete': 'error',
     'fp/no-get-set': 'error',
     '@getify/proper-ternary/parens': ['error', { call: false, object: false }],
+    'vue/multi-word-component-names': ['error', {
+      ignores: ['Button', 'Carousel', 'Checkbox', 'Confetti', 'Heading', 'Infobox', 'Progress', 'Screen', 'Stepper', 'Timeline', 'Wrapper'],
+    }],
     'vue/no-shared-component-data': 'error',
     'vue/no-side-effects-in-computed-properties': 'error',
     'vue/no-unused-components': 'error',
@@ -81,6 +84,10 @@ module.exports = {
     'vue/valid-v-show': 'error',
     'vue/valid-v-model': 'error',
     'vue/attribute-hyphenation': 'error',
+    'vue/first-attribute-linebreak': ['error', {
+      singleline: 'ignore',
+      multiline: 'beside',
+    }],
     'vue/html-closing-bracket-newline': 'error',
     'vue/html-closing-bracket-spacing': ['error', {
       startTag: 'never',
@@ -95,10 +102,7 @@ module.exports = {
     'vue/html-self-closing': 'error',
     'vue/max-attributes-per-line': ['error', {
       singleline: 5,
-      multiline: {
-        max: 1,
-        allowFirstLine: true,
-      },
+      multiline: 1,
     }],
     'vue/multiline-html-element-content-newline': 'error',
     'vue/mustache-interpolation-spacing': 'error',

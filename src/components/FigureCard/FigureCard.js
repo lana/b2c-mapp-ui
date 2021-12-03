@@ -27,7 +27,10 @@ const computed = {
   },
 };
 
+const name = 'FigureCard';
+
 const FigureCard = {
+  name,
   components,
   props,
   computed,

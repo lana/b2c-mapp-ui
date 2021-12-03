@@ -45,7 +45,10 @@ const methods = {
   },
 };
 
+const name = 'CallToActionScreen';
+
 const CallToActionScreen = {
+  name,
   components,
   emits,
   props,

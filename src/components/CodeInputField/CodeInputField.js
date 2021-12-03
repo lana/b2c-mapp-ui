@@ -104,7 +104,10 @@ const watch = {
   },
 };
 
+const name = 'CodeInputField';
+
 const CodeInputField = {
+  name,
   components,
   props,
   emits,

@@ -12,7 +12,10 @@ const props = {
   title: String,
 };
 
+const name = 'CopyableList';
+
 const CopyableList = {
+  name,
   components,
   props,
 };

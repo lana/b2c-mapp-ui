@@ -40,7 +40,10 @@ const methods = {
   },
 };
 
+const name = 'CopyableListItem';
+
 const CopyableListItem = {
+  name,
   components,
   props,
   emits,

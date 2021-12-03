@@ -92,7 +92,10 @@ const watch = {
   },
 };
 
+const name = 'SelectBox';
+
 const SelectBox = {
+  name,
   components,
   props,
   emits,

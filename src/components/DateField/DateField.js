@@ -176,7 +176,10 @@ const mounted = function () {
   if (this.inputValue) { this.updateInputAndCalendarValuesAsNeeded(); }
 };
 
+const name = 'DateField';
+
 const DateField = {
+  name,
   components,
   props,
   emits,
