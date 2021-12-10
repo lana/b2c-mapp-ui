@@ -1,5 +1,5 @@
 <template>
-  <section class="wrapper">
+  <section class="radio-wrapper">
     <Heading v-if="title" class="title">
       {{ title }}
     </Heading>

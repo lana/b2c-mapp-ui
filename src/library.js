@@ -6,6 +6,7 @@ import Button from './components/Button/Button.vue';
 import CallToActionScreen from './components/CallToActionScreen/CallToActionScreen.vue';
 import Carousel from './components/Carousel/Carousel.vue';
 import Checkbox from './components/Checkbox/Checkbox.vue';
+import CircularProgress from './components/CircularProgress/CircularProgress.vue';
 import CodeInputField from './components/CodeInputField/CodeInputField.vue';
 import ConfettiOverlay from './components/ConfettiOverlay/ConfettiOverlay.vue';
 import ConfirmationModalDialog from './components/ConfirmationModalDialog/ConfirmationModalDialog.vue';
@@ -26,7 +27,6 @@ import LinearProgress from './components/LinearProgress/LinearProgress.vue';
 import ListItem from './components/ListItem/ListItem.vue';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner.vue';
 import PhoneNumberField from './components/PhoneNumberField/PhoneNumberField.vue';
-import Progress from './components/Progress/Progress.vue';
 import RadioList from './components/RadioList/RadioList.vue';
 import Screen from './components/Screen/Screen.vue';
 import ScrollWrapper from './components/ScrollWrapper/ScrollWrapper.vue';
@@ -56,6 +56,7 @@ export {
   CallToActionScreen,
   Carousel,
   Checkbox,
+  CircularProgress,
   CodeInputField,
   ConfirmationModalDialog,
   ConfirmationToastDialog,
@@ -75,7 +76,7 @@ export {
   ListItem,
   LoadingSpinner,
   PhoneNumberField,
-  Progress,
+  CircularProgress as Progress,
   RadioList,
   Screen,
   ScrollWrapper,

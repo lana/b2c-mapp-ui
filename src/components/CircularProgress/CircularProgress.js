@@ -103,9 +103,9 @@ const mounted = function () {
   this.startAnimation();
 };
 
-const name = 'UiProgress';
+const name = 'CircularProgress';
 
-const Progress = {
+const CircularProgress = {
   name,
   components,
   props,
@@ -115,4 +115,4 @@ const Progress = {
   mounted,
 };
 
-export default Progress;
+export default CircularProgress;
