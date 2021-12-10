@@ -68,7 +68,7 @@ module.exports = {
     'fp/no-get-set': 'error',
     '@getify/proper-ternary/parens': ['error', { call: false, object: false }],
     'vue/multi-word-component-names': ['error', {
-      ignores: ['Button', 'Carousel', 'Checkbox', 'Confetti', 'Heading', 'Infobox', 'Progress', 'Screen', 'Stepper', 'Timeline', 'Wrapper'],
+      ignores: ['Button', 'Carousel', 'Checkbox', 'Confetti', 'Heading', 'Infobox', 'Screen', 'Stepper', 'Timeline', 'Wrapper'],
     }],
     'vue/no-shared-component-data': 'error',
     'vue/no-side-effects-in-computed-properties': 'error',

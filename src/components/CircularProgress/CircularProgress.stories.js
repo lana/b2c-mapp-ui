@@ -1,16 +1,16 @@
 import { action } from '@storybook/addon-actions';
 
-import Progress from './Progress.vue';
+import CircularProgress from './CircularProgress.vue';
 import RenderString from '../../lib/renderString';
 import { createDeviceDecorator } from '../../lib/storybookHelpers';
 
 const availableColors = ['blue', 'brown', 'green', 'orange', 'pink', 'purple', 'red', 'yellow'];
 
-const deviceDecorator = createDeviceDecorator('<strong>Progress:</strong>&nbsp;A component that let user see a progress.');
+const deviceDecorator = createDeviceDecorator('<strong>CircularProgress:</strong>&nbsp;A component that let user see a progress.');
 
-const ProgressStories = {
-  component: Progress,
-  title: 'Components/Progress',
+const CircularProgressStories = {
+  component: CircularProgress,
+  title: 'Components/CircularProgress',
   decorators: [deviceDecorator],
   args: {
     ...deviceDecorator.args,
@@ -66,7 +66,7 @@ const defaultExample = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   setup() { return { ...args }; },
   components: {
-    Progress,
+    CircularProgress,
     RenderString,
   },
   computed: {
@@ -79,7 +79,7 @@ const defaultExample = (args, { argTypes }) => ({
     onAnimationEnd: action('Animation ended!'),
   },
   template: `
-      <Progress :progress="progress"
+      <CircularProgress :progress="progress"
                 :key="computedKey"
                 :total="total"
                 :percentage="percentage"
@@ -98,24 +98,24 @@ const defaultExample = (args, { argTypes }) => ({
         <template v-if="customDescription" v-slot:customDescription>
           <RenderString :string="customDescription" />
         </template>
-      </Progress>
+      </CircularProgress>
   `,
 });
 defaultExample.parameters = {
   docs: {
     source: {
       code: `
-<Progress :progress="progress"
-          :total="total"
-          :percentage="percentage"
-          :data-test-id="field"
-          :title="title"
-          :description="description"
-          :color="color"
-          :animate="animate"
-          :animation-duration="animationDuration"
-          :circular-animation="circularAnimation"
-          @animationend="onAnimationEnd"
+<CircularProgress :progress="progress"
+                  :total="total"
+                  :percentage="percentage"
+                  :data-test-id="field"
+                  :title="title"
+                  :description="description"
+                  :color="color"
+                  :animate="animate"
+                  :animation-duration="animationDuration"
+                  :circular-animation="circularAnimation"
+                  @animationend="onAnimationEnd"
 >
   <template v-slot:customTitle>
     {{ customTitle }}
@@ -123,7 +123,7 @@ defaultExample.parameters = {
   <template v-slot:customDescription>
     {{ customDescription }}
   </template>
-</Progress>
+</CircularProgress>
       `,
     },
   },
@@ -133,4 +133,4 @@ export {
   defaultExample,
 };
 
-export default ProgressStories;
+export default CircularProgressStories;
