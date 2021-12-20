@@ -22,8 +22,8 @@ const BankAccountNumberInputFieldStories = {
     countryCode: 'MX',
     helpText: '',
     hideClearButton: false,
-    inputmode: false,
-    pattern: false,
+    inputmode: '',
+    pattern: '',
   },
   argTypes: {
     ...deviceDecorator.argTypes,
