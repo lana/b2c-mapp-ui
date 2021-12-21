@@ -45,20 +45,26 @@ const props = {
   },
 };
 
-const emits = ['update:modelValue', 'update:formattedValue', 'focus', 'blur'];
+const emits = ['update:modelValue', 'update:formattedValue', 'update:isValid', 'focus', 'blur'];
 
 const data = function () {
   return {
     isFocused: false,
     inputValue: this.modelValue,
+    isValid: false,
   };
 };
 
 const computed = {
+  cleanedInputValue() {
+    if (!this.inputValue) { return ''; }
+    const result = this.inputValue.replace(nonDigitRegexp, '');
+    return result;
+  },
   formattedPhoneNumber() {
     if (!(this.inputValue && this.countryCode)) { return ''; }
     const asYouType = new AsYouType(this.countryCode, phoneNumberMetadata);
-    const result = asYouType.input(this.inputValue);
+    const result = asYouType.input(this.cleanedInputValue);
     return result;
   },
   prefix() {
@@ -75,7 +81,7 @@ const computed = {
 
 const methods = {
   emitUpdateModelValueEvent() {
-    this.$emit('update:modelValue', this.inputValue);
+    this.$emit('update:modelValue', this.cleanedInputValue);
   },
   onFocus(event) {
     this.isFocused = true;
@@ -93,8 +99,7 @@ const methods = {
     this.$refs.field.focus();
   },
   isPhoneNumberValid() {
-    const cleanedInputValue = this.inputValue.replace(nonDigitRegexp, '');
-    if (this.maxPhoneNumberLength && (cleanedInputValue.length > this.maxPhoneNumberLength)) { return false; }
+    if (this.maxPhoneNumberLength && (this.cleanedInputValue.length > this.maxPhoneNumberLength)) { return false; }
     const asYouType = new AsYouType(this.countryCode, phoneNumberMetadata);
     asYouType.input((this.inputValue || ''));
     const result = asYouType.isPossible();
@@ -104,7 +109,9 @@ const methods = {
 
 const watch = {
   inputValue() {
+    if (this.inputValue) { this.inputValue = this.formattedPhoneNumber; }
     this.emitUpdateModelValueEvent();
+    this.$emit('update:isValid', this.isPhoneNumberValid());
   },
   formattedPhoneNumber() {
     this.$emit('update:formattedValue', this.formattedPhoneNumber);

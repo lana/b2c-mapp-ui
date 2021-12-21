@@ -1,6 +1,6 @@
 {
   "name": "@lana/b2c-mapp-ui",
-  "version": "9.3.0",
+  "version": "9.3.1",
   "description": "Shared custom libraries for building µapps.",
   "bugs": {
     "url": "https://github.com/lana/b2c-mapp-ui/issues"
@@ -46,7 +46,7 @@
     "dist/*"
   ],
   "dependencies": {
-    "@lana/b2c-mapp-ui-assets": "^5.4.0",
+    "@lana/b2c-mapp-ui-assets": "^5.5.0",
     "libphonenumber-js": "^1.9.42",
     "lodash-es": "^4.17.21",
     "vue": "^3.2.21",
@@ -58,13 +58,13 @@
   },
   "devDependencies": {
     "@getify/eslint-plugin-proper-ternary": "^3.1.1",
-    "@storybook/addon-actions": "^6.4.5",
-    "@storybook/addon-controls": "^6.4.5",
-    "@storybook/addon-docs": "^6.4.5",
-    "@storybook/addon-essentials": "^6.4.5",
-    "@storybook/addon-links": "^6.4.5",
+    "@storybook/addon-actions": "^6.4.9",
+    "@storybook/addon-controls": "^6.4.9",
+    "@storybook/addon-docs": "^6.4.9",
+    "@storybook/addon-essentials": "^6.4.9",
+    "@storybook/addon-links": "^6.4.9",
     "@storybook/storybook-deployer": "^2.8.10",
-    "@storybook/vue3": "^6.4.5",
+    "@storybook/vue3": "^6.4.9",
     "@testing-library/dom": "^8.11.0",
     "@testing-library/vue": "^6.4.2",
     "@vitejs/plugin-vue": "^1.9.4",
@@ -79,7 +79,7 @@
     "libphonenumber-metadata-generator": "^1.0.1",
     "rollup-plugin-visualizer": "^5.5.2",
     "sass": "^1.43.4",
-    "storybook-builder-vite": "^0.1.10",
+    "storybook-builder-vite": "^0.1.11",
     "vite": "^2.6.13",
     "vite-plugin-eslint": "^1.3.0",
     "vue-jest": "^5.0.0-alpha.10"

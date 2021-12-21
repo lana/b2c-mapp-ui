@@ -63,11 +63,6 @@ const defaultExample = (args, { argTypes }) => ({
     onFocus: action('Focus!'),
     onInput: action('Changed!'),
   },
-  watch: {
-    value() {
-      this.isValid = this.$refs.field.isPhoneNumberValid();
-    },
-  },
   template: `
     <div>
       <p>To use the PhoneNumberInputField component you need to provide your custom metadata for validating the phones.</p>
@@ -85,6 +80,7 @@ const defaultExample = (args, { argTypes }) => ({
       <hr>
       <PhoneNumberField v-model="value"
                         v-model:formattedValue="formattedValue"
+                        v-model:isValid="isValid"
                         ref="field"
                         :country-code="countryCode"
                         :hide-country-code-until-focus="hideCountryCodeUntilFocus"
