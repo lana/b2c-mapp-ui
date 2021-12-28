@@ -1,0 +1,16 @@
+@import "../../styles/colors";
+
+.canvas-container {
+  position: relative;
+  box-sizing: border-box;
+}
+
+.signature-pad {
+  border: 1px solid $black-300;
+  background-color: $black-100;
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}
+
