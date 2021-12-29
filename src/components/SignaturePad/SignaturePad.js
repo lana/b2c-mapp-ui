@@ -21,11 +21,13 @@ const data = function () {
 
 const methods = {
   getMouseXPositionFromEvent(event) {
-    const result = (event.clientX || (event.touches[0].clientX - this.$refs.canvasContainer.offsetLeft));
+    const { offsetX, touches = [{ clientX: this.$refs.canvasContainer.offsetLeft }] } = event;
+    const result = (offsetX || (touches[0].clientX - this.$refs.canvasContainer.offsetLeft));
     return result;
   },
   getMouseYPositionFromEvent(event) {
-    const result = (event.clientY || (event.touches[0].clientY - this.$refs.canvasContainer.offsetTop));
+    const { offsetY, touches = [{ clientY: this.$refs.canvasContainer.offsetTop }] } = event;
+    const result = (offsetY || (touches[0].clientY - this.$refs.canvasContainer.offsetTop));
     return result;
   },
   startDraw(event) {
