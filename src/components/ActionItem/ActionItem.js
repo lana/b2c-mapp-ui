@@ -1,3 +1,5 @@
+import { Comment } from 'vue';
+
 import TextParagraph from '../TextParagraph/TextParagraph.vue';
 
 const errorStatuses = [
@@ -32,6 +34,10 @@ const props = {
 const emits = ['click'];
 
 const computed = {
+  hasDefaultSlot() {
+    const result = this.$slots.default && this.$slots.default().findIndex((node) => (node.type !== Comment)) !== -1;
+    return result;
+  },
   hasErrorStatus() {
     if (!this.status) { return; }
     const result = errorStatuses.includes(this.status.toLowerCase());

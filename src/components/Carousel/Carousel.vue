@@ -26,7 +26,7 @@
               @click="debouncedChangeRenderedItem(-1)"
       >
         <slot v-if="arrowIcons" name="leftArrowIcon">
-          <ChevronLeftIcon v-if="!$slots.leftArrowIcon" class="icon"/>
+          <ChevronLeftIcon class="icon"/>
         </slot>
       </button>
       <button v-show="isNextAvailable"
@@ -38,7 +38,7 @@
               @click="debouncedChangeRenderedItem(1)"
       >
         <slot v-if="arrowIcons" name="rightArrowIcon">
-          <ChevronRightIcon v-if="!$slots.rightArrowIcon" class="icon"/>
+          <ChevronRightIcon class="icon"/>
         </slot>
       </button>
     </slot>

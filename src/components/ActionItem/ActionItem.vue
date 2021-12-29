@@ -3,7 +3,7 @@
       class="item"
       @click="onClick"
   >
-    <div v-if="$slots.default"
+    <div v-if="hasDefaultSlot"
          class="media"
          :data-testid="`${dataTestId}-mediacolor`"
     >
