@@ -54,6 +54,10 @@ const watch = {
 };
 
 const computed = {
+  hasDefaultSlot() {
+    const result = this.$slots.default && this.$slots.default().findIndex((node) => (node.type !== Comment)) !== -1;
+    return result;
+  },
   isRightLabelShowing() {
     const result = (!this.hasToggle && this.rightLabel);
     return result;

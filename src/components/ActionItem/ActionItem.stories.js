@@ -61,7 +61,7 @@ const defaultExample = (args, { argTypes }) => ({
                   :status="status"
                   @click="onClick"
       >
-        <RenderString :string="defaultSlot" />
+        <RenderString v-if="defaultSlot" :string="defaultSlot" />
       </ActionItem>
     </ul>
   `,
@@ -136,6 +136,14 @@ const fullExample = (args, { argTypes }) => ({
             <div>
               <DocumentFilledIcon/>
             </div>
+          </ActionItem>
+          <ActionItem :title="title"
+                      :description="description"
+                      :highlight="highlight"
+                      :status="status"
+                      @click="onClick"
+          >
+            <div v-if="false"/>
           </ActionItem>
         </ul>
   `,

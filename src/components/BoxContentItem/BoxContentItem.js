@@ -35,12 +35,16 @@ const data = function () {
 };
 
 const computed = {
+  hasDefaultSlot() {
+    const result = this.$slots.default && this.$slots.default().findIndex((node) => (node.type !== Comment)) !== -1;
+    return result;
+  },
   hasIcon() {
     const result = (this.success);
     return result;
   },
   hasMetaText() {
-    const result = (this.metaText || this.$slots.customMetaText);
+    const result = (this.metaText || this.$slots.customMetaText());
     return result;
   },
 };

@@ -44,12 +44,16 @@ const data = function () {
 };
 
 const computed = {
+  hasDefaultSlot() {
+    const result = this.$slots.default && this.$slots.default().findIndex((node) => (node.type !== Comment)) !== -1;
+    return result;
+  },
   hasIcon() {
     const result = (this.success || this.hasForwardButton);
     return result;
   },
   hasMetaText() {
-    const result = (this.metaText || this.$slots.customMetaText);
+    const result = (this.metaText || (this.$slots.customMetaText && this.$slots.customMetaText().findIndex((node) => (node.type !== Comment)) !== -1));
     return result;
   },
   iconName() {

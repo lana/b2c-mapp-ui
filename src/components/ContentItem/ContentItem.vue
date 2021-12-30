@@ -7,7 +7,7 @@
       @touchStart="toggleIsPressed"
       @touchEnd="toggleIsPressed"
   >
-    <div v-if="$slots.default"
+    <div v-if="hasDefaultSlot"
          class="media"
          :class="{ 'no-border': noBorder }"
          :data-testid="`${dataTestId}-media-icon`"
