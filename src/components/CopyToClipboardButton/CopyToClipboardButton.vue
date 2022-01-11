@@ -11,5 +11,5 @@
   </button>
 </template>
 
-<script src="./CopyToClipboardButton.js"/>
-<style lang="scss" scoped src="./CopyToClipboardButton.scss"/>
+<script lang="ts" src="./CopyToClipboardButton.ts"></script>
+<style lang="scss" scoped src="./CopyToClipboardButton.scss"></style>

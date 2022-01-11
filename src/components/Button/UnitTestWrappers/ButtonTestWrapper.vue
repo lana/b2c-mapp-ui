@@ -5,9 +5,11 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
+
 import Button from '../Button.vue';
 
-export default {
+export default defineComponent({
   name: 'ButtonCases',
   components: {
     Button,
@@ -28,6 +30,6 @@ export default {
       default: null,
     },
   },
-};
+});
 
 </script>

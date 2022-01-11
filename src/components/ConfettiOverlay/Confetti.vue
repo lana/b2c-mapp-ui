@@ -4,10 +4,11 @@
   </div>
 </template>
 
-<script>
-import { ref, onMounted } from 'vue';
+<script lang="ts">
+import type { CSSProperties } from 'vue';
+import { defineComponent, ref, onMounted } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'Confetti',
   props: {
     color: {
@@ -24,17 +25,17 @@ export default {
     },
   },
   setup(props) {
-    const confettiRef = ref(null);
-    const containerStyle = {
+    const confettiRef = ref();
+    const containerStyle = ref<CSSProperties>({
       visibility: 'hidden',
       width: `${props.width}px`,
       height: `${props.width * 0.8}px`,
       left: `${props.height}%`,
       opacity: Math.random() + 0.5,
-    };
-    const confettiStyle = {
+    });
+    const confettiStyle = ref<CSSProperties>({
       transform: `rotate(${Math.random() * 360}deg)`,
-    };
+    });
     onMounted(() => {
       const plusOrMinus = (Math.random() < 0.5) ? (-1) : (1);
       const animation = [
@@ -50,5 +51,5 @@ export default {
     });
     return { containerStyle, confettiStyle, confettiRef };
   },
-};
+});
 </script>

@@ -54,5 +54,5 @@
   </div>
 </template>
 
-<script src="./CodeInputField.js"/>
-<style lang="scss" scoped src="./CodeInputField.scss"/>
+<script lang="ts" src="./CodeInputField.ts"></script>
+<style lang="scss" scoped src="./CodeInputField.scss"></style>

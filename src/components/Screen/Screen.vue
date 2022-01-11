@@ -4,5 +4,5 @@
   </section>
 </template>
 
-<script src="./Screen.js"/>
-<style lang="scss" scoped src="./Screen.scss"/>
+<script lang="ts" src="./Screen.ts"></script>
+<style lang="scss" scoped src="./Screen.scss"></style>

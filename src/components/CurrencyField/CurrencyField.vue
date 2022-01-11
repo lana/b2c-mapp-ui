@@ -39,5 +39,5 @@
   </div>
 </template>
 
-<script src="./CurrencyField.js"/>
-<style lang="scss" scoped src="./CurrencyField.scss"/>
+<script lang="ts" src="./CurrencyField.ts"></script>
+<style lang="scss" scoped src="./CurrencyField.scss"></style>

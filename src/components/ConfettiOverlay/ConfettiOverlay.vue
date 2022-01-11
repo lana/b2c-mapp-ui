@@ -8,5 +8,6 @@
     />
   </div>
 </template>
-<script src="./ConfettiOverlay.js"/>
-<style lang="scss" scoped src="./ConfettiOverlay.scss"/>
+
+<script lang="ts" src="./ConfettiOverlay.ts"></script>
+<style lang="scss" scoped src="./ConfettiOverlay.scss"></style>

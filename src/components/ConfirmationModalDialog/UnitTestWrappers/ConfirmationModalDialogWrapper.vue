@@ -9,24 +9,27 @@
     <span data-testid="open-modal" @click="openModal">Click Me</span>
   </div>
 </template>
-<script>
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+
 import ConfirmationModalDialog from '../ConfirmationModalDialog.vue';
 
-export default {
+export default defineComponent({
   name: 'ConfirmationModalDialogWrapper',
   components: {
     ConfirmationModalDialog,
-  },
-  data() {
-    return {
-      isShowing: false,
-    };
   },
   methods: {
     openModal() {
       this.isShowing = true;
     },
   },
-};
+  setup() {
+    const isShowing = ref(false);
+    return {
+      isShowing,
+    };
+  },
+});
 
 </script>

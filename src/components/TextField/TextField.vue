@@ -26,5 +26,5 @@
   </div>
 </template>
 
-<script src="./TextField.js"/>
-<style lang="scss" scoped src="./TextField.scss"/>
+<script lang="ts" src="./TextField.ts"></script>
+<style lang="scss" scoped src="./TextField.scss"></style>

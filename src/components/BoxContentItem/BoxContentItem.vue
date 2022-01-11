@@ -31,5 +31,5 @@
   </li>
 </template>
 
-<script src="./BoxContentItem.js"/>
-<style lang="scss" scoped src="./BoxContentItem.scss"/>
+<script lang="ts" src="./BoxContentItem.ts"></script>
+<style lang="scss" scoped src="./BoxContentItem.scss"></style>

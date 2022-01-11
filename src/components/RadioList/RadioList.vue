@@ -39,5 +39,5 @@
   </section>
 </template>
 
-<script src="./RadioList.js"/>
-<style lang="scss" scoped src="./RadioList.scss"/>
+<script lang="ts" src="./RadioList.ts"></script>
+<style lang="scss" scoped src="./RadioList.scss"></style>

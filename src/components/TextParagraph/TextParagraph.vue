@@ -7,5 +7,5 @@
   </p>
 </template>
 
-<script src="./TextParagraph.js"/>
-<style lang="scss" scoped src="./TextParagraph.scss"/>
+<script lang="ts" src="./TextParagraph.ts"></script>
+<style lang="scss" scoped src="./TextParagraph.scss"></style>

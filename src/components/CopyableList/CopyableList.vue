@@ -10,5 +10,5 @@
   </section>
 </template>
 
-<script src="./CopyableList.js"/>
-<style lang="scss" scoped src="./CopyableList.scss"/>
+<script lang="ts" src="./CopyableList.ts"></script>
+<style lang="scss" scoped src="./CopyableList.scss"></style>

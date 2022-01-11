@@ -32,5 +32,5 @@
   </li>
 </template>
 
-<script src="./CopyableListItem.js"/>
-<style lang="scss" scoped src="./CopyableListItem.scss"/>
+<script lang="ts" src="./CopyableListItem.ts"></script>
+<style lang="scss" scoped src="./CopyableListItem.scss"></style>

@@ -30,5 +30,5 @@
   </FormField>
 </template>
 
-<script src="./PhoneNumberField.js"/>
-<style lang="scss" scoped src="./PhoneNumberField.scss"/>
+<script lang="ts" src="./PhoneNumberField.ts"></script>
+<style lang="scss" scoped src="./PhoneNumberField.scss"></style>

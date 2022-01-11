@@ -5,6 +5,6 @@
   </div>
 </template>
 
-<script src="./App.js"/>
-<style lang="scss" src="./App.scss"/>
-<style lang="scss" src="./styles/normalize.scss"/>
+<script lang="ts" src="./App.ts"></script>
+<style lang="scss" src="./App.scss"></style>
+<style lang="scss" src="./styles/normalize.scss"></style>

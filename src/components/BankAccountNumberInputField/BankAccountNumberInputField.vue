@@ -22,4 +22,4 @@
   />
 </template>
 
-<script src="./BankAccountNumberInputField.js"/>
+<script lang="ts" src="./BankAccountNumberInputField.ts"></script>

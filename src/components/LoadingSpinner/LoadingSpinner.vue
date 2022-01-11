@@ -2,5 +2,5 @@
   <MopSpinnerIcon class="spinner"/>
 </template>
 
-<script src="./LoadingSpinner.js"/>
-<style lang="scss" scoped src="./LoadingSpinner.scss"/>
+<script lang="ts" src="./LoadingSpinner.ts"></script>
+<style lang="scss" scoped src="./LoadingSpinner.scss"></style>

@@ -2,11 +2,12 @@ const esModules = ['vue-contenteditable', 'lodash-es'].join('|');
 module.exports = {
   moduleFileExtensions: [
     'js',
+    'ts',
     'vue',
   ],
   transform: {
     '^.+\\.vue$': 'vue-jest',
-    '^.+\\.js$': 'babel-jest',
+    '^.+\\.(j|t)s$': 'babel-jest',
   },
   setupFiles: ['<rootDir>/setupTests.js'],
   roots: ['<rootDir>/src/components'],
@@ -18,12 +19,12 @@ module.exports = {
     '<rootDir>/src/styles',
   ],
   testMatch: [
-    '**/*.test.js',
-    '**/*.spec.js',
+    '**/*.test.ts',
+    '**/*.spec.ts',
   ],
   collectCoverageFrom: [
     'src/**/*.vue',
-    '!src/main.js',
+    '!src/main.ts',
   ],
   verbose: true,
   transformIgnorePatterns: [`/node_modules/(?!${esModules})`],

@@ -4,5 +4,5 @@
   </div>
 </template>
 
-<script src="./Wrapper.js"/>
-<style lang="scss" scoped src="./Wrapper.scss"/>
+<script lang="ts" src="./Wrapper.ts"></script>
+<style lang="scss" scoped src="./Wrapper.scss"></style>

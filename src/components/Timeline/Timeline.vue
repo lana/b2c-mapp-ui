@@ -9,5 +9,5 @@
   </div>
 </template>
 
-<script src="./Timeline.js"/>
-<style lang="scss" scoped src="./Timeline.scss"/>
+<script lang="ts" src="./Timeline.ts"></script>
+<style lang="scss" scoped src="./Timeline.scss"></style>

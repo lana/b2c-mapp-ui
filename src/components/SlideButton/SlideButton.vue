@@ -23,5 +23,5 @@
   </div>
 </template>
 
-<script src="./SlideButton.js"/>
-<style lang="scss" scoped src="./SlideButton.scss"/>
+<script lang="ts" src="./SlideButton.ts"></script>
+<style lang="scss" scoped src="./SlideButton.scss"></style>

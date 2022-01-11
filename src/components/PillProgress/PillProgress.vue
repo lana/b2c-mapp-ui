@@ -22,5 +22,5 @@
   </div>
 </template>
 
-<script src="./PillProgress.js"/>
-<style lang="scss" scoped src="./PillProgress.scss"/>
+<script lang="ts" src="./PillProgress.ts"></script>
+<style lang="scss" scoped src="./PillProgress.scss"></style>

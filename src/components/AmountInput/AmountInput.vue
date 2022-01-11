@@ -34,5 +34,5 @@
   </div>
 </template>
 
-<script src="./AmountInput.js"/>
-<style lang="scss" scoped src="./AmountInput.scss"/>
+<script lang="ts" src="./AmountInput.ts"></script>
+<style lang="scss" scoped src="./AmountInput.scss"></style>

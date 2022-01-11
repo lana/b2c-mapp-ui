@@ -6,6 +6,9 @@
          @mousedown="handleGestureStart"
          @mousemove="handleGestureMove"
          @mouseup="handleGestureEnd"
+         @touchstart="handleGestureStart"
+         @touchmove="handleGestureMove"
+         @touchend="handleGestureEnd"
          @scroll.passive="handleScroll"
     >
       <slot/>
@@ -75,5 +78,5 @@
   </div>
 </template>
 
-<script src="./Carousel.js"/>
-<style lang="scss" scoped src="./Carousel.scss"/>
+<script lang="ts" src="./Carousel.ts"></script>
+<style lang="scss" scoped src="./Carousel.scss"></style>

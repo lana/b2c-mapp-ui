@@ -52,5 +52,5 @@
   </section>
 </template>
 
-<script src="./ConfirmationToastDialog.js"/>
-<style lang="scss" scoped src="./ConfirmationToastDialog.scss"/>
+<script lang="ts" src="./ConfirmationToastDialog.ts"></script>
+<style lang="scss" scoped src="./ConfirmationToastDialog.scss"></style>
