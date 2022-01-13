@@ -22,5 +22,5 @@
   </div>
 </template>
 
-<script src="./Checkbox.js"/>
-<style lang="scss" scoped src="./Checkbox.scss"/>
+<script lang="ts" src="./Checkbox.ts"></script>
+<style lang="scss" scoped src="./Checkbox.scss"></style>

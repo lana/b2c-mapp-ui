@@ -20,5 +20,5 @@
   </figure>
 </template>
 
-<script src="./FigureCard.js"/>
-<style lang="scss" scoped src="./FigureCard.scss"/>
+<script lang="ts" src="./FigureCard.ts"></script>
+<style lang="scss" scoped src="./FigureCard.scss"></style>

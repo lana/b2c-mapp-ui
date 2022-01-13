@@ -16,5 +16,5 @@
   </section>
 </template>
 
-<script src="./WrappedButton.js"/>
-<style lang="scss" scoped src="./WrappedButton.scss"/>
+<script lang="ts" src="./WrappedButton.ts"></script>
+<style lang="scss" scoped src="./WrappedButton.scss"></style>

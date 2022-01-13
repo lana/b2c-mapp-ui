@@ -6,5 +6,5 @@
   </div>
 </template>
 
-<script src="./StorybookMobileDeviceSimulator.js"/>
-<style lang="scss" scoped src="./StorybookMobileDeviceSimulator.scss"/>
+<script lang="ts" src="./StorybookMobileDeviceSimulator.ts"></script>
+<style lang="scss" scoped src="./StorybookMobileDeviceSimulator.scss"></style>

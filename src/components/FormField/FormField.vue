@@ -43,5 +43,5 @@
   </div>
 </template>
 
-<script src="./FormField.js"/>
-<style lang="scss" scoped src="./FormField.scss"/>
+<script lang="ts" src="./FormField.ts"></script>
+<style lang="scss" scoped src="./FormField.scss"></style>

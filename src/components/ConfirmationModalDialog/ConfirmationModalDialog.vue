@@ -47,5 +47,5 @@
   </section>
 </template>
 
-<script src="./ConfirmationModalDialog.js"/>
-<style lang="scss" scoped src="./ConfirmationModalDialog.scss"/>
+<script lang="ts" src="./ConfirmationModalDialog.ts"></script>
+<style lang="scss" scoped src="./ConfirmationModalDialog.scss"></style>

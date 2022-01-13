@@ -16,5 +16,5 @@
   </nav>
 </template>
 
-<script src="./Stepper.js"/>
-<style lang="scss" scoped src="./Stepper.scss"/>
+<script lang="ts" src="./Stepper.ts"></script>
+<style lang="scss" scoped src="./Stepper.scss"></style>

@@ -43,5 +43,5 @@
   </div>
 </template>
 
-<script src="./SelectBox.js"/>
-<style lang="scss" scoped src="./SelectBox.scss"/>
+<script lang="ts" src="./SelectBox.ts"></script>
+<style lang="scss" scoped src="./SelectBox.scss"></style>

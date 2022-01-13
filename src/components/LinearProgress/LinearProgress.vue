@@ -26,5 +26,5 @@
   </div>
 </template>
 
-<script src="./LinearProgress.js"/>
-<style lang="scss" scoped src="./LinearProgress.scss"/>
+<script lang="ts" src="./LinearProgress.ts"></script>
+<style lang="scss" scoped src="./LinearProgress.scss"></style>

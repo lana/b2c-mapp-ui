@@ -7,5 +7,5 @@
   </h1>
 </template>
 
-<script src="./Heading.js"/>
-<style lang="scss" scoped src="./Heading.scss"/>
+<script lang="ts" src="./Heading.ts"></script>
+<style lang="scss" scoped src="./Heading.scss"></style>

@@ -9,5 +9,5 @@
   </section>
 </template>
 
-<script src="./ScrollWrapper.js"/>
-<style lang="scss" scoped src="./ScrollWrapper.scss"/>
+<script lang="ts" src="./ScrollWrapper.ts"></script>
+<style lang="scss" scoped src="./ScrollWrapper.scss"></style>

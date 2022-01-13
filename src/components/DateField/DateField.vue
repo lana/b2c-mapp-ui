@@ -39,5 +39,5 @@
   </div>
 </template>
 
-<script src="./DateField.js"/>
-<style lang="scss" scoped src="./DateField.scss"/>
+<script lang="ts" src="./DateField.ts"></script>
+<style lang="scss" scoped src="./DateField.scss"></style>

@@ -32,5 +32,5 @@
   </component>
 </template>
 
-<script src="./Button.js"/>
-<style lang="scss" scoped src="./Button.scss"/>
+<script lang="ts" src="./Button.ts"></script>
+<style lang="scss" scoped src="./Button.scss"></style>

@@ -10,6 +10,7 @@ const config = (api) => {
           exclude: ['transform-regenerator'],
         },
       ],
+      '@babel/preset-typescript',
     ],
   };
   return result;

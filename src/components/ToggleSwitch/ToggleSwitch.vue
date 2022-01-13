@@ -33,5 +33,5 @@
   </div>
 </template>
 
-<script src="./ToggleSwitch.js"/>
-<style lang="scss" scoped src="./ToggleSwitch.scss"/>
+<script lang="ts" src="./ToggleSwitch.ts"></script>
+<style lang="scss" scoped src="./ToggleSwitch.scss"></style>

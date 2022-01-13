@@ -6,5 +6,5 @@
   </header>
 </template>
 
-<script src="./TopBar.js"/>
-<style lang="scss" scoped src="./TopBar.scss"/>
+<script lang="ts" src="./TopBar.ts"></script>
+<style lang="scss" scoped src="./TopBar.scss"></style>

@@ -14,5 +14,5 @@
   </div>
 </template>
 
-<script src="./SignaturePad.js"/>
-<style lang="scss" scoped src="./SignaturePad.scss"/>
+<script lang="ts" src="./SignaturePad.ts"></script>
+<style lang="scss" scoped src="./SignaturePad.scss"></style>

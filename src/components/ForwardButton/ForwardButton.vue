@@ -15,5 +15,5 @@
   </section>
 </template>
 
-<script src="./ForwardButton.js"/>
-<style lang="scss" scoped src="./ForwardButton.scss"/>
+<script lang="ts" src="./ForwardButton.ts"></script>
+<style lang="scss" scoped src="./ForwardButton.scss"></style>

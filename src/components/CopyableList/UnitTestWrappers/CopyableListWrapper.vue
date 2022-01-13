@@ -30,13 +30,14 @@
     </CopyableList>
   </section>
 </template>
-<script>
+<script lang="ts">
 import { InfoIcon, FaceIdIcon, TouchIdIcon } from '@lana/b2c-mapp-ui-assets';
+import { defineComponent } from 'vue';
 
 import CopyableList from '../CopyableList.vue';
 import CopyableListItem from '../../CopyableListItem/CopyableListItem.vue';
 
-export default {
+export default defineComponent({
   name: 'CopyableListWrapper',
   components: {
     CopyableList,
@@ -50,6 +51,6 @@ export default {
       title: 'Title',
     };
   },
-};
+});
 
 </script>

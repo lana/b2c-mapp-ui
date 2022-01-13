@@ -1,15 +1,19 @@
 module.exports = {
   root: true,
   env: {
+    es6: true,
     node: true,
   },
   extends: [
     'airbnb-base',
+    'airbnb-typescript/base',
     'plugin:vue/vue3-strongly-recommended',
+    'plugin:@typescript-eslint/recommended',
   ],
   plugins: [
     'fp',
     '@getify/proper-ternary',
+    '@typescript-eslint',
   ],
   ignorePatterns: [
     'build/**/*',
@@ -19,9 +23,13 @@ module.exports = {
     document: true,
     window: true,
   },
+  parser: 'vue-eslint-parser',
   parserOptions: {
+    parser: '@typescript-eslint/parser',
     ecmaVersion: 2020,
     sourceType: 'module',
+    project: ['./tsconfig.eslint.json'],
+    extraFileExtensions: ['.vue'],
   },
   overrides: [
     {
@@ -35,6 +43,11 @@ module.exports = {
       },
     },
   ],
+  settings: {
+    'import/resolver': {
+      typescript: {},
+    },
+  },
   rules: {
     'no-console': 1,
     'no-extra-boolean-cast': 0,
@@ -67,6 +80,7 @@ module.exports = {
     'fp/no-delete': 'error',
     'fp/no-get-set': 'error',
     '@getify/proper-ternary/parens': ['error', { call: false, object: false }],
+    '@typescript-eslint/consistent-type-imports': 'error',
     'vue/multi-word-component-names': ['error', {
       ignores: ['Button', 'Carousel', 'Checkbox', 'Confetti', 'Heading', 'Infobox', 'Screen', 'Stepper', 'Timeline', 'Wrapper'],
     }],

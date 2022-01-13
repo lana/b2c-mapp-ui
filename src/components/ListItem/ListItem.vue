@@ -39,5 +39,5 @@
   </li>
 </template>
 
-<script src="./ListItem.js"/>
-<style lang="scss" scoped src="./ListItem.scss"/>
+<script lang="ts" src="./ListItem.ts"></script>
+<style lang="scss" scoped src="./ListItem.scss"></style>

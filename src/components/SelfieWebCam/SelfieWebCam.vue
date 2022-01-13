@@ -8,4 +8,4 @@
   />
 </template>
 
-<script src="./SelfieWebCam.js"/>
+<script lang="ts" src="./SelfieWebCam.ts"></script>

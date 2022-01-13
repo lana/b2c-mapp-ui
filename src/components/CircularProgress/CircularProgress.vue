@@ -44,5 +44,5 @@
   </div>
 </template>
 
-<script src="./CircularProgress.js"/>
-<style lang="scss" scoped src="./CircularProgress.scss"/>
+<script lang="ts" src="./CircularProgress.ts"></script>
+<style lang="scss" scoped src="./CircularProgress.scss"></style>

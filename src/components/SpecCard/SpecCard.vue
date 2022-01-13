@@ -7,5 +7,5 @@
   </figure>
 </template>
 
-<script src="./SpecCard.js"/>
-<style lang="scss" scoped src="./SpecCard.scss"/>
+<script lang="ts" src="./SpecCard.ts"></script>
+<style lang="scss" scoped src="./SpecCard.scss"></style>

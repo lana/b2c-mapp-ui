@@ -6,5 +6,5 @@
   </section>
 </template>
 
-<script src="./Infobox.js"/>
-<style lang="scss" scoped src="./Infobox.scss"/>
+<script lang="ts" src="./Infobox.ts"></script>
+<style lang="scss" scoped src="./Infobox.scss"></style>

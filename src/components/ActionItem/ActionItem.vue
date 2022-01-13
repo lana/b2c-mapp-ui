@@ -23,5 +23,5 @@
   </li>
 </template>
 
-<script src="./ActionItem.js"/>
-<style lang="scss" scoped src="./ActionItem.scss"/>
+<script lang="ts" src="./ActionItem.ts"></script>
+<style lang="scss" scoped src="./ActionItem.scss"></style>
