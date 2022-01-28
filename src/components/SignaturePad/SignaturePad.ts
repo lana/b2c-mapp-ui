@@ -84,17 +84,19 @@ const SignaturePad = defineComponent({
     const canvasWidth = ref(300);
     const canvasHeight = ref(200);
 
-    watchEffect(() => {
-      if (!signatureCanvas.value) { return; }
-      canvasWidth.value = signatureCanvas.value.clientWidth;
-      canvasHeight.value = signatureCanvas.value.clientHeight;
-      context.value = signatureCanvas.value.getContext('2d');
-      context.value.strokeStyle = 'black';
-      context.value.lineWidth = 2;
-    },
-    {
-      flush: 'post',
-    });
+    watchEffect(
+      () => {
+        if (!signatureCanvas.value) { return; }
+        canvasWidth.value = signatureCanvas.value.clientWidth;
+        canvasHeight.value = signatureCanvas.value.clientHeight;
+        context.value = signatureCanvas.value.getContext('2d');
+        context.value.strokeStyle = 'black';
+        context.value.lineWidth = 2;
+      },
+      {
+        flush: 'post',
+      },
+    );
 
     return {
       signatureCanvas,
