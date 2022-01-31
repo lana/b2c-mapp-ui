@@ -72,8 +72,8 @@ const CopyToClipboardButton = defineComponent({
       switch (this.currentCopyState) {
         case (copyStatesLookup.copying): return { text: this.copyingLabel, class: this.copyingClass };
         case (copyStatesLookup.copied): return { text: this.copiedLabel, class: this.copiedClass };
-        default:
-        case (copyStatesLookup.toCopy): return { text: this.toCopyLabel, class: this.toCopyClass };
+        case (copyStatesLookup.toCopy):
+        default: return { text: this.toCopyLabel, class: this.toCopyClass };
       }
     },
     copyStatusText() {

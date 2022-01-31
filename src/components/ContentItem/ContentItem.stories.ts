@@ -66,7 +66,7 @@ const defaultExample: StoryFn<typeof ContentItem> = (args, { argTypes }) => ({
                 :success="success"
                 @click="onClick"
   >
-    <RenderString :string="defaultSlot" fragment/>
+    <RenderString :string="defaultSlot" v-if="defaultSlot"/>
     <template v-slot:customTitle v-if="customTitle">
       <RenderString :string="customTitle" />
     </template>

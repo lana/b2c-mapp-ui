@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue';
+import { Comment, defineComponent } from 'vue';
 
 import Heading from '../Heading/Heading.vue';
 import TextParagraph from '../TextParagraph/TextParagraph.vue';

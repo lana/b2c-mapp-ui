@@ -107,15 +107,16 @@ describe('CurrencyField unit test', () => {
   it('Should provide current input value in the input event when value changed', async () => {
     const givenValue = 123;
     const wrapper = mount(CurrencyField, { props: { ...defaultProps, modelValue: '' } });
+    await wrapper.vm.$nextTick();
     await wrapper.find('input').setValue(givenValue);
-    const [inputEventValue] = wrapper.emitted('update:modelValue')?.[0] as number[];
+    const [inputEventValue] = (wrapper.emitted('update:modelValue') || [])[0] as number[];
     expect(inputEventValue).toBe(123);
   });
 
   it('Should emit blur event when is blurred', async () => {
     const wrapper = mount(CurrencyField, { props: { ...defaultProps, modelValue: '' } });
     await wrapper.vm.$nextTick();
-    wrapper.find('input').trigger('blur');
+    await wrapper.find('input').trigger('blur');
     const blurEvent = wrapper.emitted().blur;
     expect(blurEvent).toBeTruthy();
   });
@@ -123,7 +124,7 @@ describe('CurrencyField unit test', () => {
   it('Should emit focus event when is focused', async () => {
     const wrapper = mount(CurrencyField, { props: { ...defaultProps, modelValue: '' } });
     await wrapper.vm.$nextTick();
-    wrapper.find('input').trigger('focus');
+    await wrapper.find('input').trigger('focus');
     const focusEvent = wrapper.emitted().focus;
     expect(focusEvent).toBeTruthy();
   });

@@ -1,7 +1,5 @@
 <template>
-  <input ref="inputRef"
-         v-model="inputValue"
-  >
+  <input ref="inputRef">
 </template>
 
 <script lang="ts">
