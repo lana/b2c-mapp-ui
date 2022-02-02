@@ -36,8 +36,10 @@ import SignaturePad from './components/SignaturePad/SignaturePad.vue';
 import SlideButton from './components/SlideButton/SlideButton.vue';
 import SpecCard from './components/SpecCard/SpecCard.vue';
 import Stepper from './components/Stepper/Stepper.vue';
+import Steps from './components/Steps/Steps.vue';
+import Step from './components/Steps/Step.vue';
 import StorybookMobileDeviceSimulator from './components/StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { getAvailableDevices as getAvailableSimulatedMobileDevices } from './components/StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
+import { getAvailableDevices as getAvailableSimulatedMobileDevices } from './components/StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.utils';
 import TextField from './components/TextField/TextField.vue';
 import TextParagraph from './components/TextParagraph/TextParagraph.vue';
 import Timeline from './components/Timeline/Timeline.vue';
@@ -87,6 +89,8 @@ export {
   SlideButton,
   SpecCard,
   Stepper,
+  Steps,
+  Step,
   StorybookMobileDeviceSimulator,
   getAvailableSimulatedMobileDevices,
   TextField,

@@ -1,7 +1,7 @@
 import type { StoryFn } from '@storybook/vue3';
 
 import StorybookMobileDeviceSimulator from '../components/StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.vue';
-import { getAvailableDevices } from '../components/StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator';
+import { getAvailableDevices } from '../components/StorybookMobileDeviceSimulator/StorybookMobileDeviceSimulator.utils';
 
 const availableDevices = getAvailableDevices();
 

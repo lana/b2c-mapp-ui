@@ -1,0 +1,66 @@
+@import '../../styles/colors';
+
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 16px auto;
+}
+
+.steps {
+  width: 100%;
+
+  > :deep(*) {
+    margin: 16px;
+    margin-left: 44px;
+    position: relative;
+    border: 1px solid $black-300;
+    border-radius: 20px;
+
+    &:not(.step)::before {
+      content: "";
+      width: 12px;
+      left: -28px;
+      top: 16px;
+      height: 12px;
+      position: absolute;
+      display: block;
+      border-radius: 50%;
+      background-color: $blue-500;
+      z-index: 2;
+    }
+    &:not(:last-child):not(:first-child)::after {
+      content: "";
+      width: 1px;
+      left: -22px;
+      top: -9px;
+      bottom: -9px;
+      position: absolute;
+      display: block;
+      background-color: $black-300;
+      z-index: 1;
+    }
+    &:first-child::after {
+      content: "";
+      width: 1px;
+      left: -22px;
+      top: 28px;
+      bottom: -9px;
+      position: absolute;
+      display: block;
+      background-color: $black-300;
+      z-index: 1;
+    }
+    &:last-child::after {
+      content: "";
+      width: 1px;
+      left: -22px;
+      top: -9px;
+      bottom: calc(100% - 16px);
+      position: absolute;
+      display: block;
+      background-color: $black-300;
+      z-index: 1;
+    }
+  }
+}
