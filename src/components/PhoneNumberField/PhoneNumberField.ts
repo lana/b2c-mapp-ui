@@ -8,8 +8,8 @@ import TextParagraph from '../TextParagraph/TextParagraph.vue';
 import { onlyDigitsRegexp, nonDigitRegexp } from '../../lib/regexHelper';
 import libphoneNumberMetadata from '../../../data/libphonenumber-metadata.min.json';
 
-const phoneNumberMetadata = JSON.parse(JSON.stringify(libphoneNumberMetadata)) as MetadataJson;
-const getAvailableCountryCodes = () => getCountries(phoneNumberMetadata);
+const getPhoneNumberMetadata = () => JSON.parse(JSON.stringify(libphoneNumberMetadata)) as MetadataJson;
+const getAvailableCountryCodes = () => getCountries(getPhoneNumberMetadata());
 
 const PhoneNumberField = defineComponent({
   name: 'PhoneNumberField',
@@ -82,13 +82,13 @@ const PhoneNumberField = defineComponent({
     },
     formattedPhoneNumber() {
       if (!(this.inputValue && this.countryCode)) { return ''; }
-      const asYouType = new AsYouType(this.countryCode, phoneNumberMetadata);
+      const asYouType = new AsYouType(this.countryCode, getPhoneNumberMetadata());
       const result = asYouType.input(this.cleanedInputValue);
       return result;
     },
     prefix() {
       if (!this.countryCode) { return; }
-      const result = `+${getCountryCallingCode(this.countryCode, phoneNumberMetadata)}`;
+      const result = `+${getCountryCallingCode(this.countryCode, getPhoneNumberMetadata())}`;
       return result;
     },
     hideCountryCode() {
@@ -118,7 +118,7 @@ const PhoneNumberField = defineComponent({
     },
     isPhoneNumberValid() {
       if (this.maxPhoneNumberLength && (this.cleanedInputValue.length > this.maxPhoneNumberLength)) { return false; }
-      const asYouType = new AsYouType(this.countryCode, phoneNumberMetadata);
+      const asYouType = new AsYouType(this.countryCode, getPhoneNumberMetadata());
       asYouType.input((this.inputValue || ''));
       const result = asYouType.isPossible();
       return result;

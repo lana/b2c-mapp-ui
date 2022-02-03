@@ -1,10 +1,14 @@
 import type { Meta, StoryFn } from '@storybook/vue3';
 
 import TextParagraph from './TextParagraph.vue';
-import { availableSizes, availableColors, availableWeights } from './TextParagraph';
+import { getAvailableColors, getAvailableWeights, getAvailableSizes } from './TextParagraph';
 import { capitalizeFirstLetter } from '../../lib/textHelper';
 import { createOptionalDeviceDecorator } from '../../lib/storybookHelpers';
 import RenderString from '../../lib/renderString';
+
+const availableColors = getAvailableColors();
+const availableWeights = getAvailableWeights();
+const availableSizes = getAvailableSizes();
 
 const deviceDecorator = createOptionalDeviceDecorator('<strong>TextParagraph:</strong>&nbsp;A text view that represents a paragraph.');
 

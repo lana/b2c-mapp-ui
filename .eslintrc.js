@@ -81,9 +81,7 @@ module.exports = {
     'fp/no-get-set': 'error',
     '@getify/proper-ternary/parens': ['error', { call: false, object: false }],
     '@typescript-eslint/consistent-type-imports': 'error',
-    'vue/multi-word-component-names': ['error', {
-      ignores: ['Button', 'Carousel', 'Checkbox', 'Confetti', 'Heading', 'Infobox', 'Screen', 'Stepper', 'Timeline', 'Wrapper'],
-    }],
+    'vue/multi-word-component-names': 0,
     'vue/no-shared-component-data': 'error',
     'vue/no-side-effects-in-computed-properties': 'error',
     'vue/no-unused-components': 'error',

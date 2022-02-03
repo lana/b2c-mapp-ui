@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from '@storybook/vue3';
 
 import StorybookMobileDeviceSimulator from './StorybookMobileDeviceSimulator.vue';
-import { getAvailableDevices } from './StorybookMobileDeviceSimulator';
+import { getAvailableDevices } from './StorybookMobileDeviceSimulator.utils';
 import { createScreenDecorator } from '../../lib/storybookHelpers';
 import RenderString from '../../lib/renderString';
 

@@ -1,55 +1,61 @@
+import type { PropType } from 'vue';
 import { defineComponent } from 'vue';
 
-const availableWeights = [
-  'bold',
-  'medium',
-  'strong',
-];
+enum TextWeight {
+  'bold' = 'bold',
+  'medium' = 'medium',
+  'strong' = 'strong',
+}
 
-const availableSizes = [
-  'xsmall',
-  'small',
-  'medium',
-  'large',
-  'xl',
-  'xxl',
-  'xxxl',
-];
+const getAvailableWeights = () => Object.keys(TextWeight);
 
-const availableColors = [
-  'black-500',
-  'black-700',
-  'blue-500',
-  'blue-700',
-  'brown-500',
-  'brown-700',
-  'green-500',
-  'green-700',
-  'purple-500',
-  'purple-700',
-  'red-500',
-  'red-700',
-  'yellow-500',
-  'yellow-700',
-];
+enum TextSize {
+  'xsmall' = 'xsmall',
+  'small' = 'small',
+  'medium' = 'medium',
+  'large' = 'large',
+  'xl' = 'xl',
+  'xxl' = 'xxl',
+  'xxxl' = 'xxxl',
+}
+
+const getAvailableSizes = () => Object.keys(TextSize);
+
+enum TextColor {
+  'black-500' = 'black-500',
+  'black-700' = 'black-700',
+  'blue-500' = 'blue-500',
+  'blue-700' = 'blue-700',
+  'brown-500' = 'brown-500',
+  'brown-700' = 'brown-700',
+  'green-500' = 'green-500',
+  'green-700' = 'green-700',
+  'purple-500' = 'purple-500',
+  'purple-700' = 'purple-700',
+  'red-500' = 'red-500',
+  'red-700' = 'red-700',
+  'yellow-500' = 'yellow-500',
+  'yellow-700' = 'yellow-700',
+}
+const getAvailableColors = () => Object.keys(TextColor);
 
 const TextParagraph = defineComponent({
   name: 'TextParagraph',
   props: {
     size: {
-      type: String,
+      type: String as PropType<TextSize>,
       default: '',
-      validator(value: string) { return (!value || availableSizes.includes(value)); },
+      validator: (value: TextSize) => (!value || !!getAvailableSizes().includes(value)),
     },
     color: {
-      type: String,
+      type: String as PropType<TextColor>,
       default: '',
-      validator(value: string) { return (!value || availableColors.includes(value)); },
+      validator: (value: TextColor) => (!value || !!getAvailableColors().includes(value)),
     },
     weight: {
-      type: String,
+      type: String as PropType<TextWeight>,
       default: '',
-      validator(value: string) { return (!value || availableWeights.includes(value)); },
+      validator: (value: TextWeight) => (!value || !!getAvailableWeights().includes(value)),
     },
     dataTestId: {
       type: String,
@@ -58,10 +64,15 @@ const TextParagraph = defineComponent({
   },
 });
 
+export type {
+  TextWeight,
+  TextColor,
+  TextSize,
+};
 export {
-  availableWeights,
-  availableColors,
-  availableSizes,
+  getAvailableWeights,
+  getAvailableColors,
+  getAvailableSizes,
 };
 
 export default TextParagraph;
