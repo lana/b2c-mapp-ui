@@ -12,7 +12,7 @@
              :disabled="disabled"
              :readonly="readonly"
              :start-focused="startFocused"
-             :max-length="maxLength"
+             :max-length="maxLengthWithExtraCharacters"
              :length-hint="lengthHint"
              :length-hint-label="lengthHintLabel"
              :data-test-id="dataTestId"
