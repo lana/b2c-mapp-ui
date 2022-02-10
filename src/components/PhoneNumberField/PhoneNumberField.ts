@@ -96,6 +96,13 @@ const PhoneNumberField = defineComponent({
       const result = (!this.isFocused && !this.inputValue);
       return result;
     },
+    maxLengthWithExtraCharacters() {
+      const maxLength = this.maxLength || this.lengthHint;
+      if (!maxLength) { return; }
+      const charactersAdded = `${this.formattedPhoneNumber}`.length - `${this.modelValue}`.length;
+      const result = maxLength + charactersAdded;
+      return result;
+    },
   },
   methods: {
     emitUpdateModelValueEvent() {
