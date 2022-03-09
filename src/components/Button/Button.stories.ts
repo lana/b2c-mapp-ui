@@ -21,7 +21,8 @@ const ButtonStories = {
     dropShadow: false,
     debounce: false,
     debounceDelay: 400,
-    href: '',
+    href: undefined,
+    link: false,
     loadingText: 'Cargando...',
     default: 'Example Button',
   },
@@ -34,6 +35,7 @@ const ButtonStories = {
     debounce: { name: 'Has debounce?', control: 'boolean' },
     debounceDelay: { name: 'Debounce Delay', control: { type: 'number', step: 100 } },
     href: { name: 'href', control: 'text' },
+    link: { name: 'Is link?', control: 'boolean' },
     loadingText: { name: 'Loading Text', control: 'text' },
     default: {
       control: {
@@ -67,6 +69,7 @@ const defaultExample: StoryFn<typeof Button> = (args, { argTypes }) => ({
   <div style="margin: 20px;">
     <Button :type="type"
             :href="href"
+            :link="link"
             :loading="loading"
             :loading-text="loadingText"
             :drop-shadow="dropShadow"

@@ -25,7 +25,7 @@ const Button = defineComponent({
     },
     href: {
       type: String,
-      default: '',
+      default: undefined,
     },
     link: Boolean,
     loading: Boolean,
