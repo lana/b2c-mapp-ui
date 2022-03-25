@@ -1,7 +1,7 @@
 <template>
   <section class="wrapper">
     <ul :data-testid="`${dataTestId}-select`">
-      <li v-for="({ title, metaText, value: optionValue, disabled }) in options"
+      <li v-for="({ title, metaText, value: optionValue, disabled, icon, mediaClass }) in options"
           :key="`${optionValue}`"
           class="item"
           :class="{ checked: (selectedValue === optionValue) }"
@@ -22,6 +22,7 @@
                  :value="optionValue"
                  :disabled="disabled"
           >
+          <slot name="media" v-bind="{ icon, mediaClass }"/>
           <div :data-testid="`${dataTestId}-heading`" class="body">
             <Heading class="title" size="medium" v-html="title"/>
             <TextParagraph v-if="metaText"

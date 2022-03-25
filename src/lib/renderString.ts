@@ -9,10 +9,6 @@ const RenderString = defineComponent({
       required: true,
       type: String,
     },
-    fragment: {
-      type: Boolean,
-      default: false,
-    },
     customProps: {
       type: Object,
       default: () => ({}),

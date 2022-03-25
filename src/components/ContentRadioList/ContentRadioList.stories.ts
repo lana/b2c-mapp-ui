@@ -1,5 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import type { Meta, StoryFn } from '@storybook/vue3';
+import * as AllIcons from '@lana/b2c-mapp-ui-assets';
 
 import ContentRadioList from './ContentRadioList.vue';
 import RenderString from '../../lib/renderString';
@@ -51,6 +52,7 @@ const Template: StoryFn<typeof ContentRadioList> = (args, { argTypes }) => ({
   components: {
     ContentRadioList,
     RenderString,
+    ...AllIcons,
   },
   data() {
     return {
@@ -73,6 +75,11 @@ const Template: StoryFn<typeof ContentRadioList> = (args, { argTypes }) => ({
                         :options="options"
                         @input="onInput"
       >
+        <template v-slot:media="{ title, icon, mediaClass }">
+          <div class="media" :class="mediaClass" v-if="(icon || mediaClass)" style="width: 48px; height: 48px; border-radius: 14px; display: flex; justify-content: center; margin-right: 16px; border: 1px solid #EBECF0">
+            <component :is="icon" width="24"/>
+          </div>
+        </template>
         <template v-if="checkedIcon" v-slot:checkedIcon>
           <RenderString :string="checkedIcon" />
         </template>
@@ -166,9 +173,63 @@ withCustomCheckedUncheckedIcons.parameters = {
   },
 };
 
+const optionsWithIcons = [
+  {
+    title: 'Option 1',
+    metaText: 'Description 1',
+    value: 'option1',
+    icon: 'MopIcon',
+  },
+  {
+    title: 'Option 2',
+    metaText: 'Description 2',
+    value: 'option2',
+    icon: 'MopSuccessIcon',
+  },
+  {
+    title: 'Option 3',
+    metaText: 'Description 3',
+    value: 'option3',
+    icon: 'CardIcon',
+  },
+];
+
+const optionsWithIconsValues = options.map(({ value }) => value);
+const optionsWithIconsLabels = options.reduce((accumulator, { value, title }) => ({ ...accumulator, [value]: title }), {});
+
+const withCustomMediaIcon = Template.bind({});
+withCustomMediaIcon.args = {
+  options: optionsWithIcons,
+  value: 'option1',
+};
+withCustomMediaIcon.argTypes = {
+  value: { control: { type: 'select', labels: optionsWithIconsLabels }, options: optionsWithIconsValues },
+};
+withCustomMediaIcon.parameters = {
+  docs: {
+    source: {
+      code: `
+<ContentRadioList v-model="selectedValue"
+                  :id="id"
+                  :data-test-id="dataTestId"
+                  :options="options"
+                  @input="onInput"
+>
+  <template v-slot:media="{ icon, mediaClass }">
+    <div class="media" :class="mediaClass" v-if="(icon || mediaClass)">
+      <component :is="icon" class="media-icon"/>
+    </div>
+  </template>
+</ContentRadioList>
+      `,
+    },
+  },
+};
+
 export {
   defaultExample,
   withCustomCheckedUncheckedIcons,
+  withCustomMediaIcon,
 };
 
 export default ContentRadioListStories;
