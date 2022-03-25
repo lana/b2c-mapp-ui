@@ -9,7 +9,9 @@ interface ContentRadioOption {
   title?: string,
   metaText?: string,
   value: string | number,
-  disabled?: boolean
+  disabled?: boolean,
+  icon?: string,
+  mediaClass?: string,
 }
 
 const ContentRadioList = defineComponent({
