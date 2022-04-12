@@ -16,12 +16,14 @@ const FigureCardStories = {
     title: 'Example Title',
     imageSource: 'https://source.unsplash.com/random/116x26',
     default: '',
+    lazy: false,
   },
   argTypes: {
     ...deviceDecorator.argTypes,
     titleAbove: { control: 'boolean', name: 'Title Above' },
     title: { control: 'text', name: 'Title' },
     imageSource: { control: 'text', name: 'Image Source (URL)' },
+    lazy: { control: 'boolean', name: 'Is lazy?' },
     default: { control: { type: 'text' }, table: { type: { summary: null } } },
   },
 } as Meta<typeof FigureCard>;
@@ -44,6 +46,7 @@ const defaultExample: StoryFn<typeof FigureCard> = (args, { argTypes }) => ({
         <FigureCard :title-above="titleAbove"
                     :title="title"
                     :image-source="imageSource"
+                    :lazy="lazy"
         >
           <RenderString :string="defaultSlot" v-if="defaultSlot" />
         </FigureCard>
@@ -58,6 +61,7 @@ defaultExample.parameters = {
 <FigureCard :title-above="titleAbove"
             :title="title"
             :image-source="imageSource"
+            :lazy="lazy"
 />`,
     },
   },

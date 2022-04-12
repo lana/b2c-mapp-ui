@@ -1,5 +1,5 @@
 import type { VueWrapper } from '@vue/test-utils';
-import { shallowMount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 
 import ConfettiOverlay from './ConfettiOverlay.vue';
 
@@ -10,7 +10,7 @@ describe('ConfettiOverlay unit test', () => {
   };
 
   it('Should pass health-check test', async () => {
-    const wrapper = shallowMount(ConfettiOverlay, {});
+    const wrapper = mount(ConfettiOverlay, { global: { stubs: { Confetti: { template: '<div />' } } } });
     await waitForDomUpdate(wrapper);
     expect(wrapper.findAll('.wrapper > *').length).toBe(80);
   });
