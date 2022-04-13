@@ -6,8 +6,10 @@
       </TextParagraph>
     </figcaption>
     <div v-if="imageSource" class="image-wrapper">
-      <div class="image"
+      <div ref="image"
+           class="image"
            :data-testid="`${dataTestId}-image`"
+           :class="{lazy: lazy}"
            :style="backgroundStyle"
       />
     </div>
