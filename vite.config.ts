@@ -23,6 +23,7 @@ export default defineConfig({
         'libphonenumber-js/custom',
         'lodash-es',
         '@lana/b2c-mapp-ui-assets',
+        '@vueform/slider',
       ],
       output: {
         globals: {
@@ -32,6 +33,7 @@ export default defineConfig({
           'libphonenumber-js/custom': 'LibphonenumberJs',
           'lodash-es': 'Lodash',
           '@lana/b2c-mapp-ui-assets': 'b2cMappUiAssets',
+          '@vueform/slider': 'VueFormSlider',
         },
       },
     },

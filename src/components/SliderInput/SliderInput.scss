@@ -1,0 +1,76 @@
+@import "../../styles/colors";
+@import '../../styles/typography';
+
+$colors: "blue" $blue-400 $blue-500 $blue-600,
+  "brown" $brown-500 $brown-600 $brown-600,
+  "green" $green-500 $green-600 $green-600,
+  "orange" $orange-400 $orange-500 $orange-600,
+  "pink" $pink-400 $pink-500 $pink-600,
+  "purple" $purple-300 $purple-500 $purple-600,
+  "red" $red-400 $red-500 $red-600,
+  "yellow" $yellow-400 $yellow-500 $yellow-500;
+
+
+.slider-container {
+  :deep(.slider-target) {
+    height: 10px;
+    
+    .slider-connects {
+      background-color: $black-200;
+    }
+
+    .slider-connect {
+      position: relative;
+    }
+
+    .slider-origin {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      top: 0;
+      bottom: 0;
+    }
+
+    .slider-handle {
+      width: 20px;
+      height: 20px;
+      top: -5px;
+      box-shadow: none;
+      transform: translateX(-50%);
+
+      &:focus {
+        box-shadow: none;
+      }
+    }      
+  }
+
+  @each $color, $color1, $color2, $color3 in $colors {
+    &.#{$color} {
+      :deep(.slider-target) {
+        .slider-connect {
+          background-image: linear-gradient(to left, $color1, $color2);
+        }
+        
+        .slider-handle {
+          background-color: $color3;
+        }
+      }
+    }
+  }
+
+  .slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font: $default-xs;
+    color: $black-600;
+    margin-top: 8px;
+
+    .slider-label-right {
+      text-align: end;
+    }
+
+    .slider-label-title {
+      font-weight: 500;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "@lana/b2c-mapp-ui",
-  "version": "9.8.0",
+  "version": "9.9.0",
   "description": "Shared custom libraries for building µapps.",
   "bugs": {
     "url": "https://github.com/lana/b2c-mapp-ui/issues"
@@ -49,6 +49,7 @@
   ],
   "dependencies": {
     "@lana/b2c-mapp-ui-assets": "^5.25.0",
+    "@vueform/slider": "^2.0.10",
     "libphonenumber-js": "^1.9.51",
     "lodash-es": "^4.17.21",
     "vue": "^3.2.32",

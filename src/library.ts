@@ -34,6 +34,7 @@ import SelectBox from './components/SelectBox/SelectBox.vue';
 import SelfieWebCam from './components/SelfieWebCam/SelfieWebCam.vue';
 import SignaturePad from './components/SignaturePad/SignaturePad.vue';
 import SlideButton from './components/SlideButton/SlideButton.vue';
+import SliderInput from './components/SliderInput/SliderInput.vue';
 import SpecCard from './components/SpecCard/SpecCard.vue';
 import Stepper from './components/Stepper/Stepper.vue';
 import Steps from './components/Steps/Steps.vue';
@@ -87,6 +88,7 @@ export {
   SelfieWebCam,
   SignaturePad,
   SlideButton,
+  SliderInput,
   SpecCard,
   Stepper,
   Steps,
