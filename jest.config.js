@@ -1,4 +1,4 @@
-const esModules = ['vue-contenteditable', 'lodash-es'].join('|');
+const esModules = ['vue-contenteditable', 'lodash-es', '@vueform/slider'].join('|');
 module.exports = {
   moduleFileExtensions: [
     'js',
